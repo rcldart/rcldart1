@@ -16,3 +16,12 @@ void main() {
   if (exists(outputName)) delete(outputName);
   outputName.append(preprocessed);
 }
+
+class CHeaderGrammar extends GrammarParser {
+  CHeaderGrammar() : super(CHeaderGrammarDefinition());
+}
+
+class CHeaderGrammarDefinition extends GrammarDefinition {
+  @override
+  Parser start() {}
+}
