@@ -2443,5 +2443,3 @@ __attribute__((visibility("default")))
 __attribute__((warn_unused_result))
 rcl_ret_t
 rcl_wait(rcl_wait_set_t *wait_set, int64_t timeout);
-
-1 error generated.
