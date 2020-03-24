@@ -4,7 +4,7 @@ author: Tim Whiting
 description: A Dart interface to the ROS 2 Client Library through Dart FFI.
 homepage: https://github.com/TimWhiting/rcldart.git
 environment:
-  sdk: ">=2.5.0-dev.1.0 <3.0.0"
+  sdk: ">=2.7.0 <3.0.0"
 dependencies:
   path: ^1.6.2
   dshell: any
