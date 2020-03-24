@@ -18,7 +18,8 @@ void main() {
     outputName.append(preprocessed);
   } else {
     final file = read(outputName).toList().join('\n');
-    final test = """
+    final test = """typedef int rcutils_ret_t;""";
+    final othertest = """
     typedef int rcutils_ret_t;
 typedef struct rcutils_allocator_t
 {
@@ -33,11 +34,8 @@ typedef struct rcutils_allocator_t
   void *state;
 } rcutils_allocator_t;
 
-__attribute__((visibility("default")))
-__attribute__((warn_unused_result))
-rcutils_allocator_t
-rcutils_get_zero_initialized_allocator(void);
-    """;
+rcutils_allocator_t rcutils_get_zero_initialized_allocator(void);
+""";
     final grammer = CHeaderGrammar();
     print("Created Grammer");
     grammer.parse(test);
@@ -76,133 +74,201 @@ class CHeaderGrammarDefinition extends GrammarDefinition {
 
   void Function(dynamic) debugPrint(name) {
     return (value) {
-      print("$name: $value");
+      print("$name $value");
       return value;
     };
   }
 
 //https://cs.wmich.edu/~gupta/teaching/cs4850/sumII06/The%20syntax%20of%20C%20in%20Backus-Naur%20form.htm
-  Parser externalDeclaration() => (ref(declaration)
+  Parser externalDeclaration() => (ref(declaration, 'externalDeclaration:')
       //| ref(functionDefinition) This is not needed because we don't have any definitions, just declarations and it breaks the thing
       )
-      .map(debugPrint('externalDeclaration'));
-  Parser functionDefinition() =>
-      (ref(declarationSpecifier).star() & ref(declarator) & ref(declaration).star() & ref(compoundStatement))
-          .map(debugPrint('functionDefinition'));
-  Parser declarationSpecifier() =>
-      (ref(storageClassSpecifier) | ref(typeSpecifier) | ref(typeQualifier)).map(debugPrint('declarationSpecifier'));
-  Parser storageClassSpecifier() => (ref(token, 'auto') |
-          ref(token, 'register') |
-          ref(token, 'static') |
-          ref(token, 'extern') |
-          ref(token, 'typedef'))
-      .map(debugPrint('storageClassSpecifier'));
-  Parser typeSpecifier() => (ref(token, 'void') |
-          ref(token, 'char') |
-          ref(token, 'short') |
-          ref(token, 'int') |
-          ref(token, 'long') |
-          ref(token, 'float') |
-          ref(token, 'double') |
-          ref(token, 'signed') |
-          ref(token, 'size_t') |
-          ref(token, 'unsigned') |
-          ref(structOrUnionSpecifier) |
-          ref(enumSpecifier) |
-          ref(typedefName))
-      .map(debugPrint('typeSpecifier'));
-  Parser structOrUnionSpecifier() =>
-      (ref(structOrUnion) & ref(identifier) & openBrace() & ref(structDeclaration).plus() & closeBrace() |
-              ref(structOrUnion) & openBrace() & ref(structDeclaration).plus() & closeBrace() |
-              ref(structOrUnion) & ref(identifier))
-          .map(debugPrint('structOrUnionSpecifier'));
-  Parser structOrUnion() => (ref(token, 'struct') | ref(token, 'union')).map(debugPrint('structOrUnion'));
-  Parser structDeclaration() =>
-      (ref(specifierQualifier).star() & ref(structDeclaratorList)).map(debugPrint('structDeclaration'));
-  Parser specifierQualifier() => (typeSpecifier() | typeQualifier()).map(debugPrint('specifierQualifier'));
-  Parser structDeclaratorList() =>
-      (ref(structDeclarator) | ref(structDeclarator) & (comma() & ref(structDeclarator)).star())
-          .map(debugPrint('structDeclaratorList'));
-  Parser structDeclarator() =>
-      (ref(declarator) | ref(declarator) & colon() & ref(constantExpression) | colon() & ref(constantExpression))
-          .map(debugPrint('structDeclarator'));
-  Parser declarator() => (pointer().optional() & ref(directDeclarator)).map(debugPrint('declarator'));
-  Parser pointer() => (star() & typeQualifier().star() & ref(pointer).optional()).map(debugPrint('pointer'));
-  Parser typeQualifier() => (ref(token, 'const') | ref(token, 'volatile')).map(debugPrint('typeQualifier'));
-  Parser directDeclarator() => (ref(identifier) |
-          (openParen() & ref(declarator) & closeParen()) |
-          (ref(directDeclarator) & openBracket() & ref(constantExpression).optional() & closeBracket()) |
-          (ref(directDeclarator) & openParen() & parameterTypeList() & closeParen()) |
-          (ref(directDeclarator) & openParen() & ref(identifier).star() & closeParen()))
-      .map(debugPrint('directDeclarator'));
+      .map(debugPrint('externalDeclaration:'));
+  // Parser functionDefinition(String prefix) {
+  //   final debugName = prefix + 'functionDefinition:';
+  //   return (ref(declarationSpecifier, debugName).star() &
+  //           ref(declarator, debugName) &
+  //           ref(declaration, debugName).star() &
+  //           ref(compoundStatement, debugName))
+  //       .map(debugPrint(debugName));
+  // }
 
-  Parser constantExpression() => conditionalExpression().map(debugPrint('constantExpression'));
-  Parser conditionalExpression() =>
-      ref(logicalOrExpression) |
-      ref(logicalOrExpression) & ref(token, '?') & ref(expression) & colon() & ref(conditionalExpression);
-  Parser logicalOrExpression() =>
-      ref(logicalAndExpression) | ref(logicalOrExpression) & ref(token, '||') & ref(logicalAndExpression);
-  Parser logicalAndExpression() =>
-      ref(inclusiveOrExpression) | ref(logicalAndExpression) & ref(token, '&&') & ref(inclusiveOrExpression);
-  Parser inclusiveOrExpression() =>
-      ref(exclusiveOrExpression) | ref(inclusiveOrExpression) & ref(token, '|') & ref(exclusiveOrExpression);
-  Parser exclusiveOrExpression() =>
-      ref(andExpression) | ref(exclusiveOrExpression) & ref(token, '^') & ref(andExpression);
-  Parser andExpression() => ref(equalityExpression) | ref(andExpression) & ref(token, '&') & ref(equalityExpression);
-  Parser equalityExpression() =>
-      ref(relationalExpression) |
-      ref(equalityExpression) & ref(token, '==') & ref(relationalExpression) |
-      ref(equalityExpression) & ref(token, '!=') & ref(relationalExpression);
-  Parser relationalExpression() =>
-      ref(shiftExpression) |
-      ref(relationalExpression) & ref(token, '<') & ref(shiftExpression) |
-      ref(relationalExpression) & ref(token, '>') & ref(shiftExpression) |
-      ref(relationalExpression) & ref(token, '<=') & ref(shiftExpression) |
-      ref(relationalExpression) & ref(token, '>=') & ref(shiftExpression);
-  Parser shiftExpression() =>
-      ref(additiveExpression) |
-      ref(shiftExpression) & ref(token, '<<') & ref(additiveExpression) |
-      ref(shiftExpression) & ref(token, '>>') & ref(additiveExpression);
-  Parser additiveExpression() =>
-      ref(multiplicativeExpression) |
-      ref(additiveExpression) & ref(token, '+') & ref(multiplicativeExpression) |
-      ref(additiveExpression) & ref(token, '-') & ref(multiplicativeExpression);
-  Parser multiplicativeExpression() =>
-      ref(castExpression) |
-      ref(multiplicativeExpression) & ref(token, '*') & ref(castExpression) |
-      ref(multiplicativeExpression) & ref(token, '/') & ref(castExpression) |
-      ref(multiplicativeExpression) & ref(token, '%') & ref(castExpression);
+  Parser declarationSpecifier(String prefix) {
+    final debugName = prefix + 'declarationSpecifier:';
+    return (ref(storageClassSpecifier, debugName) | ref(typeSpecifier, debugName) | ref(typeQualifier, debugName))
+        .map(debugPrint(debugName));
+  }
 
-  Parser castExpression() => ref(unaryExpression) | openParen() & ref(typeName) & ref(castExpression);
-  Parser unaryExpression() =>
-      ref(postfixExpression) |
-      ref(token, '++') & ref(unaryExpression) |
-      ref(token, '--') & ref(unaryExpression) |
-      unaryOperator() & ref(castExpression) |
-      sizeof() & ref(unaryExpression) |
-      sizeof() & ref(typeName);
-  Parser postfixExpression() =>
-      ref(primaryExpression) |
-      ref(postfixExpression) & openBracket() & ref(expression) & closeBracket() |
-      ref(postfixExpression) & openParen() & ref(assignmentExpression).star() & closeParen() |
-      ref(postfixExpression) & ref(token, '.') & ref(identifier) |
-      ref(postfixExpression) & ref(token, '->') & ref(identifier) |
-      ref(postfixExpression) & ref(token, '++') |
-      ref(postfixExpression) & ref(token, '--');
+  Parser storageClassSpecifier(String prefix) {
+    final debugName = prefix + 'storageClassSpecifier:';
+    return (ref(token, 'auto', debugName) |
+            ref(token, 'register', debugName) |
+            ref(token, 'static', debugName) |
+            ref(token, 'extern', debugName) |
+            ref(token, 'typedef', debugName))
+        .map(debugPrint(debugName));
+  }
 
-  Parser primaryExpression() =>
-      ref(identifier) | constant() | stringConstant() | openParen() & ref(expression) & closeParen();
-  Parser constant() => (integerConstant() | characterConstant() | floatingConstant() | enumerationConstant())
-      .map(debugPrint('constant'));
-  Parser integerConstant() => (digit('integer').plus()).map(debugPrint('integerConstant'));
-  Parser characterConstant() => (char("'") & letter('character') & char("'")).map(debugPrint('characterConstant'));
-  Parser floatingConstant() => (digit('floating').star() & char('.', 'floatingPoint') & digit('floating').star())
-      .map(debugPrint('floatingConstant'));
-  Parser enumerationConstant() {
+  Parser typeSpecifier(String prefix) {
+    final debugName = prefix + 'typeSpecifier:';
+    return (ref(token, 'void', debugName) |
+            ref(token, 'char', debugName) |
+            ref(token, 'short', debugName) |
+            ref(token, 'int', debugName) |
+            ref(token, 'long', debugName) |
+            ref(token, 'float', debugName) |
+            ref(token, 'double', debugName) |
+            ref(token, 'signed', debugName) |
+            ref(token, 'size_t', debugName) |
+            ref(token, 'signed', debugName) |
+            ref(token, 'unsigned', debugName) |
+            ref(structOrUnionSpecifier, debugName) |
+            ref(enumSpecifier, debugName) |
+            ref(typedefName, debugName))
+        .map(debugPrint(debugName));
+  }
+
+  Parser structOrUnionSpecifier(String prefix) {
+    final debugName = prefix + 'structOrUnionSpecifier:';
+    return ((ref(structOrUnion, debugName) &
+                ref(identifier, debugName) &
+                openBrace() &
+                ref(structDeclaration, debugName).plus() &
+                closeBrace()) |
+            (ref(structOrUnion, debugName) & openBrace() & ref(structDeclaration, debugName).plus() & closeBrace()) |
+            (ref(structOrUnion, debugName) & ref(identifier, debugName)))
+        .map(debugPrint(debugName));
+  }
+
+  Parser structOrUnion(String prefix) {
+    final debugName = prefix + 'structOrUnion:';
+    return (ref(token, 'struct', debugName) | ref(token, 'union', debugName)).map(debugPrint(debugName));
+  }
+
+  Parser structDeclaration(String prefix) {
+    final debugName = prefix + 'structDeclaration:';
+    return (ref(specifierQualifier, debugName).star() & ref(structDeclaratorList, debugName))
+        .map(debugPrint(debugName));
+  }
+
+  Parser specifierQualifier(String prefix) {
+    final debugName = prefix + 'specifierQualifier:';
+    return (ref(typeSpecifier, debugName) | ref(typeQualifier, debugName)).map(debugPrint(debugName));
+  }
+
+  Parser structDeclaratorList(String prefix) {
+    final debugName = prefix + 'structDeclaratorList:';
+    return (ref(structDeclarator, debugName) |
+            ref(structDeclarator, debugName) & (comma() & ref(structDeclarator, debugName)).star())
+        .map(debugPrint(debugName));
+  }
+
+  Parser structDeclarator(String prefix) {
+    final debugName = prefix + 'structDeclarator:';
+    return (ref(declarator, debugName))
+        // ref(declarator, debugName) & colon() & ref(constantExpression, debugName) |
+        // colon() & ref(constantExpression, debugName))
+        .map(debugPrint(debugName));
+  }
+
+  Parser declarator(String prefix) {
+    final debugName = prefix + 'declarator:';
+    return (ref(pointer, debugName).optional() & ref(directDeclarator, debugName)).map(debugPrint(debugName));
+  }
+
+  Parser pointer(String prefix) {
+    final debugName = prefix + 'pointer:';
+    return (star() & ref(typeQualifier, debugName).star() & ref(pointer, debugName).optional())
+        .map(debugPrint(debugName));
+  }
+
+  Parser typeQualifier(String prefix) {
+    final debugName = prefix + 'typeQualifier:';
+    return (ref(token, 'const', debugName) | ref(token, 'volatile', debugName)).map(debugPrint(debugName));
+  }
+
+  Parser directDeclarator(String prefix) {
+    final debugName = prefix + 'directDeclarator:';
+    return (ref(identifier, debugName) |
+            (openParen() & ref(declarator, debugName) & closeParen()) |
+            // (ref(directDeclarator) & openBracket() & ref(constantExpression).optional() & closeBracket()) |
+            (ref(directDeclarator, debugName) & openParen() & ref(parameterTypeList, debugName) & closeParen()) |
+            (ref(directDeclarator, debugName) & openParen() & ref(identifier, debugName).star() & closeParen()))
+        .map(debugPrint('directDeclarator'));
+  }
+
+  // Parser constantExpression(String prefix) => conditionalExpression().map(debugPrint('constantExpression'));
+  // Parser conditionalExpression(String prefix) =>
+  //     ref(logicalOrExpression) |
+  //     ref(logicalOrExpression) & ref(token, '?') & ref(expression) & colon() & ref(conditionalExpression);
+  // Parser logicalOrExpression(String prefix) =>
+  //     ref(logicalAndExpression) | ref(logicalOrExpression) & ref(token, '||') & ref(logicalAndExpression);
+  // Parser logicalAndExpression(String prefix) =>
+  //     ref(inclusiveOrExpression) | ref(logicalAndExpression) & ref(token, '&&') & ref(inclusiveOrExpression);
+  // Parser inclusiveOrExpression(String prefix) =>
+  //     ref(exclusiveOrExpression) | ref(inclusiveOrExpression) & ref(token, '|') & ref(exclusiveOrExpression);
+  // Parser exclusiveOrExpression(String prefix) =>
+  //     ref(andExpression) | ref(exclusiveOrExpression) & ref(token, '^') & ref(andExpression);
+  // Parser andExpression(String prefix) =>
+  //     ref(equalityExpression) | ref(andExpression) & ref(token, '&') & ref(equalityExpression);
+  // Parser equalityExpression(String prefix) =>
+  //     ref(relationalExpression) |
+  //     ref(equalityExpression) & ref(token, '==') & ref(relationalExpression) |
+  //     ref(equalityExpression) & ref(token, '!=') & ref(relationalExpression);
+  // Parser relationalExpression(String prefix) =>
+  //     ref(shiftExpression) |
+  //     ref(relationalExpression) & ref(token, '<') & ref(shiftExpression) |
+  //     ref(relationalExpression) & ref(token, '>') & ref(shiftExpression) |
+  //     ref(relationalExpression) & ref(token, '<=') & ref(shiftExpression) |
+  //     ref(relationalExpression) & ref(token, '>=') & ref(shiftExpression);
+  // Parser shiftExpression(String prefix) =>
+  //     ref(additiveExpression) |
+  //     ref(shiftExpression) & ref(token, '<<') & ref(additiveExpression) |
+  //     ref(shiftExpression) & ref(token, '>>') & ref(additiveExpression);
+  // Parser additiveExpression(String prefix) =>
+  //     ref(multiplicativeExpression) |
+  //     ref(additiveExpression) & ref(token, '+') & ref(multiplicativeExpression) |
+  //     ref(additiveExpression) & ref(token, '-') & ref(multiplicativeExpression);
+  // Parser multiplicativeExpression(String prefix) =>
+  //     ref(castExpression) |
+  //     ref(multiplicativeExpression) & ref(token, '*') & ref(castExpression) |
+  //     ref(multiplicativeExpression) & ref(token, '/') & ref(castExpression) |
+  //     ref(multiplicativeExpression) & ref(token, '%') & ref(castExpression);
+
+  // Parser castExpression(String prefix) => ref(unaryExpression) | openParen() & ref(typeName) & ref(castExpression);
+  // Parser unaryExpression(String prefix) =>
+  //     ref(postfixExpression) |
+  //     ref(token, '++') & ref(unaryExpression) |
+  //     ref(token, '--') & ref(unaryExpression) |
+  //     unaryOperator() & ref(castExpression) |
+  //     sizeof() & ref(unaryExpression) |
+  //     sizeof() & ref(typeName);
+  // Parser postfixExpression(String prefix) =>
+  //     ref(primaryExpression) |
+  //     ref(postfixExpression) & openBracket() & ref(expression) & closeBracket() |
+  //     ref(postfixExpression) & openParen() & ref(assignmentExpression).star() & closeParen() |
+  //     ref(postfixExpression) & ref(token, '.') & ref(identifier) |
+  //     ref(postfixExpression) & ref(token, '->') & ref(identifier) |
+  //     ref(postfixExpression) & ref(token, '++') |
+  //     ref(postfixExpression) & ref(token, '--');
+
+  // Parser primaryExpression(String prefix) =>
+  //     ref(identifier) | constant() | stringConstant() | openParen() & ref(expression) & closeParen();
+  // Parser constant(String prefix) =>
+  //     (integerConstant() | characterConstant() | floatingConstant() | enumerationConstant())
+  //         .map(debugPrint('constant'));
+  // Parser integerConstant(String prefix) => (digit('integer').plus()).map(debugPrint('integerConstant'));
+  // Parser characterConstant(String prefix) =>
+  //     (char("'") & letter('character') & char("'")).map(debugPrint('characterConstant'));
+  // Parser floatingConstant(String prefix) =>
+  //     (digit('floating').star() & char('.', 'floatingPoint') & digit('floating').star())
+  //         .map(debugPrint('floatingConstant'));
+  Parser enumerationConstant(String prefix) {
+    final debugName = prefix + 'enumerationConstant:';
     if (enums.length == 0) {
-      return failure().map(debugPrint('no enums'));
+      return failure().map(debugPrint(debugName + 'no enums'));
     } else if (enums.length == 1) {
-      return ref(token, enums[0]).map(debugPrint('enum'));
+      return ref(token, enums[0]).map(debugPrint(debugName + 'enum'));
     } else {
       var parser = null;
       for (final enumValue in enums) {
@@ -212,145 +278,229 @@ class CHeaderGrammarDefinition extends GrammarDefinition {
           parser = parser | ref(token, enumValue);
         }
       }
-      return parser.map(debugPrint('enum'));
+      return parser.map(debugPrint(debugName));
     }
   }
 
-  Parser stringConstant() => (char('"') & any().plus() & char('"')).map(debugPrint('stringConstant'));
+  Parser stringConstant(String prefix) =>
+      (char('"') & any().plus() & char('"')).flatten().map(debugPrint(prefix + 'stringConstant:'));
 
-  Parser expression() => ref(assignmentExpression) | ref(expression) & ref(token, ',') & ref(assignmentExpression);
-  Parser assignmentExpression() =>
-      ref(conditionalExpression) | ref(unaryExpression) & ref(assignmentOperator) & ref(assignmentExpression);
-  Parser assignmentOperator() =>
-      ref(token, '=') |
-      ref(token, '*=') |
-      ref(token, '/=') |
-      ref(token, '%=') |
-      ref(token, '+=') |
-      ref(token, '-=') |
-      ref(token, '<<=') |
-      ref(token, '>>=') |
-      ref(token, '&=') |
-      ref(token, '^=') |
-      ref(token, '|=');
-  Parser unaryOperator() =>
-      ref(token, '&') | ref(token, '*') | ref(token, '+') | ref(token, '-') | ref(token, '~') | ref(token, '!');
-  Parser typeName() =>
-      (ref(specifierQualifier).plus() & ref(abstractDeclarator).optional()).map(debugPrint('typeName'));
-  Parser parameterTypeList() =>
-      (ref(parameterList) | ref(parameterList) & comma() & ref(token, '...')).map(debugPrint('parameterTypeList'));
-  Parser parameterList() =>
-      (ref(parameterDeclaration) | ref(parameterDeclaration) & (comma() & ref(parameterDeclaration)).star())
-          .map(debugPrint('parameterList'));
-  Parser parameterDeclaration() => (ref(declarationSpecifier).plus() & ref(declarator) |
-          ref(declarationSpecifier).plus() & ref(abstractDeclarator) |
-          ref(declarationSpecifier).plus())
-      .map(debugPrint('parameterDeclaration'));
-  Parser abstractDeclarator() =>
-      (ref(pointer) | ref(pointer) & ref(directAbstractDeclarator) | ref(directAbstractDeclarator))
-          .map(debugPrint('abstractDeclarator'));
-  Parser directAbstractDeclarator() => (openParen() & ref(abstractDeclarator) & closeParen() |
-          ref(directAbstractDeclarator).optional() &
-              openBracket() &
-              ref(constantExpression).optional() &
-              closeBracket() |
-          ref(directAbstractDeclarator).optional() & openParen() & ref(parameterTypeList).optional() & closeParen())
-      .map(debugPrint('directAbstractDeclarator'));
-  Parser enumSpecifier() => (ref(token, 'enum') & ref(identifier) & openBrace() & ref(enumeratorList) & closeBrace() |
-          ref(token, 'enum') & openBrace() & ref(enumeratorList) & closeBrace() |
-          ref(token, 'enum') & ref(identifier))
-      .map(debugPrint('enumSpecifier'));
-  Parser enumeratorList() =>
-      (ref(enumerator) | ref(enumerator) & (comma() & ref(enumerator)).star()).map(debugPrint('enumeratorList'));
-  Parser enumerator() => (ref(identifier).map((name) {
-            print("Enum: $name");
-            enums.add(name);
-            return name;
-          }) |
-          ref(identifier).map((name) {
-                print("Enum: $name");
-                enums.add(name);
-                return name;
-              }) &
-              ref(token, '=') &
-              ref(constantExpression))
-      .map(debugPrint('enum'));
-  Parser typedefName() => ref(identifier).map(debugPrint('typedefName'));
-  Parser declaration() => (ref(declarationSpecifier).plus().map(debugPrint('visitingDeclaration')) &
-          // ref(initDeclarator).star().map(debugPrint('visitingInitDeclarator')) &
-          semicolon())
-      .map(debugPrint('declaration'));
-  Parser initDeclarator() =>
-      (ref(declarator) | ref(declarator) & ref(token, '=') & ref(initializer)).map(debugPrint('initDeclarator'));
-  Parser initializer() => (assignmentExpression() |
-          openBrace() & ref(initializerList) & closeBrace() |
-          openBrace() & ref(initializerList) & comma() & closeBrace())
-      .map(debugPrint('initializer'));
-  Parser initializerList() =>
-      (ref(initializer) | ref(initializer) & (comma() & ref(initializer)).star()).map(debugPrint('initializerList'));
-  Parser compoundStatement() => (openBrace() & ref(declaration).star() & ref(statement).star() & closeBrace())
-      .map(debugPrint('compoundStatement'));
-  Parser statement() => (ref(labeledStatement) |
-          ref(expressionStatement) |
-          ref(compoundStatement) |
-          ref(selectionStatement) |
-          ref(iterationStatement) |
-          ref(jumpStatement))
-      .map(debugPrint('statement'));
-  Parser labeledStatement() => (ref(identifier) & colon() & ref(statement) |
-          ref(token, 'case') & ref(constantExpression) & colon() & ref(statement) |
-          ref(token, 'default') & colon() & ref(statement))
-      .map(debugPrint('labeledStatement'));
-  Parser expressionStatement() => (ref(expression) & semicolon()).map(debugPrint('expressionStatement'));
-  Parser selectionStatement() =>
-      ref(token, 'if') & openParen() & ref(expression) & closeParen() & statement() |
-      ref(token, 'if') & openParen() & ref(expression) & closeParen() & ref(token, 'else') & statement() |
-      ref(token, 'switch') & openParen() & ref(expression) & closeParen();
-  Parser iterationStatement() =>
-      ref(token, 'while') & openParen() & ref(expression) & closeParen() & statement() |
-      ref(token, 'do') &
-          statement() &
-          ref(token, 'while') &
-          openParen() &
-          ref(expression) &
-          closeParen() &
-          semicolon() |
-      ref(token, 'for') &
-          openParen() &
-          ref(expression).optional() &
-          semicolon() &
-          ref(expression).optional() &
-          semicolon() &
-          ref(expression).optional() &
-          closeParen() &
-          statement();
-  Parser jumpStatement() =>
-      ref(token, 'goto') & ref(identifier) & semicolon() |
-      ref(token, 'continue') & semicolon() |
-      ref(token, 'break') & semicolon() & ref(token, 'return') & ref(expression).optional() & semicolon();
+  // Parser expression(String prefix) =>
+  //     ref(assignmentExpression) | ref(expression) & ref(token, ',') & ref(assignmentExpression);
+  // Parser assignmentExpression(String prefix) =>
+  //     ref(conditionalExpression) | ref(unaryExpression) & ref(assignmentOperator) & ref(assignmentExpression);
+  Parser assignmentOperator(String prefix) {
+    final debugName = prefix + 'assignmentOperator:';
+    return ref(token, '=', debugName) |
+        ref(token, '*=', debugName) |
+        ref(token, '/=', debugName) |
+        ref(token, '%=', debugName) |
+        ref(token, '+=', debugName) |
+        ref(token, '-=', debugName) |
+        ref(token, '<<=', debugName) |
+        ref(token, '>>=', debugName) |
+        ref(token, '&=', debugName) |
+        ref(token, '^=', debugName) |
+        ref(token, '|=', debugName);
+  }
 
-  Parser identifier() =>
-      ((letter() | underscore()) & (letter() | digit() | underscore()).star()).flatten().map(debugPrint('identifier'));
+  Parser unaryOperator(String prefix) {
+    final debugName = prefix + 'unaryOperator:';
+    return ref(token, '&', debugName) |
+        ref(token, '*', debugName) |
+        ref(token, '+', debugName) |
+        ref(token, '-', debugName) |
+        ref(token, '~', debugName) |
+        ref(token, '!', debugName);
+  }
+
+  Parser typeName(String prefix) {
+    final debugName = prefix + 'typeName:';
+    return (ref(specifierQualifier, debugName).plus() & ref(abstractDeclarator, debugName).optional())
+        .map(debugPrint(debugName));
+  }
+
+  Parser parameterTypeList(String prefix) {
+    final debugName = prefix + 'parameterTypeList:';
+    return (ref(parameterList, debugName) | ref(parameterList, debugName) & comma() & ref(token, '...', debugName))
+        .map(debugPrint(debugName));
+  }
+
+  Parser parameterList(String prefix) {
+    final debugName = prefix + 'parameterList:';
+    return (ref(parameterDeclaration, debugName) |
+            ref(parameterDeclaration, debugName) & (comma() & ref(parameterDeclaration, debugName)).star())
+        .map(debugPrint(debugName));
+  }
+
+  Parser parameterDeclaration(String prefix) {
+    final debugName = prefix + 'parameterDeclaration:';
+    return (ref(declarationSpecifier, debugName).plus() & ref(declarator, debugName) |
+            ref(declarationSpecifier, debugName).plus() & ref(abstractDeclarator, debugName) |
+            ref(declarationSpecifier, debugName).plus())
+        .map(debugPrint(debugName));
+  }
+
+  Parser abstractDeclarator(String prefix) {
+    final debugName = prefix + 'abstractDeclarator:';
+    return (ref(pointer, debugName) |
+            ref(pointer, debugName) & ref(directAbstractDeclarator, debugName) |
+            ref(directAbstractDeclarator, debugName))
+        .map(debugPrint(debugName));
+  }
+
+  Parser directAbstractDeclarator(String prefix) {
+    final debugName = prefix + 'directAbstractDeclarator:';
+    return (openParen() & ref(abstractDeclarator, debugName) & closeParen() |
+            // ref(directAbstractDeclarator).optional() &
+            //     openBracket() &
+            //     ref(constantExpression).optional() &
+            //     closeBracket() |
+            ref(directAbstractDeclarator, debugName).optional() &
+                openParen() &
+                ref(parameterTypeList, debugName).optional() &
+                closeParen())
+        .map(debugPrint(debugName));
+  }
+
+  Parser enumSpecifier(String prefix) {
+    final debugName = prefix + 'enumSpecifier:';
+    return (ref(token, 'enum', debugName) &
+                ref(identifier, debugName) &
+                openBrace() &
+                ref(enumeratorList, debugName) &
+                closeBrace() |
+            ref(token, 'enum', debugName) & openBrace() & ref(enumeratorList, debugName) & closeBrace() |
+            ref(token, 'enum', debugName) & ref(identifier, debugName))
+        .map(debugPrint(debugName));
+  }
+
+  Parser enumeratorList(String prefix) {
+    final debugName = prefix + 'enumeratorList:';
+    return (ref(enumerator, debugName) | ref(enumerator, debugName) & (comma() & ref(enumerator, debugName)).star())
+        .map(debugPrint(debugName));
+  }
+
+  Parser enumerator(String prefix) {
+    final debugName = prefix + 'enumerator:';
+    return (ref(identifier, debugName).map((name) {
+      print("Enum: $name");
+      enums.add(name);
+      return name;
+    })
+        // ref(identifier).map((name) {
+        //       print("Enum: $name");
+        //       enums.add(name);
+        //       return name;
+        //     }) &
+        //     ref(token, '=') &
+        //     ref(constantExpression))
+        ).map(debugPrint(debugName));
+  }
+
+  Parser typedefName(String prefix) {
+    final debugName = prefix + 'typedefName:';
+    return ref(identifier, debugName).map(debugPrint(debugName));
+  }
+
+  Parser declaration(String prefix) {
+    final debugName = prefix + 'declaration:';
+    return (ref(declarationSpecifier, debugName).plus() &
+            // ref(initDeclarator).star().map(debugPrint('visitingInitDeclarator')) &
+            semicolon())
+        .map(debugPrint(debugName));
+  }
+
+  Parser initDeclarator(String prefix) {
+    final debugName = prefix + 'initDeclarator:';
+    return (ref(declarator, debugName) |
+            ref(declarator, debugName) & ref(token, '=', debugName) & ref(initializer, debugName))
+        .map(debugPrint(debugName));
+  }
+
+  Parser initializer(String prefix) {
+    final debugName = prefix + 'initializer:';
+    return (
+            // assignmentExpression() |
+            openBrace() & ref(initializerList, debugName) & closeBrace() |
+                openBrace() & ref(initializerList, debugName) & comma() & closeBrace())
+        .map(debugPrint(debugName));
+  }
+
+  Parser initializerList(String prefix) {
+    final debugName = prefix + 'initializerList:';
+    return (ref(initializer, debugName) | ref(initializer, debugName) & (comma() & ref(initializer, debugName)).star())
+        .map(debugPrint(debugName));
+  }
+  // Parser compoundStatement(String prefix) =>
+  //     (openBrace() & ref(declaration).star() & ref(statement).star() & closeBrace())
+  //         .map(debugPrint('compoundStatement'));
+  // Parser statement(String prefix) => (ref(labeledStatement) |
+  //         ref(expressionStatement) |
+  //         ref(compoundStatement) |
+  //         ref(selectionStatement) |
+  //         ref(iterationStatement) |
+  //         ref(jumpStatement))
+  //     .map(debugPrint('statement'));
+  // Parser labeledStatement(String prefix) => (ref(identifier) & colon() & ref(statement) |
+  //         ref(token, 'case') & ref(constantExpression) & colon() & ref(statement) |
+  //         ref(token, 'default') & colon() & ref(statement))
+  //     .map(debugPrint('labeledStatement'));
+  // Parser expressionStatement(String prefix) => (ref(expression) & semicolon()).map(debugPrint('expressionStatement'));
+  // Parser selectionStatement(String prefix) =>
+  //     ref(token, 'if') & openParen() & ref(expression) & closeParen() & statement() |
+  //     ref(token, 'if') & openParen() & ref(expression) & closeParen() & ref(token, 'else') & statement() |
+  //     ref(token, 'switch') & openParen() & ref(expression) & closeParen();
+  // Parser iterationStatement(String prefix) =>
+  //     ref(token, 'while') & openParen() & ref(expression) & closeParen() & statement() |
+  //     ref(token, 'do') &
+  //         statement() &
+  //         ref(token, 'while') &
+  //         openParen() &
+  //         ref(expression) &
+  //         closeParen() &
+  //         semicolon() |
+  //     ref(token, 'for') &
+  //         openParen() &
+  //         ref(expression).optional() &
+  //         semicolon() &
+  //         ref(expression).optional() &
+  //         semicolon() &
+  //         ref(expression).optional() &
+  //         closeParen() &
+  //         statement();
+  // Parser jumpStatement(String prefix) =>
+  //     ref(token, 'goto') & ref(identifier) & semicolon() |
+  //     ref(token, 'continue') & semicolon() |
+  //     ref(token, 'break') & semicolon() & ref(token, 'return') & ref(expression).optional() & semicolon();
+
+  Parser identifier(String prefix) {
+    final debugName = prefix + 'identifier:';
+    return ((letter() | underscore()) & (letter() | digit() | underscore()).star())
+        .flatten()
+        .map(debugPrint(debugName));
+  }
+
   Parser underscore() => char('_');
 
-  Parser token(String value) => (whitespace().star() &
+  Parser token(String value, String prefix) => (whitespace().star() &
           PredicateStringExtension(value).toParser(message: 'Expecting Token: $value') &
           whitespace().star())
       .trim()
       .flatten()
-      .map(debugPrint('token'));
+      .map(debugPrint(prefix + 'token:'));
 
-  Parser sizeof() => ref(token, 'sizeof');
-  Parser star() => ref(token, '*');
-  Parser colon() => ref(token, ':');
-  Parser semicolon() => ref(token, ';');
-  Parser openParen() => ref(token, '(');
-  Parser closeParen() => ref(token, ')');
-  Parser openBracket() => ref(token, '[');
-  Parser closeBracket() => ref(token, ']');
-  Parser openBrace() => ref(token, '{');
-  Parser closeBrace() => ref(token, '}');
-  Parser comma() => ref(token, ',');
+  Parser sizeof() => ref(token, 'sizeof', '');
+  Parser star() => ref(token, '*', '');
+  Parser colon() => ref(token, ':', '');
+  Parser semicolon() => ref(token, ';', '');
+  Parser openParen() => ref(token, '(', '');
+  Parser closeParen() => ref(token, ')', '');
+  Parser openBracket() => ref(token, '[', '');
+  Parser closeBracket() => ref(token, ']', '');
+  Parser openBrace() => ref(token, '{', '');
+  Parser closeBrace() => ref(token, '}', '');
+  Parser comma() => ref(token, ',', '');
 
   List<String> reservedTokens = [
     'void',
