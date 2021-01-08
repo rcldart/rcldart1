@@ -10,6 +10,19 @@ dependencies:
 dev_dependencies:
   ffigen: any
 
-dev_dependency_overrides:
+dependency_overrides:
   ffigen:
     git: https://github.com/dart-lang/ffigen
+
+ffigen:
+  output: "src/generated_bindings.dart"
+  headers:
+    entry-points:
+      - "rcl/rcl.h"
+    include-directives:
+      - "rcl/**"
+  name: "RCL"
+  description: "Bindings to the ros client library dynamic libraries"
+  array-workaround: true
+  comments:
+    style: any
