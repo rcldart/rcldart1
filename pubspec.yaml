@@ -6,9 +6,10 @@ homepage: https://github.com/TimWhiting/rcldart.git
 environment:
   sdk: ">=2.7.0 <3.0.0"
 dependencies:
-  path: ^1.6.2
-  dshell: any
-  petitparser: ^3.0.1
-  quiver: ^2.0.3
+  ffi: any
 dev_dependencies:
-  test: ^1.6.4
+  ffigen: any
+
+dev_dependency_overrides:
+  ffigen:
+    git: https://github.com/dart-lang/ffigen
