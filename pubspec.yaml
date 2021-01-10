@@ -4,25 +4,20 @@ author: Tim Whiting
 description: A Dart interface to the ROS 2 Client Library through Dart FFI.
 homepage: https://github.com/TimWhiting/rcldart.git
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.12.0-198.0 <3.0.0"
 dependencies:
   ffi: any
 dev_dependencies:
-  ffigen: any
-
-dependency_overrides:
-  ffigen:
-    git: https://github.com/dart-lang/ffigen
+  ffigen: 2.0.0-dev.2
 
 ffigen:
-  output: "src/generated_bindings.dart"
+  output: "lib/src/generated_bindings.dart"
   headers:
     entry-points:
-      - "rcl/rcl.h"
+      - "/opt/ros/foxy/include/rcl/rcl.h"
     include-directives:
-      - "rcl/**"
+      - "/opt/ros/foxy/include/**/*"
+  compiler-opts: "-I/usr/lib/llvm-9/include/ -I/opt/ros/foxy/include/"
   name: "RCL"
   description: "Bindings to the ros client library dynamic libraries"
   array-workaround: true
-  comments:
-    style: any
