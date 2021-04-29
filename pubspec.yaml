@@ -8,16 +8,18 @@ environment:
 dependencies:
   ffi: any
 dev_dependencies:
-  ffigen: 2.0.0-dev.2
+  ffigen: 3.0.0-beta.0
+  test: ^1.17.3
 
 ffigen:
   output: "lib/src/generated_bindings.dart"
   headers:
     entry-points:
-      - "/opt/ros/foxy/include/rcl/rcl.h"
+      - "/opt/ros/eloquent/include/rcl/rcl.h"
     include-directives:
-      - "/opt/ros/foxy/include/**/*"
-  compiler-opts: "-I/usr/lib/llvm-9/include/ -I/opt/ros/foxy/include/"
+      - "/opt/ros/eloquent/include/**/*"
+  compiler-opts: "-I/usr/lib/llvm-9/include/ -I/opt/ros/eloquent/include/"
   name: "RCL"
+  comments:
+    style: any
   description: "Bindings to the ros client library dynamic libraries"
-  array-workaround: true
