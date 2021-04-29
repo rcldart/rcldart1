@@ -1,8 +1,9 @@
-import 'package:rcldart/rcldart.dart';
-import 'package:ffi/ffi.dart';
 import 'dart:ffi';
 
-void main() async {
+import 'package:rcldart/rcldart.dart';
+import 'package:ffi/ffi.dart';
+
+Future<void> main() async {
   final rcl = RCL(DynamicLibrary.open('/opt/ros/eloquent/lib/librcl.so'));
   final poptions =
       calloc.allocate<rcl_init_options_t>(sizeOf<rcl_init_options_t>());
@@ -17,7 +18,7 @@ void main() async {
   pcontext.ref.impl = context.impl;
   result = rcl.rcl_init(0, Pointer.fromAddress(0), poptions, pcontext);
   print(result);
-  await Future.delayed(Duration(milliseconds: 1000));
+  await Future.delayed(const Duration(milliseconds: 1000));
   result = rcl.rcl_shutdown(pcontext);
   print(result);
 

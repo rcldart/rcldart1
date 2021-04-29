@@ -11,7 +11,7 @@ linter:
     - always_put_required_named_parameters_first
     - always_require_non_null_named_parameters
     # - always_specify_types
-    - always_use_package_imports
+    # - always_use_package_imports
     - annotate_overrides
     - avoid_annotating_with_dynamic
     - avoid_bool_literals_in_conditional_expressions
@@ -31,10 +31,10 @@ linter:
     - avoid_multiple_declarations_per_line
     - avoid_null_checks_in_equality_operators
     - avoid_positional_boolean_parameters
-    - avoid_print
+    # - avoid_print
     - avoid_private_typedef_functions
     - avoid_redundant_argument_values
-    - avoid_relative_lib_imports
+    # - avoid_relative_lib_imports
     - avoid_renaming_method_parameters
     - avoid_return_types_on_setters
     - avoid_returning_null
@@ -72,7 +72,7 @@ linter:
     - empty_statements
     - exhaustive_cases
     - file_names
-    - flutter_style_todos
+    # - flutter_style_todos
     - hash_and_equals
     - implementation_imports
     - invariant_booleans
@@ -98,7 +98,7 @@ linter:
     - one_member_abstracts
     - only_throw_errors
     - overridden_fields
-    - package_api_docs
+    # - package_api_docs
     - package_names
     - package_prefixed_library_names
     - parameter_assignments
@@ -142,7 +142,7 @@ linter:
     - prefer_typing_uninitialized_variables
     - prefer_void_to_null
     - provide_deprecation_message
-    - public_member_api_docs
+    # - public_member_api_docs
     - recursive_getters
     - require_trailing_commas
     - sized_box_for_whitespace
