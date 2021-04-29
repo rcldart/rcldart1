@@ -1,1 +1,1 @@
-export 'src/generated_bindings.dart';
+export 'src/gen/ffi.dart';
