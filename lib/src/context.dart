@@ -12,7 +12,7 @@ typedef OnShutdownCallback = Function(void);
 
 class Context {
   void init(List<String> args, {InitOptions? options}) {}
-  bool get isVali => throw UnimplementedError();
+  bool get isValid => throw UnimplementedError();
   InitOptions get initOptions => throw UnimplementedError();
   int get domainId => throw UnimplementedError();
   String get shutdownReason => throw UnimplementedError();
@@ -28,10 +28,17 @@ class Context {
     throw UnimplementedError();
   }
 
+  void finalize() {
+    try {
+      shutdown('context destructor was called while still not shutdown');
+      _cleanUp();
+    } on Exception catch (e) {} catch (o) {} // TODO: Log exceptions
+  }
+
   void _cleanUp() => throw UnimplementedError();
   rcl_context_t? _rclContext;
   InitOptions? _initOptions;
-  String? _shutdownReason;
+  String _shutdownReason = '';
   final Map<Type, dynamic> _subContexts = {};
   final List<OnShutdownCallback> _onShutdownCallbacks = [];
 }
