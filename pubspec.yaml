@@ -16,10 +16,10 @@ ffigen:
   output: "lib/src/gen/ffi_bindings.dart"
   headers:
     entry-points:
-      - "/opt/ros/eloquent/include/rcl/*.h"
+      - "headers/rcl/*.h"
     include-directives:
-      - "/opt/ros/eloquent/include/**/*"
-  compiler-opts: "-I/usr/lib/llvm-9/include/ -I/opt/ros/eloquent/include/"
+      - "headers/**/*"
+  compiler-opts: "-I/usr/lib/llvm-9/include/ -Iheaders"
   name: "RCL"
   comments:
     style: any

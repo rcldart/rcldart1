@@ -4,6 +4,7 @@
 import 'dart:ffi' as ffi;
 
 /// Bindings to the ros client library dynamic libraries
+///
 class RCL {
   /// Holds the symbol lookup function.
   final ffi.Pointer<T> Function<T extends ffi.NativeType>(String symbolName)
@@ -17,6 +18,42 @@ class RCL {
       ffi.Pointer<T> Function<T extends ffi.NativeType>(String symbolName)
           lookup)
       : _lookup = lookup;
+
+  ffi.Pointer<rosidl_service_type_support_t> get_service_typesupport_handle(
+    ffi.Pointer<rosidl_service_type_support_t> handle,
+    ffi.Pointer<ffi.Int8> identifier,
+  ) {
+    return _get_service_typesupport_handle(
+      handle,
+      identifier,
+    );
+  }
+
+  late final _get_service_typesupport_handle_ptr =
+      _lookup<ffi.NativeFunction<_c_get_service_typesupport_handle>>(
+          'get_service_typesupport_handle');
+  late final _dart_get_service_typesupport_handle
+      _get_service_typesupport_handle = _get_service_typesupport_handle_ptr
+          .asFunction<_dart_get_service_typesupport_handle>();
+
+  ffi.Pointer<rosidl_service_type_support_t>
+      get_service_typesupport_handle_function(
+    ffi.Pointer<rosidl_service_type_support_t> handle,
+    ffi.Pointer<ffi.Int8> identifier,
+  ) {
+    return _get_service_typesupport_handle_function(
+      handle,
+      identifier,
+    );
+  }
+
+  late final _get_service_typesupport_handle_function_ptr =
+      _lookup<ffi.NativeFunction<_c_get_service_typesupport_handle_function>>(
+          'get_service_typesupport_handle_function');
+  late final _dart_get_service_typesupport_handle_function
+      _get_service_typesupport_handle_function =
+      _get_service_typesupport_handle_function_ptr
+          .asFunction<_dart_get_service_typesupport_handle_function>();
 
   /// Return a zero initialized allocator.
   /// /**
@@ -104,6 +141,217 @@ class RCL {
       _lookup<ffi.NativeFunction<_c_rcutils_reallocf>>('rcutils_reallocf');
   late final _dart_rcutils_reallocf _rcutils_reallocf =
       _rcutils_reallocf_ptr.asFunction<_dart_rcutils_reallocf>();
+
+  /// Format a string.
+  /// /**
+  ///  * This function just wraps snprintf() as defined in C11 in a portable way.
+  ///  *
+  ///  * On Windows this defaults to the _TRUNCATE behavior of _snprintf_s(), but
+  ///  * only returns -1 if errno is not 0.
+  ///  * Unlike _snprintf_s() which returns -1 when truncation occurs, this function
+  ///  * behaves like snprintf() (http://en.cppreference.com/w/cpp/io/c/fprintf):
+  ///  *
+  ///  * > Number of characters written if successful or negative value if an error
+  ///  * > occurred.
+  ///  * > If the resulting string gets truncated due to buf_size limit, function
+  ///  * > returns the total number of characters (not including the terminating
+  ///  * > null-byte) which would have been written, if the limit was not imposed.
+  ///  *
+  ///  * If `NULL` and `0` are given for buffer and buffer_size respectively, the
+  ///  * size of the string that would be generated is returned.
+  ///  * Either snprintf() or _vscprintf() is used to calculate this value.
+  ///  *
+  ///  * \see snprintf()
+  ///  * \see _snprintf_s()
+  ///  * \returns the number of bytes that would have been written given enough space,
+  ///  *   or a negative number if there is an error, but unlike _snprintf_s(),
+  ///  *   -1 is not returned if there is truncation.
+  ///  */
+  int rcutils_snprintf(
+    ffi.Pointer<ffi.Int8> buffer,
+    int buffer_size,
+    ffi.Pointer<ffi.Int8> format,
+  ) {
+    return _rcutils_snprintf(
+      buffer,
+      buffer_size,
+      format,
+    );
+  }
+
+  late final _rcutils_snprintf_ptr =
+      _lookup<ffi.NativeFunction<_c_rcutils_snprintf>>('rcutils_snprintf');
+  late final _dart_rcutils_snprintf _rcutils_snprintf =
+      _rcutils_snprintf_ptr.asFunction<_dart_rcutils_snprintf>();
+
+  /// Format a string with va_list for arguments, see rcutils_snprintf().
+  int rcutils_vsnprintf(
+    ffi.Pointer<ffi.Int8> buffer,
+    int buffer_size,
+    ffi.Pointer<ffi.Int8> format,
+    ffi.Pointer<__va_list_tag> args,
+  ) {
+    return _rcutils_vsnprintf(
+      buffer,
+      buffer_size,
+      format,
+      args,
+    );
+  }
+
+  late final _rcutils_vsnprintf_ptr =
+      _lookup<ffi.NativeFunction<_c_rcutils_vsnprintf>>('rcutils_vsnprintf');
+  late final _dart_rcutils_vsnprintf _rcutils_vsnprintf =
+      _rcutils_vsnprintf_ptr.asFunction<_dart_rcutils_vsnprintf>();
+
+  /// Forces initialization of thread-local storage if called in a newly created thread.
+  /// /**
+  ///  * If this function is not called beforehand, then the first time the error
+  ///  * state is set or the first time the error message is retrieved, the default
+  ///  * allocator will be used to allocate thread-local storage.
+  ///  *
+  ///  * This function may or may not allocate memory.
+  ///  * The system's thread-local storage implementation may need to allocate
+  ///  * memory, since it usually has no way of knowing how much storage is needed
+  ///  * without knowing how many threads will be created.
+  ///  * Most implementations (e.g. C11, C++11, and pthread) do not have ways to
+  ///  * specify how this memory is allocated, but if the implementation allows, the
+  ///  * given allocator to this function will be used, but is otherwise unused.
+  ///  * This only occurs when creating and destroying threads, which can be avoided
+  ///  * in the "steady" state by reusing pools of threads.
+  ///  *
+  ///  * It is worth considering that repeated thread creation and destruction will
+  ///  * result in repeated memory allocations and could result in memory
+  ///  * fragmentation.
+  ///  * This is typically avoided anyways by using pools of threads.
+  ///  *
+  ///  * In case an error is indicated by the return code, no error message will have
+  ///  * been set.
+  ///  *
+  ///  * If called more than once in a thread, or after implicitly initialized by
+  ///  * setting the error state, it will still return `RCUTILS_RET_OK`, even
+  ///  * if the given allocator is invalid.
+  ///  * Essentially this function does nothing if thread-local storage has already
+  ///  * been called.
+  ///  * If already initialized, the given allocator is ignored, even if it does not
+  ///  * match the allocator used originally to initialize the thread-local storage.
+  ///  *
+  ///  * \return `RCUTILS_RET_OK` if successful, or
+  ///  * \return `RCUTILS_RET_INVALID_ARGUMENT` if the allocator is invalid, or
+  ///  * \return `RCUTILS_RET_BAD_ALLOC` if allocating memory fails, or
+  ///  * \return `RCUTILS_RET_ERROR` if an unspecified error occurs.
+  ///  */
+  int rcutils_initialize_error_handling_thread_local_storage(
+    rcutils_allocator_t allocator,
+  ) {
+    return _rcutils_initialize_error_handling_thread_local_storage(
+      allocator,
+    );
+  }
+
+  late final _rcutils_initialize_error_handling_thread_local_storage_ptr =
+      _lookup<
+              ffi.NativeFunction<
+                  _c_rcutils_initialize_error_handling_thread_local_storage>>(
+          'rcutils_initialize_error_handling_thread_local_storage');
+  late final _dart_rcutils_initialize_error_handling_thread_local_storage
+      _rcutils_initialize_error_handling_thread_local_storage =
+      _rcutils_initialize_error_handling_thread_local_storage_ptr.asFunction<
+          _dart_rcutils_initialize_error_handling_thread_local_storage>();
+
+  /// Set the error message, as well as the file and line on which it occurred.
+  /// /**
+  ///  * This is not meant to be used directly, but instead via the
+  ///  * RCUTILS_SET_ERROR_MSG(msg) macro.
+  ///  *
+  ///  * The error_msg parameter is copied into the internal error storage and must
+  ///  * be null terminated.
+  ///  * The file parameter is copied into the internal error storage and must
+  ///  * be null terminated.
+  ///  *
+  ///  * \param[in] error_string The error message to set.
+  ///  * \param[in] file The path to the file in which the error occurred.
+  ///  * \param[in] line_number The line number on which the error occurred.
+  ///  */
+  void rcutils_set_error_state(
+    ffi.Pointer<ffi.Int8> error_string,
+    ffi.Pointer<ffi.Int8> file,
+    int line_number,
+  ) {
+    return _rcutils_set_error_state(
+      error_string,
+      file,
+      line_number,
+    );
+  }
+
+  late final _rcutils_set_error_state_ptr =
+      _lookup<ffi.NativeFunction<_c_rcutils_set_error_state>>(
+          'rcutils_set_error_state');
+  late final _dart_rcutils_set_error_state _rcutils_set_error_state =
+      _rcutils_set_error_state_ptr.asFunction<_dart_rcutils_set_error_state>();
+
+  /// Return `true` if the error is set, otherwise `false`.
+  bool rcutils_error_is_set() {
+    return _rcutils_error_is_set() != 0;
+  }
+
+  late final _rcutils_error_is_set_ptr =
+      _lookup<ffi.NativeFunction<_c_rcutils_error_is_set>>(
+          'rcutils_error_is_set');
+  late final _dart_rcutils_error_is_set _rcutils_error_is_set =
+      _rcutils_error_is_set_ptr.asFunction<_dart_rcutils_error_is_set>();
+
+  /// Return an rcutils_error_state_t which was set with rcutils_set_error_state().
+  /// /**
+  ///  * The returned pointer will be NULL if no error has been set in this thread.
+  ///  *
+  ///  * The returned pointer is valid until RCUTILS_SET_ERROR_MSG, rcutils_set_error_state,
+  ///  * or rcutils_reset_error are called in the same thread.
+  ///  *
+  ///  * \return A pointer to the current error state struct.
+  ///  */
+  ffi.Pointer<rcutils_error_state_t> rcutils_get_error_state() {
+    return _rcutils_get_error_state();
+  }
+
+  late final _rcutils_get_error_state_ptr =
+      _lookup<ffi.NativeFunction<_c_rcutils_get_error_state>>(
+          'rcutils_get_error_state');
+  late final _dart_rcutils_get_error_state _rcutils_get_error_state =
+      _rcutils_get_error_state_ptr.asFunction<_dart_rcutils_get_error_state>();
+
+  /// Return the error message followed by `, at <file>:<line>` if set, else "error not set".
+  /// /**
+  ///  * This function is "safe" because it returns a copy of the current error
+  ///  * string or one containing the string "error not set" if no error was set.
+  ///  * This ensures that the copy is owned by the calling thread and is therefore
+  ///  * never invalidated by other error handling calls, and that the C string
+  ///  * inside is always valid and null terminated.
+  ///  *
+  ///  * \return The current error string, with file and line number, or "error not set" if not set.
+  ///  */
+  rcutils_error_string_t rcutils_get_error_string() {
+    return _rcutils_get_error_string();
+  }
+
+  late final _rcutils_get_error_string_ptr =
+      _lookup<ffi.NativeFunction<_c_rcutils_get_error_string>>(
+          'rcutils_get_error_string');
+  late final _dart_rcutils_get_error_string _rcutils_get_error_string =
+      _rcutils_get_error_string_ptr
+          .asFunction<_dart_rcutils_get_error_string>();
+
+  /// Reset the error state by clearing any previously set error state.
+  void rcutils_reset_error() {
+    return _rcutils_reset_error();
+  }
+
+  late final _rcutils_reset_error_ptr =
+      _lookup<ffi.NativeFunction<_c_rcutils_reset_error>>(
+          'rcutils_reset_error');
+  late final _dart_rcutils_reset_error _rcutils_reset_error =
+      _rcutils_reset_error_ptr.asFunction<_dart_rcutils_reset_error>();
 
   /// Return an empty array_list struct.
   /// /**
@@ -2042,217 +2290,6 @@ class RCL {
       _rcutils_uint8_array_resize_ptr
           .asFunction<_dart_rcutils_uint8_array_resize>();
 
-  /// Format a string.
-  /// /**
-  ///  * This function just wraps snprintf() as defined in C11 in a portable way.
-  ///  *
-  ///  * On Windows this defaults to the _TRUNCATE behavior of _snprintf_s(), but
-  ///  * only returns -1 if errno is not 0.
-  ///  * Unlike _snprintf_s() which returns -1 when truncation occurs, this function
-  ///  * behaves like snprintf() (http://en.cppreference.com/w/cpp/io/c/fprintf):
-  ///  *
-  ///  * > Number of characters written if successful or negative value if an error
-  ///  * > occurred.
-  ///  * > If the resulting string gets truncated due to buf_size limit, function
-  ///  * > returns the total number of characters (not including the terminating
-  ///  * > null-byte) which would have been written, if the limit was not imposed.
-  ///  *
-  ///  * If `NULL` and `0` are given for buffer and buffer_size respectively, the
-  ///  * size of the string that would be generated is returned.
-  ///  * Either snprintf() or _vscprintf() is used to calculate this value.
-  ///  *
-  ///  * \see snprintf()
-  ///  * \see _snprintf_s()
-  ///  * \returns the number of bytes that would have been written given enough space,
-  ///  *   or a negative number if there is an error, but unlike _snprintf_s(),
-  ///  *   -1 is not returned if there is truncation.
-  ///  */
-  int rcutils_snprintf(
-    ffi.Pointer<ffi.Int8> buffer,
-    int buffer_size,
-    ffi.Pointer<ffi.Int8> format,
-  ) {
-    return _rcutils_snprintf(
-      buffer,
-      buffer_size,
-      format,
-    );
-  }
-
-  late final _rcutils_snprintf_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_snprintf>>('rcutils_snprintf');
-  late final _dart_rcutils_snprintf _rcutils_snprintf =
-      _rcutils_snprintf_ptr.asFunction<_dart_rcutils_snprintf>();
-
-  /// Format a string with va_list for arguments, see rcutils_snprintf().
-  int rcutils_vsnprintf(
-    ffi.Pointer<ffi.Int8> buffer,
-    int buffer_size,
-    ffi.Pointer<ffi.Int8> format,
-    ffi.Pointer<__va_list_tag> args,
-  ) {
-    return _rcutils_vsnprintf(
-      buffer,
-      buffer_size,
-      format,
-      args,
-    );
-  }
-
-  late final _rcutils_vsnprintf_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_vsnprintf>>('rcutils_vsnprintf');
-  late final _dart_rcutils_vsnprintf _rcutils_vsnprintf =
-      _rcutils_vsnprintf_ptr.asFunction<_dart_rcutils_vsnprintf>();
-
-  /// Forces initialization of thread-local storage if called in a newly created thread.
-  /// /**
-  ///  * If this function is not called beforehand, then the first time the error
-  ///  * state is set or the first time the error message is retrieved, the default
-  ///  * allocator will be used to allocate thread-local storage.
-  ///  *
-  ///  * This function may or may not allocate memory.
-  ///  * The system's thread-local storage implementation may need to allocate
-  ///  * memory, since it usually has no way of knowing how much storage is needed
-  ///  * without knowing how many threads will be created.
-  ///  * Most implementations (e.g. C11, C++11, and pthread) do not have ways to
-  ///  * specify how this memory is allocated, but if the implementation allows, the
-  ///  * given allocator to this function will be used, but is otherwise unused.
-  ///  * This only occurs when creating and destroying threads, which can be avoided
-  ///  * in the "steady" state by reusing pools of threads.
-  ///  *
-  ///  * It is worth considering that repeated thread creation and destruction will
-  ///  * result in repeated memory allocations and could result in memory
-  ///  * fragmentation.
-  ///  * This is typically avoided anyways by using pools of threads.
-  ///  *
-  ///  * In case an error is indicated by the return code, no error message will have
-  ///  * been set.
-  ///  *
-  ///  * If called more than once in a thread, or after implicitly initialized by
-  ///  * setting the error state, it will still return `RCUTILS_RET_OK`, even
-  ///  * if the given allocator is invalid.
-  ///  * Essentially this function does nothing if thread-local storage has already
-  ///  * been called.
-  ///  * If already initialized, the given allocator is ignored, even if it does not
-  ///  * match the allocator used originally to initialize the thread-local storage.
-  ///  *
-  ///  * \return `RCUTILS_RET_OK` if successful, or
-  ///  * \return `RCUTILS_RET_INVALID_ARGUMENT` if the allocator is invalid, or
-  ///  * \return `RCUTILS_RET_BAD_ALLOC` if allocating memory fails, or
-  ///  * \return `RCUTILS_RET_ERROR` if an unspecified error occurs.
-  ///  */
-  int rcutils_initialize_error_handling_thread_local_storage(
-    rcutils_allocator_t allocator,
-  ) {
-    return _rcutils_initialize_error_handling_thread_local_storage(
-      allocator,
-    );
-  }
-
-  late final _rcutils_initialize_error_handling_thread_local_storage_ptr =
-      _lookup<
-              ffi.NativeFunction<
-                  _c_rcutils_initialize_error_handling_thread_local_storage>>(
-          'rcutils_initialize_error_handling_thread_local_storage');
-  late final _dart_rcutils_initialize_error_handling_thread_local_storage
-      _rcutils_initialize_error_handling_thread_local_storage =
-      _rcutils_initialize_error_handling_thread_local_storage_ptr.asFunction<
-          _dart_rcutils_initialize_error_handling_thread_local_storage>();
-
-  /// Set the error message, as well as the file and line on which it occurred.
-  /// /**
-  ///  * This is not meant to be used directly, but instead via the
-  ///  * RCUTILS_SET_ERROR_MSG(msg) macro.
-  ///  *
-  ///  * The error_msg parameter is copied into the internal error storage and must
-  ///  * be null terminated.
-  ///  * The file parameter is copied into the internal error storage and must
-  ///  * be null terminated.
-  ///  *
-  ///  * \param[in] error_string The error message to set.
-  ///  * \param[in] file The path to the file in which the error occurred.
-  ///  * \param[in] line_number The line number on which the error occurred.
-  ///  */
-  void rcutils_set_error_state(
-    ffi.Pointer<ffi.Int8> error_string,
-    ffi.Pointer<ffi.Int8> file,
-    int line_number,
-  ) {
-    return _rcutils_set_error_state(
-      error_string,
-      file,
-      line_number,
-    );
-  }
-
-  late final _rcutils_set_error_state_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_set_error_state>>(
-          'rcutils_set_error_state');
-  late final _dart_rcutils_set_error_state _rcutils_set_error_state =
-      _rcutils_set_error_state_ptr.asFunction<_dart_rcutils_set_error_state>();
-
-  /// Return `true` if the error is set, otherwise `false`.
-  bool rcutils_error_is_set() {
-    return _rcutils_error_is_set() != 0;
-  }
-
-  late final _rcutils_error_is_set_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_error_is_set>>(
-          'rcutils_error_is_set');
-  late final _dart_rcutils_error_is_set _rcutils_error_is_set =
-      _rcutils_error_is_set_ptr.asFunction<_dart_rcutils_error_is_set>();
-
-  /// Return an rcutils_error_state_t which was set with rcutils_set_error_state().
-  /// /**
-  ///  * The returned pointer will be NULL if no error has been set in this thread.
-  ///  *
-  ///  * The returned pointer is valid until RCUTILS_SET_ERROR_MSG, rcutils_set_error_state,
-  ///  * or rcutils_reset_error are called in the same thread.
-  ///  *
-  ///  * \return A pointer to the current error state struct.
-  ///  */
-  ffi.Pointer<rcutils_error_state_t> rcutils_get_error_state() {
-    return _rcutils_get_error_state();
-  }
-
-  late final _rcutils_get_error_state_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_get_error_state>>(
-          'rcutils_get_error_state');
-  late final _dart_rcutils_get_error_state _rcutils_get_error_state =
-      _rcutils_get_error_state_ptr.asFunction<_dart_rcutils_get_error_state>();
-
-  /// Return the error message followed by `, at <file>:<line>` if set, else "error not set".
-  /// /**
-  ///  * This function is "safe" because it returns a copy of the current error
-  ///  * string or one containing the string "error not set" if no error was set.
-  ///  * This ensures that the copy is owned by the calling thread and is therefore
-  ///  * never invalidated by other error handling calls, and that the C string
-  ///  * inside is always valid and null terminated.
-  ///  *
-  ///  * \return The current error string, with file and line number, or "error not set" if not set.
-  ///  */
-  rcutils_error_string_t rcutils_get_error_string() {
-    return _rcutils_get_error_string();
-  }
-
-  late final _rcutils_get_error_string_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_get_error_string>>(
-          'rcutils_get_error_string');
-  late final _dart_rcutils_get_error_string _rcutils_get_error_string =
-      _rcutils_get_error_string_ptr
-          .asFunction<_dart_rcutils_get_error_string>();
-
-  /// Reset the error state by clearing any previously set error state.
-  void rcutils_reset_error() {
-    return _rcutils_reset_error();
-  }
-
-  late final _rcutils_reset_error_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_reset_error>>(
-          'rcutils_reset_error');
-  late final _dart_rcutils_reset_error _rcutils_reset_error =
-      _rcutils_reset_error_ptr.asFunction<_dart_rcutils_reset_error>();
-
   /// This function returns the time from a system clock.
   /// The closest equivalent would be to std::chrono::system_clock::now();
   ///
@@ -3356,203 +3393,6 @@ class RCL {
       _rmw_get_zero_initialized_loaned_message_sequence =
       _rmw_get_zero_initialized_loaned_message_sequence_ptr
           .asFunction<_dart_rmw_get_zero_initialized_loaned_message_sequence>();
-
-  /// Return a rmw_names_and_types_t struct with members initialized to `NULL`.
-  rmw_names_and_types_t rmw_get_zero_initialized_names_and_types() {
-    return _rmw_get_zero_initialized_names_and_types();
-  }
-
-  late final _rmw_get_zero_initialized_names_and_types_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_get_zero_initialized_names_and_types>>(
-          'rmw_get_zero_initialized_names_and_types');
-  late final _dart_rmw_get_zero_initialized_names_and_types
-      _rmw_get_zero_initialized_names_and_types =
-      _rmw_get_zero_initialized_names_and_types_ptr
-          .asFunction<_dart_rmw_get_zero_initialized_names_and_types>();
-
-  /// Check that a rmw_topic_names_and_types_t struct is zero initialized.
-  int rmw_names_and_types_check_zero(
-    ffi.Pointer<rmw_names_and_types_t> names_and_types,
-  ) {
-    return _rmw_names_and_types_check_zero(
-      names_and_types,
-    );
-  }
-
-  late final _rmw_names_and_types_check_zero_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_names_and_types_check_zero>>(
-          'rmw_names_and_types_check_zero');
-  late final _dart_rmw_names_and_types_check_zero
-      _rmw_names_and_types_check_zero = _rmw_names_and_types_check_zero_ptr
-          .asFunction<_dart_rmw_names_and_types_check_zero>();
-
-  /// Initialize a rmw_names_and_types_t object.
-  /// /**
-  ///  * This function initializes the string array for the names and allocates space
-  ///  * for all the string arrays for the types according to the given size, but
-  ///  * it does not initialize the string array for each setup of types.
-  ///  * However, the string arrays for each set of types is zero initialized.
-  ///  *
-  ///  * \param[inout] names_and_types object to be initialized
-  ///  * \param[in] size the number of names and sets of types to be stored
-  ///  * \param[in] allocator to be used to allocate and deallocate memory
-  ///  * \returns `RMW_RET_OK` on successfully running the check, or
-  ///  * \returns `RMW_RET_INVALID_ARGUMENT` if names_and_types is NULL, or
-  ///  * \returns `RMW_BAD_ALLOC` if memory allocation fails, or
-  ///  * \returns `RMW_RET_ERROR` when an unspecified error occurs.
-  ///  */
-  int rmw_names_and_types_init(
-    ffi.Pointer<rmw_names_and_types_t> names_and_types,
-    int size,
-    ffi.Pointer<rcutils_allocator_t> allocator,
-  ) {
-    return _rmw_names_and_types_init(
-      names_and_types,
-      size,
-      allocator,
-    );
-  }
-
-  late final _rmw_names_and_types_init_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_names_and_types_init>>(
-          'rmw_names_and_types_init');
-  late final _dart_rmw_names_and_types_init _rmw_names_and_types_init =
-      _rmw_names_and_types_init_ptr
-          .asFunction<_dart_rmw_names_and_types_init>();
-
-  /// Finalize a rmw_names_and_types_t object.
-  /// /**
-  ///  * The names_and_types_t objects are populated by one of the
-  ///  * rmw_get_*_names_and_types() functions.
-  ///  * During which memory is allocated to store the names and types.
-  ///  * This function will reclaim any resources within the object so it is safe
-  ///  * to destroy without leaking memory.
-  ///  *
-  ///  * The allocator within the rmw_names_and_types_t object is used to deallocate
-  ///  * memory.
-  ///  *
-  ///  * \param[inout] names_and_types object to be finalized
-  ///  * \returns `RMW_RET_OK` on successfully running the check, or
-  ///  * \returns `RMW_RET_INVALID_ARGUMENT` if names_and_types is NULL, or
-  ///  * \returns `RMW_RET_ERROR` when an unspecified error occurs.
-  ///  */
-  int rmw_names_and_types_fini(
-    ffi.Pointer<rmw_names_and_types_t> names_and_types,
-  ) {
-    return _rmw_names_and_types_fini(
-      names_and_types,
-    );
-  }
-
-  late final _rmw_names_and_types_fini_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_names_and_types_fini>>(
-          'rmw_names_and_types_fini');
-  late final _dart_rmw_names_and_types_fini _rmw_names_and_types_fini =
-      _rmw_names_and_types_fini_ptr
-          .asFunction<_dart_rmw_names_and_types_fini>();
-
-  /// Return a list of topic names and their types.
-  /// /**
-  ///  * This function returns a list of topic names in the ROS graph and their types.
-  ///  *
-  ///  * The node parameter must not be `NULL`, and must point to a valid node.
-  ///  *
-  ///  * The topic_names_and_types parameter must be allocated and zero initialized.
-  ///  * The topic_names_and_types is the output for this function, and contains
-  ///  * allocated memory.
-  ///  * Therefore, it should be passed to rmw_names_and_types_fini() when
-  ///  * it is no longer needed.
-  ///  * Failing to do so will result in leaked memory.
-  ///  *
-  ///  * There may be some demangling that occurs when listing the topics from the
-  ///  * middleware implementation.
-  ///  * This is the mechanism by which this function can discriminate between ROS
-  ///  * topics, non-ROS topics, and topics which may be used to implement other
-  ///  * concepts like ROS Services.
-  ///  *
-  ///  * For example, if the underlying implementation is DDS or RTPS, ROS specific
-  ///  * prefixes may be prepended to the user namespace, and the namespace may be
-  ///  * stripped of leading and trailing slashes, see:
-  ///  *
-  ///  * http://design.ros2.org/articles/topic_and_service_names.html#ros-namespaces-with-dds-partitions
-  ///  *
-  ///  * As well as:
-  ///  *
-  ///  * http://design.ros2.org/articles/topic_and_service_names.html#communicating-with-non-ros-topics
-  ///  *
-  ///  * If the no_demangle argument is true, then the topic names given by the
-  ///  * middleware will be returned without any demangling or filtering.
-  ///  * For example, the ROS topic `/foo` may be returned as `rt/foo` or the DDS
-  ///  * topic (non-ROS topic) with a partition list `['foo', 'bar']` and topic `baz`
-  ///  * may be returned as `foo/baz` (note that only the first partition is used but
-  ///  * it is still concatenated to the topic).
-  ///  *
-  ///  * \param[in] node the handle to the node being used to query the ROS graph
-  ///  * \param[in] allocator allocator to be used when allocating space for strings
-  ///  * \param[in] no_demangle if true, list all topics without any demangling
-  ///  * \param[out] topic_names_and_types list of topic names and their types
-  ///  * \return `RMW_RET_OK` if the query was successful, or
-  ///  * \return `RMW_RET_INVALID_ARGUMENT` if the node is invalid, or
-  ///  * \return `RMW_RET_INVALID_ARGUMENT` if any arguments are invalid, or
-  ///  * \return `RMW_RET_BAD_ALLOC` if memory allocation fails, or
-  ///  * \return `RMW_RET_ERROR` if an unspecified error occurs.
-  ///  */
-  int rmw_get_topic_names_and_types(
-    ffi.Pointer<rmw_node_t> node,
-    ffi.Pointer<rcutils_allocator_t> allocator,
-    bool no_demangle,
-    ffi.Pointer<rmw_names_and_types_t> topic_names_and_types,
-  ) {
-    return _rmw_get_topic_names_and_types(
-      node,
-      allocator,
-      no_demangle ? 1 : 0,
-      topic_names_and_types,
-    );
-  }
-
-  late final _rmw_get_topic_names_and_types_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_get_topic_names_and_types>>(
-          'rmw_get_topic_names_and_types');
-  late final _dart_rmw_get_topic_names_and_types
-      _rmw_get_topic_names_and_types = _rmw_get_topic_names_and_types_ptr
-          .asFunction<_dart_rmw_get_topic_names_and_types>();
-
-  ffi.Pointer<rosidl_service_type_support_t> get_service_typesupport_handle(
-    ffi.Pointer<rosidl_service_type_support_t> handle,
-    ffi.Pointer<ffi.Int8> identifier,
-  ) {
-    return _get_service_typesupport_handle(
-      handle,
-      identifier,
-    );
-  }
-
-  late final _get_service_typesupport_handle_ptr =
-      _lookup<ffi.NativeFunction<_c_get_service_typesupport_handle>>(
-          'get_service_typesupport_handle');
-  late final _dart_get_service_typesupport_handle
-      _get_service_typesupport_handle = _get_service_typesupport_handle_ptr
-          .asFunction<_dart_get_service_typesupport_handle>();
-
-  ffi.Pointer<rosidl_service_type_support_t>
-      get_service_typesupport_handle_function(
-    ffi.Pointer<rosidl_service_type_support_t> handle,
-    ffi.Pointer<ffi.Int8> identifier,
-  ) {
-    return _get_service_typesupport_handle_function(
-      handle,
-      identifier,
-    );
-  }
-
-  late final _get_service_typesupport_handle_function_ptr =
-      _lookup<ffi.NativeFunction<_c_get_service_typesupport_handle_function>>(
-          'get_service_typesupport_handle_function');
-  late final _dart_get_service_typesupport_handle_function
-      _get_service_typesupport_handle_function =
-      _get_service_typesupport_handle_function_ptr
-          .asFunction<_dart_get_service_typesupport_handle_function>();
 
   /// Return a rcl_arguments_t struct with members initialized to `NULL`.
   rcl_arguments_t rcl_get_zero_initialized_arguments() {
@@ -5507,680 +5347,6 @@ class RCL {
           'rcl_client_is_valid');
   late final _dart_rcl_client_is_valid _rcl_client_is_valid =
       _rcl_client_is_valid_ptr.asFunction<_dart_rcl_client_is_valid>();
-
-  /// Return a list of topic names and types for publishers associated with a node.
-  /// /**
-  ///  * The `node` parameter must point to a valid node.
-  ///  *
-  ///  * The `topic_names_and_types` parameter must be allocated and zero initialized.
-  ///  * This function allocates memory for the returned list of names and types and so it is the
-  ///  * callers responsibility to pass `topic_names_and_types` to rcl_names_and_types_fini()
-  ///  * when it is no longer needed.
-  ///  * Failing to do so will result in leaked memory.
-  ///  *
-  ///  * There may be some demangling that occurs when listing the names from the middleware
-  ///  * implementation.
-  ///  * If the `no_demangle` argument is set to `true`, then this will be avoided and the names will be
-  ///  * returned as they appear to the middleware.
-  ///  *
-  ///  * \see rmw_get_topic_names_and_types for more details on no_demangle
-  ///  *
-  ///  * The returned names are not automatically remapped by this function.
-  ///  * Attempting to create publishers or subscribers using names returned by this function may not
-  ///  * result in the desired topic name being used depending on the remap rules in use.
-  ///  *
-  ///  * <hr>
-  ///  * Attribute          | Adherence
-  ///  * ------------------ | -------------
-  ///  * Allocates Memory   | Yes
-  ///  * Thread-Safe        | No
-  ///  * Uses Atomics       | No
-  ///  * Lock-Free          | Maybe [1]
-  ///  * <i>[1] implementation may need to protect the data structure with a lock</i>
-  ///  *
-  ///  * \param[in] node the handle to the node being used to query the ROS graph
-  ///  * \param[in] allocator allocator to be used when allocating space for strings
-  ///  * \param[in] no_demangle if true, list all topics without any demangling
-  ///  * \param[in] node_name the node name of the topics to return
-  ///  * \param[in] node_namespace the node namespace of the topics to return
-  ///  * \param[out] topic_names_and_types list of topic names and their types
-  ///  * \return `RCL_RET_OK` if the query was successful, or
-  ///  * \return `RCL_RET_NODE_INVALID` if the node is invalid, or
-  ///  * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
-  ///  * \return `RCL_RET_NODE_INVALID_NAME` if the node name is invalid, or
-  ///  * \return `RCL_RET_NODE_INVALID_NAMESPACE` if the node namespace is invalid, or
-  ///  * \return `RCL_RET_NODE_NAME_NON_EXISTENT` if the node name wasn't found, or
-  ///  * \return `RCL_RET_ERROR` if an unspecified error occurs.
-  ///  */
-  int rcl_get_publisher_names_and_types_by_node(
-    ffi.Pointer<rcl_node_t> node,
-    ffi.Pointer<rcutils_allocator_t> allocator,
-    bool no_demangle,
-    ffi.Pointer<ffi.Int8> node_name,
-    ffi.Pointer<ffi.Int8> node_namespace,
-    ffi.Pointer<rmw_names_and_types_t> topic_names_and_types,
-  ) {
-    return _rcl_get_publisher_names_and_types_by_node(
-      node,
-      allocator,
-      no_demangle ? 1 : 0,
-      node_name,
-      node_namespace,
-      topic_names_and_types,
-    );
-  }
-
-  late final _rcl_get_publisher_names_and_types_by_node_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_get_publisher_names_and_types_by_node>>(
-          'rcl_get_publisher_names_and_types_by_node');
-  late final _dart_rcl_get_publisher_names_and_types_by_node
-      _rcl_get_publisher_names_and_types_by_node =
-      _rcl_get_publisher_names_and_types_by_node_ptr
-          .asFunction<_dart_rcl_get_publisher_names_and_types_by_node>();
-
-  /// Return a list of topic names and types for subscriptions associated with a node.
-  /// /**
-  ///  * The `node` parameter must point to a valid node.
-  ///  *
-  ///  * The `topic_names_and_types` parameter must be allocated and zero initialized.
-  ///  * This function allocates memory for the returned list of names and types and so it is the
-  ///  * callers responsibility to pass `topic_names_and_types` to rcl_names_and_types_fini()
-  ///  * when it is no longer needed.
-  ///  * Failing to do so will result in leaked memory.
-  ///  *
-  ///  * \see rcl_get_publisher_names_and_types_by_node for details on the `no_demangle` parameter.
-  ///  *
-  ///  * The returned names are not automatically remapped by this function.
-  ///  * Attempting to create publishers or subscribers using names returned by this function may not
-  ///  * result in the desired topic name being used depending on the remap rules in use.
-  ///  *
-  ///  * <hr>
-  ///  * Attribute          | Adherence
-  ///  * ------------------ | -------------
-  ///  * Allocates Memory   | Yes
-  ///  * Thread-Safe        | No
-  ///  * Uses Atomics       | No
-  ///  * Lock-Free          | Maybe [1]
-  ///  * <i>[1] implementation may need to protect the data structure with a lock</i>
-  ///  *
-  ///  * \param[in] node the handle to the node being used to query the ROS graph
-  ///  * \param[in] allocator allocator to be used when allocating space for strings
-  ///  * \param[in] no_demangle if true, list all topics without any demangling
-  ///  * \param[in] node_name the node name of the topics to return
-  ///  * \param[in] node_namespace the node namespace of the topics to return
-  ///  * \param[out] topic_names_and_types list of topic names and their types
-  ///  * \return `RCL_RET_OK` if the query was successful, or
-  ///  * \return `RCL_RET_NODE_INVALID` if the node is invalid, or
-  ///  * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
-  ///  * \return `RCL_RET_NODE_INVALID_NAME` if the node name is invalid, or
-  ///  * \return `RCL_RET_NODE_INVALID_NAMESPACE` if the node namespace is invalid, or
-  ///  * \return `RCL_RET_NODE_NAME_NON_EXISTENT` if the node name wasn't found, or
-  ///  * \return `RCL_RET_ERROR` if an unspecified error occurs.
-  ///  */
-  int rcl_get_subscriber_names_and_types_by_node(
-    ffi.Pointer<rcl_node_t> node,
-    ffi.Pointer<rcutils_allocator_t> allocator,
-    bool no_demangle,
-    ffi.Pointer<ffi.Int8> node_name,
-    ffi.Pointer<ffi.Int8> node_namespace,
-    ffi.Pointer<rmw_names_and_types_t> topic_names_and_types,
-  ) {
-    return _rcl_get_subscriber_names_and_types_by_node(
-      node,
-      allocator,
-      no_demangle ? 1 : 0,
-      node_name,
-      node_namespace,
-      topic_names_and_types,
-    );
-  }
-
-  late final _rcl_get_subscriber_names_and_types_by_node_ptr = _lookup<
-          ffi.NativeFunction<_c_rcl_get_subscriber_names_and_types_by_node>>(
-      'rcl_get_subscriber_names_and_types_by_node');
-  late final _dart_rcl_get_subscriber_names_and_types_by_node
-      _rcl_get_subscriber_names_and_types_by_node =
-      _rcl_get_subscriber_names_and_types_by_node_ptr
-          .asFunction<_dart_rcl_get_subscriber_names_and_types_by_node>();
-
-  /// Return a list of service names and types associated with a node.
-  /// /**
-  ///  * The `node` parameter must point to a valid node.
-  ///  *
-  ///  * The `service_names_and_types` parameter must be allocated and zero initialized.
-  ///  * This function allocates memory for the returned list of names and types and so it is the
-  ///  * callers responsibility to pass `service_names_and_types` to rcl_names_and_types_fini()
-  ///  * when it is no longer needed.
-  ///  * Failing to do so will result in leaked memory.
-  ///  *
-  ///  * \see rcl_get_publisher_names_and_types_by_node for details on the `no_demangle` parameter.
-  ///  *
-  ///  * The returned names are not automatically remapped by this function.
-  ///  * Attempting to create service clients using names returned by this function may not
-  ///  * result in the desired service name being used depending on the remap rules in use.
-  ///  *
-  ///  * <hr>
-  ///  * Attribute          | Adherence
-  ///  * ------------------ | -------------
-  ///  * Allocates Memory   | Yes
-  ///  * Thread-Safe        | No
-  ///  * Uses Atomics       | No
-  ///  * Lock-Free          | Maybe [1]
-  ///  * <i>[1] implementation may need to protect the data structure with a lock</i>
-  ///  *
-  ///  * \param[in] node the handle to the node being used to query the ROS graph
-  ///  * \param[in] allocator allocator to be used when allocating space for strings
-  ///  * \param[in] node_name the node name of the services to return
-  ///  * \param[in] node_namespace the node namespace of the services to return
-  ///  * \param[out] service_names_and_types list of service names and their types
-  ///  * \return `RCL_RET_OK` if the query was successful, or
-  ///  * \return `RCL_RET_NODE_INVALID` if the node is invalid, or
-  ///  * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
-  ///  * \return `RCL_RET_NODE_INVALID_NAME` if the node name is invalid, or
-  ///  * \return `RCL_RET_NODE_INVALID_NAMESPACE` if the node namespace is invalid, or
-  ///  * \return `RCL_RET_NODE_NAME_NON_EXISTENT` if the node name wasn't found, or
-  ///  * \return `RCL_RET_ERROR` if an unspecified error occurs.
-  ///  */
-  int rcl_get_service_names_and_types_by_node(
-    ffi.Pointer<rcl_node_t> node,
-    ffi.Pointer<rcutils_allocator_t> allocator,
-    ffi.Pointer<ffi.Int8> node_name,
-    ffi.Pointer<ffi.Int8> node_namespace,
-    ffi.Pointer<rmw_names_and_types_t> service_names_and_types,
-  ) {
-    return _rcl_get_service_names_and_types_by_node(
-      node,
-      allocator,
-      node_name,
-      node_namespace,
-      service_names_and_types,
-    );
-  }
-
-  late final _rcl_get_service_names_and_types_by_node_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_get_service_names_and_types_by_node>>(
-          'rcl_get_service_names_and_types_by_node');
-  late final _dart_rcl_get_service_names_and_types_by_node
-      _rcl_get_service_names_and_types_by_node =
-      _rcl_get_service_names_and_types_by_node_ptr
-          .asFunction<_dart_rcl_get_service_names_and_types_by_node>();
-
-  /// Return a list of service client names and types associated with a node.
-  /// /**
-  ///  * The `node` parameter must point to a valid node.
-  ///  *
-  ///  * The `service_names_and_types` parameter must be allocated and zero initialized.
-  ///  * This function allocates memory for the returned list of names and types and so it is the
-  ///  * callers responsibility to pass `service_names_and_types` to rcl_names_and_types_fini()
-  ///  * when it is no longer needed.
-  ///  * Failing to do so will result in leaked memory.
-  ///  *
-  ///  * \see rcl_get_publisher_names_and_types_by_node for details on the `no_demangle` parameter.
-  ///  *
-  ///  * The returned names are not automatically remapped by this function.
-  ///  * Attempting to create service servers using names returned by this function may not
-  ///  * result in the desired service name being used depending on the remap rules in use.
-  ///  *
-  ///  * <hr>
-  ///  * Attribute          | Adherence
-  ///  * ------------------ | -------------
-  ///  * Allocates Memory   | Yes
-  ///  * Thread-Safe        | No
-  ///  * Uses Atomics       | No
-  ///  * Lock-Free          | Maybe [1]
-  ///  * <i>[1] implementation may need to protect the data structure with a lock</i>
-  ///  *
-  ///  * \param[in] node the handle to the node being used to query the ROS graph
-  ///  * \param[in] allocator allocator to be used when allocating space for strings
-  ///  * \param[in] node_name the node name of the services to return
-  ///  * \param[in] node_namespace the node namespace of the services to return
-  ///  * \param[out] service_names_and_types list of service client names and their types
-  ///  * \return `RCL_RET_OK` if the query was successful, or
-  ///  * \return `RCL_RET_NODE_INVALID` if the node is invalid, or
-  ///  * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
-  ///  * \return `RCL_RET_NODE_INVALID_NAME` if the node name is invalid, or
-  ///  * \return `RCL_RET_NODE_INVALID_NAMESPACE` if the node namespace is invalid, or
-  ///  * \return `RCL_RET_NODE_NAME_NON_EXISTENT` if the node name wasn't found, or
-  ///  * \return `RCL_RET_ERROR` if an unspecified error occurs.
-  ///  */
-  int rcl_get_client_names_and_types_by_node(
-    ffi.Pointer<rcl_node_t> node,
-    ffi.Pointer<rcutils_allocator_t> allocator,
-    ffi.Pointer<ffi.Int8> node_name,
-    ffi.Pointer<ffi.Int8> node_namespace,
-    ffi.Pointer<rmw_names_and_types_t> service_names_and_types,
-  ) {
-    return _rcl_get_client_names_and_types_by_node(
-      node,
-      allocator,
-      node_name,
-      node_namespace,
-      service_names_and_types,
-    );
-  }
-
-  late final _rcl_get_client_names_and_types_by_node_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_get_client_names_and_types_by_node>>(
-          'rcl_get_client_names_and_types_by_node');
-  late final _dart_rcl_get_client_names_and_types_by_node
-      _rcl_get_client_names_and_types_by_node =
-      _rcl_get_client_names_and_types_by_node_ptr
-          .asFunction<_dart_rcl_get_client_names_and_types_by_node>();
-
-  /// Return a list of topic names and their types.
-  /// /**
-  ///  * The `node` parameter must point to a valid node.
-  ///  *
-  ///  * The `topic_names_and_types` parameter must be allocated and zero initialized.
-  ///  * This function allocates memory for the returned list of names and types and so it is the
-  ///  * callers responsibility to pass `topic_names_and_types` to rcl_names_and_types_fini()
-  ///  * when it is no longer needed.
-  ///  * Failing to do so will result in leaked memory.
-  ///  *
-  ///  * \see rcl_get_publisher_names_and_types_by_node for details on the `no_demangle` parameter.
-  ///  *
-  ///  * The returned names are not automatically remapped by this function.
-  ///  * Attempting to create publishers or subscribers using names returned by this function may not
-  ///  * result in the desired topic name being used depending on the remap rules in use.
-  ///  *
-  ///  * <hr>
-  ///  * Attribute          | Adherence
-  ///  * ------------------ | -------------
-  ///  * Allocates Memory   | Yes
-  ///  * Thread-Safe        | No
-  ///  * Uses Atomics       | No
-  ///  * Lock-Free          | Maybe [1]
-  ///  * <i>[1] implementation may need to protect the data structure with a lock</i>
-  ///  *
-  ///  * \param[in] node the handle to the node being used to query the ROS graph
-  ///  * \param[in] allocator allocator to be used when allocating space for strings
-  ///  * \param[in] no_demangle if true, list all topics without any demangling
-  ///  * \param[out] topic_names_and_types list of topic names and their types
-  ///  * \return `RCL_RET_OK` if the query was successful, or
-  ///  * \return `RCL_RET_NODE_INVALID` if the node is invalid, or
-  ///  * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
-  ///  * \return `RCL_RET_NODE_INVALID_NAME` if the node name is invalid, or
-  ///  * \return `RCL_RET_NODE_INVALID_NAMESPACE` if the node namespace is invalid, or
-  ///  * \return `RCL_RET_ERROR` if an unspecified error occurs.
-  ///  */
-  int rcl_get_topic_names_and_types(
-    ffi.Pointer<rcl_node_t> node,
-    ffi.Pointer<rcutils_allocator_t> allocator,
-    bool no_demangle,
-    ffi.Pointer<rmw_names_and_types_t> topic_names_and_types,
-  ) {
-    return _rcl_get_topic_names_and_types(
-      node,
-      allocator,
-      no_demangle ? 1 : 0,
-      topic_names_and_types,
-    );
-  }
-
-  late final _rcl_get_topic_names_and_types_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_get_topic_names_and_types>>(
-          'rcl_get_topic_names_and_types');
-  late final _dart_rcl_get_topic_names_and_types
-      _rcl_get_topic_names_and_types = _rcl_get_topic_names_and_types_ptr
-          .asFunction<_dart_rcl_get_topic_names_and_types>();
-
-  /// Return a list of service names and their types.
-  /// /**
-  ///  * The `node` parameter must point to a valid node.
-  ///  *
-  ///  * The `service_names_and_types` parameter must be allocated and zero initialized.
-  ///  * This function allocates memory for the returned list of names and types and so it is the
-  ///  * callers responsibility to pass `service_names_and_types` to rcl_names_and_types_fini()
-  ///  * when it is no longer needed.
-  ///  * Failing to do so will result in leaked memory.
-  ///  *
-  ///  * The returned names are not automatically remapped by this function.
-  ///  * Attempting to create clients or services using names returned by this function may not result in
-  ///  * the desired service name being used depending on the remap rules in use.
-  ///  *
-  ///  * <hr>
-  ///  * Attribute          | Adherence
-  ///  * ------------------ | -------------
-  ///  * Allocates Memory   | Yes
-  ///  * Thread-Safe        | No
-  ///  * Uses Atomics       | No
-  ///  * Lock-Free          | Maybe [1]
-  ///  * <i>[1] implementation may need to protect the data structure with a lock</i>
-  ///  *
-  ///  * \param[in] node the handle to the node being used to query the ROS graph
-  ///  * \param[in] allocator allocator to be used when allocating space for strings
-  ///  * \param[out] service_names_and_types list of service names and their types
-  ///  * \return `RCL_RET_OK` if the query was successful, or
-  ///  * \return `RCL_RET_NODE_INVALID` if the node is invalid, or
-  ///  * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
-  ///  * \return `RCL_RET_ERROR` if an unspecified error occurs.
-  ///  */
-  int rcl_get_service_names_and_types(
-    ffi.Pointer<rcl_node_t> node,
-    ffi.Pointer<rcutils_allocator_t> allocator,
-    ffi.Pointer<rmw_names_and_types_t> service_names_and_types,
-  ) {
-    return _rcl_get_service_names_and_types(
-      node,
-      allocator,
-      service_names_and_types,
-    );
-  }
-
-  late final _rcl_get_service_names_and_types_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_get_service_names_and_types>>(
-          'rcl_get_service_names_and_types');
-  late final _dart_rcl_get_service_names_and_types
-      _rcl_get_service_names_and_types = _rcl_get_service_names_and_types_ptr
-          .asFunction<_dart_rcl_get_service_names_and_types>();
-
-  /// Initialize a rcl_names_and_types_t object.
-  /// /**
-  ///  * This function initializes the string array for the names and allocates space
-  ///  * for all the string arrays for the types according to the given size, but
-  ///  * it does not initialize the string array for each set of types.
-  ///  * However, the string arrays for each set of types is zero initialized.
-  ///  *
-  ///  * <hr>
-  ///  * Attribute          | Adherence
-  ///  * ------------------ | -------------
-  ///  * Allocates Memory   | Yes
-  ///  * Thread-Safe        | No
-  ///  * Uses Atomics       | No
-  ///  * Lock-Free          | Yes
-  ///  *
-  ///  * \param[inout] names_and_types object to be initialized
-  ///  * \param[in] size the number of names and sets of types to be stored
-  ///  * \param[in] allocator to be used to allocate and deallocate memory
-  ///  * \returns `RCL_RET_OK` on success, or
-  ///  * \returns `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
-  ///  * \returns `RCL_BAD_ALLOC` if memory allocation fails, or
-  ///  * \returns `RCL_RET_ERROR` when an unspecified error occurs.
-  ///  */
-  int rcl_names_and_types_init(
-    ffi.Pointer<rmw_names_and_types_t> names_and_types,
-    int size,
-    ffi.Pointer<rcutils_allocator_t> allocator,
-  ) {
-    return _rcl_names_and_types_init(
-      names_and_types,
-      size,
-      allocator,
-    );
-  }
-
-  late final _rcl_names_and_types_init_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_names_and_types_init>>(
-          'rcl_names_and_types_init');
-  late final _dart_rcl_names_and_types_init _rcl_names_and_types_init =
-      _rcl_names_and_types_init_ptr
-          .asFunction<_dart_rcl_names_and_types_init>();
-
-  /// Finalize a rcl_names_and_types_t object.
-  /// /**
-  ///  * The object is populated when given to one of the rcl_get_*_names_and_types()
-  ///  * functions.
-  ///  * This function reclaims any resources allocated during population.
-  ///  *
-  ///  * The `names_and_types` parameter must not be `NULL`, and must point to an
-  ///  * already allocated rcl_names_and_types_t struct that was previously
-  ///  * passed to a successful rcl_get_*_names_and_types() function call.
-  ///  *
-  ///  * <hr>
-  ///  * Attribute          | Adherence
-  ///  * ------------------ | -------------
-  ///  * Allocates Memory   | Yes
-  ///  * Thread-Safe        | No
-  ///  * Uses Atomics       | No
-  ///  * Lock-Free          | Yes
-  ///  *
-  ///  * \param[inout] names_and_types struct to be finalized
-  ///  * \return `RCL_RET_OK` if successful, or
-  ///  * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
-  ///  * \return `RCL_RET_ERROR` if an unspecified error occurs.
-  ///  */
-  int rcl_names_and_types_fini(
-    ffi.Pointer<rmw_names_and_types_t> names_and_types,
-  ) {
-    return _rcl_names_and_types_fini(
-      names_and_types,
-    );
-  }
-
-  late final _rcl_names_and_types_fini_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_names_and_types_fini>>(
-          'rcl_names_and_types_fini');
-  late final _dart_rcl_names_and_types_fini _rcl_names_and_types_fini =
-      _rcl_names_and_types_fini_ptr
-          .asFunction<_dart_rcl_names_and_types_fini>();
-
-  /// Return a list of available nodes in the ROS graph.
-  /// /**
-  ///  * The `node` parameter must point to a valid node.
-  ///  *
-  ///  * The `node_names` parameter must be allocated and zero initialized.
-  ///  * `node_names` is the output for this function, and contains allocated memory.
-  ///  * Note that entries in the array might contain `NULL` values.
-  ///  * Use rcutils_get_zero_initialized_string_array() for initializing an empty
-  ///  * rcutils_string_array_t struct.
-  ///  * This `node_names` struct should therefore be passed to rcutils_string_array_fini()
-  ///  * when it is no longer needed.
-  ///  * Failing to do so will result in leaked memory.
-  ///  *
-  ///  * Example:
-  ///  *
-  ///  * ```c
-  ///  * rcutils_string_array_t node_names =
-  ///  *   rcutils_get_zero_initialized_string_array();
-  ///  * rcl_ret_t ret = rcl_get_node_names(node, &node_names);
-  ///  * if (ret != RCL_RET_OK) {
-  ///  *   // ... error handling
-  ///  * }
-  ///  * // ... use the node_names struct, and when done:
-  ///  * rcutils_ret_t rcutils_ret = rcutils_string_array_fini(&node_names);
-  ///  * if (rcutils_ret != RCUTILS_RET_OK) {
-  ///  *   // ... error handling
-  ///  * }
-  ///  * ```
-  ///  *
-  ///  * <hr>
-  ///  * Attribute          | Adherence
-  ///  * ------------------ | -------------
-  ///  * Allocates Memory   | Yes
-  ///  * Thread-Safe        | No
-  ///  * Uses Atomics       | No
-  ///  * Lock-Free          | Maybe [1]
-  ///  * <i>[1] implementation may need to protect the data structure with a lock</i>
-  ///  *
-  ///  * \param[in] node the handle to the node being used to query the ROS graph
-  ///  * \param[in] allocator used to control allocation and deallocation of names
-  ///  * \param[out] node_names struct storing discovered node names.
-  ///  * \param[out] node_namesspaces struct storing discovered node namespaces.
-  ///  * \return `RCL_RET_OK` if the query was successful, or
-  ///  * \return `RCL_RET_ERROR` if an unspecified error occurs.
-  ///  */
-  int rcl_get_node_names(
-    ffi.Pointer<rcl_node_t> node,
-    rcutils_allocator_t allocator,
-    ffi.Pointer<rcutils_string_array_t> node_names,
-    ffi.Pointer<rcutils_string_array_t> node_namespaces,
-  ) {
-    return _rcl_get_node_names(
-      node,
-      allocator,
-      node_names,
-      node_namespaces,
-    );
-  }
-
-  late final _rcl_get_node_names_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_get_node_names>>('rcl_get_node_names');
-  late final _dart_rcl_get_node_names _rcl_get_node_names =
-      _rcl_get_node_names_ptr.asFunction<_dart_rcl_get_node_names>();
-
-  /// Return the number of publishers on a given topic.
-  /// /**
-  ///  * The `node` parameter must point to a valid node.
-  ///  *
-  ///  * The `topic_name` parameter must not be `NULL`, and must not be an empty string.
-  ///  * It should also follow the topic name rules.
-  ///  * \todo TODO(wjwwood): link to the topic name rules.
-  ///  *
-  ///  * The `count` parameter must point to a valid bool.
-  ///  * The `count` parameter is the output for this function and will be set.
-  ///  *
-  ///  * In the event that error handling needs to allocate memory, this function
-  ///  * will try to use the node's allocator.
-  ///  *
-  ///  * The topic name is not automatically remapped by this function.
-  ///  * If there is a publisher created with topic name `foo` and remap rule `foo:=bar` then calling
-  ///  * this with `topic_name` set to `bar` will return a count of 1, and with `topic_name` set to `foo`
-  ///  * will return a count of 0.
-  ///  * /sa rcl_remap_topic_name()
-  ///  *
-  ///  * <hr>
-  ///  * Attribute          | Adherence
-  ///  * ------------------ | -------------
-  ///  * Allocates Memory   | No
-  ///  * Thread-Safe        | No
-  ///  * Uses Atomics       | No
-  ///  * Lock-Free          | Maybe [1]
-  ///  * <i>[1] implementation may need to protect the data structure with a lock</i>
-  ///  *
-  ///  * \param[in] node the handle to the node being used to query the ROS graph
-  ///  * \param[in] topic_name the name of the topic in question
-  ///  * \param[out] count number of publishers on the given topic
-  ///  * \return `RCL_RET_OK` if the query was successful, or
-  ///  * \return `RCL_RET_NODE_INVALID` if the node is invalid, or
-  ///  * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
-  ///  * \return `RCL_RET_ERROR` if an unspecified error occurs.
-  ///  */
-  int rcl_count_publishers(
-    ffi.Pointer<rcl_node_t> node,
-    ffi.Pointer<ffi.Int8> topic_name,
-    ffi.Pointer<ffi.Uint64> count,
-  ) {
-    return _rcl_count_publishers(
-      node,
-      topic_name,
-      count,
-    );
-  }
-
-  late final _rcl_count_publishers_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_count_publishers>>(
-          'rcl_count_publishers');
-  late final _dart_rcl_count_publishers _rcl_count_publishers =
-      _rcl_count_publishers_ptr.asFunction<_dart_rcl_count_publishers>();
-
-  /// Return the number of subscriptions on a given topic.
-  /// /**
-  ///  * The `node` parameter must point to a valid node.
-  ///  *
-  ///  * The `topic_name` parameter must not be `NULL`, and must not be an empty string.
-  ///  * It should also follow the topic name rules.
-  ///  * \todo TODO(wjwwood): link to the topic name rules.
-  ///  *
-  ///  * The `count` parameter must point to a valid bool.
-  ///  * The `count` parameter is the output for this function and will be set.
-  ///  *
-  ///  * In the event that error handling needs to allocate memory, this function
-  ///  * will try to use the node's allocator.
-  ///  *
-  ///  * The topic name is not automatically remapped by this function.
-  ///  * If there is a subscriber created with topic name `foo` and remap rule `foo:=bar` then calling
-  ///  * this with `topic_name` set to `bar` will return a count of 1, and with `topic_name` set to `foo`
-  ///  * will return a count of 0.
-  ///  * /sa rcl_remap_topic_name()
-  ///  *
-  ///  * <hr>
-  ///  * Attribute          | Adherence
-  ///  * ------------------ | -------------
-  ///  * Allocates Memory   | No
-  ///  * Thread-Safe        | No
-  ///  * Uses Atomics       | No
-  ///  * Lock-Free          | Maybe [1]
-  ///  * <i>[1] implementation may need to protect the data structure with a lock</i>
-  ///  *
-  ///  * \param[in] node the handle to the node being used to query the ROS graph
-  ///  * \param[in] topic_name the name of the topic in question
-  ///  * \param[out] count number of subscriptions on the given topic
-  ///  * \return `RCL_RET_OK` if the query was successful, or
-  ///  * \return `RCL_RET_NODE_INVALID` if the node is invalid, or
-  ///  * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
-  ///  * \return `RCL_RET_ERROR` if an unspecified error occurs.
-  ///  */
-  int rcl_count_subscribers(
-    ffi.Pointer<rcl_node_t> node,
-    ffi.Pointer<ffi.Int8> topic_name,
-    ffi.Pointer<ffi.Uint64> count,
-  ) {
-    return _rcl_count_subscribers(
-      node,
-      topic_name,
-      count,
-    );
-  }
-
-  late final _rcl_count_subscribers_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_count_subscribers>>(
-          'rcl_count_subscribers');
-  late final _dart_rcl_count_subscribers _rcl_count_subscribers =
-      _rcl_count_subscribers_ptr.asFunction<_dart_rcl_count_subscribers>();
-
-  /// Check if a service server is available for the given service client.
-  /// /**
-  ///  * This function will return true for `is_available` if there is a service server
-  ///  * available for the given client.
-  ///  *
-  ///  * The `node` parameter must point to a valid node.
-  ///  *
-  ///  * The `client` parameter must point to a valid client.
-  ///  *
-  ///  * The given client and node must match, i.e. the client must have been created
-  ///  * using the given node.
-  ///  *
-  ///  * The `is_available` parameter must not be `NULL`, and must point a bool variable.
-  ///  * The result of the check will be stored in the `is_available` parameter.
-  ///  *
-  ///  * In the event that error handling needs to allocate memory, this function
-  ///  * will try to use the node's allocator.
-  ///  *
-  ///  * <hr>
-  ///  * Attribute          | Adherence
-  ///  * ------------------ | -------------
-  ///  * Allocates Memory   | Yes
-  ///  * Thread-Safe        | No
-  ///  * Uses Atomics       | No
-  ///  * Lock-Free          | Maybe [1]
-  ///  * <i>[1] implementation may need to protect the data structure with a lock</i>
-  ///  *
-  ///  * \param[in] node the handle to the node being used to query the ROS graph
-  ///  * \param[in] client the handle to the service client being queried
-  ///  * \param[out] is_available set to true if there is a service server available, else false
-  ///  * \return `RCL_RET_OK` if the check was made successfully (regardless of the service readiness), or
-  ///  * \return `RCL_RET_NODE_INVALID` if the node is invalid, or
-  ///  * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
-  ///  * \return `RCL_RET_ERROR` if an unspecified error occurs.
-  ///  */
-  int rcl_service_server_is_available(
-    ffi.Pointer<rcl_node_t> node,
-    ffi.Pointer<rcl_client_t> client,
-    ffi.Pointer<ffi.Uint8> is_available,
-  ) {
-    return _rcl_service_server_is_available(
-      node,
-      client,
-      is_available,
-    );
-  }
-
-  late final _rcl_service_server_is_available_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_service_server_is_available>>(
-          'rcl_service_server_is_available');
-  late final _dart_rcl_service_server_is_available
-      _rcl_service_server_is_available = _rcl_service_server_is_available_ptr
-          .asFunction<_dart_rcl_service_server_is_available>();
 
   /// Initialize a rcl guard_condition.
   /// /**
@@ -11411,6 +10577,307 @@ class RCL {
       _rcl_event_get_rmw_handle_ptr
           .asFunction<_dart_rcl_event_get_rmw_handle>();
 
+  /// Return a rmw_names_and_types_t struct with members initialized to `NULL`.
+  rmw_names_and_types_t rmw_get_zero_initialized_names_and_types() {
+    return _rmw_get_zero_initialized_names_and_types();
+  }
+
+  late final _rmw_get_zero_initialized_names_and_types_ptr =
+      _lookup<ffi.NativeFunction<_c_rmw_get_zero_initialized_names_and_types>>(
+          'rmw_get_zero_initialized_names_and_types');
+  late final _dart_rmw_get_zero_initialized_names_and_types
+      _rmw_get_zero_initialized_names_and_types =
+      _rmw_get_zero_initialized_names_and_types_ptr
+          .asFunction<_dart_rmw_get_zero_initialized_names_and_types>();
+
+  /// Check that a rmw_topic_names_and_types_t struct is zero initialized.
+  int rmw_names_and_types_check_zero(
+    ffi.Pointer<rmw_names_and_types_t> names_and_types,
+  ) {
+    return _rmw_names_and_types_check_zero(
+      names_and_types,
+    );
+  }
+
+  late final _rmw_names_and_types_check_zero_ptr =
+      _lookup<ffi.NativeFunction<_c_rmw_names_and_types_check_zero>>(
+          'rmw_names_and_types_check_zero');
+  late final _dart_rmw_names_and_types_check_zero
+      _rmw_names_and_types_check_zero = _rmw_names_and_types_check_zero_ptr
+          .asFunction<_dart_rmw_names_and_types_check_zero>();
+
+  /// Initialize a rmw_names_and_types_t object.
+  /// /**
+  ///  * This function initializes the string array for the names and allocates space
+  ///  * for all the string arrays for the types according to the given size, but
+  ///  * it does not initialize the string array for each setup of types.
+  ///  * However, the string arrays for each set of types is zero initialized.
+  ///  *
+  ///  * \param[inout] names_and_types object to be initialized
+  ///  * \param[in] size the number of names and sets of types to be stored
+  ///  * \param[in] allocator to be used to allocate and deallocate memory
+  ///  * \returns `RMW_RET_OK` on successfully running the check, or
+  ///  * \returns `RMW_RET_INVALID_ARGUMENT` if names_and_types is NULL, or
+  ///  * \returns `RMW_BAD_ALLOC` if memory allocation fails, or
+  ///  * \returns `RMW_RET_ERROR` when an unspecified error occurs.
+  ///  */
+  int rmw_names_and_types_init(
+    ffi.Pointer<rmw_names_and_types_t> names_and_types,
+    int size,
+    ffi.Pointer<rcutils_allocator_t> allocator,
+  ) {
+    return _rmw_names_and_types_init(
+      names_and_types,
+      size,
+      allocator,
+    );
+  }
+
+  late final _rmw_names_and_types_init_ptr =
+      _lookup<ffi.NativeFunction<_c_rmw_names_and_types_init>>(
+          'rmw_names_and_types_init');
+  late final _dart_rmw_names_and_types_init _rmw_names_and_types_init =
+      _rmw_names_and_types_init_ptr
+          .asFunction<_dart_rmw_names_and_types_init>();
+
+  /// Finalize a rmw_names_and_types_t object.
+  /// /**
+  ///  * The names_and_types_t objects are populated by one of the
+  ///  * rmw_get_*_names_and_types() functions.
+  ///  * During which memory is allocated to store the names and types.
+  ///  * This function will reclaim any resources within the object so it is safe
+  ///  * to destroy without leaking memory.
+  ///  *
+  ///  * The allocator within the rmw_names_and_types_t object is used to deallocate
+  ///  * memory.
+  ///  *
+  ///  * \param[inout] names_and_types object to be finalized
+  ///  * \returns `RMW_RET_OK` on successfully running the check, or
+  ///  * \returns `RMW_RET_INVALID_ARGUMENT` if names_and_types is NULL, or
+  ///  * \returns `RMW_RET_ERROR` when an unspecified error occurs.
+  ///  */
+  int rmw_names_and_types_fini(
+    ffi.Pointer<rmw_names_and_types_t> names_and_types,
+  ) {
+    return _rmw_names_and_types_fini(
+      names_and_types,
+    );
+  }
+
+  late final _rmw_names_and_types_fini_ptr =
+      _lookup<ffi.NativeFunction<_c_rmw_names_and_types_fini>>(
+          'rmw_names_and_types_fini');
+  late final _dart_rmw_names_and_types_fini _rmw_names_and_types_fini =
+      _rmw_names_and_types_fini_ptr
+          .asFunction<_dart_rmw_names_and_types_fini>();
+
+  /// Return a list of topic names and their types.
+  /// /**
+  ///  * This function returns a list of topic names in the ROS graph and their types.
+  ///  *
+  ///  * The node parameter must not be `NULL`, and must point to a valid node.
+  ///  *
+  ///  * The topic_names_and_types parameter must be allocated and zero initialized.
+  ///  * The topic_names_and_types is the output for this function, and contains
+  ///  * allocated memory.
+  ///  * Therefore, it should be passed to rmw_names_and_types_fini() when
+  ///  * it is no longer needed.
+  ///  * Failing to do so will result in leaked memory.
+  ///  *
+  ///  * There may be some demangling that occurs when listing the topics from the
+  ///  * middleware implementation.
+  ///  * This is the mechanism by which this function can discriminate between ROS
+  ///  * topics, non-ROS topics, and topics which may be used to implement other
+  ///  * concepts like ROS Services.
+  ///  *
+  ///  * For example, if the underlying implementation is DDS or RTPS, ROS specific
+  ///  * prefixes may be prepended to the user namespace, and the namespace may be
+  ///  * stripped of leading and trailing slashes, see:
+  ///  *
+  ///  * http://design.ros2.org/articles/topic_and_service_names.html#ros-namespaces-with-dds-partitions
+  ///  *
+  ///  * As well as:
+  ///  *
+  ///  * http://design.ros2.org/articles/topic_and_service_names.html#communicating-with-non-ros-topics
+  ///  *
+  ///  * If the no_demangle argument is true, then the topic names given by the
+  ///  * middleware will be returned without any demangling or filtering.
+  ///  * For example, the ROS topic `/foo` may be returned as `rt/foo` or the DDS
+  ///  * topic (non-ROS topic) with a partition list `['foo', 'bar']` and topic `baz`
+  ///  * may be returned as `foo/baz` (note that only the first partition is used but
+  ///  * it is still concatenated to the topic).
+  ///  *
+  ///  * \param[in] node the handle to the node being used to query the ROS graph
+  ///  * \param[in] allocator allocator to be used when allocating space for strings
+  ///  * \param[in] no_demangle if true, list all topics without any demangling
+  ///  * \param[out] topic_names_and_types list of topic names and their types
+  ///  * \return `RMW_RET_OK` if the query was successful, or
+  ///  * \return `RMW_RET_INVALID_ARGUMENT` if the node is invalid, or
+  ///  * \return `RMW_RET_INVALID_ARGUMENT` if any arguments are invalid, or
+  ///  * \return `RMW_RET_BAD_ALLOC` if memory allocation fails, or
+  ///  * \return `RMW_RET_ERROR` if an unspecified error occurs.
+  ///  */
+  int rmw_get_topic_names_and_types(
+    ffi.Pointer<rmw_node_t> node,
+    ffi.Pointer<rcutils_allocator_t> allocator,
+    bool no_demangle,
+    ffi.Pointer<rmw_names_and_types_t> topic_names_and_types,
+  ) {
+    return _rmw_get_topic_names_and_types(
+      node,
+      allocator,
+      no_demangle ? 1 : 0,
+      topic_names_and_types,
+    );
+  }
+
+  late final _rmw_get_topic_names_and_types_ptr =
+      _lookup<ffi.NativeFunction<_c_rmw_get_topic_names_and_types>>(
+          'rmw_get_topic_names_and_types');
+  late final _dart_rmw_get_topic_names_and_types
+      _rmw_get_topic_names_and_types = _rmw_get_topic_names_and_types_ptr
+          .asFunction<_dart_rmw_get_topic_names_and_types>();
+
+  /// Do lexical analysis on a string.
+  /// /**
+  ///  * This function analyzes a string to see if it starts with a valid lexeme.
+  ///  * If the string does not begin with a valid lexeme then lexeme will be RCL_LEXEME_NONE, and the
+  ///  * length will be set to include the character that made it impossible.
+  ///  * If the first character is '\0' then lexeme will be RCL_LEXEME_EOF.
+  ///  *
+  ///  * <hr>
+  ///  * Attribute          | Adherence
+  ///  * ------------------ | -------------
+  ///  * Allocates Memory   | No
+  ///  * Thread-Safe        | Yes
+  ///  * Uses Atomics       | No
+  ///  * Lock-Free          | Yes
+  ///  *
+  ///  * \param[in] text The string to analyze.
+  ///  * \param[out] lexeme The type of lexeme found in the string.
+  ///  * \param[out] length The length of text in the string that constitutes the found lexeme.
+  ///  * \return `RCL_RET_OK` if analysis is successful regardless whether a valid lexeme is found, or
+  ///  * \return `RCL_RET_INVALID_ARGUMENT` if any function arguments are invalid, or
+  ///  * \return `RCL_RET_ERROR` if an internal bug is detected.
+  ///  */
+  int rcl_lexer_analyze(
+    ffi.Pointer<ffi.Int8> text,
+    ffi.Pointer<ffi.Int32> lexeme,
+    ffi.Pointer<ffi.Uint64> length,
+  ) {
+    return _rcl_lexer_analyze(
+      text,
+      lexeme,
+      length,
+    );
+  }
+
+  late final _rcl_lexer_analyze_ptr =
+      _lookup<ffi.NativeFunction<_c_rcl_lexer_analyze>>('rcl_lexer_analyze');
+  late final _dart_rcl_lexer_analyze _rcl_lexer_analyze =
+      _rcl_lexer_analyze_ptr.asFunction<_dart_rcl_lexer_analyze>();
+
+  /// Initialization of rcl.
+  /// /**
+  ///  * This function can be run any number of times, so long as the given context
+  ///  * has been properly prepared.
+  ///  *
+  ///  * The given `rcl_context_t` must be zero initialized with the function
+  ///  * `rcl_get_zero_initialized_context()` and must not be already initialized
+  ///  * by this function.
+  ///  * If the context is already initialized this function will fail and return the
+  ///  * `RCL_RET_ALREADY_INIT` error code.
+  ///  * A context may be initialized again after it has been finalized with the
+  ///  * `rcl_shutdown()` function and zero initialized again with
+  ///  * `rcl_get_zero_initialized_context()`.
+  ///  *
+  ///  * The `argc` and `argv` parameters may contain command line arguments for the
+  ///  * program.
+  ///  * rcl specific arguments will be parsed, but not removed.
+  ///  * If `argc` is `0` and `argv` is `NULL` no parameters will be parsed.
+  ///  *
+  ///  * The `options` argument must be non-`NULL` and must have been initialized
+  ///  * with `rcl_init_options_init()`.
+  ///  * It is unmodified by this function, and the ownership is not transfered to
+  ///  * the context, but instead a copy is made into the context for later reference.
+  ///  * Therefore, the given options need to be cleaned up with
+  ///  * `rcl_init_options_fini()` after this function returns.
+  ///  *
+  ///  * <hr>
+  ///  * Attribute          | Adherence
+  ///  * ------------------ | -------------
+  ///  * Allocates Memory   | Yes
+  ///  * Thread-Safe        | No
+  ///  * Uses Atomics       | Yes
+  ///  * Lock-Free          | Yes [1]
+  ///  * <i>[1] if `atomic_is_lock_free()` returns true for `atomic_uint_least64_t`</i>
+  ///  *
+  ///  * \param[in] argc number of strings in argv
+  ///  * \param[in] argv command line arguments; rcl specific arguments are removed
+  ///  * \param[in] options options used during initialization
+  ///  * \param[out] context resulting context object that represents this init
+  ///  * \return `RCL_RET_OK` if initialization is successful, or
+  ///  * \return `RCL_RET_ALREADY_INIT` if rcl_init has already been called, or
+  ///  * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
+  ///  * \return `RCL_RET_BAD_ALLOC` if allocating memory failed, or
+  ///  * \return `RCL_RET_ERROR` if an unspecified error occurs.
+  ///  */
+  int rcl_init(
+    int argc,
+    ffi.Pointer<ffi.Pointer<ffi.Int8>> argv,
+    ffi.Pointer<rcl_init_options_t> options,
+    ffi.Pointer<rcl_context_t> context,
+  ) {
+    return _rcl_init(
+      argc,
+      argv,
+      options,
+      context,
+    );
+  }
+
+  late final _rcl_init_ptr =
+      _lookup<ffi.NativeFunction<_c_rcl_init>>('rcl_init');
+  late final _dart_rcl_init _rcl_init =
+      _rcl_init_ptr.asFunction<_dart_rcl_init>();
+
+  /// Shutdown a given rcl context.
+  /// /**
+  ///  * The given context must have been initialized with `rcl_init()`.
+  ///  * If not, this function will fail with `RCL_RET_ALREADY_SHUTDOWN`.
+  ///  *
+  ///  * When this function is called:
+  ///  *  - Any rcl objects created using this context are invalidated.
+  ///  *  - Functions called on invalid objects may or may not fail.
+  ///  *  - Calls to `rcl_context_is_initialized()` will return `false`.
+  ///  *
+  ///  * <hr>
+  ///  * Attribute          | Adherence
+  ///  * ------------------ | -------------
+  ///  * Allocates Memory   | Yes
+  ///  * Thread-Safe        | Yes
+  ///  * Uses Atomics       | Yes
+  ///  * Lock-Free          | Yes [1]
+  ///  * <i>[1] if `atomic_is_lock_free()` returns true for `atomic_uint_least64_t`</i>
+  ///  *
+  ///  * \return `RCL_RET_OK` if the shutdown was completed successfully, or
+  ///  * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
+  ///  * \return `RCL_RET_ALREADY_SHUTDOWN` if the context is not currently valid, or
+  ///  * \return `RCL_RET_ERROR` if an unspecified error occur.
+  ///  */
+  int rcl_shutdown(
+    ffi.Pointer<rcl_context_t> context,
+  ) {
+    return _rcl_shutdown(
+      context,
+    );
+  }
+
+  late final _rcl_shutdown_ptr =
+      _lookup<ffi.NativeFunction<_c_rcl_shutdown>>('rcl_shutdown');
+  late final _dart_rcl_shutdown _rcl_shutdown =
+      _rcl_shutdown_ptr.asFunction<_dart_rcl_shutdown>();
+
   /// Return a rcl_wait_set_t struct with members set to `NULL`.
   rcl_wait_set_t rcl_get_zero_initialized_wait_set() {
     return _rcl_get_zero_initialized_wait_set();
@@ -11946,1430 +11413,15 @@ class RCL {
       _lookup<ffi.NativeFunction<_c_rcl_wait>>('rcl_wait');
   late final _dart_rcl_wait _rcl_wait =
       _rcl_wait_ptr.asFunction<_dart_rcl_wait>();
+}
 
-  /// Initialization of rcl.
-  /// /**
-  ///  * This function can be run any number of times, so long as the given context
-  ///  * has been properly prepared.
-  ///  *
-  ///  * The given `rcl_context_t` must be zero initialized with the function
-  ///  * `rcl_get_zero_initialized_context()` and must not be already initialized
-  ///  * by this function.
-  ///  * If the context is already initialized this function will fail and return the
-  ///  * `RCL_RET_ALREADY_INIT` error code.
-  ///  * A context may be initialized again after it has been finalized with the
-  ///  * `rcl_shutdown()` function and zero initialized again with
-  ///  * `rcl_get_zero_initialized_context()`.
-  ///  *
-  ///  * The `argc` and `argv` parameters may contain command line arguments for the
-  ///  * program.
-  ///  * rcl specific arguments will be parsed, but not removed.
-  ///  * If `argc` is `0` and `argv` is `NULL` no parameters will be parsed.
-  ///  *
-  ///  * The `options` argument must be non-`NULL` and must have been initialized
-  ///  * with `rcl_init_options_init()`.
-  ///  * It is unmodified by this function, and the ownership is not transfered to
-  ///  * the context, but instead a copy is made into the context for later reference.
-  ///  * Therefore, the given options need to be cleaned up with
-  ///  * `rcl_init_options_fini()` after this function returns.
-  ///  *
-  ///  * <hr>
-  ///  * Attribute          | Adherence
-  ///  * ------------------ | -------------
-  ///  * Allocates Memory   | Yes
-  ///  * Thread-Safe        | No
-  ///  * Uses Atomics       | Yes
-  ///  * Lock-Free          | Yes [1]
-  ///  * <i>[1] if `atomic_is_lock_free()` returns true for `atomic_uint_least64_t`</i>
-  ///  *
-  ///  * \param[in] argc number of strings in argv
-  ///  * \param[in] argv command line arguments; rcl specific arguments are removed
-  ///  * \param[in] options options used during initialization
-  ///  * \param[out] context resulting context object that represents this init
-  ///  * \return `RCL_RET_OK` if initialization is successful, or
-  ///  * \return `RCL_RET_ALREADY_INIT` if rcl_init has already been called, or
-  ///  * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
-  ///  * \return `RCL_RET_BAD_ALLOC` if allocating memory failed, or
-  ///  * \return `RCL_RET_ERROR` if an unspecified error occurs.
-  ///  */
-  int rcl_init(
-    int argc,
-    ffi.Pointer<ffi.Pointer<ffi.Int8>> argv,
-    ffi.Pointer<rcl_init_options_t> options,
-    ffi.Pointer<rcl_context_t> context,
-  ) {
-    return _rcl_init(
-      argc,
-      argv,
-      options,
-      context,
-    );
-  }
+class rosidl_service_type_support_t extends ffi.Struct {
+  external ffi.Pointer<ffi.Int8> typesupport_identifier;
 
-  late final _rcl_init_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_init>>('rcl_init');
-  late final _dart_rcl_init _rcl_init =
-      _rcl_init_ptr.asFunction<_dart_rcl_init>();
+  external ffi.Pointer<ffi.Void> data;
 
-  /// Shutdown a given rcl context.
-  /// /**
-  ///  * The given context must have been initialized with `rcl_init()`.
-  ///  * If not, this function will fail with `RCL_RET_ALREADY_SHUTDOWN`.
-  ///  *
-  ///  * When this function is called:
-  ///  *  - Any rcl objects created using this context are invalidated.
-  ///  *  - Functions called on invalid objects may or may not fail.
-  ///  *  - Calls to `rcl_context_is_initialized()` will return `false`.
-  ///  *
-  ///  * <hr>
-  ///  * Attribute          | Adherence
-  ///  * ------------------ | -------------
-  ///  * Allocates Memory   | Yes
-  ///  * Thread-Safe        | Yes
-  ///  * Uses Atomics       | Yes
-  ///  * Lock-Free          | Yes [1]
-  ///  * <i>[1] if `atomic_is_lock_free()` returns true for `atomic_uint_least64_t`</i>
-  ///  *
-  ///  * \return `RCL_RET_OK` if the shutdown was completed successfully, or
-  ///  * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
-  ///  * \return `RCL_RET_ALREADY_SHUTDOWN` if the context is not currently valid, or
-  ///  * \return `RCL_RET_ERROR` if an unspecified error occur.
-  ///  */
-  int rcl_shutdown(
-    ffi.Pointer<rcl_context_t> context,
-  ) {
-    return _rcl_shutdown(
-      context,
-    );
-  }
-
-  late final _rcl_shutdown_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_shutdown>>('rcl_shutdown');
-  late final _dart_rcl_shutdown _rcl_shutdown =
-      _rcl_shutdown_ptr.asFunction<_dart_rcl_shutdown>();
-
-  /// Validate a given topic name.
-  /// /**
-  ///  * The topic name does not need to be a full qualified name, but it should
-  ///  * follow some of the rules in this document:
-  ///  *
-  ///  *   http://design.ros2.org/articles/topic_and_service_names.html
-  ///  *
-  ///  * Note that this function expects any URL suffixes as described in the above
-  ///  * document to have already been removed.
-  ///  *
-  ///  * If the input topic is valid, RCL_TOPIC_NAME_VALID will be stored
-  ///  * into validation_result.
-  ///  * If the input topic violates any of the rules then one of these values will
-  ///  * be stored into validation_result:
-  ///  *
-  ///  * - RCL_TOPIC_NAME_INVALID_IS_EMPTY_STRING
-  ///  * - RCL_TOPIC_NAME_INVALID_ENDS_WITH_FORWARD_SLASH
-  ///  * - RCL_TOPIC_NAME_INVALID_CONTAINS_UNALLOWED_CHARACTERS
-  ///  * - RCL_TOPIC_NAME_INVALID_NAME_TOKEN_STARTS_WITH_NUMBER
-  ///  * - RCL_TOPIC_NAME_INVALID_UNMATCHED_CURLY_BRACE
-  ///  * - RCL_TOPIC_NAME_INVALID_MISPLACED_TILDE
-  ///  * - RCL_TOPIC_NAME_INVALID_TILDE_NOT_FOLLOWED_BY_FORWARD_SLASH
-  ///  * - RCL_TOPIC_NAME_INVALID_SUBSTITUTION_CONTAINS_UNALLOWED_CHARACTERS
-  ///  * - RCL_TOPIC_NAME_INVALID_SUBSTITUTION_STARTS_WITH_NUMBER
-  ///  *
-  ///  * Some checks, like the check for illegal repeated forward slashes, are not
-  ///  * checked in this function because they would need to be checked again after
-  ///  * expansion anyways.
-  ///  * The purpose of this subset of checks is to try to catch issues with content
-  ///  * that will be expanded in some way by rcl_expand_topic_name(), like `~` or
-  ///  * substitutions inside of `{}`, or with other issues that would obviously
-  ///  * prevent expansion, like RCL_TOPIC_NAME_INVALID_IS_EMPTY_STRING.
-  ///  *
-  ///  * This function does not check that the substitutions are known substitutions,
-  ///  * only that the contents of the `{}` follow the rules outline in the document
-  ///  * which was linked to above.
-  ///  *
-  ///  * Stricter validation can be done with rmw_validate_full_topic_name() after using
-  ///  * rcl_expand_topic_name().
-  ///  *
-  ///  * Additionally, if the invalid_index argument is not NULL, then it will be
-  ///  * assigned the index in the topic_name string where the violation occurs.
-  ///  * The invalid_index is not set if the validation passes.
-  ///  *
-  ///  * \param[in] topic_name the topic name to be validated, must be null terminated
-  ///  * \param[out] validation_result the reason for validation failure, if any
-  ///  * \param[out] invalid_index index of violation if the input topic is invalid
-  ///  * \return `RCL_RET_OK` if the topic name was expanded successfully, or
-  ///  * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
-  ///  * \return `RCL_RET_ERROR` if an unspecified error occurs.
-  ///  */
-  int rcl_validate_topic_name(
-    ffi.Pointer<ffi.Int8> topic_name,
-    ffi.Pointer<ffi.Int32> validation_result,
-    ffi.Pointer<ffi.Uint64> invalid_index,
-  ) {
-    return _rcl_validate_topic_name(
-      topic_name,
-      validation_result,
-      invalid_index,
-    );
-  }
-
-  late final _rcl_validate_topic_name_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_validate_topic_name>>(
-          'rcl_validate_topic_name');
-  late final _dart_rcl_validate_topic_name _rcl_validate_topic_name =
-      _rcl_validate_topic_name_ptr.asFunction<_dart_rcl_validate_topic_name>();
-
-  /// Validate a given topic name.
-  /// /**
-  ///  * This is an overload with an extra parameter for the length of topic_name.
-  ///  * \param[in] topic_name_length The number of characters in topic_name.
-  ///  *
-  ///  * \sa rcl_validate_topic_name(const char *, int *, size_t *)
-  ///  */
-  int rcl_validate_topic_name_with_size(
-    ffi.Pointer<ffi.Int8> topic_name,
-    int topic_name_length,
-    ffi.Pointer<ffi.Int32> validation_result,
-    ffi.Pointer<ffi.Uint64> invalid_index,
-  ) {
-    return _rcl_validate_topic_name_with_size(
-      topic_name,
-      topic_name_length,
-      validation_result,
-      invalid_index,
-    );
-  }
-
-  late final _rcl_validate_topic_name_with_size_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_validate_topic_name_with_size>>(
-          'rcl_validate_topic_name_with_size');
-  late final _dart_rcl_validate_topic_name_with_size
-      _rcl_validate_topic_name_with_size =
-      _rcl_validate_topic_name_with_size_ptr
-          .asFunction<_dart_rcl_validate_topic_name_with_size>();
-
-  /// Return a validation result description, or NULL if unknown or RCL_TOPIC_NAME_VALID.
-  ffi.Pointer<ffi.Int8> rcl_topic_name_validation_result_string(
-    int validation_result,
-  ) {
-    return _rcl_topic_name_validation_result_string(
-      validation_result,
-    );
-  }
-
-  late final _rcl_topic_name_validation_result_string_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_topic_name_validation_result_string>>(
-          'rcl_topic_name_validation_result_string');
-  late final _dart_rcl_topic_name_validation_result_string
-      _rcl_topic_name_validation_result_string =
-      _rcl_topic_name_validation_result_string_ptr
-          .asFunction<_dart_rcl_topic_name_validation_result_string>();
-
-  /// Configure the logging system.
-  /// /**
-  ///  * This function should be called during the ROS initialization process.
-  ///  * It will add the enabled log output appenders to the root logger.
-  ///  *
-  ///  * <hr>
-  ///  * Attribute          | Adherence
-  ///  * ------------------ | -------------
-  ///  * Allocates Memory   | Yes
-  ///  * Thread-Safe        | No
-  ///  * Uses Atomics       | No
-  ///  * Lock-Free          | Yes
-  ///  *
-  ///  * \param global_args The global arguments for the system
-  ///  * \param allocator Used to allocate memory used by the logging system
-  ///  * \return `RCL_RET_OK` if successful, or
-  ///  * \return `RCL_RET_BAD_ALLOC` if allocating memory failed, or
-  ///  * \return `RCL_RET_ERR` if a general error occurs
-  ///  */
-  int rcl_logging_configure(
-    ffi.Pointer<rcl_arguments_t> global_args,
-    ffi.Pointer<rcutils_allocator_t> allocator,
-  ) {
-    return _rcl_logging_configure(
-      global_args,
-      allocator,
-    );
-  }
-
-  late final _rcl_logging_configure_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_logging_configure>>(
-          'rcl_logging_configure');
-  late final _dart_rcl_logging_configure _rcl_logging_configure =
-      _rcl_logging_configure_ptr.asFunction<_dart_rcl_logging_configure>();
-
-  /// This function should be called to tear down the logging setup by the configure function.
-  ///
-  /// <hr>
-  /// Attribute          | Adherence
-  /// ------------------ | -------------
-  /// Allocates Memory   | No
-  /// Thread-Safe        | No
-  /// Uses Atomics       | No
-  /// Lock-Free          | Yes
-  ///
-  /// \return `RCL_RET_OK` if successful.
-  /// \return `RCL_RET_ERR` if a general error occurs
-  int rcl_logging_fini() {
-    return _rcl_logging_fini();
-  }
-
-  late final _rcl_logging_fini_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_logging_fini>>('rcl_logging_fini');
-  late final _dart_rcl_logging_fini _rcl_logging_fini =
-      _rcl_logging_fini_ptr.asFunction<_dart_rcl_logging_fini>();
-
-  /// See if logging rosout is enabled.
-  /// /**
-  ///  * This function is meant to be used to check if logging rosout is enabled.
-  ///  *
-  ///  * <hr>
-  ///  * Attribute          | Adherence
-  ///  * ------------------ | -------------
-  ///  * Allocates Memory   | No
-  ///  * Thread-Safe        | Yes
-  ///  * Uses Atomics       | No
-  ///  * Lock-Free          | Yes
-  ///  *
-  ///  * \return `TRUE` if logging rosout is enabled, or
-  ///  * \return `FALSE` if logging rosout is disabled.
-  ///  */
-  bool rcl_logging_rosout_enabled() {
-    return _rcl_logging_rosout_enabled() != 0;
-  }
-
-  late final _rcl_logging_rosout_enabled_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_logging_rosout_enabled>>(
-          'rcl_logging_rosout_enabled');
-  late final _dart_rcl_logging_rosout_enabled _rcl_logging_rosout_enabled =
-      _rcl_logging_rosout_enabled_ptr
-          .asFunction<_dart_rcl_logging_rosout_enabled>();
-
-  /// Expand a given topic name into a fully-qualified topic name.
-  /// /**
-  ///  * The input_topic_name, node_name, and node_namespace arguments must all be
-  ///  * vaid, null terminated c strings.
-  ///  * The output_topic_name will not be assigned a value in the event of an error.
-  ///  *
-  ///  * The output_topic_name will be null terminated.
-  ///  * It is also allocated, so it needs to be deallocated, when it is no longer
-  ///  * needed, with the same allocator given to this function.
-  ///  * Make sure the `char *` which is passed for the output_topic_name does not
-  ///  * point to allocated memory before calling this function, because it will be
-  ///  * overwritten and therefore leaked if this function is successful.
-  ///  *
-  ///  * Expected usage:
-  ///  *
-  ///  * ```c
-  ///  * rcl_allocator_t allocator = rcl_get_default_allocator();
-  ///  * rcutils_allocator_t rcutils_allocator = rcutils_get_default_allocator();
-  ///  * rcutils_string_map_t substitutions_map = rcutils_get_zero_initialized_string_map();
-  ///  * rcutils_ret_t rcutils_ret = rcutils_string_map_init(&substitutions_map, 0, rcutils_allocator);
-  ///  * if (rcutils_ret != RCUTILS_RET_OK) {
-  ///  *   // ... error handling
-  ///  * }
-  ///  * rcl_ret_t ret = rcl_get_default_topic_name_substitutions(&substitutions_map);
-  ///  * if (ret != RCL_RET_OK) {
-  ///  *   // ... error handling
-  ///  * }
-  ///  * char * expanded_topic_name = NULL;
-  ///  * ret = rcl_expand_topic_name(
-  ///  *   "some/topic",
-  ///  *   "my_node",
-  ///  *   "my_ns",
-  ///  *   &substitutions_map,
-  ///  *   allocator,
-  ///  *   &expanded_topic_name);
-  ///  * if (ret != RCL_RET_OK) {
-  ///  *   // ... error handling
-  ///  * } else {
-  ///  *   RCUTILS_LOG_INFO_NAMED(ROS_PACKAGE_NAME, "Expanded topic name: %s", expanded_topic_name)
-  ///  *   // ... when done the output topic name needs to be deallocated:
-  ///  *   allocator.deallocate(expanded_topic_name, allocator.state);
-  ///  * }
-  ///  * ```
-  ///  *
-  ///  * The input topic name is validated using rcl_validate_topic_name(),
-  ///  * but if it fails validation RCL_RET_TOPIC_NAME_INVALID is returned.
-  ///  *
-  ///  * The input node name is validated using rmw_validate_node_name(),
-  ///  * but if it fails validation RCL_RET_NODE_INVALID_NAME is returned.
-  ///  *
-  ///  * The input node namespace is validated using rmw_validate_namespace(),
-  ///  * but if it fails validation RCL_RET_NODE_INVALID_NAMESPACE is returned.
-  ///  *
-  ///  * In addition to what is given by rcl_get_default_topic_name_substitutions(),
-  ///  * there are there these substitutions:
-  ///  *
-  ///  * - {node} -> the name of the node
-  ///  * - {namespace} -> the namespace of the node
-  ///  * - {ns} -> the namespace of the node
-  ///  *
-  ///  * If an unknown substitution is used, RCL_RET_UNKNOWN_SUBSTITUTION is returned.
-  ///  *
-  ///  * <hr>
-  ///  * Attribute          | Adherence
-  ///  * ------------------ | -------------
-  ///  * Allocates Memory   | Yes
-  ///  * Thread-Safe        | No
-  ///  * Uses Atomics       | No
-  ///  * Lock-Free          | Yes
-  ///  *
-  ///  * \param[in] input_topic_name topic name to be expanded
-  ///  * \param[in] node_name name of the node associated with the topic
-  ///  * \param[in] node_namespace namespace of the node associated with the topic
-  ///  * \param[in] substitutions string map with possible substitutions
-  ///  * \param[in] allocator the allocator to be used when creating the output topic
-  ///  * \param[out] output_topic_name output char * pointer
-  ///  * \return `RCL_RET_OK` if the topic name was expanded successfully, or
-  ///  * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
-  ///  * \return `RCL_RET_BAD_ALLOC` if allocating memory failed, or
-  ///  * \return `RCL_RET_TOPIC_NAME_INVALID` if the given topic name is invalid, or
-  ///  * \return `RCL_RET_NODE_INVALID_NAME` if the name is invalid, or
-  ///  * \return `RCL_RET_NODE_INVALID_NAMESPACE` if the namespace_ is invalid, or
-  ///  * \return `RCL_RET_UNKNOWN_SUBSTITUTION` for unknown substitutions in name, or
-  ///  * \return `RCL_RET_ERROR` if an unspecified error occurs.
-  ///  */
-  int rcl_expand_topic_name(
-    ffi.Pointer<ffi.Int8> input_topic_name,
-    ffi.Pointer<ffi.Int8> node_name,
-    ffi.Pointer<ffi.Int8> node_namespace,
-    ffi.Pointer<rcutils_string_map_t> substitutions,
-    rcutils_allocator_t allocator,
-    ffi.Pointer<ffi.Pointer<ffi.Int8>> output_topic_name,
-  ) {
-    return _rcl_expand_topic_name(
-      input_topic_name,
-      node_name,
-      node_namespace,
-      substitutions,
-      allocator,
-      output_topic_name,
-    );
-  }
-
-  late final _rcl_expand_topic_name_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_expand_topic_name>>(
-          'rcl_expand_topic_name');
-  late final _dart_rcl_expand_topic_name _rcl_expand_topic_name =
-      _rcl_expand_topic_name_ptr.asFunction<_dart_rcl_expand_topic_name>();
-
-  /// Fill a given string map with the default substitution pairs.
-  /// /**
-  ///  * If the string map is not initialized RCL_RET_INVALID_ARGUMENT is returned.
-  ///  *
-  ///  * \param[inout] string_map rcutils_string_map_t map to be filled with pairs
-  ///  * \return `RCL_RET_OK` if successfully, or
-  ///  * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
-  ///  * \return `RCL_RET_BAD_ALLOC` if allocating memory failed, or
-  ///  * \return `RCL_RET_ERROR` if an unspecified error occurs.
-  ///  */
-  int rcl_get_default_topic_name_substitutions(
-    ffi.Pointer<rcutils_string_map_t> string_map,
-  ) {
-    return _rcl_get_default_topic_name_substitutions(
-      string_map,
-    );
-  }
-
-  late final _rcl_get_default_topic_name_substitutions_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_get_default_topic_name_substitutions>>(
-          'rcl_get_default_topic_name_substitutions');
-  late final _dart_rcl_get_default_topic_name_substitutions
-      _rcl_get_default_topic_name_substitutions =
-      _rcl_get_default_topic_name_substitutions_ptr
-          .asFunction<_dart_rcl_get_default_topic_name_substitutions>();
-
-  /// Do lexical analysis on a string.
-  /// /**
-  ///  * This function analyzes a string to see if it starts with a valid lexeme.
-  ///  * If the string does not begin with a valid lexeme then lexeme will be RCL_LEXEME_NONE, and the
-  ///  * length will be set to include the character that made it impossible.
-  ///  * If the first character is '\0' then lexeme will be RCL_LEXEME_EOF.
-  ///  *
-  ///  * <hr>
-  ///  * Attribute          | Adherence
-  ///  * ------------------ | -------------
-  ///  * Allocates Memory   | No
-  ///  * Thread-Safe        | Yes
-  ///  * Uses Atomics       | No
-  ///  * Lock-Free          | Yes
-  ///  *
-  ///  * \param[in] text The string to analyze.
-  ///  * \param[out] lexeme The type of lexeme found in the string.
-  ///  * \param[out] length The length of text in the string that constitutes the found lexeme.
-  ///  * \return `RCL_RET_OK` if analysis is successful regardless whether a valid lexeme is found, or
-  ///  * \return `RCL_RET_INVALID_ARGUMENT` if any function arguments are invalid, or
-  ///  * \return `RCL_RET_ERROR` if an internal bug is detected.
-  ///  */
-  int rcl_lexer_analyze(
-    ffi.Pointer<ffi.Int8> text,
-    ffi.Pointer<ffi.Int32> lexeme,
-    ffi.Pointer<ffi.Uint64> length,
-  ) {
-    return _rcl_lexer_analyze(
-      text,
-      lexeme,
-      length,
-    );
-  }
-
-  late final _rcl_lexer_analyze_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_lexer_analyze>>('rcl_lexer_analyze');
-  late final _dart_rcl_lexer_analyze _rcl_lexer_analyze =
-      _rcl_lexer_analyze_ptr.asFunction<_dart_rcl_lexer_analyze>();
-
-  /// Get a zero initialized rcl_lexer_lookahead2_t instance.
-  /// /**
-  ///  * \sa rcl_lexer_lookahead2_init()
-  ///  * <hr>
-  ///  * Attribute          | Adherence
-  ///  * ------------------ | -------------
-  ///  * Allocates Memory   | No
-  ///  * Thread-Safe        | Yes
-  ///  * Uses Atomics       | No
-  ///  * Lock-Free          | Yes
-  ///  *
-  ///  * \return zero initialized lookahead2 buffer.
-  ///  */
-  rcl_lexer_lookahead2_t rcl_get_zero_initialized_lexer_lookahead2() {
-    return _rcl_get_zero_initialized_lexer_lookahead2();
-  }
-
-  late final _rcl_get_zero_initialized_lexer_lookahead2_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_get_zero_initialized_lexer_lookahead2>>(
-          'rcl_get_zero_initialized_lexer_lookahead2');
-  late final _dart_rcl_get_zero_initialized_lexer_lookahead2
-      _rcl_get_zero_initialized_lexer_lookahead2 =
-      _rcl_get_zero_initialized_lexer_lookahead2_ptr
-          .asFunction<_dart_rcl_get_zero_initialized_lexer_lookahead2>();
-
-  /// Initialize an rcl_lexer_lookahead2_t instance.
-  /// /**
-  ///  * The lookahead2 buffer borrows a reference to the provided text.
-  ///  * The text must not be freed before the buffer is finalized.
-  ///  * The lookahead2 buffer only needs to be finalized if this function does not return RCL_RET_OK.
-  ///  * \sa rcl_lexer_lookahead2_fini()
-  ///  *
-  ///  * <hr>
-  ///  * Attribute          | Adherence
-  ///  * ------------------ | -------------
-  ///  * Allocates Memory   | Yes
-  ///  * Thread-Safe        | No
-  ///  * Uses Atomics       | No
-  ///  * Lock-Free          | Yes
-  ///  *
-  ///  * \param[in] buffer A buffer that is zero initialized.
-  ///  * \sa rcl_get_zero_initialized_lexer_lookahead2()
-  ///  * \param[in] text The string to analyze.
-  ///  * \param[in] allocator An allocator to use if an error occurs.
-  ///  * \return `RCL_RET_OK` if the buffer is successfully initialized, or
-  ///  * \return `RCL_RET_INVALID_ARGUMENT` if any function arguments are invalid, or
-  ///  * \return `RCL_RET_BAD_ALLOC` if allocating memory failed, or
-  ///  * \return `RCL_RET_ERROR` if an unspecified error occurrs.
-  ///  */
-  int rcl_lexer_lookahead2_init(
-    ffi.Pointer<rcl_lexer_lookahead2_t> buffer,
-    ffi.Pointer<ffi.Int8> text,
-    rcutils_allocator_t allocator,
-  ) {
-    return _rcl_lexer_lookahead2_init(
-      buffer,
-      text,
-      allocator,
-    );
-  }
-
-  late final _rcl_lexer_lookahead2_init_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_lexer_lookahead2_init>>(
-          'rcl_lexer_lookahead2_init');
-  late final _dart_rcl_lexer_lookahead2_init _rcl_lexer_lookahead2_init =
-      _rcl_lexer_lookahead2_init_ptr
-          .asFunction<_dart_rcl_lexer_lookahead2_init>();
-
-  /// Finalize an instance of an rcl_lexer_lookahead2_t structure.
-  /// /**
-  ///  * \sa rcl_lexer_lookahead2_init()
-  ///  *
-  ///  * <hr>
-  ///  * Attribute          | Adherence
-  ///  * ------------------ | -------------
-  ///  * Allocates Memory   | Yes [1]
-  ///  * Thread-Safe        | No
-  ///  * Uses Atomics       | No
-  ///  * Lock-Free          | Yes
-  ///  * <i>[1] Only allocates if an argument is invalid.</i>
-  ///  *
-  ///  * \param[in] buffer The structure to be deallocated.
-  ///  * \return `RCL_RET_OK` if the structure was successfully finalized, or
-  ///  * \return `RCL_RET_INVALID_ARGUMENT` if any function arguments are invalid, or
-  ///  * \return `RCL_RET_ERROR` if an unspecified error occurs.
-  ///  */
-  int rcl_lexer_lookahead2_fini(
-    ffi.Pointer<rcl_lexer_lookahead2_t> buffer,
-  ) {
-    return _rcl_lexer_lookahead2_fini(
-      buffer,
-    );
-  }
-
-  late final _rcl_lexer_lookahead2_fini_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_lexer_lookahead2_fini>>(
-          'rcl_lexer_lookahead2_fini');
-  late final _dart_rcl_lexer_lookahead2_fini _rcl_lexer_lookahead2_fini =
-      _rcl_lexer_lookahead2_fini_ptr
-          .asFunction<_dart_rcl_lexer_lookahead2_fini>();
-
-  /// Look ahead at the next lexeme in the string.
-  /// /**
-  ///  * Repeated calls to peek will return the same lexeme.
-  ///  * A parser that deems the next lexeme as valid must accept it to advance lexing.
-  ///  * \sa rcl_lexer_lookahead2_accept()
-  ///  *
-  ///  * <hr>
-  ///  * Attribute          | Adherence
-  ///  * ------------------ | -------------
-  ///  * Allocates Memory   | Yes [1]
-  ///  * Thread-Safe        | No
-  ///  * Uses Atomics       | No
-  ///  * Lock-Free          | Yes
-  ///  * <i>[1] Only allocates if an argument is invalid or an internal bug is detected.</i>
-  ///  *
-  ///  * \param[in] buffer the lookahead2 buffer being used to analyze a string.
-  ///  * \param[out] next_type an output variable for the next lexeme in the string.
-  ///  * \return `RCL_RET_OK` if peeking was successfull, or
-  ///  * \return `RCL_RET_INVALID_ARGUMENT` if any function arguments are invalid, or
-  ///  * \return `RCL_RET_ERROR` if an unspecified error occurs.
-  ///  */
-  int rcl_lexer_lookahead2_peek(
-    ffi.Pointer<rcl_lexer_lookahead2_t> buffer,
-    ffi.Pointer<ffi.Int32> next_type,
-  ) {
-    return _rcl_lexer_lookahead2_peek(
-      buffer,
-      next_type,
-    );
-  }
-
-  late final _rcl_lexer_lookahead2_peek_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_lexer_lookahead2_peek>>(
-          'rcl_lexer_lookahead2_peek');
-  late final _dart_rcl_lexer_lookahead2_peek _rcl_lexer_lookahead2_peek =
-      _rcl_lexer_lookahead2_peek_ptr
-          .asFunction<_dart_rcl_lexer_lookahead2_peek>();
-
-  /// Look ahead at the next two lexemes in the string.
-  /// /**
-  ///  * Repeated calls to peek2 will return the same two lexemes.
-  ///  * A parser that deems the next two lexemes as valid must accept twice to advance lexing.
-  ///  * \sa rcl_lexer_lookahead2_accept()
-  ///  *
-  ///  * <hr>
-  ///  * Attribute          | Adherence
-  ///  * ------------------ | -------------
-  ///  * Allocates Memory   | Yes [1]
-  ///  * Thread-Safe        | No
-  ///  * Uses Atomics       | No
-  ///  * Lock-Free          | Yes
-  ///  * <i>[1] Only allocates if an argument is invalid or an internal bug is detected.</i>
-  ///  *
-  ///  * \param[in] buffer the lookahead2 buffer being used to analyze a string.
-  ///  * \param[out] next_type1 an output variable for the next lexeme in the string.
-  ///  * \param[out] next_type2 an output variable for the lexeme after the next lexeme in the string.
-  ///  * \return `RCL_RET_OK` if peeking was successfull, or
-  ///  * \return `RCL_RET_INVALID_ARGUMENT` if any function arguments are invalid, or
-  ///  * \return `RCL_RET_ERROR` if an unspecified error occurs.
-  ///  */
-  int rcl_lexer_lookahead2_peek2(
-    ffi.Pointer<rcl_lexer_lookahead2_t> buffer,
-    ffi.Pointer<ffi.Int32> next_type1,
-    ffi.Pointer<ffi.Int32> next_type2,
-  ) {
-    return _rcl_lexer_lookahead2_peek2(
-      buffer,
-      next_type1,
-      next_type2,
-    );
-  }
-
-  late final _rcl_lexer_lookahead2_peek2_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_lexer_lookahead2_peek2>>(
-          'rcl_lexer_lookahead2_peek2');
-  late final _dart_rcl_lexer_lookahead2_peek2 _rcl_lexer_lookahead2_peek2 =
-      _rcl_lexer_lookahead2_peek2_ptr
-          .asFunction<_dart_rcl_lexer_lookahead2_peek2>();
-
-  /// Accept a lexeme and advance analysis.
-  /// /**
-  ///  * A token must have been peeked before it can be accepted.
-  ///  * \sa rcl_lexer_lookahead2_peek()
-  ///  * \sa rcl_lexer_lookahead2_peek2()
-  ///  *
-  ///  * <hr>
-  ///  * Attribute          | Adherence
-  ///  * ------------------ | -------------
-  ///  * Allocates Memory   | Yes [1]
-  ///  * Thread-Safe        | No
-  ///  * Uses Atomics       | No
-  ///  * Lock-Free          | Yes
-  ///  * <i>[1] Only allocates if an argument is invalid or an error occurs.</i>
-  ///  *
-  ///  * \param[in] buffer the lookahead2 buffer being used to analyze a string.
-  ///  * \param[out] lexeme_text pointer to where lexeme begins in string.
-  ///  * \param[out] lexeme_text_length length of lexeme_text.
-  ///  * \return `RCL_RET_OK` if peeking was successfull, or
-  ///  * \return `RCL_RET_INVALID_ARGUMENT` if any function arguments are invalid, or
-  ///  * \return `RCL_RET_ERROR` if an unspecified error occurs.
-  ///  */
-  int rcl_lexer_lookahead2_accept(
-    ffi.Pointer<rcl_lexer_lookahead2_t> buffer,
-    ffi.Pointer<ffi.Pointer<ffi.Int8>> lexeme_text,
-    ffi.Pointer<ffi.Uint64> lexeme_text_length,
-  ) {
-    return _rcl_lexer_lookahead2_accept(
-      buffer,
-      lexeme_text,
-      lexeme_text_length,
-    );
-  }
-
-  late final _rcl_lexer_lookahead2_accept_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_lexer_lookahead2_accept>>(
-          'rcl_lexer_lookahead2_accept');
-  late final _dart_rcl_lexer_lookahead2_accept _rcl_lexer_lookahead2_accept =
-      _rcl_lexer_lookahead2_accept_ptr
-          .asFunction<_dart_rcl_lexer_lookahead2_accept>();
-
-  /// Require the next lexeme to be a certain type and advance analysis.
-  /// /**
-  ///  * This method is a shortcut to peeking and accepting a lexeme.
-  ///  * It should be used by a parser when there is only one valid lexeme that could come next.
-  ///  * \sa rcl_lexer_lookahead2_peek()
-  ///  * \sa rcl_lexer_lookahead2_accept()
-  ///  *
-  ///  * <hr>
-  ///  * Attribute          | Adherence
-  ///  * ------------------ | -------------
-  ///  * Allocates Memory   | Yes [1]
-  ///  * Thread-Safe        | No
-  ///  * Uses Atomics       | No
-  ///  * Lock-Free          | Yes
-  ///  * <i>[1] Only allocates if an argument is invalid or an error occurs.</i>
-  ///  *
-  ///  * \param[in] buffer the lookahead2 buffer being used to analyze a string.
-  ///  * \param[in] type the type the next lexeme must be.
-  ///  * \param[out] lexeme_text pointer to where lexeme begins in string.
-  ///  * \param[out] lexeme_text_length length of lexeme_text.
-  ///  * \return `RCL_RET_OK` if the next lexeme was the expected one, or
-  ///  * \return `RCL_RET_WRONG_LEXEME` if the next lexeme was not the expected one, or
-  ///  * \return `RCL_RET_INVALID_ARGUMENT` if any function arguments are invalid, or
-  ///  * \return `RCL_RET_ERROR` if an unspecified error occurs.
-  ///  */
-  int rcl_lexer_lookahead2_expect(
-    ffi.Pointer<rcl_lexer_lookahead2_t> buffer,
-    int type,
-    ffi.Pointer<ffi.Pointer<ffi.Int8>> lexeme_text,
-    ffi.Pointer<ffi.Uint64> lexeme_text_length,
-  ) {
-    return _rcl_lexer_lookahead2_expect(
-      buffer,
-      type,
-      lexeme_text,
-      lexeme_text_length,
-    );
-  }
-
-  late final _rcl_lexer_lookahead2_expect_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_lexer_lookahead2_expect>>(
-          'rcl_lexer_lookahead2_expect');
-  late final _dart_rcl_lexer_lookahead2_expect _rcl_lexer_lookahead2_expect =
-      _rcl_lexer_lookahead2_expect_ptr
-          .asFunction<_dart_rcl_lexer_lookahead2_expect>();
-
-  /// Get the text at the point where it is currently being analyzed.
-  /// /**
-  ///  * <hr>
-  ///  * Attribute          | Adherence
-  ///  * ------------------ | -------------
-  ///  * Allocates Memory   | No
-  ///  * Thread-Safe        | Yes
-  ///  * Uses Atomics       | No
-  ///  * Lock-Free          | Yes
-  ///  *
-  ///  * \param[in] buffer the lookahead2 buffer being used to analyze a string.
-  ///  * \return a pointer inside the original text at the position being analyzed, or
-  ///  * \return `NULL` if buffer is itself `NULL` or zero initialized, or
-  ///  * \return an undefined value if buffer is not initialized or has been finalized.
-  ///  */
-  ffi.Pointer<ffi.Int8> rcl_lexer_lookahead2_get_text(
-    ffi.Pointer<rcl_lexer_lookahead2_t> buffer,
-  ) {
-    return _rcl_lexer_lookahead2_get_text(
-      buffer,
-    );
-  }
-
-  late final _rcl_lexer_lookahead2_get_text_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_lexer_lookahead2_get_text>>(
-          'rcl_lexer_lookahead2_get_text');
-  late final _dart_rcl_lexer_lookahead2_get_text
-      _rcl_lexer_lookahead2_get_text = _rcl_lexer_lookahead2_get_text_ptr
-          .asFunction<_dart_rcl_lexer_lookahead2_get_text>();
-
-  late final ffi.Pointer<ffi.Pointer<ffi.Int8>> _RCL_LOCALHOST_ENV_VAR =
-      _lookup<ffi.Pointer<ffi.Int8>>('RCL_LOCALHOST_ENV_VAR');
-
-  ffi.Pointer<ffi.Int8> get RCL_LOCALHOST_ENV_VAR =>
-      _RCL_LOCALHOST_ENV_VAR.value;
-
-  set RCL_LOCALHOST_ENV_VAR(ffi.Pointer<ffi.Int8> value) =>
-      _RCL_LOCALHOST_ENV_VAR.value = value;
-
-  /// Determine if the user wants to communicate using loopback only.
-  /// /**
-  ///  * Checks if localhost should be used for network communication checking ROS_LOCALHOST_ONLY env
-  ///  * variable
-  ///  * \returns true if ROS_LOCALHOST_ONLY is set and is 1, false otherwise.
-  ///  */
-  bool rcl_localhost_only() {
-    return _rcl_localhost_only() != 0;
-  }
-
-  late final _rcl_localhost_only_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_localhost_only>>('rcl_localhost_only');
-  late final _dart_rcl_localhost_only _rcl_localhost_only =
-      _rcl_localhost_only_ptr.asFunction<_dart_rcl_localhost_only>();
-
-  /// Initializes the rcl_logging_rosout features
-  /// /**
-  ///  * Calling this will initialize the rcl_logging_rosout features. This function must be called
-  ///  * before any other rcl_logging_rosout_* functions can be called.
-  ///  *
-  ///  * <hr>
-  ///  * Attribute          | Adherence
-  ///  * ------------------ | -------------
-  ///  * Allocates Memory   | Yes
-  ///  * Thread-Safe        | No
-  ///  * Uses Atomics       | No
-  ///  * Lock-Free          | Yes
-  ///  *
-  ///  * \param[in] allocator The allocator used for metadata related to the rcl_logging_rosout features
-  ///  * \return `RCL_RET_OK` if the rcl_logging_rosout features are successfully initialized, or
-  ///  * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
-  ///  * \return `RCL_RET_BAD_ALLOC` if allocating memory failed, or
-  ///  * \return `RCL_RET_ERROR` if an unspecified error occurs.
-  ///  */
-  int rcl_logging_rosout_init(
-    ffi.Pointer<rcutils_allocator_t> allocator,
-  ) {
-    return _rcl_logging_rosout_init(
-      allocator,
-    );
-  }
-
-  late final _rcl_logging_rosout_init_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_logging_rosout_init>>(
-          'rcl_logging_rosout_init');
-  late final _dart_rcl_logging_rosout_init _rcl_logging_rosout_init =
-      _rcl_logging_rosout_init_ptr.asFunction<_dart_rcl_logging_rosout_init>();
-
-  /// Uninitializes the rcl_logging_rosout features
-  /// /**
-  ///  * Calling this will set the rcl_logging_rosout features into the an unitialized state that is
-  ///  * functionally the same as before rcl_logging_rosout_init was called.
-  ///  *
-  ///  * <hr>
-  ///  * Attribute          | Adherence
-  ///  * ------------------ | -------------
-  ///  * Allocates Memory   | Yes
-  ///  * Thread-Safe        | No
-  ///  * Uses Atomics       | No
-  ///  * Lock-Free          | Yes
-  ///  *
-  ///  * \return `RCL_RET_OK` if the rcl_logging_rosout feature was successfully unitialized, or
-  ///  * \return `RCL_RET_ERROR` if an unspecified error occurs.
-  ///  */
-  int rcl_logging_rosout_fini() {
-    return _rcl_logging_rosout_fini();
-  }
-
-  late final _rcl_logging_rosout_fini_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_logging_rosout_fini>>(
-          'rcl_logging_rosout_fini');
-  late final _dart_rcl_logging_rosout_fini _rcl_logging_rosout_fini =
-      _rcl_logging_rosout_fini_ptr.asFunction<_dart_rcl_logging_rosout_fini>();
-
-  /// Creates a rosout publisher for a node and registers it to be used by the logging system
-  /// /**
-  ///  * Calling this for an rcl_node_t will create a new publisher on that node that will be
-  ///  * used by the logging system to publish all log messages from that Node's logger.
-  ///  *
-  ///  * If a publisher already exists for this node then a new publisher will NOT be created.
-  ///  *
-  ///  * It is expected that after creating a rosout publisher with this function
-  ///  * rcl_logging_destroy_rosout_publisher_for_node() will be called for the node to cleanup
-  ///  * the publisher while the Node is still valid.
-  ///  *
-  ///  *
-  ///  * <hr>
-  ///  * Attribute          | Adherence
-  ///  * ------------------ | -------------
-  ///  * Allocates Memory   | Yes
-  ///  * Thread-Safe        | No
-  ///  * Uses Atomics       | No
-  ///  * Lock-Free          | Yes
-  ///  *
-  ///  * \param[in] node a valid rcl_node_t that the publisher will be created on
-  ///  * \return `RCL_RET_OK` if the publisher was created successfully, or
-  ///  * \return `RCL_RET_ALREADY_INIT` if the publisher has already exists, or
-  ///  * \return `RCL_RET_NODE_INVALID` if any arguments are invalid, or
-  ///  * \return `RCL_RET_BAD_ALLOC` if allocating memory failed, or
-  ///  * \return `RCL_RET_ERROR` if an unspecified error occurs.
-  ///  */
-  int rcl_logging_rosout_init_publisher_for_node(
-    ffi.Pointer<rcl_node_t> node,
-  ) {
-    return _rcl_logging_rosout_init_publisher_for_node(
-      node,
-    );
-  }
-
-  late final _rcl_logging_rosout_init_publisher_for_node_ptr = _lookup<
-          ffi.NativeFunction<_c_rcl_logging_rosout_init_publisher_for_node>>(
-      'rcl_logging_rosout_init_publisher_for_node');
-  late final _dart_rcl_logging_rosout_init_publisher_for_node
-      _rcl_logging_rosout_init_publisher_for_node =
-      _rcl_logging_rosout_init_publisher_for_node_ptr
-          .asFunction<_dart_rcl_logging_rosout_init_publisher_for_node>();
-
-  /// Deregisters a rosout publisher for a node and cleans up allocated resources
-  /// /**
-  ///  * Calling this for an rcl_node_t will destroy the rosout publisher on that node and remove it from
-  ///  * the logging system so that no more Log messages are published to this function.
-  ///  *
-  ///  *
-  ///  * <hr>
-  ///  * Attribute          | Adherence
-  ///  * ------------------ | -------------
-  ///  * Allocates Memory   | Yes
-  ///  * Thread-Safe        | No
-  ///  * Uses Atomics       | No
-  ///  * Lock-Free          | Yes
-  ///  *
-  ///  * \param[in] node a valid rcl_node_t that the publisher will be created on
-  ///  * \return `RCL_RET_OK` if the publisher was created successfully, or
-  ///  * \return `RCL_RET_NODE_INVALID` if any arguments are invalid, or
-  ///  * \return `RCL_RET_BAD_ALLOC` if allocating memory failed, or
-  ///  * \return `RCL_RET_ERROR` if an unspecified error occurs.
-  ///  */
-  int rcl_logging_rosout_fini_publisher_for_node(
-    ffi.Pointer<rcl_node_t> node,
-  ) {
-    return _rcl_logging_rosout_fini_publisher_for_node(
-      node,
-    );
-  }
-
-  late final _rcl_logging_rosout_fini_publisher_for_node_ptr = _lookup<
-          ffi.NativeFunction<_c_rcl_logging_rosout_fini_publisher_for_node>>(
-      'rcl_logging_rosout_fini_publisher_for_node');
-  late final _dart_rcl_logging_rosout_fini_publisher_for_node
-      _rcl_logging_rosout_fini_publisher_for_node =
-      _rcl_logging_rosout_fini_publisher_for_node_ptr
-          .asFunction<_dart_rcl_logging_rosout_fini_publisher_for_node>();
-
-  /// The output handler outputs log messages to rosout topics.
-  /// /**
-  ///  * When called with a logger name and log message this function will attempt to
-  ///  * find a rosout publisher correlated with the logger name and publish a Log
-  ///  * message out via that publisher. If there is no publisher directly correlated
-  ///  * with the logger then nothing will be done.
-  ///  *
-  ///  * This function is meant to be registered with the logging functions for rcutils
-  ///  *
-  ///  * <hr>
-  ///  * Attribute          | Adherence
-  ///  * ------------------ | -------------
-  ///  * Allocates Memory   | Yes
-  ///  * Thread-Safe        | No
-  ///  * Uses Atomics       | No
-  ///  * Lock-Free          | Yes
-  ///  *
-  ///  * \param[in] location The pointer to the location struct or NULL
-  ///  * \param[in] severity The severity level
-  ///  * \param[in] name The name of the logger, must be null terminated c string
-  ///  * \param[in] timestamp The timestamp for when the log message was made
-  ///  * \param[in] log_str The string to be logged
-  ///  */
-  void rcl_logging_rosout_output_handler(
-    ffi.Pointer<rcutils_log_location_t> location,
-    int severity,
-    ffi.Pointer<ffi.Int8> name,
-    int timestamp,
-    ffi.Pointer<ffi.Int8> format,
-    ffi.Pointer<ffi.Pointer<__va_list_tag>> args,
-  ) {
-    return _rcl_logging_rosout_output_handler(
-      location,
-      severity,
-      name,
-      timestamp,
-      format,
-      args,
-    );
-  }
-
-  late final _rcl_logging_rosout_output_handler_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_logging_rosout_output_handler>>(
-          'rcl_logging_rosout_output_handler');
-  late final _dart_rcl_logging_rosout_output_handler
-      _rcl_logging_rosout_output_handler =
-      _rcl_logging_rosout_output_handler_ptr
-          .asFunction<_dart_rcl_logging_rosout_output_handler>();
-
-  /// Initialize the external logging library.
-  /// /**
-  ///  * \param[in] config_file The location of a config file that the external
-  ///  *   logging library should use to configure itself.
-  ///  *   If no config file is provided this will be set to an empty string.
-  ///  *   Must be a NULL terminated c string.
-  ///  * \param[in] allocator The allocator to use for memory allocation.  This is
-  ///  *   an rcutils_allocator_t rather than an rcl_allocator_t to ensure that the
-  ///  *   rcl_logging_* packages don't have a circular dependency back to rcl.
-  ///  * \todo TODO(clalancette) This API is marked RCL_PUBLIC, but is not built or
-  ///  *   exported from librcl.  Instead, these headers should be split into a
-  ///  *   separate package which is then depended on by both rcl and the
-  ///  *   rcl_logging_* implementations.  The duplicated headers from the
-  ///  *   implementations could then be removed.
-  ///  * \return RCL_RET_OK if initialized successfully, or
-  ///  * \return RCL_RET_ERROR if an unspecified error occurs.
-  ///  */
-  int rcl_logging_external_initialize(
-    ffi.Pointer<ffi.Int8> config_file,
-    rcutils_allocator_t allocator,
-  ) {
-    return _rcl_logging_external_initialize(
-      config_file,
-      allocator,
-    );
-  }
-
-  late final _rcl_logging_external_initialize_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_logging_external_initialize>>(
-          'rcl_logging_external_initialize');
-  late final _dart_rcl_logging_external_initialize
-      _rcl_logging_external_initialize = _rcl_logging_external_initialize_ptr
-          .asFunction<_dart_rcl_logging_external_initialize>();
-
-  /// Free the resources allocated for the external logging system.
-  /// /**
-  ///  * This puts the system into a state equivalent to being uninitialized.
-  ///  *
-  ///  * \return RCL_RET_OK if successfully shutdown, or
-  ///  * \return RCL_RET_ERROR if an unspecified error occurs.
-  ///  */
-  int rcl_logging_external_shutdown() {
-    return _rcl_logging_external_shutdown();
-  }
-
-  late final _rcl_logging_external_shutdown_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_logging_external_shutdown>>(
-          'rcl_logging_external_shutdown');
-  late final _dart_rcl_logging_external_shutdown
-      _rcl_logging_external_shutdown = _rcl_logging_external_shutdown_ptr
-          .asFunction<_dart_rcl_logging_external_shutdown>();
-
-  /// Log a message.
-  /// /**
-  ///  * \param[in] severity The severity level of the message being logged.
-  ///  * \param[in] name The name of the logger, must either be a null terminated
-  ///  *   c string or NULL.
-  ///  *   If NULL or empty the root logger will be used.
-  ///  * \param[in] msg The message to be logged. Must be a null terminated c string.
-  ///  */
-  void rcl_logging_external_log(
-    int severity,
-    ffi.Pointer<ffi.Int8> name,
-    ffi.Pointer<ffi.Int8> msg,
-  ) {
-    return _rcl_logging_external_log(
-      severity,
-      name,
-      msg,
-    );
-  }
-
-  late final _rcl_logging_external_log_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_logging_external_log>>(
-          'rcl_logging_external_log');
-  late final _dart_rcl_logging_external_log _rcl_logging_external_log =
-      _rcl_logging_external_log_ptr
-          .asFunction<_dart_rcl_logging_external_log>();
-
-  /// Set the severity level for a logger.
-  /// /**
-  ///  * This function sets the severity level for the specified logger.
-  ///  * If the name provided is an empty string or NULL it will change the level of
-  ///  * the root logger.
-  ///  *
-  ///  * \param[in] name The name of the logger.
-  ///  *   Must be a NULL terminated c string or NULL.
-  ///  * \param[in] level The severity level to be used for the specified logger.
-  ///  * \return RCL_RET_OK if set successfully, or
-  ///  * \return RCL_RET_ERROR if an unspecified error occurs.
-  ///  */
-  int rcl_logging_external_set_logger_level(
-    ffi.Pointer<ffi.Int8> name,
-    int level,
-  ) {
-    return _rcl_logging_external_set_logger_level(
-      name,
-      level,
-    );
-  }
-
-  late final _rcl_logging_external_set_logger_level_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_logging_external_set_logger_level>>(
-          'rcl_logging_external_set_logger_level');
-  late final _dart_rcl_logging_external_set_logger_level
-      _rcl_logging_external_set_logger_level =
-      _rcl_logging_external_set_logger_level_ptr
-          .asFunction<_dart_rcl_logging_external_set_logger_level>();
-
-  /// Return a rcl_remap_t struct with members initialized to `NULL`.
-  rcl_remap_t rcl_get_zero_initialized_remap() {
-    return _rcl_get_zero_initialized_remap();
-  }
-
-  late final _rcl_get_zero_initialized_remap_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_get_zero_initialized_remap>>(
-          'rcl_get_zero_initialized_remap');
-  late final _dart_rcl_get_zero_initialized_remap
-      _rcl_get_zero_initialized_remap = _rcl_get_zero_initialized_remap_ptr
-          .asFunction<_dart_rcl_get_zero_initialized_remap>();
-
-  /// TODO(sloretz) add documentation about rostopic:// when it is supported
-  /// Remap a topic name based on given rules.
-  /// /**
-  ///  * The supplied topic name must have already been expanded to a fully qualified name.
-  ///  * \sa rcl_expand_topic_name()
-  ///  *
-  ///  * If `local_arguments` is not NULL and not zero intialized then its remap rules are checked first.
-  ///  * If no rules matched and `global_arguments` is not NULL and not zero intitialized then its rules
-  ///  * are checked next.
-  ///  * If both `local_arguments` and global_arguments are NULL or zero intialized then the function will
-  ///  * return RCL_RET_INVALID_ARGUMENT.
-  ///  *
-  ///  * `global_arguments` is usually the arguments passed to `rcl_init()`.
-  ///  * \sa rcl_init()
-  ///  * \sa rcl_get_global_arguments()
-  ///  *
-  ///  * Remap rules are checked in the order they were given.
-  ///  * For rules passed to `rcl_init` this usually is the order they were passed on the command line.
-  ///  * \sa rcl_parse_arguments()
-  ///  *
-  ///  * Only the first remap rule that matches is used to remap a name.
-  ///  * For example, if the command line arguments are `foo:=bar bar:=baz` the topic `foo` is remapped to
-  ///  * `bar` and not `baz`.
-  ///  *
-  ///  * `node_name` and `node_namespace` are used to expand the match and replacement into fully
-  ///  * qualified names.
-  ///  * Given node_name `trudy`, namespace `/ns`, and rule `foo:=~/bar` the names in the rule are
-  ///  * expanded to `/ns/foo:=/ns/trudy/bar`.
-  ///  * The rule will only apply if the given topic name is `/ns/foo`.
-  ///  *
-  ///  * `node_name` is also used to match against node specific rules.
-  ///  * Given rules `alice:foo:=bar foo:=baz`, node name `alice`, and topic `foo` the remapped topic
-  ///  * name will be `bar`.
-  ///  * If given the node name `bob` and topic `foo` the remaped topic name would be `baz` instead.
-  ///  * Note that processing always stops at the first matching rule even if there is a more specific one
-  ///  * later on.
-  ///  * Given `foo:=bar alice:foo:=baz` and topic name `foo` the remapped topic name will always be
-  ///  * `bar` regardless of the node name given.
-  ///  *
-  ///  * <hr>
-  ///  * Attribute          | Adherence
-  ///  * ------------------ | -------------
-  ///  * Allocates Memory   | Yes
-  ///  * Thread-Safe        | No
-  ///  * Uses Atomics       | No
-  ///  * Lock-Free          | Yes
-  ///  *
-  ///  * \param[in] local_arguments Command line arguments to be used before global arguments, or
-  ///  *   if NULL or zero-initialized then only global arguments are used.
-  ///  * \param[in] global_arguments Command line arguments to use if no local rules matched, or
-  ///  *   `NULL` or zero-initialized to ignore global arguments.
-  ///  * \param[in] topic_name A fully qualified and expanded topic name to be remapped.
-  ///  * \param[in] node_name The name of the node to which name belongs.
-  ///  * \param[in] node_namespace The namespace of a node to which name belongs.
-  ///  * \param[in] allocator A valid allocator to use.
-  ///  * \param[out] output_name Either an allocated string with the remapped name, or
-  ///  *   `NULL` if no remap rules matched the name.
-  ///  * \return `RCL_RET_OK` if the topic name was remapped or no rules matched, or
-  ///  * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
-  ///  * \return `RCL_RET_BAD_ALLOC` if allocating memory failed, or
-  ///  * \return `RCL_RET_TOPIC_NAME_INVALID` if the given topic name is invalid, or
-  ///  * \return `RCL_RET_ERROR` if an unspecified error occurs.
-  ///  */
-  int rcl_remap_topic_name(
-    ffi.Pointer<rcl_arguments_t> local_arguments,
-    ffi.Pointer<rcl_arguments_t> global_arguments,
-    ffi.Pointer<ffi.Int8> topic_name,
-    ffi.Pointer<ffi.Int8> node_name,
-    ffi.Pointer<ffi.Int8> node_namespace,
-    rcutils_allocator_t allocator,
-    ffi.Pointer<ffi.Pointer<ffi.Int8>> output_name,
-  ) {
-    return _rcl_remap_topic_name(
-      local_arguments,
-      global_arguments,
-      topic_name,
-      node_name,
-      node_namespace,
-      allocator,
-      output_name,
-    );
-  }
-
-  late final _rcl_remap_topic_name_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_remap_topic_name>>(
-          'rcl_remap_topic_name');
-  late final _dart_rcl_remap_topic_name _rcl_remap_topic_name =
-      _rcl_remap_topic_name_ptr.asFunction<_dart_rcl_remap_topic_name>();
-
-  /// TODO(sloretz) add documentation about rosservice:// when it is supported
-  /// Remap a service name based on given rules.
-  /// /**
-  ///  * The supplied service name must have already been expanded to a fully qualified name.
-  ///  *
-  ///  * The behavior of this function is identical to rcl_expand_topic_name() except that it applies
-  ///  * to service names instead of topic names.
-  ///  * \sa rcl_expand_topic_name()
-  ///  *
-  ///  * <hr>
-  ///  * Attribute          | Adherence
-  ///  * ------------------ | -------------
-  ///  * Allocates Memory   | Yes
-  ///  * Thread-Safe        | No
-  ///  * Uses Atomics       | No
-  ///  * Lock-Free          | Yes
-  ///  *
-  ///  * \param[in] local_arguments Command line arguments to be used before global arguments, or
-  ///  *   if NULL or zero-initialized then only global arguments are used.
-  ///  * \param[in] global_arguments Command line arguments to use if no local rules matched, or
-  ///  *   `NULL` or zero-initialized to ignore global arguments.
-  ///  * \param[in] service_name A fully qualified and expanded service name to be remapped.
-  ///  * \param[in] node_name The name of the node to which name belongs.
-  ///  * \param[in] node_namespace The namespace of a node to which name belongs.
-  ///  * \param[in] allocator A valid allocator to use.
-  ///  * \param[out] output_name Either an allocated string with the remapped name, or
-  ///  *   `NULL` if no remap rules matched the name.
-  ///  * \return `RCL_RET_OK` if the name was remapped or no rules matched, or
-  ///  * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
-  ///  * \return `RCL_RET_BAD_ALLOC` if allocating memory failed, or
-  ///  * \return `RCL_RET_SERVICE_NAME_INVALID` if the given name is invalid, or
-  ///  * \return `RCL_RET_ERROR` if an unspecified error occurs.
-  ///  */
-  int rcl_remap_service_name(
-    ffi.Pointer<rcl_arguments_t> local_arguments,
-    ffi.Pointer<rcl_arguments_t> global_arguments,
-    ffi.Pointer<ffi.Int8> service_name,
-    ffi.Pointer<ffi.Int8> node_name,
-    ffi.Pointer<ffi.Int8> node_namespace,
-    rcutils_allocator_t allocator,
-    ffi.Pointer<ffi.Pointer<ffi.Int8>> output_name,
-  ) {
-    return _rcl_remap_service_name(
-      local_arguments,
-      global_arguments,
-      service_name,
-      node_name,
-      node_namespace,
-      allocator,
-      output_name,
-    );
-  }
-
-  late final _rcl_remap_service_name_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_remap_service_name>>(
-          'rcl_remap_service_name');
-  late final _dart_rcl_remap_service_name _rcl_remap_service_name =
-      _rcl_remap_service_name_ptr.asFunction<_dart_rcl_remap_service_name>();
-
-  /// Remap a node name based on given rules.
-  /// /**
-  ///  * This function returns the node name that a node with the given name would be remapped to.
-  ///  * When a node's name is remapped it changes its logger name and the output of expanding relative
-  ///  * topic and service names.
-  ///  *
-  ///  * When composing nodes make sure that the final node names used are unique per process.
-  ///  * There is not currently a way to independently remap the names of two nodes that were created
-  ///  * with the same node name and are manually composed into one process.
-  ///  *
-  ///  * The behavior of `local_arguments`, `global_arguments`, `node_name`, the order remap rules are
-  ///  * applied, and node specific rules is identical to rcl_remap_topic_name().
-  ///  * \sa rcl_remap_topic_name()
-  ///  *
-  ///  * <hr>
-  ///  * Attribute          | Adherence
-  ///  * ------------------ | -------------
-  ///  * Allocates Memory   | Yes
-  ///  * Thread-Safe        | No
-  ///  * Uses Atomics       | No
-  ///  * Lock-Free          | Yes
-  ///  *
-  ///  * \param[in] local_arguments Arguments to be used before global arguments.
-  ///  * \param[in] global_arguments Command line arguments to use if no local rules matched, or
-  ///  *   `NULL` or zero-initialized to ignore global arguments.
-  ///  * \param[in] node_name The current name of the node.
-  ///  * \param[in] allocator A valid allocator to use.
-  ///  * \param[out] output_name Either an allocated string with the remapped name, or
-  ///  *   `NULL` if no remap rules matched the name.
-  ///  * \return `RCL_RET_OK` If the name was remapped or no rules matched, or
-  ///  * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
-  ///  * \return `RCL_RET_BAD_ALLOC` if allocating memory failed, or
-  ///  * \return `RCL_RET_NODE_INVALID_NAME` if the name is invalid, or
-  ///  * \return `RCL_RET_ERROR` if an unspecified error occurs.
-  ///  */
-  int rcl_remap_node_name(
-    ffi.Pointer<rcl_arguments_t> local_arguments,
-    ffi.Pointer<rcl_arguments_t> global_arguments,
-    ffi.Pointer<ffi.Int8> node_name,
-    rcutils_allocator_t allocator,
-    ffi.Pointer<ffi.Pointer<ffi.Int8>> output_name,
-  ) {
-    return _rcl_remap_node_name(
-      local_arguments,
-      global_arguments,
-      node_name,
-      allocator,
-      output_name,
-    );
-  }
-
-  late final _rcl_remap_node_name_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_remap_node_name>>(
-          'rcl_remap_node_name');
-  late final _dart_rcl_remap_node_name _rcl_remap_node_name =
-      _rcl_remap_node_name_ptr.asFunction<_dart_rcl_remap_node_name>();
-
-  /// Remap a namespace based on given rules.
-  /// /**
-  ///  * This function returns the namespace that a node with the given name would be remapped to.
-  ///  * When a node's namespace is remapped it changes its logger name and the output of expanding
-  ///  * relative topic and service names.
-  ///  *
-  ///  * The behavior of `local_arguments`, `global_arguments`, `node_name`, the order remap rules are
-  ///  * applied, and node specific rules is identical to rcl_remap_topic_name().
-  ///  * \sa rcl_remap_topic_name()
-  ///  *
-  ///  * <hr>
-  ///  * Attribute          | Adherence
-  ///  * ------------------ | -------------
-  ///  * Allocates Memory   | Yes
-  ///  * Thread-Safe        | No
-  ///  * Uses Atomics       | No
-  ///  * Lock-Free          | Yes
-  ///  *
-  ///  * \param[in] local_arguments Arguments to be used before global arguments.
-  ///  * \param[in] global_arguments Command line arguments to use if no local rules matched, or
-  ///  *   `NULL` or zero-initialized to ignore global arguments.
-  ///  * \param[in] node_name The name of the node whose namespace is being remapped.
-  ///  * \param[in] allocator A valid allocator to be used.
-  ///  * \param[out] output_namespace Either an allocated string with the remapped namespace, or
-  ///  *   `NULL` if no remap rules matched the name.
-  ///  * \return `RCL_RET_OK` if the node name was remapped or no rules matched, or
-  ///  * \return `RCL_RET_INVALID_ARGUMENT` if any arguments are invalid, or
-  ///  * \return `RCL_RET_BAD_ALLOC` if allocating memory failed, or
-  ///  * \return `RCL_RET_NODE_INVALID_NAMESPACE` if the remapped namespace is invalid, or
-  ///  * \return `RCL_RET_ERROR` if an unspecified error occurs.
-  ///  */
-  int rcl_remap_node_namespace(
-    ffi.Pointer<rcl_arguments_t> local_arguments,
-    ffi.Pointer<rcl_arguments_t> global_arguments,
-    ffi.Pointer<ffi.Int8> node_name,
-    rcutils_allocator_t allocator,
-    ffi.Pointer<ffi.Pointer<ffi.Int8>> output_namespace,
-  ) {
-    return _rcl_remap_node_namespace(
-      local_arguments,
-      global_arguments,
-      node_name,
-      allocator,
-      output_namespace,
-    );
-  }
-
-  late final _rcl_remap_node_namespace_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_remap_node_namespace>>(
-          'rcl_remap_node_namespace');
-  late final _dart_rcl_remap_node_namespace _rcl_remap_node_namespace =
-      _rcl_remap_node_namespace_ptr
-          .asFunction<_dart_rcl_remap_node_namespace>();
-
-  /// Reclaim resources held inside rcl_remap_t structure.
-  /// /**
-  ///  * <hr>
-  ///  * Attribute          | Adherence
-  ///  * ------------------ | -------------
-  ///  * Allocates Memory   | No
-  ///  * Thread-Safe        | Yes
-  ///  * Uses Atomics       | No
-  ///  * Lock-Free          | Yes
-  ///  *
-  ///  * \param[in] args The structure to be deallocated.
-  ///  * \return `RCL_RET_OK` if the memory was successfully freed, or
-  ///  * \return `RCL_RET_INVALID_ARGUMENT` if any function arguments are invalid, or
-  ///  * \return `RCL_RET_ERROR` if an unspecified error occurs.
-  ///  */
-  int rcl_remap_fini(
-    ffi.Pointer<rcl_remap_t> remap,
-  ) {
-    return _rcl_remap_fini(
-      remap,
-    );
-  }
-
-  late final _rcl_remap_fini_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_remap_fini>>('rcl_remap_fini');
-  late final _dart_rcl_remap_fini _rcl_remap_fini =
-      _rcl_remap_fini_ptr.asFunction<_dart_rcl_remap_fini>();
-
-  /// Return the secure root directory associated with a node given its validated name and namespace.
-  /// /**
-  ///  * E.g. for a node named "c" in namespace "/a/b", the secure root path will be
-  ///  * "a/b/c", where the delimiter "/" is native for target file system (e.g. "\\" for _WIN32).
-  ///  * If no exact match is found for the node name, a best match would be used instead
-  ///  * (by performing longest-prefix matching).
-  ///  *
-  ///  * However, this expansion can be overridden by setting the secure node directory environment
-  ///  * variable, allowing users to explicitly specify the exact secure root directory to be utilized.
-  ///  * Such an override is useful for where the FQN of a node is non-deterministic before runtime,
-  ///  * or when testing and using additional tools that may not otherwise be easily provisioned.
-  ///  *
-  ///  * \param[in] node_name validated node name (a single token)
-  ///  * \param[in] node_namespace validated, absolute namespace (starting with "/")
-  ///  * \param[in] allocator the allocator to use for allocation
-  ///  * \returns machine specific (absolute) node secure root path or NULL on failure
-  ///  *          returned pointer must be deallocated by the caller of this function
-  ///  */
-  ffi.Pointer<ffi.Int8> rcl_get_secure_root(
-    ffi.Pointer<ffi.Int8> node_name,
-    ffi.Pointer<ffi.Int8> node_namespace,
-    ffi.Pointer<rcutils_allocator_t> allocator,
-  ) {
-    return _rcl_get_secure_root(
-      node_name,
-      node_namespace,
-      allocator,
-    );
-  }
-
-  late final _rcl_get_secure_root_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_get_secure_root>>(
-          'rcl_get_secure_root');
-  late final _dart_rcl_get_secure_root _rcl_get_secure_root =
-      _rcl_get_secure_root_ptr.asFunction<_dart_rcl_get_secure_root>();
+  external ffi.Pointer<
+      ffi.NativeFunction<rosidl_service_typesupport_handle_function>> func;
 }
 
 /// Encapsulation of an allocator.
@@ -13422,6 +11474,37 @@ class rcutils_allocator_t extends ffi.Struct {
   external ffi.Pointer<ffi.Void> state;
 }
 
+class __va_list_tag extends ffi.Struct {
+  @ffi.Uint32()
+  external int gp_offset;
+
+  @ffi.Uint32()
+  external int fp_offset;
+
+  external ffi.Pointer<ffi.Void> overflow_arg_area;
+
+  external ffi.Pointer<ffi.Void> reg_save_area;
+}
+
+/// Struct wrapping a fixed-size c string used for returning the formatted error string.
+class rcutils_error_string_t extends ffi.Struct {
+  @ffi.Array.multi([1024])
+  external ffi.Array<ffi.Int8> str;
+}
+
+/// Struct which encapsulates the error state set by RCUTILS_SET_ERROR_MSG().
+class rcutils_error_state_t extends ffi.Struct {
+  @ffi.Array.multi([768])
+  external ffi.Array<ffi.Int8> message;
+
+  @ffi.Array.multi([229])
+  external ffi.Array<ffi.Int8> file;
+
+  /// Line number of error.
+  @ffi.Uint64()
+  external int line_number;
+}
+
 class rcutils_array_list_impl_t extends ffi.Opaque {}
 
 class rcutils_array_list_t extends ffi.Struct {
@@ -13444,18 +11527,6 @@ class rcutils_char_array_t extends ffi.Struct {
   external int buffer_capacity;
 
   external rcutils_allocator_t allocator;
-}
-
-class __va_list_tag extends ffi.Struct {
-  @ffi.Uint32()
-  external int gp_offset;
-
-  @ffi.Uint32()
-  external int fp_offset;
-
-  external ffi.Pointer<ffi.Void> overflow_arg_area;
-
-  external ffi.Pointer<ffi.Void> reg_save_area;
 }
 
 class rcutils_hash_map_impl_t extends ffi.Opaque {}
@@ -13489,25 +11560,6 @@ class rcutils_uint8_array_t extends ffi.Struct {
   external int buffer_capacity;
 
   external rcutils_allocator_t allocator;
-}
-
-/// Struct wrapping a fixed-size c string used for returning the formatted error string.
-class rcutils_error_string_t extends ffi.Struct {
-  @ffi.Array.multi([1024])
-  external ffi.Array<ffi.Int8> str;
-}
-
-/// Struct which encapsulates the error state set by RCUTILS_SET_ERROR_MSG().
-class rcutils_error_state_t extends ffi.Struct {
-  @ffi.Array.multi([768])
-  external ffi.Array<ffi.Int8> message;
-
-  @ffi.Array.multi([229])
-  external ffi.Array<ffi.Int8> file;
-
-  /// Line number of error.
-  @ffi.Uint64()
-  external int line_number;
 }
 
 /// The structure identifying the caller location in the source code.
@@ -14017,23 +12069,6 @@ class rmw_offered_deadline_missed_status_t extends ffi.Struct {
   external int total_count_change;
 }
 
-/// Associative array of topic or service names and types.
-class rmw_names_and_types_t extends ffi.Struct {
-  external rcutils_string_array_t names;
-
-  /// The length of this array is the same as names.size
-  external ffi.Pointer<rcutils_string_array_t> types;
-}
-
-class rosidl_service_type_support_t extends ffi.Struct {
-  external ffi.Pointer<ffi.Int8> typesupport_identifier;
-
-  external ffi.Pointer<ffi.Void> data;
-
-  external ffi.Pointer<
-      ffi.NativeFunction<rosidl_service_typesupport_handle_function>> func;
-}
-
 /// \typedef rcl_bool_array_t
 /// \brief Array of bool values
 class rcl_bool_array_t extends ffi.Struct {
@@ -14493,48 +12528,12 @@ class rcl_event_t extends ffi.Struct {
   external ffi.Pointer<rcl_event_impl_t> impl;
 }
 
-class rcl_wait_set_impl_t extends ffi.Opaque {}
+/// Associative array of topic or service names and types.
+class rmw_names_and_types_t extends ffi.Struct {
+  external rcutils_string_array_t names;
 
-/// Container for subscription's, guard condition's, etc to be waited on.
-class rcl_wait_set_t extends ffi.Struct {
-  /// Storage for subscription pointers.
-  external ffi.Pointer<ffi.Pointer<rcl_subscription_t>> subscriptions;
-
-  @ffi.Uint64()
-  external int size_of_subscriptions;
-
-  /// Storage for guard condition pointers.
-  external ffi.Pointer<ffi.Pointer<rcl_guard_condition_t>> guard_conditions;
-
-  @ffi.Uint64()
-  external int size_of_guard_conditions;
-
-  /// Storage for timer pointers.
-  external ffi.Pointer<ffi.Pointer<rcl_timer_t>> timers;
-
-  @ffi.Uint64()
-  external int size_of_timers;
-
-  /// Storage for client pointers.
-  external ffi.Pointer<ffi.Pointer<rcl_client_t>> clients;
-
-  @ffi.Uint64()
-  external int size_of_clients;
-
-  /// Storage for service pointers.
-  external ffi.Pointer<ffi.Pointer<rcl_service_t>> services;
-
-  @ffi.Uint64()
-  external int size_of_services;
-
-  /// Storage for event pointers.
-  external ffi.Pointer<ffi.Pointer<rcl_event_t>> events;
-
-  @ffi.Uint64()
-  external int size_of_events;
-
-  /// Implementation specific storage.
-  external ffi.Pointer<rcl_wait_set_impl_t> impl;
+  /// The length of this array is the same as names.size
+  external ffi.Pointer<rcutils_string_array_t> types;
 }
 
 /// Type of lexeme found by lexical analysis.
@@ -14611,20 +12610,48 @@ abstract class rcl_lexeme_t {
   static const int RCL_LEXEME_DOT = 22;
 }
 
-/// Forward declaration
-class rcl_lexer_lookahead2_impl_t extends ffi.Opaque {}
+class rcl_wait_set_impl_t extends ffi.Opaque {}
 
-/// Track lexical analysis and allow looking ahead 2 lexemes.
-class rcl_lexer_lookahead2_t extends ffi.Struct {
-  external ffi.Pointer<rcl_lexer_lookahead2_impl_t> impl;
-}
+/// Container for subscription's, guard condition's, etc to be waited on.
+class rcl_wait_set_t extends ffi.Struct {
+  /// Storage for subscription pointers.
+  external ffi.Pointer<ffi.Pointer<rcl_subscription_t>> subscriptions;
 
-class rcl_remap_impl_t extends ffi.Opaque {}
+  @ffi.Uint64()
+  external int size_of_subscriptions;
 
-/// Hold remapping rules.
-class rcl_remap_t extends ffi.Struct {
-  /// Private implementation pointer.
-  external ffi.Pointer<rcl_remap_impl_t> impl;
+  /// Storage for guard condition pointers.
+  external ffi.Pointer<ffi.Pointer<rcl_guard_condition_t>> guard_conditions;
+
+  @ffi.Uint64()
+  external int size_of_guard_conditions;
+
+  /// Storage for timer pointers.
+  external ffi.Pointer<ffi.Pointer<rcl_timer_t>> timers;
+
+  @ffi.Uint64()
+  external int size_of_timers;
+
+  /// Storage for client pointers.
+  external ffi.Pointer<ffi.Pointer<rcl_client_t>> clients;
+
+  @ffi.Uint64()
+  external int size_of_clients;
+
+  /// Storage for service pointers.
+  external ffi.Pointer<ffi.Pointer<rcl_service_t>> services;
+
+  @ffi.Uint64()
+  external int size_of_services;
+
+  /// Storage for event pointers.
+  external ffi.Pointer<ffi.Pointer<rcl_event_t>> events;
+
+  @ffi.Uint64()
+  external int size_of_events;
+
+  /// Implementation specific storage.
+  external ffi.Pointer<rcl_wait_set_impl_t> impl;
 }
 
 const int RMW_QOS_POLICY_DEPTH_SYSTEM_DEFAULT = 0;
@@ -14805,33 +12832,29 @@ const int RCL_CONTEXT_ATOMIC_INSTANCE_ID_STORAGE_SIZE = 8;
 
 const int RCL_NODE_OPTIONS_DEFAULT_DOMAIN_ID = -1;
 
-const int RCL_TOPIC_NAME_VALID = 0;
+typedef _c_get_service_typesupport_handle
+    = ffi.Pointer<rosidl_service_type_support_t> Function(
+  ffi.Pointer<rosidl_service_type_support_t> handle,
+  ffi.Pointer<ffi.Int8> identifier,
+);
 
-const int RCL_TOPIC_NAME_INVALID_IS_EMPTY_STRING = 1;
+typedef _dart_get_service_typesupport_handle
+    = ffi.Pointer<rosidl_service_type_support_t> Function(
+  ffi.Pointer<rosidl_service_type_support_t> handle,
+  ffi.Pointer<ffi.Int8> identifier,
+);
 
-const int RCL_TOPIC_NAME_INVALID_ENDS_WITH_FORWARD_SLASH = 2;
+typedef _c_get_service_typesupport_handle_function
+    = ffi.Pointer<rosidl_service_type_support_t> Function(
+  ffi.Pointer<rosidl_service_type_support_t> handle,
+  ffi.Pointer<ffi.Int8> identifier,
+);
 
-const int RCL_TOPIC_NAME_INVALID_CONTAINS_UNALLOWED_CHARACTERS = 3;
-
-const int RCL_TOPIC_NAME_INVALID_NAME_TOKEN_STARTS_WITH_NUMBER = 4;
-
-const int RCL_TOPIC_NAME_INVALID_UNMATCHED_CURLY_BRACE = 5;
-
-const int RCL_TOPIC_NAME_INVALID_MISPLACED_TILDE = 6;
-
-const int RCL_TOPIC_NAME_INVALID_TILDE_NOT_FOLLOWED_BY_FORWARD_SLASH = 7;
-
-const int RCL_TOPIC_NAME_INVALID_SUBSTITUTION_CONTAINS_UNALLOWED_CHARACTERS = 8;
-
-const int RCL_TOPIC_NAME_INVALID_SUBSTITUTION_STARTS_WITH_NUMBER = 9;
-
-const String ROS_SECURITY_NODE_DIRECTORY_VAR_NAME =
-    'ROS_SECURITY_NODE_DIRECTORY';
-
-const String ROS_SECURITY_ROOT_DIRECTORY_VAR_NAME =
-    'ROS_SECURITY_ROOT_DIRECTORY';
-
-const String ROS_SECURITY_LOOKUP_TYPE_VAR_NAME = 'ROS_SECURITY_LOOKUP_TYPE';
+typedef _dart_get_service_typesupport_handle_function
+    = ffi.Pointer<rosidl_service_type_support_t> Function(
+  ffi.Pointer<rosidl_service_type_support_t> handle,
+  ffi.Pointer<ffi.Int8> identifier,
+);
 
 typedef _c_rcutils_get_zero_initialized_allocator = rcutils_allocator_t
     Function();
@@ -14862,6 +12885,72 @@ typedef _dart_rcutils_reallocf = ffi.Pointer<ffi.Void> Function(
   int size,
   ffi.Pointer<rcutils_allocator_t> allocator,
 );
+
+typedef _c_rcutils_snprintf = ffi.Int32 Function(
+  ffi.Pointer<ffi.Int8> buffer,
+  ffi.Uint64 buffer_size,
+  ffi.Pointer<ffi.Int8> format,
+);
+
+typedef _dart_rcutils_snprintf = int Function(
+  ffi.Pointer<ffi.Int8> buffer,
+  int buffer_size,
+  ffi.Pointer<ffi.Int8> format,
+);
+
+typedef _c_rcutils_vsnprintf = ffi.Int32 Function(
+  ffi.Pointer<ffi.Int8> buffer,
+  ffi.Uint64 buffer_size,
+  ffi.Pointer<ffi.Int8> format,
+  ffi.Pointer<__va_list_tag> args,
+);
+
+typedef _dart_rcutils_vsnprintf = int Function(
+  ffi.Pointer<ffi.Int8> buffer,
+  int buffer_size,
+  ffi.Pointer<ffi.Int8> format,
+  ffi.Pointer<__va_list_tag> args,
+);
+
+typedef _c_rcutils_initialize_error_handling_thread_local_storage = ffi.Int32
+    Function(
+  rcutils_allocator_t allocator,
+);
+
+typedef _dart_rcutils_initialize_error_handling_thread_local_storage = int
+    Function(
+  rcutils_allocator_t allocator,
+);
+
+typedef _c_rcutils_set_error_state = ffi.Void Function(
+  ffi.Pointer<ffi.Int8> error_string,
+  ffi.Pointer<ffi.Int8> file,
+  ffi.Uint64 line_number,
+);
+
+typedef _dart_rcutils_set_error_state = void Function(
+  ffi.Pointer<ffi.Int8> error_string,
+  ffi.Pointer<ffi.Int8> file,
+  int line_number,
+);
+
+typedef _c_rcutils_error_is_set = ffi.Uint8 Function();
+
+typedef _dart_rcutils_error_is_set = int Function();
+
+typedef _c_rcutils_get_error_state = ffi.Pointer<rcutils_error_state_t>
+    Function();
+
+typedef _dart_rcutils_get_error_state = ffi.Pointer<rcutils_error_state_t>
+    Function();
+
+typedef _c_rcutils_get_error_string = rcutils_error_string_t Function();
+
+typedef _dart_rcutils_get_error_string = rcutils_error_string_t Function();
+
+typedef _c_rcutils_reset_error = ffi.Void Function();
+
+typedef _dart_rcutils_reset_error = void Function();
 
 typedef _c_rcutils_get_zero_initialized_array_list = rcutils_array_list_t
     Function();
@@ -15424,72 +13513,6 @@ typedef _dart_rcutils_uint8_array_resize = int Function(
   int new_size,
 );
 
-typedef _c_rcutils_snprintf = ffi.Int32 Function(
-  ffi.Pointer<ffi.Int8> buffer,
-  ffi.Uint64 buffer_size,
-  ffi.Pointer<ffi.Int8> format,
-);
-
-typedef _dart_rcutils_snprintf = int Function(
-  ffi.Pointer<ffi.Int8> buffer,
-  int buffer_size,
-  ffi.Pointer<ffi.Int8> format,
-);
-
-typedef _c_rcutils_vsnprintf = ffi.Int32 Function(
-  ffi.Pointer<ffi.Int8> buffer,
-  ffi.Uint64 buffer_size,
-  ffi.Pointer<ffi.Int8> format,
-  ffi.Pointer<__va_list_tag> args,
-);
-
-typedef _dart_rcutils_vsnprintf = int Function(
-  ffi.Pointer<ffi.Int8> buffer,
-  int buffer_size,
-  ffi.Pointer<ffi.Int8> format,
-  ffi.Pointer<__va_list_tag> args,
-);
-
-typedef _c_rcutils_initialize_error_handling_thread_local_storage = ffi.Int32
-    Function(
-  rcutils_allocator_t allocator,
-);
-
-typedef _dart_rcutils_initialize_error_handling_thread_local_storage = int
-    Function(
-  rcutils_allocator_t allocator,
-);
-
-typedef _c_rcutils_set_error_state = ffi.Void Function(
-  ffi.Pointer<ffi.Int8> error_string,
-  ffi.Pointer<ffi.Int8> file,
-  ffi.Uint64 line_number,
-);
-
-typedef _dart_rcutils_set_error_state = void Function(
-  ffi.Pointer<ffi.Int8> error_string,
-  ffi.Pointer<ffi.Int8> file,
-  int line_number,
-);
-
-typedef _c_rcutils_error_is_set = ffi.Uint8 Function();
-
-typedef _dart_rcutils_error_is_set = int Function();
-
-typedef _c_rcutils_get_error_state = ffi.Pointer<rcutils_error_state_t>
-    Function();
-
-typedef _dart_rcutils_get_error_state = ffi.Pointer<rcutils_error_state_t>
-    Function();
-
-typedef _c_rcutils_get_error_string = rcutils_error_string_t Function();
-
-typedef _dart_rcutils_get_error_string = rcutils_error_string_t Function();
-
-typedef _c_rcutils_reset_error = ffi.Void Function();
-
-typedef _dart_rcutils_reset_error = void Function();
-
 typedef _c_rcutils_system_time_now = ffi.Int32 Function(
   ffi.Pointer<ffi.Int64> now,
 );
@@ -15760,78 +13783,6 @@ typedef _c_rmw_get_zero_initialized_loaned_message_sequence
 
 typedef _dart_rmw_get_zero_initialized_loaned_message_sequence
     = rmw_loaned_message_sequence_t Function();
-
-typedef _c_rmw_get_zero_initialized_names_and_types = rmw_names_and_types_t
-    Function();
-
-typedef _dart_rmw_get_zero_initialized_names_and_types = rmw_names_and_types_t
-    Function();
-
-typedef _c_rmw_names_and_types_check_zero = ffi.Int32 Function(
-  ffi.Pointer<rmw_names_and_types_t> names_and_types,
-);
-
-typedef _dart_rmw_names_and_types_check_zero = int Function(
-  ffi.Pointer<rmw_names_and_types_t> names_and_types,
-);
-
-typedef _c_rmw_names_and_types_init = ffi.Int32 Function(
-  ffi.Pointer<rmw_names_and_types_t> names_and_types,
-  ffi.Uint64 size,
-  ffi.Pointer<rcutils_allocator_t> allocator,
-);
-
-typedef _dart_rmw_names_and_types_init = int Function(
-  ffi.Pointer<rmw_names_and_types_t> names_and_types,
-  int size,
-  ffi.Pointer<rcutils_allocator_t> allocator,
-);
-
-typedef _c_rmw_names_and_types_fini = ffi.Int32 Function(
-  ffi.Pointer<rmw_names_and_types_t> names_and_types,
-);
-
-typedef _dart_rmw_names_and_types_fini = int Function(
-  ffi.Pointer<rmw_names_and_types_t> names_and_types,
-);
-
-typedef _c_rmw_get_topic_names_and_types = ffi.Int32 Function(
-  ffi.Pointer<rmw_node_t> node,
-  ffi.Pointer<rcutils_allocator_t> allocator,
-  ffi.Uint8 no_demangle,
-  ffi.Pointer<rmw_names_and_types_t> topic_names_and_types,
-);
-
-typedef _dart_rmw_get_topic_names_and_types = int Function(
-  ffi.Pointer<rmw_node_t> node,
-  ffi.Pointer<rcutils_allocator_t> allocator,
-  int no_demangle,
-  ffi.Pointer<rmw_names_and_types_t> topic_names_and_types,
-);
-
-typedef _c_get_service_typesupport_handle
-    = ffi.Pointer<rosidl_service_type_support_t> Function(
-  ffi.Pointer<rosidl_service_type_support_t> handle,
-  ffi.Pointer<ffi.Int8> identifier,
-);
-
-typedef _dart_get_service_typesupport_handle
-    = ffi.Pointer<rosidl_service_type_support_t> Function(
-  ffi.Pointer<rosidl_service_type_support_t> handle,
-  ffi.Pointer<ffi.Int8> identifier,
-);
-
-typedef _c_get_service_typesupport_handle_function
-    = ffi.Pointer<rosidl_service_type_support_t> Function(
-  ffi.Pointer<rosidl_service_type_support_t> handle,
-  ffi.Pointer<ffi.Int8> identifier,
-);
-
-typedef _dart_get_service_typesupport_handle_function
-    = ffi.Pointer<rosidl_service_type_support_t> Function(
-  ffi.Pointer<rosidl_service_type_support_t> handle,
-  ffi.Pointer<ffi.Int8> identifier,
-);
 
 typedef _c_rcl_get_zero_initialized_arguments = rcl_arguments_t Function();
 
@@ -16285,170 +14236,6 @@ typedef _c_rcl_client_is_valid = ffi.Uint8 Function(
 
 typedef _dart_rcl_client_is_valid = int Function(
   ffi.Pointer<rcl_client_t> client,
-);
-
-typedef _c_rcl_get_publisher_names_and_types_by_node = ffi.Int32 Function(
-  ffi.Pointer<rcl_node_t> node,
-  ffi.Pointer<rcutils_allocator_t> allocator,
-  ffi.Uint8 no_demangle,
-  ffi.Pointer<ffi.Int8> node_name,
-  ffi.Pointer<ffi.Int8> node_namespace,
-  ffi.Pointer<rmw_names_and_types_t> topic_names_and_types,
-);
-
-typedef _dart_rcl_get_publisher_names_and_types_by_node = int Function(
-  ffi.Pointer<rcl_node_t> node,
-  ffi.Pointer<rcutils_allocator_t> allocator,
-  int no_demangle,
-  ffi.Pointer<ffi.Int8> node_name,
-  ffi.Pointer<ffi.Int8> node_namespace,
-  ffi.Pointer<rmw_names_and_types_t> topic_names_and_types,
-);
-
-typedef _c_rcl_get_subscriber_names_and_types_by_node = ffi.Int32 Function(
-  ffi.Pointer<rcl_node_t> node,
-  ffi.Pointer<rcutils_allocator_t> allocator,
-  ffi.Uint8 no_demangle,
-  ffi.Pointer<ffi.Int8> node_name,
-  ffi.Pointer<ffi.Int8> node_namespace,
-  ffi.Pointer<rmw_names_and_types_t> topic_names_and_types,
-);
-
-typedef _dart_rcl_get_subscriber_names_and_types_by_node = int Function(
-  ffi.Pointer<rcl_node_t> node,
-  ffi.Pointer<rcutils_allocator_t> allocator,
-  int no_demangle,
-  ffi.Pointer<ffi.Int8> node_name,
-  ffi.Pointer<ffi.Int8> node_namespace,
-  ffi.Pointer<rmw_names_and_types_t> topic_names_and_types,
-);
-
-typedef _c_rcl_get_service_names_and_types_by_node = ffi.Int32 Function(
-  ffi.Pointer<rcl_node_t> node,
-  ffi.Pointer<rcutils_allocator_t> allocator,
-  ffi.Pointer<ffi.Int8> node_name,
-  ffi.Pointer<ffi.Int8> node_namespace,
-  ffi.Pointer<rmw_names_and_types_t> service_names_and_types,
-);
-
-typedef _dart_rcl_get_service_names_and_types_by_node = int Function(
-  ffi.Pointer<rcl_node_t> node,
-  ffi.Pointer<rcutils_allocator_t> allocator,
-  ffi.Pointer<ffi.Int8> node_name,
-  ffi.Pointer<ffi.Int8> node_namespace,
-  ffi.Pointer<rmw_names_and_types_t> service_names_and_types,
-);
-
-typedef _c_rcl_get_client_names_and_types_by_node = ffi.Int32 Function(
-  ffi.Pointer<rcl_node_t> node,
-  ffi.Pointer<rcutils_allocator_t> allocator,
-  ffi.Pointer<ffi.Int8> node_name,
-  ffi.Pointer<ffi.Int8> node_namespace,
-  ffi.Pointer<rmw_names_and_types_t> service_names_and_types,
-);
-
-typedef _dart_rcl_get_client_names_and_types_by_node = int Function(
-  ffi.Pointer<rcl_node_t> node,
-  ffi.Pointer<rcutils_allocator_t> allocator,
-  ffi.Pointer<ffi.Int8> node_name,
-  ffi.Pointer<ffi.Int8> node_namespace,
-  ffi.Pointer<rmw_names_and_types_t> service_names_and_types,
-);
-
-typedef _c_rcl_get_topic_names_and_types = ffi.Int32 Function(
-  ffi.Pointer<rcl_node_t> node,
-  ffi.Pointer<rcutils_allocator_t> allocator,
-  ffi.Uint8 no_demangle,
-  ffi.Pointer<rmw_names_and_types_t> topic_names_and_types,
-);
-
-typedef _dart_rcl_get_topic_names_and_types = int Function(
-  ffi.Pointer<rcl_node_t> node,
-  ffi.Pointer<rcutils_allocator_t> allocator,
-  int no_demangle,
-  ffi.Pointer<rmw_names_and_types_t> topic_names_and_types,
-);
-
-typedef _c_rcl_get_service_names_and_types = ffi.Int32 Function(
-  ffi.Pointer<rcl_node_t> node,
-  ffi.Pointer<rcutils_allocator_t> allocator,
-  ffi.Pointer<rmw_names_and_types_t> service_names_and_types,
-);
-
-typedef _dart_rcl_get_service_names_and_types = int Function(
-  ffi.Pointer<rcl_node_t> node,
-  ffi.Pointer<rcutils_allocator_t> allocator,
-  ffi.Pointer<rmw_names_and_types_t> service_names_and_types,
-);
-
-typedef _c_rcl_names_and_types_init = ffi.Int32 Function(
-  ffi.Pointer<rmw_names_and_types_t> names_and_types,
-  ffi.Uint64 size,
-  ffi.Pointer<rcutils_allocator_t> allocator,
-);
-
-typedef _dart_rcl_names_and_types_init = int Function(
-  ffi.Pointer<rmw_names_and_types_t> names_and_types,
-  int size,
-  ffi.Pointer<rcutils_allocator_t> allocator,
-);
-
-typedef _c_rcl_names_and_types_fini = ffi.Int32 Function(
-  ffi.Pointer<rmw_names_and_types_t> names_and_types,
-);
-
-typedef _dart_rcl_names_and_types_fini = int Function(
-  ffi.Pointer<rmw_names_and_types_t> names_and_types,
-);
-
-typedef _c_rcl_get_node_names = ffi.Int32 Function(
-  ffi.Pointer<rcl_node_t> node,
-  rcutils_allocator_t allocator,
-  ffi.Pointer<rcutils_string_array_t> node_names,
-  ffi.Pointer<rcutils_string_array_t> node_namespaces,
-);
-
-typedef _dart_rcl_get_node_names = int Function(
-  ffi.Pointer<rcl_node_t> node,
-  rcutils_allocator_t allocator,
-  ffi.Pointer<rcutils_string_array_t> node_names,
-  ffi.Pointer<rcutils_string_array_t> node_namespaces,
-);
-
-typedef _c_rcl_count_publishers = ffi.Int32 Function(
-  ffi.Pointer<rcl_node_t> node,
-  ffi.Pointer<ffi.Int8> topic_name,
-  ffi.Pointer<ffi.Uint64> count,
-);
-
-typedef _dart_rcl_count_publishers = int Function(
-  ffi.Pointer<rcl_node_t> node,
-  ffi.Pointer<ffi.Int8> topic_name,
-  ffi.Pointer<ffi.Uint64> count,
-);
-
-typedef _c_rcl_count_subscribers = ffi.Int32 Function(
-  ffi.Pointer<rcl_node_t> node,
-  ffi.Pointer<ffi.Int8> topic_name,
-  ffi.Pointer<ffi.Uint64> count,
-);
-
-typedef _dart_rcl_count_subscribers = int Function(
-  ffi.Pointer<rcl_node_t> node,
-  ffi.Pointer<ffi.Int8> topic_name,
-  ffi.Pointer<ffi.Uint64> count,
-);
-
-typedef _c_rcl_service_server_is_available = ffi.Int32 Function(
-  ffi.Pointer<rcl_node_t> node,
-  ffi.Pointer<rcl_client_t> client,
-  ffi.Pointer<ffi.Uint8> is_available,
-);
-
-typedef _dart_rcl_service_server_is_available = int Function(
-  ffi.Pointer<rcl_node_t> node,
-  ffi.Pointer<rcl_client_t> client,
-  ffi.Pointer<ffi.Uint8> is_available,
 );
 
 typedef _c_rcl_guard_condition_init = ffi.Int32 Function(
@@ -18035,6 +15822,88 @@ typedef _dart_rcl_event_get_rmw_handle = ffi.Pointer<rmw_event_t> Function(
   ffi.Pointer<rcl_event_t> event,
 );
 
+typedef _c_rmw_get_zero_initialized_names_and_types = rmw_names_and_types_t
+    Function();
+
+typedef _dart_rmw_get_zero_initialized_names_and_types = rmw_names_and_types_t
+    Function();
+
+typedef _c_rmw_names_and_types_check_zero = ffi.Int32 Function(
+  ffi.Pointer<rmw_names_and_types_t> names_and_types,
+);
+
+typedef _dart_rmw_names_and_types_check_zero = int Function(
+  ffi.Pointer<rmw_names_and_types_t> names_and_types,
+);
+
+typedef _c_rmw_names_and_types_init = ffi.Int32 Function(
+  ffi.Pointer<rmw_names_and_types_t> names_and_types,
+  ffi.Uint64 size,
+  ffi.Pointer<rcutils_allocator_t> allocator,
+);
+
+typedef _dart_rmw_names_and_types_init = int Function(
+  ffi.Pointer<rmw_names_and_types_t> names_and_types,
+  int size,
+  ffi.Pointer<rcutils_allocator_t> allocator,
+);
+
+typedef _c_rmw_names_and_types_fini = ffi.Int32 Function(
+  ffi.Pointer<rmw_names_and_types_t> names_and_types,
+);
+
+typedef _dart_rmw_names_and_types_fini = int Function(
+  ffi.Pointer<rmw_names_and_types_t> names_and_types,
+);
+
+typedef _c_rmw_get_topic_names_and_types = ffi.Int32 Function(
+  ffi.Pointer<rmw_node_t> node,
+  ffi.Pointer<rcutils_allocator_t> allocator,
+  ffi.Uint8 no_demangle,
+  ffi.Pointer<rmw_names_and_types_t> topic_names_and_types,
+);
+
+typedef _dart_rmw_get_topic_names_and_types = int Function(
+  ffi.Pointer<rmw_node_t> node,
+  ffi.Pointer<rcutils_allocator_t> allocator,
+  int no_demangle,
+  ffi.Pointer<rmw_names_and_types_t> topic_names_and_types,
+);
+
+typedef _c_rcl_lexer_analyze = ffi.Int32 Function(
+  ffi.Pointer<ffi.Int8> text,
+  ffi.Pointer<ffi.Int32> lexeme,
+  ffi.Pointer<ffi.Uint64> length,
+);
+
+typedef _dart_rcl_lexer_analyze = int Function(
+  ffi.Pointer<ffi.Int8> text,
+  ffi.Pointer<ffi.Int32> lexeme,
+  ffi.Pointer<ffi.Uint64> length,
+);
+
+typedef _c_rcl_init = ffi.Int32 Function(
+  ffi.Int32 argc,
+  ffi.Pointer<ffi.Pointer<ffi.Int8>> argv,
+  ffi.Pointer<rcl_init_options_t> options,
+  ffi.Pointer<rcl_context_t> context,
+);
+
+typedef _dart_rcl_init = int Function(
+  int argc,
+  ffi.Pointer<ffi.Pointer<ffi.Int8>> argv,
+  ffi.Pointer<rcl_init_options_t> options,
+  ffi.Pointer<rcl_context_t> context,
+);
+
+typedef _c_rcl_shutdown = ffi.Int32 Function(
+  ffi.Pointer<rcl_context_t> context,
+);
+
+typedef _dart_rcl_shutdown = int Function(
+  ffi.Pointer<rcl_context_t> context,
+);
+
 typedef _c_rcl_get_zero_initialized_wait_set = rcl_wait_set_t Function();
 
 typedef _dart_rcl_get_zero_initialized_wait_set = rcl_wait_set_t Function();
@@ -18191,382 +16060,10 @@ typedef _dart_rcl_wait = int Function(
   int timeout,
 );
 
-typedef _c_rcl_init = ffi.Int32 Function(
-  ffi.Int32 argc,
-  ffi.Pointer<ffi.Pointer<ffi.Int8>> argv,
-  ffi.Pointer<rcl_init_options_t> options,
-  ffi.Pointer<rcl_context_t> context,
-);
-
-typedef _dart_rcl_init = int Function(
-  int argc,
-  ffi.Pointer<ffi.Pointer<ffi.Int8>> argv,
-  ffi.Pointer<rcl_init_options_t> options,
-  ffi.Pointer<rcl_context_t> context,
-);
-
-typedef _c_rcl_shutdown = ffi.Int32 Function(
-  ffi.Pointer<rcl_context_t> context,
-);
-
-typedef _dart_rcl_shutdown = int Function(
-  ffi.Pointer<rcl_context_t> context,
-);
-
-typedef _c_rcl_validate_topic_name = ffi.Int32 Function(
-  ffi.Pointer<ffi.Int8> topic_name,
-  ffi.Pointer<ffi.Int32> validation_result,
-  ffi.Pointer<ffi.Uint64> invalid_index,
-);
-
-typedef _dart_rcl_validate_topic_name = int Function(
-  ffi.Pointer<ffi.Int8> topic_name,
-  ffi.Pointer<ffi.Int32> validation_result,
-  ffi.Pointer<ffi.Uint64> invalid_index,
-);
-
-typedef _c_rcl_validate_topic_name_with_size = ffi.Int32 Function(
-  ffi.Pointer<ffi.Int8> topic_name,
-  ffi.Uint64 topic_name_length,
-  ffi.Pointer<ffi.Int32> validation_result,
-  ffi.Pointer<ffi.Uint64> invalid_index,
-);
-
-typedef _dart_rcl_validate_topic_name_with_size = int Function(
-  ffi.Pointer<ffi.Int8> topic_name,
-  int topic_name_length,
-  ffi.Pointer<ffi.Int32> validation_result,
-  ffi.Pointer<ffi.Uint64> invalid_index,
-);
-
-typedef _c_rcl_topic_name_validation_result_string = ffi.Pointer<ffi.Int8>
-    Function(
-  ffi.Int32 validation_result,
-);
-
-typedef _dart_rcl_topic_name_validation_result_string = ffi.Pointer<ffi.Int8>
-    Function(
-  int validation_result,
-);
-
-typedef _c_rcl_logging_configure = ffi.Int32 Function(
-  ffi.Pointer<rcl_arguments_t> global_args,
-  ffi.Pointer<rcutils_allocator_t> allocator,
-);
-
-typedef _dart_rcl_logging_configure = int Function(
-  ffi.Pointer<rcl_arguments_t> global_args,
-  ffi.Pointer<rcutils_allocator_t> allocator,
-);
-
-typedef _c_rcl_logging_fini = ffi.Int32 Function();
-
-typedef _dart_rcl_logging_fini = int Function();
-
-typedef _c_rcl_logging_rosout_enabled = ffi.Uint8 Function();
-
-typedef _dart_rcl_logging_rosout_enabled = int Function();
-
-typedef _c_rcl_expand_topic_name = ffi.Int32 Function(
-  ffi.Pointer<ffi.Int8> input_topic_name,
-  ffi.Pointer<ffi.Int8> node_name,
-  ffi.Pointer<ffi.Int8> node_namespace,
-  ffi.Pointer<rcutils_string_map_t> substitutions,
-  rcutils_allocator_t allocator,
-  ffi.Pointer<ffi.Pointer<ffi.Int8>> output_topic_name,
-);
-
-typedef _dart_rcl_expand_topic_name = int Function(
-  ffi.Pointer<ffi.Int8> input_topic_name,
-  ffi.Pointer<ffi.Int8> node_name,
-  ffi.Pointer<ffi.Int8> node_namespace,
-  ffi.Pointer<rcutils_string_map_t> substitutions,
-  rcutils_allocator_t allocator,
-  ffi.Pointer<ffi.Pointer<ffi.Int8>> output_topic_name,
-);
-
-typedef _c_rcl_get_default_topic_name_substitutions = ffi.Int32 Function(
-  ffi.Pointer<rcutils_string_map_t> string_map,
-);
-
-typedef _dart_rcl_get_default_topic_name_substitutions = int Function(
-  ffi.Pointer<rcutils_string_map_t> string_map,
-);
-
-typedef _c_rcl_lexer_analyze = ffi.Int32 Function(
-  ffi.Pointer<ffi.Int8> text,
-  ffi.Pointer<ffi.Int32> lexeme,
-  ffi.Pointer<ffi.Uint64> length,
-);
-
-typedef _dart_rcl_lexer_analyze = int Function(
-  ffi.Pointer<ffi.Int8> text,
-  ffi.Pointer<ffi.Int32> lexeme,
-  ffi.Pointer<ffi.Uint64> length,
-);
-
-typedef _c_rcl_get_zero_initialized_lexer_lookahead2 = rcl_lexer_lookahead2_t
-    Function();
-
-typedef _dart_rcl_get_zero_initialized_lexer_lookahead2 = rcl_lexer_lookahead2_t
-    Function();
-
-typedef _c_rcl_lexer_lookahead2_init = ffi.Int32 Function(
-  ffi.Pointer<rcl_lexer_lookahead2_t> buffer,
-  ffi.Pointer<ffi.Int8> text,
-  rcutils_allocator_t allocator,
-);
-
-typedef _dart_rcl_lexer_lookahead2_init = int Function(
-  ffi.Pointer<rcl_lexer_lookahead2_t> buffer,
-  ffi.Pointer<ffi.Int8> text,
-  rcutils_allocator_t allocator,
-);
-
-typedef _c_rcl_lexer_lookahead2_fini = ffi.Int32 Function(
-  ffi.Pointer<rcl_lexer_lookahead2_t> buffer,
-);
-
-typedef _dart_rcl_lexer_lookahead2_fini = int Function(
-  ffi.Pointer<rcl_lexer_lookahead2_t> buffer,
-);
-
-typedef _c_rcl_lexer_lookahead2_peek = ffi.Int32 Function(
-  ffi.Pointer<rcl_lexer_lookahead2_t> buffer,
-  ffi.Pointer<ffi.Int32> next_type,
-);
-
-typedef _dart_rcl_lexer_lookahead2_peek = int Function(
-  ffi.Pointer<rcl_lexer_lookahead2_t> buffer,
-  ffi.Pointer<ffi.Int32> next_type,
-);
-
-typedef _c_rcl_lexer_lookahead2_peek2 = ffi.Int32 Function(
-  ffi.Pointer<rcl_lexer_lookahead2_t> buffer,
-  ffi.Pointer<ffi.Int32> next_type1,
-  ffi.Pointer<ffi.Int32> next_type2,
-);
-
-typedef _dart_rcl_lexer_lookahead2_peek2 = int Function(
-  ffi.Pointer<rcl_lexer_lookahead2_t> buffer,
-  ffi.Pointer<ffi.Int32> next_type1,
-  ffi.Pointer<ffi.Int32> next_type2,
-);
-
-typedef _c_rcl_lexer_lookahead2_accept = ffi.Int32 Function(
-  ffi.Pointer<rcl_lexer_lookahead2_t> buffer,
-  ffi.Pointer<ffi.Pointer<ffi.Int8>> lexeme_text,
-  ffi.Pointer<ffi.Uint64> lexeme_text_length,
-);
-
-typedef _dart_rcl_lexer_lookahead2_accept = int Function(
-  ffi.Pointer<rcl_lexer_lookahead2_t> buffer,
-  ffi.Pointer<ffi.Pointer<ffi.Int8>> lexeme_text,
-  ffi.Pointer<ffi.Uint64> lexeme_text_length,
-);
-
-typedef _c_rcl_lexer_lookahead2_expect = ffi.Int32 Function(
-  ffi.Pointer<rcl_lexer_lookahead2_t> buffer,
-  ffi.Int32 type,
-  ffi.Pointer<ffi.Pointer<ffi.Int8>> lexeme_text,
-  ffi.Pointer<ffi.Uint64> lexeme_text_length,
-);
-
-typedef _dart_rcl_lexer_lookahead2_expect = int Function(
-  ffi.Pointer<rcl_lexer_lookahead2_t> buffer,
-  int type,
-  ffi.Pointer<ffi.Pointer<ffi.Int8>> lexeme_text,
-  ffi.Pointer<ffi.Uint64> lexeme_text_length,
-);
-
-typedef _c_rcl_lexer_lookahead2_get_text = ffi.Pointer<ffi.Int8> Function(
-  ffi.Pointer<rcl_lexer_lookahead2_t> buffer,
-);
-
-typedef _dart_rcl_lexer_lookahead2_get_text = ffi.Pointer<ffi.Int8> Function(
-  ffi.Pointer<rcl_lexer_lookahead2_t> buffer,
-);
-
-typedef _c_rcl_localhost_only = ffi.Uint8 Function();
-
-typedef _dart_rcl_localhost_only = int Function();
-
-typedef _c_rcl_logging_rosout_init = ffi.Int32 Function(
-  ffi.Pointer<rcutils_allocator_t> allocator,
-);
-
-typedef _dart_rcl_logging_rosout_init = int Function(
-  ffi.Pointer<rcutils_allocator_t> allocator,
-);
-
-typedef _c_rcl_logging_rosout_fini = ffi.Int32 Function();
-
-typedef _dart_rcl_logging_rosout_fini = int Function();
-
-typedef _c_rcl_logging_rosout_init_publisher_for_node = ffi.Int32 Function(
-  ffi.Pointer<rcl_node_t> node,
-);
-
-typedef _dart_rcl_logging_rosout_init_publisher_for_node = int Function(
-  ffi.Pointer<rcl_node_t> node,
-);
-
-typedef _c_rcl_logging_rosout_fini_publisher_for_node = ffi.Int32 Function(
-  ffi.Pointer<rcl_node_t> node,
-);
-
-typedef _dart_rcl_logging_rosout_fini_publisher_for_node = int Function(
-  ffi.Pointer<rcl_node_t> node,
-);
-
-typedef _c_rcl_logging_rosout_output_handler = ffi.Void Function(
-  ffi.Pointer<rcutils_log_location_t> location,
-  ffi.Int32 severity,
-  ffi.Pointer<ffi.Int8> name,
-  ffi.Int64 timestamp,
-  ffi.Pointer<ffi.Int8> format,
-  ffi.Pointer<ffi.Pointer<__va_list_tag>> args,
-);
-
-typedef _dart_rcl_logging_rosout_output_handler = void Function(
-  ffi.Pointer<rcutils_log_location_t> location,
-  int severity,
-  ffi.Pointer<ffi.Int8> name,
-  int timestamp,
-  ffi.Pointer<ffi.Int8> format,
-  ffi.Pointer<ffi.Pointer<__va_list_tag>> args,
-);
-
-typedef _c_rcl_logging_external_initialize = ffi.Int32 Function(
-  ffi.Pointer<ffi.Int8> config_file,
-  rcutils_allocator_t allocator,
-);
-
-typedef _dart_rcl_logging_external_initialize = int Function(
-  ffi.Pointer<ffi.Int8> config_file,
-  rcutils_allocator_t allocator,
-);
-
-typedef _c_rcl_logging_external_shutdown = ffi.Int32 Function();
-
-typedef _dart_rcl_logging_external_shutdown = int Function();
-
-typedef _c_rcl_logging_external_log = ffi.Void Function(
-  ffi.Int32 severity,
-  ffi.Pointer<ffi.Int8> name,
-  ffi.Pointer<ffi.Int8> msg,
-);
-
-typedef _dart_rcl_logging_external_log = void Function(
-  int severity,
-  ffi.Pointer<ffi.Int8> name,
-  ffi.Pointer<ffi.Int8> msg,
-);
-
-typedef _c_rcl_logging_external_set_logger_level = ffi.Int32 Function(
-  ffi.Pointer<ffi.Int8> name,
-  ffi.Int32 level,
-);
-
-typedef _dart_rcl_logging_external_set_logger_level = int Function(
-  ffi.Pointer<ffi.Int8> name,
-  int level,
-);
-
-typedef _c_rcl_get_zero_initialized_remap = rcl_remap_t Function();
-
-typedef _dart_rcl_get_zero_initialized_remap = rcl_remap_t Function();
-
-typedef _c_rcl_remap_topic_name = ffi.Int32 Function(
-  ffi.Pointer<rcl_arguments_t> local_arguments,
-  ffi.Pointer<rcl_arguments_t> global_arguments,
-  ffi.Pointer<ffi.Int8> topic_name,
-  ffi.Pointer<ffi.Int8> node_name,
-  ffi.Pointer<ffi.Int8> node_namespace,
-  rcutils_allocator_t allocator,
-  ffi.Pointer<ffi.Pointer<ffi.Int8>> output_name,
-);
-
-typedef _dart_rcl_remap_topic_name = int Function(
-  ffi.Pointer<rcl_arguments_t> local_arguments,
-  ffi.Pointer<rcl_arguments_t> global_arguments,
-  ffi.Pointer<ffi.Int8> topic_name,
-  ffi.Pointer<ffi.Int8> node_name,
-  ffi.Pointer<ffi.Int8> node_namespace,
-  rcutils_allocator_t allocator,
-  ffi.Pointer<ffi.Pointer<ffi.Int8>> output_name,
-);
-
-typedef _c_rcl_remap_service_name = ffi.Int32 Function(
-  ffi.Pointer<rcl_arguments_t> local_arguments,
-  ffi.Pointer<rcl_arguments_t> global_arguments,
-  ffi.Pointer<ffi.Int8> service_name,
-  ffi.Pointer<ffi.Int8> node_name,
-  ffi.Pointer<ffi.Int8> node_namespace,
-  rcutils_allocator_t allocator,
-  ffi.Pointer<ffi.Pointer<ffi.Int8>> output_name,
-);
-
-typedef _dart_rcl_remap_service_name = int Function(
-  ffi.Pointer<rcl_arguments_t> local_arguments,
-  ffi.Pointer<rcl_arguments_t> global_arguments,
-  ffi.Pointer<ffi.Int8> service_name,
-  ffi.Pointer<ffi.Int8> node_name,
-  ffi.Pointer<ffi.Int8> node_namespace,
-  rcutils_allocator_t allocator,
-  ffi.Pointer<ffi.Pointer<ffi.Int8>> output_name,
-);
-
-typedef _c_rcl_remap_node_name = ffi.Int32 Function(
-  ffi.Pointer<rcl_arguments_t> local_arguments,
-  ffi.Pointer<rcl_arguments_t> global_arguments,
-  ffi.Pointer<ffi.Int8> node_name,
-  rcutils_allocator_t allocator,
-  ffi.Pointer<ffi.Pointer<ffi.Int8>> output_name,
-);
-
-typedef _dart_rcl_remap_node_name = int Function(
-  ffi.Pointer<rcl_arguments_t> local_arguments,
-  ffi.Pointer<rcl_arguments_t> global_arguments,
-  ffi.Pointer<ffi.Int8> node_name,
-  rcutils_allocator_t allocator,
-  ffi.Pointer<ffi.Pointer<ffi.Int8>> output_name,
-);
-
-typedef _c_rcl_remap_node_namespace = ffi.Int32 Function(
-  ffi.Pointer<rcl_arguments_t> local_arguments,
-  ffi.Pointer<rcl_arguments_t> global_arguments,
-  ffi.Pointer<ffi.Int8> node_name,
-  rcutils_allocator_t allocator,
-  ffi.Pointer<ffi.Pointer<ffi.Int8>> output_namespace,
-);
-
-typedef _dart_rcl_remap_node_namespace = int Function(
-  ffi.Pointer<rcl_arguments_t> local_arguments,
-  ffi.Pointer<rcl_arguments_t> global_arguments,
-  ffi.Pointer<ffi.Int8> node_name,
-  rcutils_allocator_t allocator,
-  ffi.Pointer<ffi.Pointer<ffi.Int8>> output_namespace,
-);
-
-typedef _c_rcl_remap_fini = ffi.Int32 Function(
-  ffi.Pointer<rcl_remap_t> remap,
-);
-
-typedef _dart_rcl_remap_fini = int Function(
-  ffi.Pointer<rcl_remap_t> remap,
-);
-
-typedef _c_rcl_get_secure_root = ffi.Pointer<ffi.Int8> Function(
-  ffi.Pointer<ffi.Int8> node_name,
-  ffi.Pointer<ffi.Int8> node_namespace,
-  ffi.Pointer<rcutils_allocator_t> allocator,
-);
-
-typedef _dart_rcl_get_secure_root = ffi.Pointer<ffi.Int8> Function(
-  ffi.Pointer<ffi.Int8> node_name,
-  ffi.Pointer<ffi.Int8> node_namespace,
-  ffi.Pointer<rcutils_allocator_t> allocator,
+typedef rosidl_service_typesupport_handle_function
+    = ffi.Pointer<rosidl_service_type_support_t> Function(
+  ffi.Pointer<rosidl_service_type_support_t>,
+  ffi.Pointer<ffi.Int8>,
 );
 
 typedef _typedefC_1 = ffi.Pointer<ffi.Void> Function(
@@ -18589,12 +16086,6 @@ typedef _typedefC_4 = ffi.Pointer<ffi.Void> Function(
   ffi.Uint64,
   ffi.Uint64,
   ffi.Pointer<ffi.Void>,
-);
-
-typedef rosidl_service_typesupport_handle_function
-    = ffi.Pointer<rosidl_service_type_support_t> Function(
-  ffi.Pointer<rosidl_service_type_support_t>,
-  ffi.Pointer<ffi.Int8>,
 );
 
 typedef rosidl_message_typesupport_handle_function

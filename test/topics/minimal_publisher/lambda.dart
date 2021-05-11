@@ -1,8 +1,10 @@
 import 'package:rcldart/rcldart.dart';
 import 'package:dartx/dartx.dart';
-/* This example creates a subclass of Node and uses a fancy C++11 lambda
- * function to shorten the callback syntax, at the expense of making the
- * code somewhat more difficult to understand at first glance. */
+
+/// Example is derived from https://github.com/ros2/examples/tree/master/rclcpp/topics/minimal_publisher
+/// This example creates a subclass of Node and uses a lambda
+/// function to shorten the callback syntax, at the expense of making the
+/// code somewhat more difficult to understand at first glance.
 
 class MinimalPublisher  extends Node
 {
