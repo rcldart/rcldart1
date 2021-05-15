@@ -4,7 +4,55 @@ import 'package:rcldart/rcldart.dart';
 import 'package:ffi/ffi.dart';
 
 Future<void> main() async {
-  final rcl = RCL(DynamicLibrary.open('/opt/ros/eloquent/lib/librcl.so'));
+  final prefix = '/Users/timwhiting/ros2_galactic/install';
+  DynamicLibrary.open('$prefix/rcutils/lib/librcutils.$platformExtension');
+  DynamicLibrary.open('$prefix/rcpputils/lib/librcpputils.$platformExtension');
+  DynamicLibrary.open(
+      '$prefix/rosidl_runtime_c/lib/librosidl_runtime_c.$platformExtension');
+
+  DynamicLibrary.open('$prefix/rmw/lib/librmw.$platformExtension');
+  DynamicLibrary.open(
+      '$prefix/rosidl_typesupport_introspection_c/lib/librosidl_typesupport_introspection_c.$platformExtension');
+  DynamicLibrary.open(
+      '$prefix/rosidl_typesupport_introspection_cpp/lib/librosidl_typesupport_introspection_cpp.$platformExtension');
+  DynamicLibrary.open(
+      '$prefix/rosidl_typesupport_c/lib/librosidl_typesupport_c.$platformExtension');
+  DynamicLibrary.open(
+      '$prefix/rosidl_typesupport_cpp/lib/librosidl_typesupport_cpp.$platformExtension');
+
+  DynamicLibrary.open(
+      '$prefix/builtin_interfaces/lib/libbuiltin_interfaces__rosidl_typesupport_c.$platformExtension');
+  DynamicLibrary.open(
+      '$prefix/builtin_interfaces/lib/libbuiltin_interfaces__rosidl_typesupport_cpp.$platformExtension');
+
+  DynamicLibrary.open(
+      '$prefix/builtin_interfaces/lib/libbuiltin_interfaces__rosidl_generator_c.$platformExtension');
+
+  DynamicLibrary.open(
+      '$prefix/builtin_interfaces/lib/libbuiltin_interfaces__rosidl_typesupport_introspection_c.$platformExtension');
+  DynamicLibrary.open(
+      '$prefix/builtin_interfaces/lib/libbuiltin_interfaces__rosidl_typesupport_introspection_cpp.$platformExtension');
+
+  DynamicLibrary.open(
+      '$prefix/rcl_interfaces/lib/librcl_interfaces__rosidl_generator_c.$platformExtension');
+
+  DynamicLibrary.open(
+      '$prefix/rcl_interfaces/lib/librcl_interfaces__rosidl_typesupport_introspection_c.$platformExtension');
+  DynamicLibrary.open(
+      '$prefix/rcl_interfaces/lib/librcl_interfaces__rosidl_typesupport_introspection_cpp.$platformExtension');
+  DynamicLibrary.open(
+      '$prefix/rcl_interfaces/lib/librcl_interfaces__rosidl_typesupport_c.$platformExtension');
+  DynamicLibrary.open(
+      '$prefix/rcl_interfaces/lib/librcl_interfaces__rosidl_typesupport_cpp.$platformExtension');
+
+  DynamicLibrary.open('$prefix/libyaml_vendor/lib/libyaml.$platformExtension');
+  DynamicLibrary.open(
+      '$prefix/rcl_yaml_param_parser/lib/librcl_yaml_param_parser.$platformExtension');
+
+  DynamicLibrary.open(
+      '$prefix/rmw_implementation/lib/librmw_implementation.$platformExtension');
+
+  ros2customPath = '$prefix/rcl/lib/librcl.dylib';
   final poptions =
       calloc.allocate<rcl_init_options_t>(sizeOf<rcl_init_options_t>());
   poptions.ref.impl = Pointer.fromAddress(0);
