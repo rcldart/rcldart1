@@ -4,71 +4,54 @@ import 'package:rcldart/rcldart.dart';
 import 'package:ffi/ffi.dart';
 
 Future<void> main() async {
-  final prefix = '/Users/timwhiting/ros2_galactic/install';
-  DynamicLibrary.open('$prefix/rcutils/lib/librcutils.$platformExtension');
-  DynamicLibrary.open('$prefix/rcpputils/lib/librcpputils.$platformExtension');
-  DynamicLibrary.open(
-      '$prefix/rosidl_runtime_c/lib/librosidl_runtime_c.$platformExtension');
-
-  DynamicLibrary.open('$prefix/rmw/lib/librmw.$platformExtension');
-  DynamicLibrary.open(
-      '$prefix/rosidl_typesupport_introspection_c/lib/librosidl_typesupport_introspection_c.$platformExtension');
-  DynamicLibrary.open(
-      '$prefix/rosidl_typesupport_introspection_cpp/lib/librosidl_typesupport_introspection_cpp.$platformExtension');
-  DynamicLibrary.open(
-      '$prefix/rosidl_typesupport_c/lib/librosidl_typesupport_c.$platformExtension');
-  DynamicLibrary.open(
-      '$prefix/rosidl_typesupport_cpp/lib/librosidl_typesupport_cpp.$platformExtension');
-
-  DynamicLibrary.open(
-      '$prefix/builtin_interfaces/lib/libbuiltin_interfaces__rosidl_typesupport_c.$platformExtension');
-  DynamicLibrary.open(
-      '$prefix/builtin_interfaces/lib/libbuiltin_interfaces__rosidl_typesupport_cpp.$platformExtension');
-
-  DynamicLibrary.open(
-      '$prefix/builtin_interfaces/lib/libbuiltin_interfaces__rosidl_generator_c.$platformExtension');
-
-  DynamicLibrary.open(
-      '$prefix/builtin_interfaces/lib/libbuiltin_interfaces__rosidl_typesupport_introspection_c.$platformExtension');
-  DynamicLibrary.open(
-      '$prefix/builtin_interfaces/lib/libbuiltin_interfaces__rosidl_typesupport_introspection_cpp.$platformExtension');
-
-  DynamicLibrary.open(
-      '$prefix/rcl_interfaces/lib/librcl_interfaces__rosidl_generator_c.$platformExtension');
-
-  DynamicLibrary.open(
-      '$prefix/rcl_interfaces/lib/librcl_interfaces__rosidl_typesupport_introspection_c.$platformExtension');
-  DynamicLibrary.open(
-      '$prefix/rcl_interfaces/lib/librcl_interfaces__rosidl_typesupport_introspection_cpp.$platformExtension');
-  DynamicLibrary.open(
-      '$prefix/rcl_interfaces/lib/librcl_interfaces__rosidl_typesupport_c.$platformExtension');
-  DynamicLibrary.open(
-      '$prefix/rcl_interfaces/lib/librcl_interfaces__rosidl_typesupport_cpp.$platformExtension');
-
-  DynamicLibrary.open('$prefix/libyaml_vendor/lib/libyaml.$platformExtension');
-  DynamicLibrary.open(
-      '$prefix/rcl_yaml_param_parser/lib/librcl_yaml_param_parser.$platformExtension');
-
-  DynamicLibrary.open(
-      '$prefix/rmw_implementation/lib/librmw_implementation.$platformExtension');
-
-  ros2customPath = '$prefix/rcl/lib/librcl.dylib';
+  const prefix = '/Users/timwhiting/dartlibs/rcldart/libs';
+  for (final lib in [
+    'librcutils',
+    'librcpputils',
+    'librosidl_runtime_c',
+    'librosidl_typesupport_c',
+    'librosidl_typesupport_cpp',
+    'librosidl_typesupport_introspection_c',
+    'librosidl_typesupport_introspection_cpp',
+    'libbuiltin_interfaces__rosidl_generator_c',
+    'libbuiltin_interfaces__rosidl_typesupport_introspection_c',
+    'libbuiltin_interfaces__rosidl_typesupport_c',
+    'libbuiltin_interfaces__rosidl_typesupport_cpp',
+    'libbuiltin_interfaces__rosidl_typesupport_introspection_cpp',
+    'librcl_interfaces__rosidl_generator_c',
+    'librcl_interfaces__rosidl_typesupport_introspection_c',
+    'librcl_interfaces__rosidl_typesupport_c',
+    'librcl_interfaces__rosidl_typesupport_introspection_cpp',
+    'librcl_interfaces__rosidl_typesupport_cpp',
+    'libyaml',
+    'librmw',
+    'librcl_yaml_param_parser',
+    'librmw_implementation',
+    'librmw_fastrtps_cpp',
+    'librcl_logging_interface',
+    'librcl_logging_spdlog',
+    'libtracetools',
+  ]) {
+    DynamicLibrary.open('$prefix/$lib.dylib');
+  }
+  ros2customPath = '$prefix/librcl.dylib';
+  final options = rcl.rcl_get_zero_initialized_init_options();
   final poptions =
       calloc.allocate<rcl_init_options_t>(sizeOf<rcl_init_options_t>());
-  poptions.ref.impl = Pointer.fromAddress(0);
-  final pcontext = calloc.allocate<rcl_context_t>(sizeOf<rcl_context_t>());
+  poptions.ref.impl = options.impl;
   final allocator = rcl.rcutils_get_default_allocator();
   var result = rcl.rcl_init_options_init(poptions, allocator);
   print(result);
-
-  final context = rcl.rcl_get_zero_initialized_context();
-  pcontext.ref.global_arguments = context.global_arguments;
-  pcontext.ref.impl = context.impl;
-  result = rcl.rcl_init(0, Pointer.fromAddress(0), poptions, pcontext);
-  print(result);
-  await Future.delayed(const Duration(milliseconds: 1000));
-  result = rcl.rcl_shutdown(pcontext);
-  print(result);
+  if (result == 0) {
+    // final context = rcl.rcl_get_zero_initialized_context();
+    // pcontext.ref.global_arguments = context.global_arguments;
+    // pcontext.ref.impl = context.impl;
+    // result = rcl.rcl_init(0, Pointer.fromAddress(0), poptions, pcontext);
+    // print(result);
+    // await Future.delayed(const Duration(milliseconds: 1000));
+    // result = rcl.rcl_shutdown(pcontext);
+    // print(result);
+  } else {}
 
   // final node = rcl.rcl_get_zero_initialized_node();
   // final pnode = allocate<rcl_node_t>();
