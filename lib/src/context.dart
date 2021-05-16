@@ -13,16 +13,16 @@ class ContextAlreadyInitialized extends Error {
   String toString() => 'context is already initialized';
 }
 
-typedef OnShutdownCallback = Function(void);
+typedef OnShutdownCallback = Function();
 
 class Context {
-  void _deleteContext(Pointer<rcl_context_t> context) {
-    if (context != nullptr) {
-      if (rcl.rcl_context_is_valid(context)) {
+  void _deleteContext() {
+    if (_rclContext != nullptr) {
+      if (rcl.rcl_context_is_valid(_rclContext)) {
         rclDartLogger
             .error('rcl context unexpectedly not shutdown during cleanup');
       } else {
-        final ret = rcl.rcl_context_fini(context);
+        final ret = rcl.rcl_context_fini(_rclContext);
         if (ret != RCL_RET_OK) {
           final err = rcl.rcutils_get_error_string().str;
           rclDartLogger.error('failed to finalize context: $err');
@@ -30,9 +30,9 @@ class Context {
           rcl.rcutils_reset_error();
         }
       }
-      calloc.free(context);
+      calloc.free(_rclContext);
       // ignore: parameter_assignments
-      context = nullptr;
+      _rclContext = nullptr;
     }
   }
 
@@ -54,24 +54,61 @@ class Context {
       throwFromRclError(ret, prefix: 'failed to initialize rcl');
     }
 
-    _deleteContext(_rclContext);
+    _deleteContext();
     if (initOptions.autoInitializeLogging) {
       // TODO: Logging
     }
-    try {} on Exception catch (e) {}
+    try {} on Exception catch (e) {
+      final ret = rcl.rcl_shutdown(_rclContext);
+      _rclContext = nullptr;
+      if (ret != RCL_RET_OK) {
+        throwFromRclError(
+          ret,
+          prefix: 'While handling $e another exception was thrown',
+        );
+      }
+    }
   }
 
-  bool get isValid => throw UnimplementedError();
-  InitOptions get initOptions => throw UnimplementedError();
-  int get domainId => throw UnimplementedError();
-  String get shutdownReason => throw UnimplementedError();
-  bool shutdown(String reason) => throw UnimplementedError();
-  OnShutdownCallback onShutdown(OnShutdownCallback callback) =>
-      throw UnimplementedError();
-  List<OnShutdownCallback> get onShutdownCallbacks =>
-      throw UnimplementedError();
-  rcl_context_t get rclContext => throw UnimplementedError();
-  bool sleepFor(Duration duration) => throw UnimplementedError();
+  bool get isValid {
+    if (_rclContext == nullptr) {
+      return false;
+    }
+    return rcl.rcl_context_is_valid(_rclContext);
+  }
+
+  InitOptions get initOptions => _initOptions!;
+  String get shutdownReason => _shutdownReason;
+  bool shutdown(String reason) {
+    if (!isValid) {
+      return false;
+    }
+    final ret = rcl.rcl_shutdown(_rclContext);
+    if (ret != RCL_RET_OK) {
+      throwFromRclError(ret);
+    }
+    _shutdownReason = reason;
+    for (final callback in _onShutdownCallbacks) {
+      callback();
+    }
+    interruptAllSleepFor();
+    // TODO: weak contexts
+    // TODO: Shut down logging
+    return true;
+  }
+
+  OnShutdownCallback onShutdown(OnShutdownCallback callback) {
+    _onShutdownCallbacks.add(callback);
+    return callback;
+  }
+
+  List<OnShutdownCallback> get onShutdownCallbacks => _onShutdownCallbacks;
+  Pointer<rcl_context_t> get rclContext => _rclContext;
+  Future<bool> sleepFor(Duration duration) async {
+    await Future.delayed(duration);
+    return isValid;
+  }
+
   void interruptAllSleepFor() => throw UnimplementedError();
   SubContext getSubContext<SubContext>(List<dynamic> args) {
     throw UnimplementedError();
@@ -84,7 +121,12 @@ class Context {
     } on Exception catch (e) {} catch (o) {} // TODO: Log exceptions
   }
 
-  void _cleanUp() => throw UnimplementedError();
+  void _cleanUp() {
+    _shutdownReason = '';
+    _rclContext = nullptr;
+    // TODO: Subcontexts
+  }
+
   Pointer<rcl_context_t> _rclContext = nullptr;
   InitOptions? _initOptions;
   String _shutdownReason = '';
