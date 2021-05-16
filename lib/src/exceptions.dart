@@ -14,4 +14,3 @@ Never throwFromRclError(
 }) =>
     throw UnimplementedError();
 // TODO: Figure what this really is
-typedef rcl_error_state_t = void;

@@ -33,7 +33,7 @@ class InitOptions {
   /// Whether logging should be initialized when `Context.init` is called.
   bool autoInitializeLogging = true;
 
-  void finalizeInitOptions() {
+  void finalize() {
     final ret = rcl.rcl_init_options_fini(initOptions);
     if (RCL_RET_OK != ret) {
       // TODO: Error things
