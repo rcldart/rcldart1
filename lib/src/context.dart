@@ -135,3 +135,7 @@ class Context {
 }
 
 List<Context> getContexts() => throw UnimplementedError();
+
+class DefaultContext extends Context {}
+
+final globalDefaultContext = DefaultContext();
