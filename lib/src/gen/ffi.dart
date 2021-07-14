@@ -10,6 +10,4 @@ final rcl = RCL(
 );
 
 // ignore_for_file: camel_case_types
-typedef rcl_allocator_t = rcutils_allocator_t;
-typedef rcl_ret_t = int;
 typedef rcl_error_state_t = rcutils_error_state_t;

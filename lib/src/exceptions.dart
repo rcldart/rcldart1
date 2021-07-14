@@ -44,7 +44,7 @@ class RCLErrorBase {
       : ret = base.ret,
         errorState = base.errorState;
 
-  final rcl_ret_t ret;
+  final int ret;
   final Pointer<rcl_error_state_t> errorState;
   String get message => throw UnimplementedError();
   String get file => throw UnimplementedError();
@@ -98,7 +98,7 @@ class InvalidQosOverridesException implements Exception {}
 class QoSCheckCompatibleException implements Exception {}
 
 Never throwFromRclError(
-  rcl_ret_t ret, {
+  int ret, {
   String prefix = '',
   Pointer<rcl_error_state_t>? errorState,
   void Function()? resetError,
@@ -107,7 +107,7 @@ Never throwFromRclError(
     throw fromRCLError(ret, prefix, errorState, resetError);
 
 RCLErrorBase fromRCLError(
-  rcl_ret_t ret,
+  int ret,
   String prefix,
   Pointer<rcl_error_state_t>? errorState,
   void Function()? resetError,

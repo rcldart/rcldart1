@@ -29,12 +29,16 @@ class RCL {
     );
   }
 
-  late final _get_service_typesupport_handle_ptr =
-      _lookup<ffi.NativeFunction<_c_get_service_typesupport_handle>>(
-          'get_service_typesupport_handle');
-  late final _dart_get_service_typesupport_handle
-      _get_service_typesupport_handle = _get_service_typesupport_handle_ptr
-          .asFunction<_dart_get_service_typesupport_handle>();
+  late final _get_service_typesupport_handlePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<rosidl_service_type_support_t> Function(
+              ffi.Pointer<rosidl_service_type_support_t>,
+              ffi.Pointer<ffi.Int8>)>>('get_service_typesupport_handle');
+  late final _get_service_typesupport_handle =
+      _get_service_typesupport_handlePtr.asFunction<
+          ffi.Pointer<rosidl_service_type_support_t> Function(
+              ffi.Pointer<rosidl_service_type_support_t>,
+              ffi.Pointer<ffi.Int8>)>();
 
   ffi.Pointer<rosidl_service_type_support_t>
       get_service_typesupport_handle_function(
@@ -47,13 +51,17 @@ class RCL {
     );
   }
 
-  late final _get_service_typesupport_handle_function_ptr =
-      _lookup<ffi.NativeFunction<_c_get_service_typesupport_handle_function>>(
-          'get_service_typesupport_handle_function');
-  late final _dart_get_service_typesupport_handle_function
-      _get_service_typesupport_handle_function =
-      _get_service_typesupport_handle_function_ptr
-          .asFunction<_dart_get_service_typesupport_handle_function>();
+  late final _get_service_typesupport_handle_functionPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Pointer<rosidl_service_type_support_t> Function(
+                  ffi.Pointer<rosidl_service_type_support_t>,
+                  ffi.Pointer<ffi.Int8>)>>(
+      'get_service_typesupport_handle_function');
+  late final _get_service_typesupport_handle_function =
+      _get_service_typesupport_handle_functionPtr.asFunction<
+          ffi.Pointer<rosidl_service_type_support_t> Function(
+              ffi.Pointer<rosidl_service_type_support_t>,
+              ffi.Pointer<ffi.Int8>)>();
 
   /// Return a zero initialized allocator.
   /// /**
@@ -63,13 +71,12 @@ class RCL {
     return _rcutils_get_zero_initialized_allocator();
   }
 
-  late final _rcutils_get_zero_initialized_allocator_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_get_zero_initialized_allocator>>(
+  late final _rcutils_get_zero_initialized_allocatorPtr =
+      _lookup<ffi.NativeFunction<rcutils_allocator_t Function()>>(
           'rcutils_get_zero_initialized_allocator');
-  late final _dart_rcutils_get_zero_initialized_allocator
-      _rcutils_get_zero_initialized_allocator =
-      _rcutils_get_zero_initialized_allocator_ptr
-          .asFunction<_dart_rcutils_get_zero_initialized_allocator>();
+  late final _rcutils_get_zero_initialized_allocator =
+      _rcutils_get_zero_initialized_allocatorPtr
+          .asFunction<rcutils_allocator_t Function()>();
 
   /// Return a properly initialized rcutils_allocator_t with default values.
   /// /**
@@ -93,12 +100,11 @@ class RCL {
     return _rcutils_get_default_allocator();
   }
 
-  late final _rcutils_get_default_allocator_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_get_default_allocator>>(
+  late final _rcutils_get_default_allocatorPtr =
+      _lookup<ffi.NativeFunction<rcutils_allocator_t Function()>>(
           'rcutils_get_default_allocator');
-  late final _dart_rcutils_get_default_allocator
-      _rcutils_get_default_allocator = _rcutils_get_default_allocator_ptr
-          .asFunction<_dart_rcutils_get_default_allocator>();
+  late final _rcutils_get_default_allocator = _rcutils_get_default_allocatorPtr
+      .asFunction<rcutils_allocator_t Function()>();
 
   /// Return true if the given allocator has non-null function pointers.
   /// /**
@@ -113,12 +119,12 @@ class RCL {
         0;
   }
 
-  late final _rcutils_allocator_is_valid_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_allocator_is_valid>>(
-          'rcutils_allocator_is_valid');
-  late final _dart_rcutils_allocator_is_valid _rcutils_allocator_is_valid =
-      _rcutils_allocator_is_valid_ptr
-          .asFunction<_dart_rcutils_allocator_is_valid>();
+  late final _rcutils_allocator_is_validPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Uint8 Function(
+              ffi.Pointer<rcutils_allocator_t>)>>('rcutils_allocator_is_valid');
+  late final _rcutils_allocator_is_valid = _rcutils_allocator_is_validPtr
+      .asFunction<int Function(ffi.Pointer<rcutils_allocator_t>)>();
 
   /// Emulate the behavior of [reallocf](https://linux.die.net/man/3/reallocf).
   /// /**
@@ -137,10 +143,13 @@ class RCL {
     );
   }
 
-  late final _rcutils_reallocf_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_reallocf>>('rcutils_reallocf');
-  late final _dart_rcutils_reallocf _rcutils_reallocf =
-      _rcutils_reallocf_ptr.asFunction<_dart_rcutils_reallocf>();
+  late final _rcutils_reallocfPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(ffi.Pointer<ffi.Void>, size_t,
+              ffi.Pointer<rcutils_allocator_t>)>>('rcutils_reallocf');
+  late final _rcutils_reallocf = _rcutils_reallocfPtr.asFunction<
+      ffi.Pointer<ffi.Void> Function(
+          ffi.Pointer<ffi.Void>, int, ffi.Pointer<rcutils_allocator_t>)>();
 
   /// Format a string.
   /// /**
@@ -179,10 +188,12 @@ class RCL {
     );
   }
 
-  late final _rcutils_snprintf_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_snprintf>>('rcutils_snprintf');
-  late final _dart_rcutils_snprintf _rcutils_snprintf =
-      _rcutils_snprintf_ptr.asFunction<_dart_rcutils_snprintf>();
+  late final _rcutils_snprintfPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int32 Function(ffi.Pointer<ffi.Int8>, size_t,
+              ffi.Pointer<ffi.Int8>)>>('rcutils_snprintf');
+  late final _rcutils_snprintf = _rcutils_snprintfPtr.asFunction<
+      int Function(ffi.Pointer<ffi.Int8>, int, ffi.Pointer<ffi.Int8>)>();
 
   /// Format a string with va_list for arguments, see rcutils_snprintf().
   int rcutils_vsnprintf(
@@ -199,10 +210,16 @@ class RCL {
     );
   }
 
-  late final _rcutils_vsnprintf_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_vsnprintf>>('rcutils_vsnprintf');
-  late final _dart_rcutils_vsnprintf _rcutils_vsnprintf =
-      _rcutils_vsnprintf_ptr.asFunction<_dart_rcutils_vsnprintf>();
+  late final _rcutils_vsnprintfPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int32 Function(
+              ffi.Pointer<ffi.Int8>,
+              size_t,
+              ffi.Pointer<ffi.Int8>,
+              ffi.Pointer<__va_list_tag>)>>('rcutils_vsnprintf');
+  late final _rcutils_vsnprintf = _rcutils_vsnprintfPtr.asFunction<
+      int Function(ffi.Pointer<ffi.Int8>, int, ffi.Pointer<ffi.Int8>,
+          ffi.Pointer<__va_list_tag>)>();
 
   /// Forces initialization of thread-local storage if called in a newly created thread.
   /// /**
@@ -249,15 +266,12 @@ class RCL {
     );
   }
 
-  late final _rcutils_initialize_error_handling_thread_local_storage_ptr =
-      _lookup<
-              ffi.NativeFunction<
-                  _c_rcutils_initialize_error_handling_thread_local_storage>>(
+  late final _rcutils_initialize_error_handling_thread_local_storagePtr =
+      _lookup<ffi.NativeFunction<rcutils_ret_t Function(rcutils_allocator_t)>>(
           'rcutils_initialize_error_handling_thread_local_storage');
-  late final _dart_rcutils_initialize_error_handling_thread_local_storage
-      _rcutils_initialize_error_handling_thread_local_storage =
-      _rcutils_initialize_error_handling_thread_local_storage_ptr.asFunction<
-          _dart_rcutils_initialize_error_handling_thread_local_storage>();
+  late final _rcutils_initialize_error_handling_thread_local_storage =
+      _rcutils_initialize_error_handling_thread_local_storagePtr
+          .asFunction<int Function(rcutils_allocator_t)>();
 
   /// Set the error message, as well as the file and line on which it occurred.
   /// /**
@@ -285,22 +299,22 @@ class RCL {
     );
   }
 
-  late final _rcutils_set_error_state_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_set_error_state>>(
-          'rcutils_set_error_state');
-  late final _dart_rcutils_set_error_state _rcutils_set_error_state =
-      _rcutils_set_error_state_ptr.asFunction<_dart_rcutils_set_error_state>();
+  late final _rcutils_set_error_statePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<ffi.Int8>, ffi.Pointer<ffi.Int8>,
+              size_t)>>('rcutils_set_error_state');
+  late final _rcutils_set_error_state = _rcutils_set_error_statePtr.asFunction<
+      void Function(ffi.Pointer<ffi.Int8>, ffi.Pointer<ffi.Int8>, int)>();
 
   /// Return `true` if the error is set, otherwise `false`.
   bool rcutils_error_is_set() {
     return _rcutils_error_is_set() != 0;
   }
 
-  late final _rcutils_error_is_set_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_error_is_set>>(
-          'rcutils_error_is_set');
-  late final _dart_rcutils_error_is_set _rcutils_error_is_set =
-      _rcutils_error_is_set_ptr.asFunction<_dart_rcutils_error_is_set>();
+  late final _rcutils_error_is_setPtr =
+      _lookup<ffi.NativeFunction<ffi.Uint8 Function()>>('rcutils_error_is_set');
+  late final _rcutils_error_is_set =
+      _rcutils_error_is_setPtr.asFunction<int Function()>();
 
   /// Return an rcutils_error_state_t which was set with rcutils_set_error_state().
   /// /**
@@ -315,11 +329,11 @@ class RCL {
     return _rcutils_get_error_state();
   }
 
-  late final _rcutils_get_error_state_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_get_error_state>>(
-          'rcutils_get_error_state');
-  late final _dart_rcutils_get_error_state _rcutils_get_error_state =
-      _rcutils_get_error_state_ptr.asFunction<_dart_rcutils_get_error_state>();
+  late final _rcutils_get_error_statePtr = _lookup<
+          ffi.NativeFunction<ffi.Pointer<rcutils_error_state_t> Function()>>(
+      'rcutils_get_error_state');
+  late final _rcutils_get_error_state = _rcutils_get_error_statePtr
+      .asFunction<ffi.Pointer<rcutils_error_state_t> Function()>();
 
   /// Return the error message followed by `, at <file>:<line>` if set, else "error not set".
   /// /**
@@ -335,23 +349,21 @@ class RCL {
     return _rcutils_get_error_string();
   }
 
-  late final _rcutils_get_error_string_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_get_error_string>>(
+  late final _rcutils_get_error_stringPtr =
+      _lookup<ffi.NativeFunction<rcutils_error_string_t Function()>>(
           'rcutils_get_error_string');
-  late final _dart_rcutils_get_error_string _rcutils_get_error_string =
-      _rcutils_get_error_string_ptr
-          .asFunction<_dart_rcutils_get_error_string>();
+  late final _rcutils_get_error_string = _rcutils_get_error_stringPtr
+      .asFunction<rcutils_error_string_t Function()>();
 
   /// Reset the error state by clearing any previously set error state.
   void rcutils_reset_error() {
     return _rcutils_reset_error();
   }
 
-  late final _rcutils_reset_error_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_reset_error>>(
-          'rcutils_reset_error');
-  late final _dart_rcutils_reset_error _rcutils_reset_error =
-      _rcutils_reset_error_ptr.asFunction<_dart_rcutils_reset_error>();
+  late final _rcutils_reset_errorPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function()>>('rcutils_reset_error');
+  late final _rcutils_reset_error =
+      _rcutils_reset_errorPtr.asFunction<void Function()>();
 
   /// Return an empty array_list struct.
   /// /**
@@ -383,13 +395,12 @@ class RCL {
     return _rcutils_get_zero_initialized_array_list();
   }
 
-  late final _rcutils_get_zero_initialized_array_list_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_get_zero_initialized_array_list>>(
+  late final _rcutils_get_zero_initialized_array_listPtr =
+      _lookup<ffi.NativeFunction<rcutils_array_list_t Function()>>(
           'rcutils_get_zero_initialized_array_list');
-  late final _dart_rcutils_get_zero_initialized_array_list
-      _rcutils_get_zero_initialized_array_list =
-      _rcutils_get_zero_initialized_array_list_ptr
-          .asFunction<_dart_rcutils_get_zero_initialized_array_list>();
+  late final _rcutils_get_zero_initialized_array_list =
+      _rcutils_get_zero_initialized_array_listPtr
+          .asFunction<rcutils_array_list_t Function()>();
 
   /// Initialize an array list with a given initial capacity.
   /// /**
@@ -445,11 +456,16 @@ class RCL {
     );
   }
 
-  late final _rcutils_array_list_init_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_array_list_init>>(
-          'rcutils_array_list_init');
-  late final _dart_rcutils_array_list_init _rcutils_array_list_init =
-      _rcutils_array_list_init_ptr.asFunction<_dart_rcutils_array_list_init>();
+  late final _rcutils_array_list_initPtr = _lookup<
+      ffi.NativeFunction<
+          rcutils_ret_t Function(
+              ffi.Pointer<rcutils_array_list_t>,
+              size_t,
+              size_t,
+              ffi.Pointer<rcutils_allocator_t>)>>('rcutils_array_list_init');
+  late final _rcutils_array_list_init = _rcutils_array_list_initPtr.asFunction<
+      int Function(ffi.Pointer<rcutils_array_list_t>, int, int,
+          ffi.Pointer<rcutils_allocator_t>)>();
 
   /// Finalize an array list, reclaiming all resources.
   /// /**
@@ -479,11 +495,12 @@ class RCL {
     );
   }
 
-  late final _rcutils_array_list_fini_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_array_list_fini>>(
-          'rcutils_array_list_fini');
-  late final _dart_rcutils_array_list_fini _rcutils_array_list_fini =
-      _rcutils_array_list_fini_ptr.asFunction<_dart_rcutils_array_list_fini>();
+  late final _rcutils_array_list_finiPtr = _lookup<
+      ffi.NativeFunction<
+          rcutils_ret_t Function(
+              ffi.Pointer<rcutils_array_list_t>)>>('rcutils_array_list_fini');
+  late final _rcutils_array_list_fini = _rcutils_array_list_finiPtr
+      .asFunction<int Function(ffi.Pointer<rcutils_array_list_t>)>();
 
   /// Adds an entry to the list
   /// /**
@@ -516,11 +533,12 @@ class RCL {
     );
   }
 
-  late final _rcutils_array_list_add_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_array_list_add>>(
-          'rcutils_array_list_add');
-  late final _dart_rcutils_array_list_add _rcutils_array_list_add =
-      _rcutils_array_list_add_ptr.asFunction<_dart_rcutils_array_list_add>();
+  late final _rcutils_array_list_addPtr = _lookup<
+      ffi.NativeFunction<
+          rcutils_ret_t Function(ffi.Pointer<rcutils_array_list_t>,
+              ffi.Pointer<ffi.Void>)>>('rcutils_array_list_add');
+  late final _rcutils_array_list_add = _rcutils_array_list_addPtr.asFunction<
+      int Function(ffi.Pointer<rcutils_array_list_t>, ffi.Pointer<ffi.Void>)>();
 
   /// Sets an entry in the list to the provided data
   /// /**
@@ -556,11 +574,13 @@ class RCL {
     );
   }
 
-  late final _rcutils_array_list_set_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_array_list_set>>(
-          'rcutils_array_list_set');
-  late final _dart_rcutils_array_list_set _rcutils_array_list_set =
-      _rcutils_array_list_set_ptr.asFunction<_dart_rcutils_array_list_set>();
+  late final _rcutils_array_list_setPtr = _lookup<
+      ffi.NativeFunction<
+          rcutils_ret_t Function(ffi.Pointer<rcutils_array_list_t>, size_t,
+              ffi.Pointer<ffi.Void>)>>('rcutils_array_list_set');
+  late final _rcutils_array_list_set = _rcutils_array_list_setPtr.asFunction<
+      int Function(
+          ffi.Pointer<rcutils_array_list_t>, int, ffi.Pointer<ffi.Void>)>();
 
   /// Removes an entry in the list at the provided index
   /// /**
@@ -592,12 +612,12 @@ class RCL {
     );
   }
 
-  late final _rcutils_array_list_remove_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_array_list_remove>>(
-          'rcutils_array_list_remove');
-  late final _dart_rcutils_array_list_remove _rcutils_array_list_remove =
-      _rcutils_array_list_remove_ptr
-          .asFunction<_dart_rcutils_array_list_remove>();
+  late final _rcutils_array_list_removePtr = _lookup<
+      ffi.NativeFunction<
+          rcutils_ret_t Function(ffi.Pointer<rcutils_array_list_t>,
+              size_t)>>('rcutils_array_list_remove');
+  late final _rcutils_array_list_remove = _rcutils_array_list_removePtr
+      .asFunction<int Function(ffi.Pointer<rcutils_array_list_t>, int)>();
 
   /// Retrieves an entry in the list at the provided index
   /// /**
@@ -631,11 +651,13 @@ class RCL {
     );
   }
 
-  late final _rcutils_array_list_get_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_array_list_get>>(
-          'rcutils_array_list_get');
-  late final _dart_rcutils_array_list_get _rcutils_array_list_get =
-      _rcutils_array_list_get_ptr.asFunction<_dart_rcutils_array_list_get>();
+  late final _rcutils_array_list_getPtr = _lookup<
+      ffi.NativeFunction<
+          rcutils_ret_t Function(ffi.Pointer<rcutils_array_list_t>, size_t,
+              ffi.Pointer<ffi.Void>)>>('rcutils_array_list_get');
+  late final _rcutils_array_list_get = _rcutils_array_list_getPtr.asFunction<
+      int Function(
+          ffi.Pointer<rcutils_array_list_t>, int, ffi.Pointer<ffi.Void>)>();
 
   /// Retrieves the size of the provided array_list
   /// /**
@@ -658,7 +680,7 @@ class RCL {
   ///  */
   int rcutils_array_list_get_size(
     ffi.Pointer<rcutils_array_list_t> array_list,
-    ffi.Pointer<ffi.Uint64> size,
+    ffi.Pointer<size_t> size,
   ) {
     return _rcutils_array_list_get_size(
       array_list,
@@ -666,12 +688,14 @@ class RCL {
     );
   }
 
-  late final _rcutils_array_list_get_size_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_array_list_get_size>>(
-          'rcutils_array_list_get_size');
-  late final _dart_rcutils_array_list_get_size _rcutils_array_list_get_size =
-      _rcutils_array_list_get_size_ptr
-          .asFunction<_dart_rcutils_array_list_get_size>();
+  late final _rcutils_array_list_get_sizePtr = _lookup<
+      ffi.NativeFunction<
+          rcutils_ret_t Function(ffi.Pointer<rcutils_array_list_t>,
+              ffi.Pointer<size_t>)>>('rcutils_array_list_get_size');
+  late final _rcutils_array_list_get_size =
+      _rcutils_array_list_get_sizePtr.asFunction<
+          int Function(
+              ffi.Pointer<rcutils_array_list_t>, ffi.Pointer<size_t>)>();
 
   /// Return a zero initialized char array struct.
   /// /**
@@ -681,13 +705,12 @@ class RCL {
     return _rcutils_get_zero_initialized_char_array();
   }
 
-  late final _rcutils_get_zero_initialized_char_array_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_get_zero_initialized_char_array>>(
+  late final _rcutils_get_zero_initialized_char_arrayPtr =
+      _lookup<ffi.NativeFunction<rcutils_char_array_t Function()>>(
           'rcutils_get_zero_initialized_char_array');
-  late final _dart_rcutils_get_zero_initialized_char_array
-      _rcutils_get_zero_initialized_char_array =
-      _rcutils_get_zero_initialized_char_array_ptr
-          .asFunction<_dart_rcutils_get_zero_initialized_char_array>();
+  late final _rcutils_get_zero_initialized_char_array =
+      _rcutils_get_zero_initialized_char_arrayPtr
+          .asFunction<rcutils_char_array_t Function()>();
 
   /// Initialize a zero initialized char array struct.
   /// /**
@@ -716,11 +739,13 @@ class RCL {
     );
   }
 
-  late final _rcutils_char_array_init_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_char_array_init>>(
-          'rcutils_char_array_init');
-  late final _dart_rcutils_char_array_init _rcutils_char_array_init =
-      _rcutils_char_array_init_ptr.asFunction<_dart_rcutils_char_array_init>();
+  late final _rcutils_char_array_initPtr = _lookup<
+      ffi.NativeFunction<
+          rcutils_ret_t Function(ffi.Pointer<rcutils_char_array_t>, size_t,
+              ffi.Pointer<rcutils_allocator_t>)>>('rcutils_char_array_init');
+  late final _rcutils_char_array_init = _rcutils_char_array_initPtr.asFunction<
+      int Function(ffi.Pointer<rcutils_char_array_t>, int,
+          ffi.Pointer<rcutils_allocator_t>)>();
 
   /// Finalize a char array struct.
   /// /**
@@ -745,11 +770,12 @@ class RCL {
     );
   }
 
-  late final _rcutils_char_array_fini_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_char_array_fini>>(
-          'rcutils_char_array_fini');
-  late final _dart_rcutils_char_array_fini _rcutils_char_array_fini =
-      _rcutils_char_array_fini_ptr.asFunction<_dart_rcutils_char_array_fini>();
+  late final _rcutils_char_array_finiPtr = _lookup<
+      ffi.NativeFunction<
+          rcutils_ret_t Function(
+              ffi.Pointer<rcutils_char_array_t>)>>('rcutils_char_array_fini');
+  late final _rcutils_char_array_fini = _rcutils_char_array_finiPtr
+      .asFunction<int Function(ffi.Pointer<rcutils_char_array_t>)>();
 
   /// Resize the internal buffer of the char array.
   /// /**
@@ -781,12 +807,12 @@ class RCL {
     );
   }
 
-  late final _rcutils_char_array_resize_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_char_array_resize>>(
-          'rcutils_char_array_resize');
-  late final _dart_rcutils_char_array_resize _rcutils_char_array_resize =
-      _rcutils_char_array_resize_ptr
-          .asFunction<_dart_rcutils_char_array_resize>();
+  late final _rcutils_char_array_resizePtr = _lookup<
+      ffi.NativeFunction<
+          rcutils_ret_t Function(ffi.Pointer<rcutils_char_array_t>,
+              size_t)>>('rcutils_char_array_resize');
+  late final _rcutils_char_array_resize = _rcutils_char_array_resizePtr
+      .asFunction<int Function(ffi.Pointer<rcutils_char_array_t>, int)>();
 
   /// Expand the internal buffer of the char array.
   /// /**
@@ -811,13 +837,13 @@ class RCL {
     );
   }
 
-  late final _rcutils_char_array_expand_as_needed_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_char_array_expand_as_needed>>(
-          'rcutils_char_array_expand_as_needed');
-  late final _dart_rcutils_char_array_expand_as_needed
-      _rcutils_char_array_expand_as_needed =
-      _rcutils_char_array_expand_as_needed_ptr
-          .asFunction<_dart_rcutils_char_array_expand_as_needed>();
+  late final _rcutils_char_array_expand_as_neededPtr = _lookup<
+      ffi.NativeFunction<
+          rcutils_ret_t Function(ffi.Pointer<rcutils_char_array_t>,
+              size_t)>>('rcutils_char_array_expand_as_needed');
+  late final _rcutils_char_array_expand_as_needed =
+      _rcutils_char_array_expand_as_neededPtr
+          .asFunction<int Function(ffi.Pointer<rcutils_char_array_t>, int)>();
 
   /// Produce output according to format and args.
   /// /**
@@ -846,12 +872,16 @@ class RCL {
     );
   }
 
-  late final _rcutils_char_array_vsprintf_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_char_array_vsprintf>>(
-          'rcutils_char_array_vsprintf');
-  late final _dart_rcutils_char_array_vsprintf _rcutils_char_array_vsprintf =
-      _rcutils_char_array_vsprintf_ptr
-          .asFunction<_dart_rcutils_char_array_vsprintf>();
+  late final _rcutils_char_array_vsprintfPtr = _lookup<
+      ffi.NativeFunction<
+          rcutils_ret_t Function(
+              ffi.Pointer<rcutils_char_array_t>,
+              ffi.Pointer<ffi.Int8>,
+              ffi.Pointer<__va_list_tag>)>>('rcutils_char_array_vsprintf');
+  late final _rcutils_char_array_vsprintf =
+      _rcutils_char_array_vsprintfPtr.asFunction<
+          int Function(ffi.Pointer<rcutils_char_array_t>, ffi.Pointer<ffi.Int8>,
+              ffi.Pointer<__va_list_tag>)>();
 
   /// Append a string (or part of it) to the string in buffer.
   /// /**
@@ -879,12 +909,14 @@ class RCL {
     );
   }
 
-  late final _rcutils_char_array_strncat_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_char_array_strncat>>(
-          'rcutils_char_array_strncat');
-  late final _dart_rcutils_char_array_strncat _rcutils_char_array_strncat =
-      _rcutils_char_array_strncat_ptr
-          .asFunction<_dart_rcutils_char_array_strncat>();
+  late final _rcutils_char_array_strncatPtr = _lookup<
+      ffi.NativeFunction<
+          rcutils_ret_t Function(ffi.Pointer<rcutils_char_array_t>,
+              ffi.Pointer<ffi.Int8>, size_t)>>('rcutils_char_array_strncat');
+  late final _rcutils_char_array_strncat =
+      _rcutils_char_array_strncatPtr.asFunction<
+          int Function(
+              ffi.Pointer<rcutils_char_array_t>, ffi.Pointer<ffi.Int8>, int)>();
 
   /// Append a string to the string in buffer.
   /// /**
@@ -909,12 +941,14 @@ class RCL {
     );
   }
 
-  late final _rcutils_char_array_strcat_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_char_array_strcat>>(
-          'rcutils_char_array_strcat');
-  late final _dart_rcutils_char_array_strcat _rcutils_char_array_strcat =
-      _rcutils_char_array_strcat_ptr
-          .asFunction<_dart_rcutils_char_array_strcat>();
+  late final _rcutils_char_array_strcatPtr = _lookup<
+      ffi.NativeFunction<
+          rcutils_ret_t Function(ffi.Pointer<rcutils_char_array_t>,
+              ffi.Pointer<ffi.Int8>)>>('rcutils_char_array_strcat');
+  late final _rcutils_char_array_strcat =
+      _rcutils_char_array_strcatPtr.asFunction<
+          int Function(
+              ffi.Pointer<rcutils_char_array_t>, ffi.Pointer<ffi.Int8>)>();
 
   /// Copy memory to buffer.
   /// /**
@@ -940,12 +974,14 @@ class RCL {
     );
   }
 
-  late final _rcutils_char_array_memcpy_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_char_array_memcpy>>(
-          'rcutils_char_array_memcpy');
-  late final _dart_rcutils_char_array_memcpy _rcutils_char_array_memcpy =
-      _rcutils_char_array_memcpy_ptr
-          .asFunction<_dart_rcutils_char_array_memcpy>();
+  late final _rcutils_char_array_memcpyPtr = _lookup<
+      ffi.NativeFunction<
+          rcutils_ret_t Function(ffi.Pointer<rcutils_char_array_t>,
+              ffi.Pointer<ffi.Int8>, size_t)>>('rcutils_char_array_memcpy');
+  late final _rcutils_char_array_memcpy =
+      _rcutils_char_array_memcpyPtr.asFunction<
+          int Function(
+              ffi.Pointer<rcutils_char_array_t>, ffi.Pointer<ffi.Int8>, int)>();
 
   /// Copy a string to buffer.
   /// /**
@@ -968,12 +1004,14 @@ class RCL {
     );
   }
 
-  late final _rcutils_char_array_strcpy_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_char_array_strcpy>>(
-          'rcutils_char_array_strcpy');
-  late final _dart_rcutils_char_array_strcpy _rcutils_char_array_strcpy =
-      _rcutils_char_array_strcpy_ptr
-          .asFunction<_dart_rcutils_char_array_strcpy>();
+  late final _rcutils_char_array_strcpyPtr = _lookup<
+      ffi.NativeFunction<
+          rcutils_ret_t Function(ffi.Pointer<rcutils_char_array_t>,
+              ffi.Pointer<ffi.Int8>)>>('rcutils_char_array_strcpy');
+  late final _rcutils_char_array_strcpy =
+      _rcutils_char_array_strcpyPtr.asFunction<
+          int Function(
+              ffi.Pointer<rcutils_char_array_t>, ffi.Pointer<ffi.Int8>)>();
 
   /// A hashing function for a null terminated c string.
   /// /**
@@ -988,13 +1026,12 @@ class RCL {
     );
   }
 
-  late final _rcutils_hash_map_string_hash_func_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_hash_map_string_hash_func>>(
+  late final _rcutils_hash_map_string_hash_funcPtr =
+      _lookup<ffi.NativeFunction<size_t Function(ffi.Pointer<ffi.Void>)>>(
           'rcutils_hash_map_string_hash_func');
-  late final _dart_rcutils_hash_map_string_hash_func
-      _rcutils_hash_map_string_hash_func =
-      _rcutils_hash_map_string_hash_func_ptr
-          .asFunction<_dart_rcutils_hash_map_string_hash_func>();
+  late final _rcutils_hash_map_string_hash_func =
+      _rcutils_hash_map_string_hash_funcPtr
+          .asFunction<int Function(ffi.Pointer<ffi.Void>)>();
 
   /// A comparison function for a null terminated c string.
   /// /**
@@ -1011,12 +1048,13 @@ class RCL {
     );
   }
 
-  late final _rcutils_hash_map_string_cmp_func_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_hash_map_string_cmp_func>>(
-          'rcutils_hash_map_string_cmp_func');
-  late final _dart_rcutils_hash_map_string_cmp_func
-      _rcutils_hash_map_string_cmp_func = _rcutils_hash_map_string_cmp_func_ptr
-          .asFunction<_dart_rcutils_hash_map_string_cmp_func>();
+  late final _rcutils_hash_map_string_cmp_funcPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int32 Function(ffi.Pointer<ffi.Void>,
+              ffi.Pointer<ffi.Void>)>>('rcutils_hash_map_string_cmp_func');
+  late final _rcutils_hash_map_string_cmp_func =
+      _rcutils_hash_map_string_cmp_funcPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>();
 
   /// Return an empty hash_map struct.
   /// /*
@@ -1047,13 +1085,12 @@ class RCL {
     return _rcutils_get_zero_initialized_hash_map();
   }
 
-  late final _rcutils_get_zero_initialized_hash_map_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_get_zero_initialized_hash_map>>(
+  late final _rcutils_get_zero_initialized_hash_mapPtr =
+      _lookup<ffi.NativeFunction<rcutils_hash_map_t Function()>>(
           'rcutils_get_zero_initialized_hash_map');
-  late final _dart_rcutils_get_zero_initialized_hash_map
-      _rcutils_get_zero_initialized_hash_map =
-      _rcutils_get_zero_initialized_hash_map_ptr
-          .asFunction<_dart_rcutils_get_zero_initialized_hash_map>();
+  late final _rcutils_get_zero_initialized_hash_map =
+      _rcutils_get_zero_initialized_hash_mapPtr
+          .asFunction<rcutils_hash_map_t Function()>();
 
   /// Initialize a rcutils_hash_map_t, allocating space for given capacity.
   /// /**
@@ -1107,9 +1144,8 @@ class RCL {
     int initial_capacity,
     int key_size,
     int data_size,
-    ffi.Pointer<ffi.NativeFunction<rcutils_hash_map_key_hasher_t>>
-        key_hashing_func,
-    ffi.Pointer<ffi.NativeFunction<rcutils_hash_map_key_cmp_t>> key_cmp_func,
+    rcutils_hash_map_key_hasher_t key_hashing_func,
+    rcutils_hash_map_key_cmp_t key_cmp_func,
     ffi.Pointer<rcutils_allocator_t> allocator,
   ) {
     return _rcutils_hash_map_init(
@@ -1123,11 +1159,25 @@ class RCL {
     );
   }
 
-  late final _rcutils_hash_map_init_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_hash_map_init>>(
-          'rcutils_hash_map_init');
-  late final _dart_rcutils_hash_map_init _rcutils_hash_map_init =
-      _rcutils_hash_map_init_ptr.asFunction<_dart_rcutils_hash_map_init>();
+  late final _rcutils_hash_map_initPtr = _lookup<
+      ffi.NativeFunction<
+          rcutils_ret_t Function(
+              ffi.Pointer<rcutils_hash_map_t>,
+              size_t,
+              size_t,
+              size_t,
+              rcutils_hash_map_key_hasher_t,
+              rcutils_hash_map_key_cmp_t,
+              ffi.Pointer<rcutils_allocator_t>)>>('rcutils_hash_map_init');
+  late final _rcutils_hash_map_init = _rcutils_hash_map_initPtr.asFunction<
+      int Function(
+          ffi.Pointer<rcutils_hash_map_t>,
+          int,
+          int,
+          int,
+          rcutils_hash_map_key_hasher_t,
+          rcutils_hash_map_key_cmp_t,
+          ffi.Pointer<rcutils_allocator_t>)>();
 
   /// Finalize the previously initialized hash_map struct.
   /// /**
@@ -1155,11 +1205,12 @@ class RCL {
     );
   }
 
-  late final _rcutils_hash_map_fini_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_hash_map_fini>>(
-          'rcutils_hash_map_fini');
-  late final _dart_rcutils_hash_map_fini _rcutils_hash_map_fini =
-      _rcutils_hash_map_fini_ptr.asFunction<_dart_rcutils_hash_map_fini>();
+  late final _rcutils_hash_map_finiPtr = _lookup<
+      ffi.NativeFunction<
+          rcutils_ret_t Function(
+              ffi.Pointer<rcutils_hash_map_t>)>>('rcutils_hash_map_fini');
+  late final _rcutils_hash_map_fini = _rcutils_hash_map_finiPtr
+      .asFunction<int Function(ffi.Pointer<rcutils_hash_map_t>)>();
 
   /// Get the current capacity of the hash_map.
   /// /**
@@ -1187,7 +1238,7 @@ class RCL {
   ///  */
   int rcutils_hash_map_get_capacity(
     ffi.Pointer<rcutils_hash_map_t> hash_map,
-    ffi.Pointer<ffi.Uint64> capacity,
+    ffi.Pointer<size_t> capacity,
   ) {
     return _rcutils_hash_map_get_capacity(
       hash_map,
@@ -1195,12 +1246,13 @@ class RCL {
     );
   }
 
-  late final _rcutils_hash_map_get_capacity_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_hash_map_get_capacity>>(
-          'rcutils_hash_map_get_capacity');
-  late final _dart_rcutils_hash_map_get_capacity
-      _rcutils_hash_map_get_capacity = _rcutils_hash_map_get_capacity_ptr
-          .asFunction<_dart_rcutils_hash_map_get_capacity>();
+  late final _rcutils_hash_map_get_capacityPtr = _lookup<
+      ffi.NativeFunction<
+          rcutils_ret_t Function(ffi.Pointer<rcutils_hash_map_t>,
+              ffi.Pointer<size_t>)>>('rcutils_hash_map_get_capacity');
+  late final _rcutils_hash_map_get_capacity =
+      _rcutils_hash_map_get_capacityPtr.asFunction<
+          int Function(ffi.Pointer<rcutils_hash_map_t>, ffi.Pointer<size_t>)>();
 
   /// Get the current size of the hash_map.
   /// /**
@@ -1225,7 +1277,7 @@ class RCL {
   ///  */
   int rcutils_hash_map_get_size(
     ffi.Pointer<rcutils_hash_map_t> hash_map,
-    ffi.Pointer<ffi.Uint64> size,
+    ffi.Pointer<size_t> size,
   ) {
     return _rcutils_hash_map_get_size(
       hash_map,
@@ -1233,12 +1285,13 @@ class RCL {
     );
   }
 
-  late final _rcutils_hash_map_get_size_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_hash_map_get_size>>(
-          'rcutils_hash_map_get_size');
-  late final _dart_rcutils_hash_map_get_size _rcutils_hash_map_get_size =
-      _rcutils_hash_map_get_size_ptr
-          .asFunction<_dart_rcutils_hash_map_get_size>();
+  late final _rcutils_hash_map_get_sizePtr = _lookup<
+      ffi.NativeFunction<
+          rcutils_ret_t Function(ffi.Pointer<rcutils_hash_map_t>,
+              ffi.Pointer<size_t>)>>('rcutils_hash_map_get_size');
+  late final _rcutils_hash_map_get_size =
+      _rcutils_hash_map_get_sizePtr.asFunction<
+          int Function(ffi.Pointer<rcutils_hash_map_t>, ffi.Pointer<size_t>)>();
 
   /// Set a key value pair in the hash_map, increasing capacity if necessary.
   /// /**
@@ -1275,11 +1328,15 @@ class RCL {
     );
   }
 
-  late final _rcutils_hash_map_set_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_hash_map_set>>(
-          'rcutils_hash_map_set');
-  late final _dart_rcutils_hash_map_set _rcutils_hash_map_set =
-      _rcutils_hash_map_set_ptr.asFunction<_dart_rcutils_hash_map_set>();
+  late final _rcutils_hash_map_setPtr = _lookup<
+      ffi.NativeFunction<
+          rcutils_ret_t Function(
+              ffi.Pointer<rcutils_hash_map_t>,
+              ffi.Pointer<ffi.Void>,
+              ffi.Pointer<ffi.Void>)>>('rcutils_hash_map_set');
+  late final _rcutils_hash_map_set = _rcutils_hash_map_setPtr.asFunction<
+      int Function(ffi.Pointer<rcutils_hash_map_t>, ffi.Pointer<ffi.Void>,
+          ffi.Pointer<ffi.Void>)>();
 
   /// Unset a key value pair in the hash_map.
   /// /**
@@ -1313,11 +1370,12 @@ class RCL {
     );
   }
 
-  late final _rcutils_hash_map_unset_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_hash_map_unset>>(
-          'rcutils_hash_map_unset');
-  late final _dart_rcutils_hash_map_unset _rcutils_hash_map_unset =
-      _rcutils_hash_map_unset_ptr.asFunction<_dart_rcutils_hash_map_unset>();
+  late final _rcutils_hash_map_unsetPtr = _lookup<
+      ffi.NativeFunction<
+          rcutils_ret_t Function(ffi.Pointer<rcutils_hash_map_t>,
+              ffi.Pointer<ffi.Void>)>>('rcutils_hash_map_unset');
+  late final _rcutils_hash_map_unset = _rcutils_hash_map_unsetPtr.asFunction<
+      int Function(ffi.Pointer<rcutils_hash_map_t>, ffi.Pointer<ffi.Void>)>();
 
   /// Get whether or not a key exists.
   /// /**
@@ -1351,12 +1409,14 @@ class RCL {
         0;
   }
 
-  late final _rcutils_hash_map_key_exists_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_hash_map_key_exists>>(
-          'rcutils_hash_map_key_exists');
-  late final _dart_rcutils_hash_map_key_exists _rcutils_hash_map_key_exists =
-      _rcutils_hash_map_key_exists_ptr
-          .asFunction<_dart_rcutils_hash_map_key_exists>();
+  late final _rcutils_hash_map_key_existsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Uint8 Function(ffi.Pointer<rcutils_hash_map_t>,
+              ffi.Pointer<ffi.Void>)>>('rcutils_hash_map_key_exists');
+  late final _rcutils_hash_map_key_exists =
+      _rcutils_hash_map_key_existsPtr.asFunction<
+          int Function(
+              ffi.Pointer<rcutils_hash_map_t>, ffi.Pointer<ffi.Void>)>();
 
   /// Get value given a key.
   /// /**
@@ -1393,11 +1453,15 @@ class RCL {
     );
   }
 
-  late final _rcutils_hash_map_get_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_hash_map_get>>(
-          'rcutils_hash_map_get');
-  late final _dart_rcutils_hash_map_get _rcutils_hash_map_get =
-      _rcutils_hash_map_get_ptr.asFunction<_dart_rcutils_hash_map_get>();
+  late final _rcutils_hash_map_getPtr = _lookup<
+      ffi.NativeFunction<
+          rcutils_ret_t Function(
+              ffi.Pointer<rcutils_hash_map_t>,
+              ffi.Pointer<ffi.Void>,
+              ffi.Pointer<ffi.Void>)>>('rcutils_hash_map_get');
+  late final _rcutils_hash_map_get = _rcutils_hash_map_getPtr.asFunction<
+      int Function(ffi.Pointer<rcutils_hash_map_t>, ffi.Pointer<ffi.Void>,
+          ffi.Pointer<ffi.Void>)>();
 
   /// Get the next key in the hash_map, unless NULL is given, then get the first key.
   /// /**
@@ -1458,13 +1522,18 @@ class RCL {
     );
   }
 
-  late final _rcutils_hash_map_get_next_key_and_data_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_hash_map_get_next_key_and_data>>(
-          'rcutils_hash_map_get_next_key_and_data');
-  late final _dart_rcutils_hash_map_get_next_key_and_data
-      _rcutils_hash_map_get_next_key_and_data =
-      _rcutils_hash_map_get_next_key_and_data_ptr
-          .asFunction<_dart_rcutils_hash_map_get_next_key_and_data>();
+  late final _rcutils_hash_map_get_next_key_and_dataPtr = _lookup<
+          ffi.NativeFunction<
+              rcutils_ret_t Function(
+                  ffi.Pointer<rcutils_hash_map_t>,
+                  ffi.Pointer<ffi.Void>,
+                  ffi.Pointer<ffi.Void>,
+                  ffi.Pointer<ffi.Void>)>>(
+      'rcutils_hash_map_get_next_key_and_data');
+  late final _rcutils_hash_map_get_next_key_and_data =
+      _rcutils_hash_map_get_next_key_and_dataPtr.asFunction<
+          int Function(ffi.Pointer<rcutils_hash_map_t>, ffi.Pointer<ffi.Void>,
+              ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>();
 
   /// Return an empty string array struct.
   /// /**
@@ -1488,13 +1557,12 @@ class RCL {
     return _rcutils_get_zero_initialized_string_array();
   }
 
-  late final _rcutils_get_zero_initialized_string_array_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_get_zero_initialized_string_array>>(
+  late final _rcutils_get_zero_initialized_string_arrayPtr =
+      _lookup<ffi.NativeFunction<rcutils_string_array_t Function()>>(
           'rcutils_get_zero_initialized_string_array');
-  late final _dart_rcutils_get_zero_initialized_string_array
-      _rcutils_get_zero_initialized_string_array =
-      _rcutils_get_zero_initialized_string_array_ptr
-          .asFunction<_dart_rcutils_get_zero_initialized_string_array>();
+  late final _rcutils_get_zero_initialized_string_array =
+      _rcutils_get_zero_initialized_string_arrayPtr
+          .asFunction<rcutils_string_array_t Function()>();
 
   /// Initialize a string array with a given size.
   /// /**
@@ -1537,12 +1605,14 @@ class RCL {
     );
   }
 
-  late final _rcutils_string_array_init_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_string_array_init>>(
-          'rcutils_string_array_init');
-  late final _dart_rcutils_string_array_init _rcutils_string_array_init =
-      _rcutils_string_array_init_ptr
-          .asFunction<_dart_rcutils_string_array_init>();
+  late final _rcutils_string_array_initPtr = _lookup<
+      ffi.NativeFunction<
+          rcutils_ret_t Function(ffi.Pointer<rcutils_string_array_t>, size_t,
+              ffi.Pointer<rcutils_allocator_t>)>>('rcutils_string_array_init');
+  late final _rcutils_string_array_init =
+      _rcutils_string_array_initPtr.asFunction<
+          int Function(ffi.Pointer<rcutils_string_array_t>, int,
+              ffi.Pointer<rcutils_allocator_t>)>();
 
   /// Finalize a string array, reclaiming all resources.
   /// /**
@@ -1565,12 +1635,12 @@ class RCL {
     );
   }
 
-  late final _rcutils_string_array_fini_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_string_array_fini>>(
-          'rcutils_string_array_fini');
-  late final _dart_rcutils_string_array_fini _rcutils_string_array_fini =
-      _rcutils_string_array_fini_ptr
-          .asFunction<_dart_rcutils_string_array_fini>();
+  late final _rcutils_string_array_finiPtr = _lookup<
+          ffi.NativeFunction<
+              rcutils_ret_t Function(ffi.Pointer<rcutils_string_array_t>)>>(
+      'rcutils_string_array_fini');
+  late final _rcutils_string_array_fini = _rcutils_string_array_finiPtr
+      .asFunction<int Function(ffi.Pointer<rcutils_string_array_t>)>();
 
   /// Compare two string arrays.
   /// /**
@@ -1598,12 +1668,16 @@ class RCL {
     );
   }
 
-  late final _rcutils_string_array_cmp_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_string_array_cmp>>(
-          'rcutils_string_array_cmp');
-  late final _dart_rcutils_string_array_cmp _rcutils_string_array_cmp =
-      _rcutils_string_array_cmp_ptr
-          .asFunction<_dart_rcutils_string_array_cmp>();
+  late final _rcutils_string_array_cmpPtr = _lookup<
+      ffi.NativeFunction<
+          rcutils_ret_t Function(
+              ffi.Pointer<rcutils_string_array_t>,
+              ffi.Pointer<rcutils_string_array_t>,
+              ffi.Pointer<ffi.Int32>)>>('rcutils_string_array_cmp');
+  late final _rcutils_string_array_cmp =
+      _rcutils_string_array_cmpPtr.asFunction<
+          int Function(ffi.Pointer<rcutils_string_array_t>,
+              ffi.Pointer<rcutils_string_array_t>, ffi.Pointer<ffi.Int32>)>();
 
   /// Return an empty string map struct.
   /// /*
@@ -1625,13 +1699,12 @@ class RCL {
     return _rcutils_get_zero_initialized_string_map();
   }
 
-  late final _rcutils_get_zero_initialized_string_map_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_get_zero_initialized_string_map>>(
+  late final _rcutils_get_zero_initialized_string_mapPtr =
+      _lookup<ffi.NativeFunction<rcutils_string_map_t Function()>>(
           'rcutils_get_zero_initialized_string_map');
-  late final _dart_rcutils_get_zero_initialized_string_map
-      _rcutils_get_zero_initialized_string_map =
-      _rcutils_get_zero_initialized_string_map_ptr
-          .asFunction<_dart_rcutils_get_zero_initialized_string_map>();
+  late final _rcutils_get_zero_initialized_string_map =
+      _rcutils_get_zero_initialized_string_mapPtr
+          .asFunction<rcutils_string_map_t Function()>();
 
   /// Initialize a rcutils_string_map_t, allocating space for given capacity.
   /// /**
@@ -1680,11 +1753,13 @@ class RCL {
     );
   }
 
-  late final _rcutils_string_map_init_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_string_map_init>>(
-          'rcutils_string_map_init');
-  late final _dart_rcutils_string_map_init _rcutils_string_map_init =
-      _rcutils_string_map_init_ptr.asFunction<_dart_rcutils_string_map_init>();
+  late final _rcutils_string_map_initPtr = _lookup<
+      ffi.NativeFunction<
+          rcutils_ret_t Function(ffi.Pointer<rcutils_string_map_t>, size_t,
+              rcutils_allocator_t)>>('rcutils_string_map_init');
+  late final _rcutils_string_map_init = _rcutils_string_map_initPtr.asFunction<
+      int Function(
+          ffi.Pointer<rcutils_string_map_t>, int, rcutils_allocator_t)>();
 
   /// Finalize the previously initialized string map struct.
   /// /**
@@ -1704,11 +1779,12 @@ class RCL {
     );
   }
 
-  late final _rcutils_string_map_fini_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_string_map_fini>>(
-          'rcutils_string_map_fini');
-  late final _dart_rcutils_string_map_fini _rcutils_string_map_fini =
-      _rcutils_string_map_fini_ptr.asFunction<_dart_rcutils_string_map_fini>();
+  late final _rcutils_string_map_finiPtr = _lookup<
+      ffi.NativeFunction<
+          rcutils_ret_t Function(
+              ffi.Pointer<rcutils_string_map_t>)>>('rcutils_string_map_fini');
+  late final _rcutils_string_map_fini = _rcutils_string_map_finiPtr
+      .asFunction<int Function(ffi.Pointer<rcutils_string_map_t>)>();
 
   /// Get the current capacity of the string map.
   /// /**
@@ -1728,7 +1804,7 @@ class RCL {
   ///  */
   int rcutils_string_map_get_capacity(
     ffi.Pointer<rcutils_string_map_t> string_map,
-    ffi.Pointer<ffi.Uint64> capacity,
+    ffi.Pointer<size_t> capacity,
   ) {
     return _rcutils_string_map_get_capacity(
       string_map,
@@ -1736,12 +1812,14 @@ class RCL {
     );
   }
 
-  late final _rcutils_string_map_get_capacity_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_string_map_get_capacity>>(
-          'rcutils_string_map_get_capacity');
-  late final _dart_rcutils_string_map_get_capacity
-      _rcutils_string_map_get_capacity = _rcutils_string_map_get_capacity_ptr
-          .asFunction<_dart_rcutils_string_map_get_capacity>();
+  late final _rcutils_string_map_get_capacityPtr = _lookup<
+      ffi.NativeFunction<
+          rcutils_ret_t Function(ffi.Pointer<rcutils_string_map_t>,
+              ffi.Pointer<size_t>)>>('rcutils_string_map_get_capacity');
+  late final _rcutils_string_map_get_capacity =
+      _rcutils_string_map_get_capacityPtr.asFunction<
+          int Function(
+              ffi.Pointer<rcutils_string_map_t>, ffi.Pointer<size_t>)>();
 
   /// Get the current size of the string map.
   /// /**
@@ -1759,7 +1837,7 @@ class RCL {
   ///  */
   int rcutils_string_map_get_size(
     ffi.Pointer<rcutils_string_map_t> string_map,
-    ffi.Pointer<ffi.Uint64> size,
+    ffi.Pointer<size_t> size,
   ) {
     return _rcutils_string_map_get_size(
       string_map,
@@ -1767,12 +1845,14 @@ class RCL {
     );
   }
 
-  late final _rcutils_string_map_get_size_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_string_map_get_size>>(
-          'rcutils_string_map_get_size');
-  late final _dart_rcutils_string_map_get_size _rcutils_string_map_get_size =
-      _rcutils_string_map_get_size_ptr
-          .asFunction<_dart_rcutils_string_map_get_size>();
+  late final _rcutils_string_map_get_sizePtr = _lookup<
+      ffi.NativeFunction<
+          rcutils_ret_t Function(ffi.Pointer<rcutils_string_map_t>,
+              ffi.Pointer<size_t>)>>('rcutils_string_map_get_size');
+  late final _rcutils_string_map_get_size =
+      _rcutils_string_map_get_sizePtr.asFunction<
+          int Function(
+              ffi.Pointer<rcutils_string_map_t>, ffi.Pointer<size_t>)>();
 
   /// Reserve a given amount of capacity in the map.
   /// /**
@@ -1807,12 +1887,12 @@ class RCL {
     );
   }
 
-  late final _rcutils_string_map_reserve_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_string_map_reserve>>(
-          'rcutils_string_map_reserve');
-  late final _dart_rcutils_string_map_reserve _rcutils_string_map_reserve =
-      _rcutils_string_map_reserve_ptr
-          .asFunction<_dart_rcutils_string_map_reserve>();
+  late final _rcutils_string_map_reservePtr = _lookup<
+      ffi.NativeFunction<
+          rcutils_ret_t Function(ffi.Pointer<rcutils_string_map_t>,
+              size_t)>>('rcutils_string_map_reserve');
+  late final _rcutils_string_map_reserve = _rcutils_string_map_reservePtr
+      .asFunction<int Function(ffi.Pointer<rcutils_string_map_t>, int)>();
 
   /// Remove all key value pairs from the map.
   /// /**
@@ -1834,12 +1914,12 @@ class RCL {
     );
   }
 
-  late final _rcutils_string_map_clear_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_string_map_clear>>(
-          'rcutils_string_map_clear');
-  late final _dart_rcutils_string_map_clear _rcutils_string_map_clear =
-      _rcutils_string_map_clear_ptr
-          .asFunction<_dart_rcutils_string_map_clear>();
+  late final _rcutils_string_map_clearPtr = _lookup<
+      ffi.NativeFunction<
+          rcutils_ret_t Function(
+              ffi.Pointer<rcutils_string_map_t>)>>('rcutils_string_map_clear');
+  late final _rcutils_string_map_clear = _rcutils_string_map_clearPtr
+      .asFunction<int Function(ffi.Pointer<rcutils_string_map_t>)>();
 
   /// Set a key value pair in the map, increasing capacity if necessary.
   /// /**
@@ -1869,11 +1949,15 @@ class RCL {
     );
   }
 
-  late final _rcutils_string_map_set_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_string_map_set>>(
-          'rcutils_string_map_set');
-  late final _dart_rcutils_string_map_set _rcutils_string_map_set =
-      _rcutils_string_map_set_ptr.asFunction<_dart_rcutils_string_map_set>();
+  late final _rcutils_string_map_setPtr = _lookup<
+      ffi.NativeFunction<
+          rcutils_ret_t Function(
+              ffi.Pointer<rcutils_string_map_t>,
+              ffi.Pointer<ffi.Int8>,
+              ffi.Pointer<ffi.Int8>)>>('rcutils_string_map_set');
+  late final _rcutils_string_map_set = _rcutils_string_map_setPtr.asFunction<
+      int Function(ffi.Pointer<rcutils_string_map_t>, ffi.Pointer<ffi.Int8>,
+          ffi.Pointer<ffi.Int8>)>();
 
   /// Set a key value pair in the map but only if the map has enough capacity.
   /// /**
@@ -1915,12 +1999,16 @@ class RCL {
     );
   }
 
-  late final _rcutils_string_map_set_no_resize_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_string_map_set_no_resize>>(
-          'rcutils_string_map_set_no_resize');
-  late final _dart_rcutils_string_map_set_no_resize
-      _rcutils_string_map_set_no_resize = _rcutils_string_map_set_no_resize_ptr
-          .asFunction<_dart_rcutils_string_map_set_no_resize>();
+  late final _rcutils_string_map_set_no_resizePtr = _lookup<
+      ffi.NativeFunction<
+          rcutils_ret_t Function(
+              ffi.Pointer<rcutils_string_map_t>,
+              ffi.Pointer<ffi.Int8>,
+              ffi.Pointer<ffi.Int8>)>>('rcutils_string_map_set_no_resize');
+  late final _rcutils_string_map_set_no_resize =
+      _rcutils_string_map_set_no_resizePtr.asFunction<
+          int Function(ffi.Pointer<rcutils_string_map_t>, ffi.Pointer<ffi.Int8>,
+              ffi.Pointer<ffi.Int8>)>();
 
   /// Unset a key value pair in the map.
   /// /**
@@ -1945,12 +2033,14 @@ class RCL {
     );
   }
 
-  late final _rcutils_string_map_unset_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_string_map_unset>>(
-          'rcutils_string_map_unset');
-  late final _dart_rcutils_string_map_unset _rcutils_string_map_unset =
-      _rcutils_string_map_unset_ptr
-          .asFunction<_dart_rcutils_string_map_unset>();
+  late final _rcutils_string_map_unsetPtr = _lookup<
+      ffi.NativeFunction<
+          rcutils_ret_t Function(ffi.Pointer<rcutils_string_map_t>,
+              ffi.Pointer<ffi.Int8>)>>('rcutils_string_map_unset');
+  late final _rcutils_string_map_unset =
+      _rcutils_string_map_unsetPtr.asFunction<
+          int Function(
+              ffi.Pointer<rcutils_string_map_t>, ffi.Pointer<ffi.Int8>)>();
 
   /// Get whether or not a key exists.
   /// /**
@@ -1978,12 +2068,14 @@ class RCL {
         0;
   }
 
-  late final _rcutils_string_map_key_exists_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_string_map_key_exists>>(
-          'rcutils_string_map_key_exists');
-  late final _dart_rcutils_string_map_key_exists
-      _rcutils_string_map_key_exists = _rcutils_string_map_key_exists_ptr
-          .asFunction<_dart_rcutils_string_map_key_exists>();
+  late final _rcutils_string_map_key_existsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Uint8 Function(ffi.Pointer<rcutils_string_map_t>,
+              ffi.Pointer<ffi.Int8>)>>('rcutils_string_map_key_exists');
+  late final _rcutils_string_map_key_exists =
+      _rcutils_string_map_key_existsPtr.asFunction<
+          int Function(
+              ffi.Pointer<rcutils_string_map_t>, ffi.Pointer<ffi.Int8>)>();
 
   /// Get whether or not a key of known length exists.
   /// /**
@@ -2011,12 +2103,16 @@ class RCL {
         0;
   }
 
-  late final _rcutils_string_map_key_existsn_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_string_map_key_existsn>>(
-          'rcutils_string_map_key_existsn');
-  late final _dart_rcutils_string_map_key_existsn
-      _rcutils_string_map_key_existsn = _rcutils_string_map_key_existsn_ptr
-          .asFunction<_dart_rcutils_string_map_key_existsn>();
+  late final _rcutils_string_map_key_existsnPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Uint8 Function(
+              ffi.Pointer<rcutils_string_map_t>,
+              ffi.Pointer<ffi.Int8>,
+              size_t)>>('rcutils_string_map_key_existsn');
+  late final _rcutils_string_map_key_existsn =
+      _rcutils_string_map_key_existsnPtr.asFunction<
+          int Function(
+              ffi.Pointer<rcutils_string_map_t>, ffi.Pointer<ffi.Int8>, int)>();
 
   /// Get value given a key.
   /// /**
@@ -2051,11 +2147,13 @@ class RCL {
     );
   }
 
-  late final _rcutils_string_map_get_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_string_map_get>>(
-          'rcutils_string_map_get');
-  late final _dart_rcutils_string_map_get _rcutils_string_map_get =
-      _rcutils_string_map_get_ptr.asFunction<_dart_rcutils_string_map_get>();
+  late final _rcutils_string_map_getPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Int8> Function(ffi.Pointer<rcutils_string_map_t>,
+              ffi.Pointer<ffi.Int8>)>>('rcutils_string_map_get');
+  late final _rcutils_string_map_get = _rcutils_string_map_getPtr.asFunction<
+      ffi.Pointer<ffi.Int8> Function(
+          ffi.Pointer<rcutils_string_map_t>, ffi.Pointer<ffi.Int8>)>();
 
   /// Get value given a key and key length.
   /// /**
@@ -2083,11 +2181,13 @@ class RCL {
     );
   }
 
-  late final _rcutils_string_map_getn_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_string_map_getn>>(
-          'rcutils_string_map_getn');
-  late final _dart_rcutils_string_map_getn _rcutils_string_map_getn =
-      _rcutils_string_map_getn_ptr.asFunction<_dart_rcutils_string_map_getn>();
+  late final _rcutils_string_map_getnPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Int8> Function(ffi.Pointer<rcutils_string_map_t>,
+              ffi.Pointer<ffi.Int8>, size_t)>>('rcutils_string_map_getn');
+  late final _rcutils_string_map_getn = _rcutils_string_map_getnPtr.asFunction<
+      ffi.Pointer<ffi.Int8> Function(
+          ffi.Pointer<rcutils_string_map_t>, ffi.Pointer<ffi.Int8>, int)>();
 
   /// Get the next key in the map, unless NULL is given, then get the first key.
   /// /**
@@ -2140,12 +2240,14 @@ class RCL {
     );
   }
 
-  late final _rcutils_string_map_get_next_key_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_string_map_get_next_key>>(
-          'rcutils_string_map_get_next_key');
-  late final _dart_rcutils_string_map_get_next_key
-      _rcutils_string_map_get_next_key = _rcutils_string_map_get_next_key_ptr
-          .asFunction<_dart_rcutils_string_map_get_next_key>();
+  late final _rcutils_string_map_get_next_keyPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Int8> Function(ffi.Pointer<rcutils_string_map_t>,
+              ffi.Pointer<ffi.Int8>)>>('rcutils_string_map_get_next_key');
+  late final _rcutils_string_map_get_next_key =
+      _rcutils_string_map_get_next_keyPtr.asFunction<
+          ffi.Pointer<ffi.Int8> Function(
+              ffi.Pointer<rcutils_string_map_t>, ffi.Pointer<ffi.Int8>)>();
 
   /// Copy all the key value pairs from one map into another, overwritting and resizing if needed.
   /// /**
@@ -2175,11 +2277,13 @@ class RCL {
     );
   }
 
-  late final _rcutils_string_map_copy_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_string_map_copy>>(
-          'rcutils_string_map_copy');
-  late final _dart_rcutils_string_map_copy _rcutils_string_map_copy =
-      _rcutils_string_map_copy_ptr.asFunction<_dart_rcutils_string_map_copy>();
+  late final _rcutils_string_map_copyPtr = _lookup<
+      ffi.NativeFunction<
+          rcutils_ret_t Function(ffi.Pointer<rcutils_string_map_t>,
+              ffi.Pointer<rcutils_string_map_t>)>>('rcutils_string_map_copy');
+  late final _rcutils_string_map_copy = _rcutils_string_map_copyPtr.asFunction<
+      int Function(ffi.Pointer<rcutils_string_map_t>,
+          ffi.Pointer<rcutils_string_map_t>)>();
 
   /// Return a zero initialized uint8 array struct.
   /// /**
@@ -2189,13 +2293,12 @@ class RCL {
     return _rcutils_get_zero_initialized_uint8_array();
   }
 
-  late final _rcutils_get_zero_initialized_uint8_array_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_get_zero_initialized_uint8_array>>(
+  late final _rcutils_get_zero_initialized_uint8_arrayPtr =
+      _lookup<ffi.NativeFunction<rcutils_uint8_array_t Function()>>(
           'rcutils_get_zero_initialized_uint8_array');
-  late final _dart_rcutils_get_zero_initialized_uint8_array
-      _rcutils_get_zero_initialized_uint8_array =
-      _rcutils_get_zero_initialized_uint8_array_ptr
-          .asFunction<_dart_rcutils_get_zero_initialized_uint8_array>();
+  late final _rcutils_get_zero_initialized_uint8_array =
+      _rcutils_get_zero_initialized_uint8_arrayPtr
+          .asFunction<rcutils_uint8_array_t Function()>();
 
   /// Initialize a zero initialized uint8 array struct.
   /// /**
@@ -2223,12 +2326,14 @@ class RCL {
     );
   }
 
-  late final _rcutils_uint8_array_init_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_uint8_array_init>>(
-          'rcutils_uint8_array_init');
-  late final _dart_rcutils_uint8_array_init _rcutils_uint8_array_init =
-      _rcutils_uint8_array_init_ptr
-          .asFunction<_dart_rcutils_uint8_array_init>();
+  late final _rcutils_uint8_array_initPtr = _lookup<
+      ffi.NativeFunction<
+          rcutils_ret_t Function(ffi.Pointer<rcutils_uint8_array_t>, size_t,
+              ffi.Pointer<rcutils_allocator_t>)>>('rcutils_uint8_array_init');
+  late final _rcutils_uint8_array_init =
+      _rcutils_uint8_array_initPtr.asFunction<
+          int Function(ffi.Pointer<rcutils_uint8_array_t>, int,
+              ffi.Pointer<rcutils_allocator_t>)>();
 
   /// Finalize a uint8 array struct.
   /// /**
@@ -2251,12 +2356,12 @@ class RCL {
     );
   }
 
-  late final _rcutils_uint8_array_fini_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_uint8_array_fini>>(
-          'rcutils_uint8_array_fini');
-  late final _dart_rcutils_uint8_array_fini _rcutils_uint8_array_fini =
-      _rcutils_uint8_array_fini_ptr
-          .asFunction<_dart_rcutils_uint8_array_fini>();
+  late final _rcutils_uint8_array_finiPtr = _lookup<
+      ffi.NativeFunction<
+          rcutils_ret_t Function(
+              ffi.Pointer<rcutils_uint8_array_t>)>>('rcutils_uint8_array_fini');
+  late final _rcutils_uint8_array_fini = _rcutils_uint8_array_finiPtr
+      .asFunction<int Function(ffi.Pointer<rcutils_uint8_array_t>)>();
 
   /// Resize the internal buffer of the uint8 array.
   /// /**
@@ -2283,12 +2388,12 @@ class RCL {
     );
   }
 
-  late final _rcutils_uint8_array_resize_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_uint8_array_resize>>(
-          'rcutils_uint8_array_resize');
-  late final _dart_rcutils_uint8_array_resize _rcutils_uint8_array_resize =
-      _rcutils_uint8_array_resize_ptr
-          .asFunction<_dart_rcutils_uint8_array_resize>();
+  late final _rcutils_uint8_array_resizePtr = _lookup<
+      ffi.NativeFunction<
+          rcutils_ret_t Function(ffi.Pointer<rcutils_uint8_array_t>,
+              size_t)>>('rcutils_uint8_array_resize');
+  late final _rcutils_uint8_array_resize = _rcutils_uint8_array_resizePtr
+      .asFunction<int Function(ffi.Pointer<rcutils_uint8_array_t>, int)>();
 
   /// This function returns the time from a system clock.
   /// The closest equivalent would be to std::chrono::system_clock::now();
@@ -2311,18 +2416,19 @@ class RCL {
   /// \return `RCUTILS_RET_INVALID_ARGUMENT` if any arguments are invalid, or
   /// \return `RCUTILS_RET_ERROR` if an unspecified error occur.
   int rcutils_system_time_now(
-    ffi.Pointer<ffi.Int64> now,
+    ffi.Pointer<rcutils_time_point_value_t> now,
   ) {
     return _rcutils_system_time_now(
       now,
     );
   }
 
-  late final _rcutils_system_time_now_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_system_time_now>>(
-          'rcutils_system_time_now');
-  late final _dart_rcutils_system_time_now _rcutils_system_time_now =
-      _rcutils_system_time_now_ptr.asFunction<_dart_rcutils_system_time_now>();
+  late final _rcutils_system_time_nowPtr = _lookup<
+          ffi.NativeFunction<
+              rcutils_ret_t Function(ffi.Pointer<rcutils_time_point_value_t>)>>(
+      'rcutils_system_time_now');
+  late final _rcutils_system_time_now = _rcutils_system_time_nowPtr
+      .asFunction<int Function(ffi.Pointer<rcutils_time_point_value_t>)>();
 
   /// Retrieve the current time as a rcutils_time_point_value_t object.
   /// /**
@@ -2348,18 +2454,19 @@ class RCL {
   ///  * \return `RCUTILS_RET_ERROR` if an unspecified error occur.
   ///  */
   int rcutils_steady_time_now(
-    ffi.Pointer<ffi.Int64> now,
+    ffi.Pointer<rcutils_time_point_value_t> now,
   ) {
     return _rcutils_steady_time_now(
       now,
     );
   }
 
-  late final _rcutils_steady_time_now_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_steady_time_now>>(
-          'rcutils_steady_time_now');
-  late final _dart_rcutils_steady_time_now _rcutils_steady_time_now =
-      _rcutils_steady_time_now_ptr.asFunction<_dart_rcutils_steady_time_now>();
+  late final _rcutils_steady_time_nowPtr = _lookup<
+          ffi.NativeFunction<
+              rcutils_ret_t Function(ffi.Pointer<rcutils_time_point_value_t>)>>(
+      'rcutils_steady_time_now');
+  late final _rcutils_steady_time_now = _rcutils_steady_time_nowPtr
+      .asFunction<int Function(ffi.Pointer<rcutils_time_point_value_t>)>();
 
   /// Return a time point as nanoseconds in a string.
   /// /**
@@ -2393,7 +2500,7 @@ class RCL {
   ///  * \return `RCUTILS_RET_ERROR` if an unspecified error occur.
   ///  */
   int rcutils_time_point_value_as_nanoseconds_string(
-    ffi.Pointer<ffi.Int64> time_point,
+    ffi.Pointer<rcutils_time_point_value_t> time_point,
     ffi.Pointer<ffi.Int8> str,
     int str_size,
   ) {
@@ -2404,14 +2511,16 @@ class RCL {
     );
   }
 
-  late final _rcutils_time_point_value_as_nanoseconds_string_ptr = _lookup<
-          ffi.NativeFunction<
-              _c_rcutils_time_point_value_as_nanoseconds_string>>(
-      'rcutils_time_point_value_as_nanoseconds_string');
-  late final _dart_rcutils_time_point_value_as_nanoseconds_string
-      _rcutils_time_point_value_as_nanoseconds_string =
-      _rcutils_time_point_value_as_nanoseconds_string_ptr
-          .asFunction<_dart_rcutils_time_point_value_as_nanoseconds_string>();
+  late final _rcutils_time_point_value_as_nanoseconds_stringPtr = _lookup<
+      ffi.NativeFunction<
+          rcutils_ret_t Function(
+              ffi.Pointer<rcutils_time_point_value_t>,
+              ffi.Pointer<ffi.Int8>,
+              size_t)>>('rcutils_time_point_value_as_nanoseconds_string');
+  late final _rcutils_time_point_value_as_nanoseconds_string =
+      _rcutils_time_point_value_as_nanoseconds_stringPtr.asFunction<
+          int Function(ffi.Pointer<rcutils_time_point_value_t>,
+              ffi.Pointer<ffi.Int8>, int)>();
 
   /// Return a time point as floating point seconds in a string.
   /// /**
@@ -2445,7 +2554,7 @@ class RCL {
   ///  * \return `RCUTILS_RET_ERROR` if an unspecified error occur.
   ///  */
   int rcutils_time_point_value_as_seconds_string(
-    ffi.Pointer<ffi.Int64> time_point,
+    ffi.Pointer<rcutils_time_point_value_t> time_point,
     ffi.Pointer<ffi.Int8> str,
     int str_size,
   ) {
@@ -2456,13 +2565,16 @@ class RCL {
     );
   }
 
-  late final _rcutils_time_point_value_as_seconds_string_ptr = _lookup<
-          ffi.NativeFunction<_c_rcutils_time_point_value_as_seconds_string>>(
-      'rcutils_time_point_value_as_seconds_string');
-  late final _dart_rcutils_time_point_value_as_seconds_string
-      _rcutils_time_point_value_as_seconds_string =
-      _rcutils_time_point_value_as_seconds_string_ptr
-          .asFunction<_dart_rcutils_time_point_value_as_seconds_string>();
+  late final _rcutils_time_point_value_as_seconds_stringPtr = _lookup<
+      ffi.NativeFunction<
+          rcutils_ret_t Function(
+              ffi.Pointer<rcutils_time_point_value_t>,
+              ffi.Pointer<ffi.Int8>,
+              size_t)>>('rcutils_time_point_value_as_seconds_string');
+  late final _rcutils_time_point_value_as_seconds_string =
+      _rcutils_time_point_value_as_seconds_stringPtr.asFunction<
+          int Function(ffi.Pointer<rcutils_time_point_value_t>,
+              ffi.Pointer<ffi.Int8>, int)>();
 
   /// The flag if the logging system has been initialized.
   late final ffi.Pointer<ffi.Uint8> _g_rcutils_logging_initialized =
@@ -2537,13 +2649,12 @@ class RCL {
     );
   }
 
-  late final _rcutils_logging_initialize_with_allocator_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_logging_initialize_with_allocator>>(
+  late final _rcutils_logging_initialize_with_allocatorPtr =
+      _lookup<ffi.NativeFunction<rcutils_ret_t Function(rcutils_allocator_t)>>(
           'rcutils_logging_initialize_with_allocator');
-  late final _dart_rcutils_logging_initialize_with_allocator
-      _rcutils_logging_initialize_with_allocator =
-      _rcutils_logging_initialize_with_allocator_ptr
-          .asFunction<_dart_rcutils_logging_initialize_with_allocator>();
+  late final _rcutils_logging_initialize_with_allocator =
+      _rcutils_logging_initialize_with_allocatorPtr
+          .asFunction<int Function(rcutils_allocator_t)>();
 
   /// Initialize the logging system.
   /// /**
@@ -2570,12 +2681,11 @@ class RCL {
     return _rcutils_logging_initialize();
   }
 
-  late final _rcutils_logging_initialize_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_logging_initialize>>(
+  late final _rcutils_logging_initializePtr =
+      _lookup<ffi.NativeFunction<rcutils_ret_t Function()>>(
           'rcutils_logging_initialize');
-  late final _dart_rcutils_logging_initialize _rcutils_logging_initialize =
-      _rcutils_logging_initialize_ptr
-          .asFunction<_dart_rcutils_logging_initialize>();
+  late final _rcutils_logging_initialize =
+      _rcutils_logging_initializePtr.asFunction<int Function()>();
 
   /// Shutdown the logging system.
   /// /**
@@ -2598,12 +2708,11 @@ class RCL {
     return _rcutils_logging_shutdown();
   }
 
-  late final _rcutils_logging_shutdown_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_logging_shutdown>>(
+  late final _rcutils_logging_shutdownPtr =
+      _lookup<ffi.NativeFunction<rcutils_ret_t Function()>>(
           'rcutils_logging_shutdown');
-  late final _dart_rcutils_logging_shutdown _rcutils_logging_shutdown =
-      _rcutils_logging_shutdown_ptr
-          .asFunction<_dart_rcutils_logging_shutdown>();
+  late final _rcutils_logging_shutdown =
+      _rcutils_logging_shutdownPtr.asFunction<int Function()>();
 
   /// The names of severity levels.
   late final ffi.Pointer<ffi.Pointer<ffi.Pointer<ffi.Int8>>>
@@ -2646,29 +2755,27 @@ class RCL {
     );
   }
 
-  late final _rcutils_logging_severity_level_from_string_ptr = _lookup<
-          ffi.NativeFunction<_c_rcutils_logging_severity_level_from_string>>(
+  late final _rcutils_logging_severity_level_from_stringPtr = _lookup<
+          ffi.NativeFunction<
+              rcutils_ret_t Function(ffi.Pointer<ffi.Int8>, rcutils_allocator_t,
+                  ffi.Pointer<ffi.Int32>)>>(
       'rcutils_logging_severity_level_from_string');
-  late final _dart_rcutils_logging_severity_level_from_string
-      _rcutils_logging_severity_level_from_string =
-      _rcutils_logging_severity_level_from_string_ptr
-          .asFunction<_dart_rcutils_logging_severity_level_from_string>();
+  late final _rcutils_logging_severity_level_from_string =
+      _rcutils_logging_severity_level_from_stringPtr.asFunction<
+          int Function(ffi.Pointer<ffi.Int8>, rcutils_allocator_t,
+              ffi.Pointer<ffi.Int32>)>();
 
   /// The function pointer of the current output handler.
-  late final ffi.Pointer<
-          ffi.Pointer<ffi.NativeFunction<rcutils_logging_output_handler_t>>>
-      _g_rcutils_logging_output_handler = _lookup<
-              ffi.Pointer<
-                  ffi.NativeFunction<rcutils_logging_output_handler_t>>>(
+  late final ffi.Pointer<rcutils_logging_output_handler_t>
+      _g_rcutils_logging_output_handler =
+      _lookup<rcutils_logging_output_handler_t>(
           'g_rcutils_logging_output_handler');
 
-  ffi.Pointer<ffi.NativeFunction<rcutils_logging_output_handler_t>>
-      get g_rcutils_logging_output_handler =>
-          _g_rcutils_logging_output_handler.value;
+  rcutils_logging_output_handler_t get g_rcutils_logging_output_handler =>
+      _g_rcutils_logging_output_handler.value;
 
   set g_rcutils_logging_output_handler(
-          ffi.Pointer<ffi.NativeFunction<rcutils_logging_output_handler_t>>
-              value) =>
+          rcutils_logging_output_handler_t value) =>
       _g_rcutils_logging_output_handler.value = value;
 
   /// Get the current output handler.
@@ -2683,18 +2790,16 @@ class RCL {
   ///  *
   ///  * \return The function pointer of the current output handler.
   ///  */
-  ffi.Pointer<ffi.NativeFunction<rcutils_logging_output_handler_t>>
-      rcutils_logging_get_output_handler() {
+  rcutils_logging_output_handler_t rcutils_logging_get_output_handler() {
     return _rcutils_logging_get_output_handler();
   }
 
-  late final _rcutils_logging_get_output_handler_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_logging_get_output_handler>>(
+  late final _rcutils_logging_get_output_handlerPtr =
+      _lookup<ffi.NativeFunction<rcutils_logging_output_handler_t Function()>>(
           'rcutils_logging_get_output_handler');
-  late final _dart_rcutils_logging_get_output_handler
-      _rcutils_logging_get_output_handler =
-      _rcutils_logging_get_output_handler_ptr
-          .asFunction<_dart_rcutils_logging_get_output_handler>();
+  late final _rcutils_logging_get_output_handler =
+      _rcutils_logging_get_output_handlerPtr
+          .asFunction<rcutils_logging_output_handler_t Function()>();
 
   /// Set the current output handler.
   /// /**
@@ -2709,20 +2814,20 @@ class RCL {
   ///  * \param function The function pointer of the output handler to be used.
   ///  */
   void rcutils_logging_set_output_handler(
-    ffi.Pointer<ffi.NativeFunction<rcutils_logging_output_handler_t>> function,
+    rcutils_logging_output_handler_t function,
   ) {
     return _rcutils_logging_set_output_handler(
       function,
     );
   }
 
-  late final _rcutils_logging_set_output_handler_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_logging_set_output_handler>>(
-          'rcutils_logging_set_output_handler');
-  late final _dart_rcutils_logging_set_output_handler
-      _rcutils_logging_set_output_handler =
-      _rcutils_logging_set_output_handler_ptr
-          .asFunction<_dart_rcutils_logging_set_output_handler>();
+  late final _rcutils_logging_set_output_handlerPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(rcutils_logging_output_handler_t)>>(
+      'rcutils_logging_set_output_handler');
+  late final _rcutils_logging_set_output_handler =
+      _rcutils_logging_set_output_handlerPtr
+          .asFunction<void Function(rcutils_logging_output_handler_t)>();
 
   /// Formats a log message according to RCUTILS_CONSOLE_OUTPUT_FORMAT
   /// /**
@@ -2765,12 +2870,25 @@ class RCL {
     );
   }
 
-  late final _rcutils_logging_format_message_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_logging_format_message>>(
-          'rcutils_logging_format_message');
-  late final _dart_rcutils_logging_format_message
-      _rcutils_logging_format_message = _rcutils_logging_format_message_ptr
-          .asFunction<_dart_rcutils_logging_format_message>();
+  late final _rcutils_logging_format_messagePtr = _lookup<
+          ffi.NativeFunction<
+              rcutils_ret_t Function(
+                  ffi.Pointer<rcutils_log_location_t>,
+                  ffi.Int32,
+                  ffi.Pointer<ffi.Int8>,
+                  rcutils_time_point_value_t,
+                  ffi.Pointer<ffi.Int8>,
+                  ffi.Pointer<rcutils_char_array_t>)>>(
+      'rcutils_logging_format_message');
+  late final _rcutils_logging_format_message =
+      _rcutils_logging_format_messagePtr.asFunction<
+          int Function(
+              ffi.Pointer<rcutils_log_location_t>,
+              int,
+              ffi.Pointer<ffi.Int8>,
+              int,
+              ffi.Pointer<ffi.Int8>,
+              ffi.Pointer<rcutils_char_array_t>)>();
 
   /// The default severity level for loggers.
   /// /**
@@ -2804,13 +2922,11 @@ class RCL {
     return _rcutils_logging_get_default_logger_level();
   }
 
-  late final _rcutils_logging_get_default_logger_level_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_logging_get_default_logger_level>>(
+  late final _rcutils_logging_get_default_logger_levelPtr =
+      _lookup<ffi.NativeFunction<ffi.Int32 Function()>>(
           'rcutils_logging_get_default_logger_level');
-  late final _dart_rcutils_logging_get_default_logger_level
-      _rcutils_logging_get_default_logger_level =
-      _rcutils_logging_get_default_logger_level_ptr
-          .asFunction<_dart_rcutils_logging_get_default_logger_level>();
+  late final _rcutils_logging_get_default_logger_level =
+      _rcutils_logging_get_default_logger_levelPtr.asFunction<int Function()>();
 
   /// Set the default severity level for loggers.
   /// /**
@@ -2836,13 +2952,12 @@ class RCL {
     );
   }
 
-  late final _rcutils_logging_set_default_logger_level_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_logging_set_default_logger_level>>(
+  late final _rcutils_logging_set_default_logger_levelPtr =
+      _lookup<ffi.NativeFunction<ffi.Void Function(ffi.Int32)>>(
           'rcutils_logging_set_default_logger_level');
-  late final _dart_rcutils_logging_set_default_logger_level
-      _rcutils_logging_set_default_logger_level =
-      _rcutils_logging_set_default_logger_level_ptr
-          .asFunction<_dart_rcutils_logging_set_default_logger_level>();
+  late final _rcutils_logging_set_default_logger_level =
+      _rcutils_logging_set_default_logger_levelPtr
+          .asFunction<void Function(int)>();
 
   /// Get the severity level for a logger.
   /// /**
@@ -2873,12 +2988,12 @@ class RCL {
     );
   }
 
-  late final _rcutils_logging_get_logger_level_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_logging_get_logger_level>>(
+  late final _rcutils_logging_get_logger_levelPtr =
+      _lookup<ffi.NativeFunction<ffi.Int32 Function(ffi.Pointer<ffi.Int8>)>>(
           'rcutils_logging_get_logger_level');
-  late final _dart_rcutils_logging_get_logger_level
-      _rcutils_logging_get_logger_level = _rcutils_logging_get_logger_level_ptr
-          .asFunction<_dart_rcutils_logging_get_logger_level>();
+  late final _rcutils_logging_get_logger_level =
+      _rcutils_logging_get_logger_levelPtr
+          .asFunction<int Function(ffi.Pointer<ffi.Int8>)>();
 
   /// Get the level for a logger and its name length.
   /// /**
@@ -2911,13 +3026,13 @@ class RCL {
     );
   }
 
-  late final _rcutils_logging_get_logger_leveln_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_logging_get_logger_leveln>>(
-          'rcutils_logging_get_logger_leveln');
-  late final _dart_rcutils_logging_get_logger_leveln
-      _rcutils_logging_get_logger_leveln =
-      _rcutils_logging_get_logger_leveln_ptr
-          .asFunction<_dart_rcutils_logging_get_logger_leveln>();
+  late final _rcutils_logging_get_logger_levelnPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Int32 Function(ffi.Pointer<ffi.Int8>,
+              size_t)>>('rcutils_logging_get_logger_leveln');
+  late final _rcutils_logging_get_logger_leveln =
+      _rcutils_logging_get_logger_levelnPtr
+          .asFunction<int Function(ffi.Pointer<ffi.Int8>, int)>();
 
   /// Set the severity level for a logger.
   /// /**
@@ -2949,12 +3064,13 @@ class RCL {
     );
   }
 
-  late final _rcutils_logging_set_logger_level_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_logging_set_logger_level>>(
-          'rcutils_logging_set_logger_level');
-  late final _dart_rcutils_logging_set_logger_level
-      _rcutils_logging_set_logger_level = _rcutils_logging_set_logger_level_ptr
-          .asFunction<_dart_rcutils_logging_set_logger_level>();
+  late final _rcutils_logging_set_logger_levelPtr = _lookup<
+      ffi.NativeFunction<
+          rcutils_ret_t Function(ffi.Pointer<ffi.Int8>,
+              ffi.Int32)>>('rcutils_logging_set_logger_level');
+  late final _rcutils_logging_set_logger_level =
+      _rcutils_logging_set_logger_levelPtr
+          .asFunction<int Function(ffi.Pointer<ffi.Int8>, int)>();
 
   /// Determine if a logger is enabled for a severity level.
   /// /**
@@ -2982,13 +3098,13 @@ class RCL {
         0;
   }
 
-  late final _rcutils_logging_logger_is_enabled_for_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_logging_logger_is_enabled_for>>(
-          'rcutils_logging_logger_is_enabled_for');
-  late final _dart_rcutils_logging_logger_is_enabled_for
-      _rcutils_logging_logger_is_enabled_for =
-      _rcutils_logging_logger_is_enabled_for_ptr
-          .asFunction<_dart_rcutils_logging_logger_is_enabled_for>();
+  late final _rcutils_logging_logger_is_enabled_forPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Uint8 Function(ffi.Pointer<ffi.Int8>,
+              ffi.Int32)>>('rcutils_logging_logger_is_enabled_for');
+  late final _rcutils_logging_logger_is_enabled_for =
+      _rcutils_logging_logger_is_enabled_forPtr
+          .asFunction<int Function(ffi.Pointer<ffi.Int8>, int)>();
 
   /// Determine the effective level for a logger.
   /// /**
@@ -3023,13 +3139,12 @@ class RCL {
     );
   }
 
-  late final _rcutils_logging_get_logger_effective_level_ptr = _lookup<
-          ffi.NativeFunction<_c_rcutils_logging_get_logger_effective_level>>(
-      'rcutils_logging_get_logger_effective_level');
-  late final _dart_rcutils_logging_get_logger_effective_level
-      _rcutils_logging_get_logger_effective_level =
-      _rcutils_logging_get_logger_effective_level_ptr
-          .asFunction<_dart_rcutils_logging_get_logger_effective_level>();
+  late final _rcutils_logging_get_logger_effective_levelPtr =
+      _lookup<ffi.NativeFunction<ffi.Int32 Function(ffi.Pointer<ffi.Int8>)>>(
+          'rcutils_logging_get_logger_effective_level');
+  late final _rcutils_logging_get_logger_effective_level =
+      _rcutils_logging_get_logger_effective_levelPtr
+          .asFunction<int Function(ffi.Pointer<ffi.Int8>)>();
 
   /// Log a message.
   /// /**
@@ -3065,10 +3180,13 @@ class RCL {
     );
   }
 
-  late final _rcutils_log_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_log>>('rcutils_log');
-  late final _dart_rcutils_log _rcutils_log =
-      _rcutils_log_ptr.asFunction<_dart_rcutils_log>();
+  late final _rcutils_logPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Void Function(ffi.Pointer<rcutils_log_location_t>, ffi.Int32,
+              ffi.Pointer<ffi.Int8>, ffi.Pointer<ffi.Int8>)>>('rcutils_log');
+  late final _rcutils_log = _rcutils_logPtr.asFunction<
+      void Function(ffi.Pointer<rcutils_log_location_t>, int,
+          ffi.Pointer<ffi.Int8>, ffi.Pointer<ffi.Int8>)>();
 
   /// The default output handler outputs log messages to the standard streams.
   /// /**
@@ -3113,26 +3231,37 @@ class RCL {
     );
   }
 
-  late final _rcutils_logging_console_output_handler_ptr =
-      _lookup<ffi.NativeFunction<_c_rcutils_logging_console_output_handler>>(
-          'rcutils_logging_console_output_handler');
-  late final _dart_rcutils_logging_console_output_handler
-      _rcutils_logging_console_output_handler =
-      _rcutils_logging_console_output_handler_ptr
-          .asFunction<_dart_rcutils_logging_console_output_handler>();
+  late final _rcutils_logging_console_output_handlerPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Pointer<rcutils_log_location_t>,
+                  ffi.Int32,
+                  ffi.Pointer<ffi.Int8>,
+                  rcutils_time_point_value_t,
+                  ffi.Pointer<ffi.Int8>,
+                  ffi.Pointer<ffi.Pointer<__va_list_tag>>)>>(
+      'rcutils_logging_console_output_handler');
+  late final _rcutils_logging_console_output_handler =
+      _rcutils_logging_console_output_handlerPtr.asFunction<
+          void Function(
+              ffi.Pointer<rcutils_log_location_t>,
+              int,
+              ffi.Pointer<ffi.Int8>,
+              int,
+              ffi.Pointer<ffi.Int8>,
+              ffi.Pointer<ffi.Pointer<__va_list_tag>>)>();
 
   /// Return a zero initialized init options structure.
   rmw_init_options_t rmw_get_zero_initialized_init_options() {
     return _rmw_get_zero_initialized_init_options();
   }
 
-  late final _rmw_get_zero_initialized_init_options_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_get_zero_initialized_init_options>>(
+  late final _rmw_get_zero_initialized_init_optionsPtr =
+      _lookup<ffi.NativeFunction<rmw_init_options_t Function()>>(
           'rmw_get_zero_initialized_init_options');
-  late final _dart_rmw_get_zero_initialized_init_options
-      _rmw_get_zero_initialized_init_options =
-      _rmw_get_zero_initialized_init_options_ptr
-          .asFunction<_dart_rmw_get_zero_initialized_init_options>();
+  late final _rmw_get_zero_initialized_init_options =
+      _rmw_get_zero_initialized_init_optionsPtr
+          .asFunction<rmw_init_options_t Function()>();
 
   /// Initialize given init_options with the default values and implementation specific values.
   /// /**
@@ -3171,11 +3300,12 @@ class RCL {
     );
   }
 
-  late final _rmw_init_options_init_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_init_options_init>>(
-          'rmw_init_options_init');
-  late final _dart_rmw_init_options_init _rmw_init_options_init =
-      _rmw_init_options_init_ptr.asFunction<_dart_rmw_init_options_init>();
+  late final _rmw_init_options_initPtr = _lookup<
+      ffi.NativeFunction<
+          rmw_ret_t Function(ffi.Pointer<rmw_init_options_t>,
+              rcutils_allocator_t)>>('rmw_init_options_init');
+  late final _rmw_init_options_init = _rmw_init_options_initPtr.asFunction<
+      int Function(ffi.Pointer<rmw_init_options_t>, rcutils_allocator_t)>();
 
   /// Copy the given source init options to the destination init options.
   /// /**
@@ -3218,11 +3348,13 @@ class RCL {
     );
   }
 
-  late final _rmw_init_options_copy_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_init_options_copy>>(
-          'rmw_init_options_copy');
-  late final _dart_rmw_init_options_copy _rmw_init_options_copy =
-      _rmw_init_options_copy_ptr.asFunction<_dart_rmw_init_options_copy>();
+  late final _rmw_init_options_copyPtr = _lookup<
+      ffi.NativeFunction<
+          rmw_ret_t Function(ffi.Pointer<rmw_init_options_t>,
+              ffi.Pointer<rmw_init_options_t>)>>('rmw_init_options_copy');
+  late final _rmw_init_options_copy = _rmw_init_options_copyPtr.asFunction<
+      int Function(
+          ffi.Pointer<rmw_init_options_t>, ffi.Pointer<rmw_init_options_t>)>();
 
   /// Finalize the given init_options.
   /// /**
@@ -3252,23 +3384,24 @@ class RCL {
     );
   }
 
-  late final _rmw_init_options_fini_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_init_options_fini>>(
-          'rmw_init_options_fini');
-  late final _dart_rmw_init_options_fini _rmw_init_options_fini =
-      _rmw_init_options_fini_ptr.asFunction<_dart_rmw_init_options_fini>();
+  late final _rmw_init_options_finiPtr = _lookup<
+      ffi.NativeFunction<
+          rmw_ret_t Function(
+              ffi.Pointer<rmw_init_options_t>)>>('rmw_init_options_fini');
+  late final _rmw_init_options_fini = _rmw_init_options_finiPtr
+      .asFunction<int Function(ffi.Pointer<rmw_init_options_t>)>();
 
   /// Return a zero initialized context structure.
   rmw_context_t rmw_get_zero_initialized_context() {
     return _rmw_get_zero_initialized_context();
   }
 
-  late final _rmw_get_zero_initialized_context_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_get_zero_initialized_context>>(
+  late final _rmw_get_zero_initialized_contextPtr =
+      _lookup<ffi.NativeFunction<rmw_context_t Function()>>(
           'rmw_get_zero_initialized_context');
-  late final _dart_rmw_get_zero_initialized_context
-      _rmw_get_zero_initialized_context = _rmw_get_zero_initialized_context_ptr
-          .asFunction<_dart_rmw_get_zero_initialized_context>();
+  late final _rmw_get_zero_initialized_context =
+      _rmw_get_zero_initialized_contextPtr
+          .asFunction<rmw_context_t Function()>();
 
   /// Initialize the middleware with the given options, and yielding an context.
   /// /**
@@ -3305,10 +3438,13 @@ class RCL {
     );
   }
 
-  late final _rmw_init_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_init>>('rmw_init');
-  late final _dart_rmw_init _rmw_init =
-      _rmw_init_ptr.asFunction<_dart_rmw_init>();
+  late final _rmw_initPtr = _lookup<
+      ffi.NativeFunction<
+          rmw_ret_t Function(ffi.Pointer<rmw_init_options_t>,
+              ffi.Pointer<rmw_context_t>)>>('rmw_init');
+  late final _rmw_init = _rmw_initPtr.asFunction<
+      int Function(
+          ffi.Pointer<rmw_init_options_t>, ffi.Pointer<rmw_context_t>)>();
 
   /// Shutdown the middleware for a given context.
   /// /**
@@ -3340,10 +3476,11 @@ class RCL {
     );
   }
 
-  late final _rmw_shutdown_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_shutdown>>('rmw_shutdown');
-  late final _dart_rmw_shutdown _rmw_shutdown =
-      _rmw_shutdown_ptr.asFunction<_dart_rmw_shutdown>();
+  late final _rmw_shutdownPtr = _lookup<
+          ffi.NativeFunction<rmw_ret_t Function(ffi.Pointer<rmw_context_t>)>>(
+      'rmw_shutdown');
+  late final _rmw_shutdown =
+      _rmw_shutdownPtr.asFunction<int Function(ffi.Pointer<rmw_context_t>)>();
 
   /// Finalize a context.
   /// /**
@@ -3375,37 +3512,35 @@ class RCL {
     );
   }
 
-  late final _rmw_context_fini_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_context_fini>>('rmw_context_fini');
-  late final _dart_rmw_context_fini _rmw_context_fini =
-      _rmw_context_fini_ptr.asFunction<_dart_rmw_context_fini>();
+  late final _rmw_context_finiPtr = _lookup<
+          ffi.NativeFunction<rmw_ret_t Function(ffi.Pointer<rmw_context_t>)>>(
+      'rmw_context_fini');
+  late final _rmw_context_fini = _rmw_context_finiPtr
+      .asFunction<int Function(ffi.Pointer<rmw_context_t>)>();
 
   rmw_loaned_message_sequence_t
       rmw_get_zero_initialized_loaned_message_sequence() {
     return _rmw_get_zero_initialized_loaned_message_sequence();
   }
 
-  late final _rmw_get_zero_initialized_loaned_message_sequence_ptr = _lookup<
-          ffi.NativeFunction<
-              _c_rmw_get_zero_initialized_loaned_message_sequence>>(
-      'rmw_get_zero_initialized_loaned_message_sequence');
-  late final _dart_rmw_get_zero_initialized_loaned_message_sequence
-      _rmw_get_zero_initialized_loaned_message_sequence =
-      _rmw_get_zero_initialized_loaned_message_sequence_ptr
-          .asFunction<_dart_rmw_get_zero_initialized_loaned_message_sequence>();
+  late final _rmw_get_zero_initialized_loaned_message_sequencePtr =
+      _lookup<ffi.NativeFunction<rmw_loaned_message_sequence_t Function()>>(
+          'rmw_get_zero_initialized_loaned_message_sequence');
+  late final _rmw_get_zero_initialized_loaned_message_sequence =
+      _rmw_get_zero_initialized_loaned_message_sequencePtr
+          .asFunction<rmw_loaned_message_sequence_t Function()>();
 
   /// Return a rcl_arguments_t struct with members initialized to `NULL`.
   rcl_arguments_t rcl_get_zero_initialized_arguments() {
     return _rcl_get_zero_initialized_arguments();
   }
 
-  late final _rcl_get_zero_initialized_arguments_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_get_zero_initialized_arguments>>(
+  late final _rcl_get_zero_initialized_argumentsPtr =
+      _lookup<ffi.NativeFunction<rcl_arguments_t Function()>>(
           'rcl_get_zero_initialized_arguments');
-  late final _dart_rcl_get_zero_initialized_arguments
-      _rcl_get_zero_initialized_arguments =
-      _rcl_get_zero_initialized_arguments_ptr
-          .asFunction<_dart_rcl_get_zero_initialized_arguments>();
+  late final _rcl_get_zero_initialized_arguments =
+      _rcl_get_zero_initialized_argumentsPtr
+          .asFunction<rcl_arguments_t Function()>();
 
   /// Parse command line arguments into a structure usable by code.
   /// /**
@@ -3467,7 +3602,7 @@ class RCL {
   int rcl_parse_arguments(
     int argc,
     ffi.Pointer<ffi.Pointer<ffi.Int8>> argv,
-    rcutils_allocator_t allocator,
+    rcl_allocator_t allocator,
     ffi.Pointer<rcl_arguments_t> args_output,
   ) {
     return _rcl_parse_arguments(
@@ -3478,11 +3613,16 @@ class RCL {
     );
   }
 
-  late final _rcl_parse_arguments_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_parse_arguments>>(
-          'rcl_parse_arguments');
-  late final _dart_rcl_parse_arguments _rcl_parse_arguments =
-      _rcl_parse_arguments_ptr.asFunction<_dart_rcl_parse_arguments>();
+  late final _rcl_parse_argumentsPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(
+              ffi.Int32,
+              ffi.Pointer<ffi.Pointer<ffi.Int8>>,
+              rcl_allocator_t,
+              ffi.Pointer<rcl_arguments_t>)>>('rcl_parse_arguments');
+  late final _rcl_parse_arguments = _rcl_parse_argumentsPtr.asFunction<
+      int Function(int, ffi.Pointer<ffi.Pointer<ffi.Int8>>, rcl_allocator_t,
+          ffi.Pointer<rcl_arguments_t>)>();
 
   /// Return the number of arguments that were not ROS specific arguments.
   /// /**
@@ -3506,12 +3646,12 @@ class RCL {
     );
   }
 
-  late final _rcl_arguments_get_count_unparsed_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_arguments_get_count_unparsed>>(
-          'rcl_arguments_get_count_unparsed');
-  late final _dart_rcl_arguments_get_count_unparsed
-      _rcl_arguments_get_count_unparsed = _rcl_arguments_get_count_unparsed_ptr
-          .asFunction<_dart_rcl_arguments_get_count_unparsed>();
+  late final _rcl_arguments_get_count_unparsedPtr = _lookup<
+          ffi.NativeFunction<ffi.Int32 Function(ffi.Pointer<rcl_arguments_t>)>>(
+      'rcl_arguments_get_count_unparsed');
+  late final _rcl_arguments_get_count_unparsed =
+      _rcl_arguments_get_count_unparsedPtr
+          .asFunction<int Function(ffi.Pointer<rcl_arguments_t>)>();
 
   /// Return a list of indices to non ROS specific arguments.
   /// /**
@@ -3540,7 +3680,7 @@ class RCL {
   ///  */
   int rcl_arguments_get_unparsed(
     ffi.Pointer<rcl_arguments_t> args,
-    rcutils_allocator_t allocator,
+    rcl_allocator_t allocator,
     ffi.Pointer<ffi.Pointer<ffi.Int32>> output_unparsed_indices,
   ) {
     return _rcl_arguments_get_unparsed(
@@ -3550,12 +3690,15 @@ class RCL {
     );
   }
 
-  late final _rcl_arguments_get_unparsed_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_arguments_get_unparsed>>(
-          'rcl_arguments_get_unparsed');
-  late final _dart_rcl_arguments_get_unparsed _rcl_arguments_get_unparsed =
-      _rcl_arguments_get_unparsed_ptr
-          .asFunction<_dart_rcl_arguments_get_unparsed>();
+  late final _rcl_arguments_get_unparsedPtr = _lookup<
+          ffi.NativeFunction<
+              rcl_ret_t Function(ffi.Pointer<rcl_arguments_t>, rcl_allocator_t,
+                  ffi.Pointer<ffi.Pointer<ffi.Int32>>)>>(
+      'rcl_arguments_get_unparsed');
+  late final _rcl_arguments_get_unparsed =
+      _rcl_arguments_get_unparsedPtr.asFunction<
+          int Function(ffi.Pointer<rcl_arguments_t>, rcl_allocator_t,
+              ffi.Pointer<ffi.Pointer<ffi.Int32>>)>();
 
   /// Return the number of ROS specific arguments that were not successfully parsed.
   /// /**
@@ -3579,13 +3722,12 @@ class RCL {
     );
   }
 
-  late final _rcl_arguments_get_count_unparsed_ros_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_arguments_get_count_unparsed_ros>>(
-          'rcl_arguments_get_count_unparsed_ros');
-  late final _dart_rcl_arguments_get_count_unparsed_ros
-      _rcl_arguments_get_count_unparsed_ros =
-      _rcl_arguments_get_count_unparsed_ros_ptr
-          .asFunction<_dart_rcl_arguments_get_count_unparsed_ros>();
+  late final _rcl_arguments_get_count_unparsed_rosPtr = _lookup<
+          ffi.NativeFunction<ffi.Int32 Function(ffi.Pointer<rcl_arguments_t>)>>(
+      'rcl_arguments_get_count_unparsed_ros');
+  late final _rcl_arguments_get_count_unparsed_ros =
+      _rcl_arguments_get_count_unparsed_rosPtr
+          .asFunction<int Function(ffi.Pointer<rcl_arguments_t>)>();
 
   /// Return a list of indices to unknown ROS specific arguments that were left unparsed.
   /// /**
@@ -3613,7 +3755,7 @@ class RCL {
   ///  */
   int rcl_arguments_get_unparsed_ros(
     ffi.Pointer<rcl_arguments_t> args,
-    rcutils_allocator_t allocator,
+    rcl_allocator_t allocator,
     ffi.Pointer<ffi.Pointer<ffi.Int32>> output_unparsed_ros_indices,
   ) {
     return _rcl_arguments_get_unparsed_ros(
@@ -3623,12 +3765,15 @@ class RCL {
     );
   }
 
-  late final _rcl_arguments_get_unparsed_ros_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_arguments_get_unparsed_ros>>(
-          'rcl_arguments_get_unparsed_ros');
-  late final _dart_rcl_arguments_get_unparsed_ros
-      _rcl_arguments_get_unparsed_ros = _rcl_arguments_get_unparsed_ros_ptr
-          .asFunction<_dart_rcl_arguments_get_unparsed_ros>();
+  late final _rcl_arguments_get_unparsed_rosPtr = _lookup<
+          ffi.NativeFunction<
+              rcl_ret_t Function(ffi.Pointer<rcl_arguments_t>, rcl_allocator_t,
+                  ffi.Pointer<ffi.Pointer<ffi.Int32>>)>>(
+      'rcl_arguments_get_unparsed_ros');
+  late final _rcl_arguments_get_unparsed_ros =
+      _rcl_arguments_get_unparsed_rosPtr.asFunction<
+          int Function(ffi.Pointer<rcl_arguments_t>, rcl_allocator_t,
+              ffi.Pointer<ffi.Pointer<ffi.Int32>>)>();
 
   /// Return the number of parameter yaml files given in the arguments.
   /// /**
@@ -3652,13 +3797,12 @@ class RCL {
     );
   }
 
-  late final _rcl_arguments_get_param_files_count_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_arguments_get_param_files_count>>(
-          'rcl_arguments_get_param_files_count');
-  late final _dart_rcl_arguments_get_param_files_count
-      _rcl_arguments_get_param_files_count =
-      _rcl_arguments_get_param_files_count_ptr
-          .asFunction<_dart_rcl_arguments_get_param_files_count>();
+  late final _rcl_arguments_get_param_files_countPtr = _lookup<
+          ffi.NativeFunction<ffi.Int32 Function(ffi.Pointer<rcl_arguments_t>)>>(
+      'rcl_arguments_get_param_files_count');
+  late final _rcl_arguments_get_param_files_count =
+      _rcl_arguments_get_param_files_countPtr
+          .asFunction<int Function(ffi.Pointer<rcl_arguments_t>)>();
 
   /// Return a list of yaml parameter file paths specified on the command line.
   /// /**
@@ -3682,7 +3826,7 @@ class RCL {
   ///  */
   int rcl_arguments_get_param_files(
     ffi.Pointer<rcl_arguments_t> arguments,
-    rcutils_allocator_t allocator,
+    rcl_allocator_t allocator,
     ffi.Pointer<ffi.Pointer<ffi.Pointer<ffi.Int8>>> parameter_files,
   ) {
     return _rcl_arguments_get_param_files(
@@ -3692,12 +3836,15 @@ class RCL {
     );
   }
 
-  late final _rcl_arguments_get_param_files_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_arguments_get_param_files>>(
-          'rcl_arguments_get_param_files');
-  late final _dart_rcl_arguments_get_param_files
-      _rcl_arguments_get_param_files = _rcl_arguments_get_param_files_ptr
-          .asFunction<_dart_rcl_arguments_get_param_files>();
+  late final _rcl_arguments_get_param_filesPtr = _lookup<
+          ffi.NativeFunction<
+              rcl_ret_t Function(ffi.Pointer<rcl_arguments_t>, rcl_allocator_t,
+                  ffi.Pointer<ffi.Pointer<ffi.Pointer<ffi.Int8>>>)>>(
+      'rcl_arguments_get_param_files');
+  late final _rcl_arguments_get_param_files =
+      _rcl_arguments_get_param_filesPtr.asFunction<
+          int Function(ffi.Pointer<rcl_arguments_t>, rcl_allocator_t,
+              ffi.Pointer<ffi.Pointer<ffi.Pointer<ffi.Int8>>>)>();
 
   /// Return all parameter overrides parsed from the command line.
   /// /**
@@ -3731,13 +3878,15 @@ class RCL {
     );
   }
 
-  late final _rcl_arguments_get_param_overrides_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_arguments_get_param_overrides>>(
-          'rcl_arguments_get_param_overrides');
-  late final _dart_rcl_arguments_get_param_overrides
-      _rcl_arguments_get_param_overrides =
-      _rcl_arguments_get_param_overrides_ptr
-          .asFunction<_dart_rcl_arguments_get_param_overrides>();
+  late final _rcl_arguments_get_param_overridesPtr = _lookup<
+          ffi.NativeFunction<
+              rcl_ret_t Function(ffi.Pointer<rcl_arguments_t>,
+                  ffi.Pointer<ffi.Pointer<rcl_params_t>>)>>(
+      'rcl_arguments_get_param_overrides');
+  late final _rcl_arguments_get_param_overrides =
+      _rcl_arguments_get_param_overridesPtr.asFunction<
+          int Function(ffi.Pointer<rcl_arguments_t>,
+              ffi.Pointer<ffi.Pointer<rcl_params_t>>)>();
 
   /// Return a list of arguments with ROS-specific arguments removed.
   /// /**
@@ -3769,7 +3918,7 @@ class RCL {
   int rcl_remove_ros_arguments(
     ffi.Pointer<ffi.Pointer<ffi.Int8>> argv,
     ffi.Pointer<rcl_arguments_t> args,
-    rcutils_allocator_t allocator,
+    rcl_allocator_t allocator,
     ffi.Pointer<ffi.Int32> nonros_argc,
     ffi.Pointer<ffi.Pointer<ffi.Pointer<ffi.Int8>>> nonros_argv,
   ) {
@@ -3782,12 +3931,23 @@ class RCL {
     );
   }
 
-  late final _rcl_remove_ros_arguments_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_remove_ros_arguments>>(
-          'rcl_remove_ros_arguments');
-  late final _dart_rcl_remove_ros_arguments _rcl_remove_ros_arguments =
-      _rcl_remove_ros_arguments_ptr
-          .asFunction<_dart_rcl_remove_ros_arguments>();
+  late final _rcl_remove_ros_argumentsPtr = _lookup<
+          ffi.NativeFunction<
+              rcl_ret_t Function(
+                  ffi.Pointer<ffi.Pointer<ffi.Int8>>,
+                  ffi.Pointer<rcl_arguments_t>,
+                  rcl_allocator_t,
+                  ffi.Pointer<ffi.Int32>,
+                  ffi.Pointer<ffi.Pointer<ffi.Pointer<ffi.Int8>>>)>>(
+      'rcl_remove_ros_arguments');
+  late final _rcl_remove_ros_arguments =
+      _rcl_remove_ros_argumentsPtr.asFunction<
+          int Function(
+              ffi.Pointer<ffi.Pointer<ffi.Int8>>,
+              ffi.Pointer<rcl_arguments_t>,
+              rcl_allocator_t,
+              ffi.Pointer<ffi.Int32>,
+              ffi.Pointer<ffi.Pointer<ffi.Pointer<ffi.Int8>>>)>();
 
   /// Copy one arguments structure into another.
   /// /**
@@ -3817,10 +3977,13 @@ class RCL {
     );
   }
 
-  late final _rcl_arguments_copy_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_arguments_copy>>('rcl_arguments_copy');
-  late final _dart_rcl_arguments_copy _rcl_arguments_copy =
-      _rcl_arguments_copy_ptr.asFunction<_dart_rcl_arguments_copy>();
+  late final _rcl_arguments_copyPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(ffi.Pointer<rcl_arguments_t>,
+              ffi.Pointer<rcl_arguments_t>)>>('rcl_arguments_copy');
+  late final _rcl_arguments_copy = _rcl_arguments_copyPtr.asFunction<
+      int Function(
+          ffi.Pointer<rcl_arguments_t>, ffi.Pointer<rcl_arguments_t>)>();
 
   /// Reclaim resources held inside rcl_arguments_t structure.
   /// /**
@@ -3845,23 +4008,23 @@ class RCL {
     );
   }
 
-  late final _rcl_arguments_fini_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_arguments_fini>>('rcl_arguments_fini');
-  late final _dart_rcl_arguments_fini _rcl_arguments_fini =
-      _rcl_arguments_fini_ptr.asFunction<_dart_rcl_arguments_fini>();
+  late final _rcl_arguments_finiPtr = _lookup<
+          ffi.NativeFunction<rcl_ret_t Function(ffi.Pointer<rcl_arguments_t>)>>(
+      'rcl_arguments_fini');
+  late final _rcl_arguments_fini = _rcl_arguments_finiPtr
+      .asFunction<int Function(ffi.Pointer<rcl_arguments_t>)>();
 
   /// Return a zero initialized rcl_init_options_t struct.
   rcl_init_options_t rcl_get_zero_initialized_init_options() {
     return _rcl_get_zero_initialized_init_options();
   }
 
-  late final _rcl_get_zero_initialized_init_options_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_get_zero_initialized_init_options>>(
+  late final _rcl_get_zero_initialized_init_optionsPtr =
+      _lookup<ffi.NativeFunction<rcl_init_options_t Function()>>(
           'rcl_get_zero_initialized_init_options');
-  late final _dart_rcl_get_zero_initialized_init_options
-      _rcl_get_zero_initialized_init_options =
-      _rcl_get_zero_initialized_init_options_ptr
-          .asFunction<_dart_rcl_get_zero_initialized_init_options>();
+  late final _rcl_get_zero_initialized_init_options =
+      _rcl_get_zero_initialized_init_optionsPtr
+          .asFunction<rcl_init_options_t Function()>();
 
   /// Initialize given init_options with the default values and implementation specific values.
   /// /**
@@ -3890,7 +4053,7 @@ class RCL {
   ///  */
   int rcl_init_options_init(
     ffi.Pointer<rcl_init_options_t> init_options,
-    rcutils_allocator_t allocator,
+    rcl_allocator_t allocator,
   ) {
     return _rcl_init_options_init(
       init_options,
@@ -3898,11 +4061,12 @@ class RCL {
     );
   }
 
-  late final _rcl_init_options_init_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_init_options_init>>(
-          'rcl_init_options_init');
-  late final _dart_rcl_init_options_init _rcl_init_options_init =
-      _rcl_init_options_init_ptr.asFunction<_dart_rcl_init_options_init>();
+  late final _rcl_init_options_initPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(ffi.Pointer<rcl_init_options_t>,
+              rcl_allocator_t)>>('rcl_init_options_init');
+  late final _rcl_init_options_init = _rcl_init_options_initPtr.asFunction<
+      int Function(ffi.Pointer<rcl_init_options_t>, rcl_allocator_t)>();
 
   /// Copy the given source init_options to the destination init_options.
   /// /**
@@ -3941,11 +4105,13 @@ class RCL {
     );
   }
 
-  late final _rcl_init_options_copy_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_init_options_copy>>(
-          'rcl_init_options_copy');
-  late final _dart_rcl_init_options_copy _rcl_init_options_copy =
-      _rcl_init_options_copy_ptr.asFunction<_dart_rcl_init_options_copy>();
+  late final _rcl_init_options_copyPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(ffi.Pointer<rcl_init_options_t>,
+              ffi.Pointer<rcl_init_options_t>)>>('rcl_init_options_copy');
+  late final _rcl_init_options_copy = _rcl_init_options_copyPtr.asFunction<
+      int Function(
+          ffi.Pointer<rcl_init_options_t>, ffi.Pointer<rcl_init_options_t>)>();
 
   /// Finalize the given init_options.
   /// /**
@@ -3973,11 +4139,12 @@ class RCL {
     );
   }
 
-  late final _rcl_init_options_fini_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_init_options_fini>>(
-          'rcl_init_options_fini');
-  late final _dart_rcl_init_options_fini _rcl_init_options_fini =
-      _rcl_init_options_fini_ptr.asFunction<_dart_rcl_init_options_fini>();
+  late final _rcl_init_options_finiPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(
+              ffi.Pointer<rcl_init_options_t>)>>('rcl_init_options_fini');
+  late final _rcl_init_options_fini = _rcl_init_options_finiPtr
+      .asFunction<int Function(ffi.Pointer<rcl_init_options_t>)>();
 
   /// Return the rmw init options which are stored internally.
   /// /**
@@ -4007,25 +4174,27 @@ class RCL {
     );
   }
 
-  late final _rcl_init_options_get_rmw_init_options_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_init_options_get_rmw_init_options>>(
-          'rcl_init_options_get_rmw_init_options');
-  late final _dart_rcl_init_options_get_rmw_init_options
-      _rcl_init_options_get_rmw_init_options =
-      _rcl_init_options_get_rmw_init_options_ptr
-          .asFunction<_dart_rcl_init_options_get_rmw_init_options>();
+  late final _rcl_init_options_get_rmw_init_optionsPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Pointer<rmw_init_options_t> Function(
+                  ffi.Pointer<rcl_init_options_t>)>>(
+      'rcl_init_options_get_rmw_init_options');
+  late final _rcl_init_options_get_rmw_init_options =
+      _rcl_init_options_get_rmw_init_optionsPtr.asFunction<
+          ffi.Pointer<rmw_init_options_t> Function(
+              ffi.Pointer<rcl_init_options_t>)>();
 
   /// Return a zero initialization context object.
   rcl_context_t rcl_get_zero_initialized_context() {
     return _rcl_get_zero_initialized_context();
   }
 
-  late final _rcl_get_zero_initialized_context_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_get_zero_initialized_context>>(
+  late final _rcl_get_zero_initialized_contextPtr =
+      _lookup<ffi.NativeFunction<rcl_context_t Function()>>(
           'rcl_get_zero_initialized_context');
-  late final _dart_rcl_get_zero_initialized_context
-      _rcl_get_zero_initialized_context = _rcl_get_zero_initialized_context_ptr
-          .asFunction<_dart_rcl_get_zero_initialized_context>();
+  late final _rcl_get_zero_initialized_context =
+      _rcl_get_zero_initialized_contextPtr
+          .asFunction<rcl_context_t Function()>();
 
   /// Finalize a context.
   /// /**
@@ -4057,10 +4226,11 @@ class RCL {
     );
   }
 
-  late final _rcl_context_fini_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_context_fini>>('rcl_context_fini');
-  late final _dart_rcl_context_fini _rcl_context_fini =
-      _rcl_context_fini_ptr.asFunction<_dart_rcl_context_fini>();
+  late final _rcl_context_finiPtr = _lookup<
+          ffi.NativeFunction<rcl_ret_t Function(ffi.Pointer<rcl_context_t>)>>(
+      'rcl_context_fini');
+  late final _rcl_context_fini = _rcl_context_finiPtr
+      .asFunction<int Function(ffi.Pointer<rcl_context_t>)>();
 
   /// Return the init options used during initialization for this context.
   /// /**
@@ -4097,12 +4267,14 @@ class RCL {
     );
   }
 
-  late final _rcl_context_get_init_options_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_context_get_init_options>>(
-          'rcl_context_get_init_options');
-  late final _dart_rcl_context_get_init_options _rcl_context_get_init_options =
-      _rcl_context_get_init_options_ptr
-          .asFunction<_dart_rcl_context_get_init_options>();
+  late final _rcl_context_get_init_optionsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<rcl_init_options_t> Function(
+              ffi.Pointer<rcl_context_t>)>>('rcl_context_get_init_options');
+  late final _rcl_context_get_init_options =
+      _rcl_context_get_init_optionsPtr.asFunction<
+          ffi.Pointer<rcl_init_options_t> Function(
+              ffi.Pointer<rcl_context_t>)>();
 
   /// Returns an unsigned integer that is unique to the given context, or `0` if invalid.
   /// /**
@@ -4135,12 +4307,12 @@ class RCL {
     );
   }
 
-  late final _rcl_context_get_instance_id_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_context_get_instance_id>>(
-          'rcl_context_get_instance_id');
-  late final _dart_rcl_context_get_instance_id _rcl_context_get_instance_id =
-      _rcl_context_get_instance_id_ptr
-          .asFunction<_dart_rcl_context_get_instance_id>();
+  late final _rcl_context_get_instance_idPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_context_instance_id_t Function(
+              ffi.Pointer<rcl_context_t>)>>('rcl_context_get_instance_id');
+  late final _rcl_context_get_instance_id = _rcl_context_get_instance_idPtr
+      .asFunction<int Function(ffi.Pointer<rcl_context_t>)>();
 
   /// Return `true` if the given context is currently valid, otherwise `false`.
   /// /**
@@ -4168,11 +4340,11 @@ class RCL {
         0;
   }
 
-  late final _rcl_context_is_valid_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_context_is_valid>>(
-          'rcl_context_is_valid');
-  late final _dart_rcl_context_is_valid _rcl_context_is_valid =
-      _rcl_context_is_valid_ptr.asFunction<_dart_rcl_context_is_valid>();
+  late final _rcl_context_is_validPtr = _lookup<
+          ffi.NativeFunction<ffi.Uint8 Function(ffi.Pointer<rcl_context_t>)>>(
+      'rcl_context_is_valid');
+  late final _rcl_context_is_valid = _rcl_context_is_validPtr
+      .asFunction<int Function(ffi.Pointer<rcl_context_t>)>();
 
   /// Return pointer to the rmw context if the given context is currently valid, otherwise `NULL`.
   /// /**
@@ -4199,12 +4371,13 @@ class RCL {
     );
   }
 
-  late final _rcl_context_get_rmw_context_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_context_get_rmw_context>>(
-          'rcl_context_get_rmw_context');
-  late final _dart_rcl_context_get_rmw_context _rcl_context_get_rmw_context =
-      _rcl_context_get_rmw_context_ptr
-          .asFunction<_dart_rcl_context_get_rmw_context>();
+  late final _rcl_context_get_rmw_contextPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<rmw_context_t> Function(
+              ffi.Pointer<rcl_context_t>)>>('rcl_context_get_rmw_context');
+  late final _rcl_context_get_rmw_context =
+      _rcl_context_get_rmw_contextPtr.asFunction<
+          ffi.Pointer<rmw_context_t> Function(ffi.Pointer<rcl_context_t>)>();
 
   /// Return the default node options in a rcl_node_options_t.
   /// /**
@@ -4219,12 +4392,11 @@ class RCL {
     return _rcl_node_get_default_options();
   }
 
-  late final _rcl_node_get_default_options_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_node_get_default_options>>(
+  late final _rcl_node_get_default_optionsPtr =
+      _lookup<ffi.NativeFunction<rcl_node_options_t Function()>>(
           'rcl_node_get_default_options');
-  late final _dart_rcl_node_get_default_options _rcl_node_get_default_options =
-      _rcl_node_get_default_options_ptr
-          .asFunction<_dart_rcl_node_get_default_options>();
+  late final _rcl_node_get_default_options = _rcl_node_get_default_optionsPtr
+      .asFunction<rcl_node_options_t Function()>();
 
   /// Copy one options structure into another.
   /// /**
@@ -4254,11 +4426,13 @@ class RCL {
     );
   }
 
-  late final _rcl_node_options_copy_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_node_options_copy>>(
-          'rcl_node_options_copy');
-  late final _dart_rcl_node_options_copy _rcl_node_options_copy =
-      _rcl_node_options_copy_ptr.asFunction<_dart_rcl_node_options_copy>();
+  late final _rcl_node_options_copyPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(ffi.Pointer<rcl_node_options_t>,
+              ffi.Pointer<rcl_node_options_t>)>>('rcl_node_options_copy');
+  late final _rcl_node_options_copy = _rcl_node_options_copyPtr.asFunction<
+      int Function(
+          ffi.Pointer<rcl_node_options_t>, ffi.Pointer<rcl_node_options_t>)>();
 
   /// Finalize the given node_options.
   /// /**
@@ -4286,23 +4460,23 @@ class RCL {
     );
   }
 
-  late final _rcl_node_options_fini_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_node_options_fini>>(
-          'rcl_node_options_fini');
-  late final _dart_rcl_node_options_fini _rcl_node_options_fini =
-      _rcl_node_options_fini_ptr.asFunction<_dart_rcl_node_options_fini>();
+  late final _rcl_node_options_finiPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(
+              ffi.Pointer<rcl_node_options_t>)>>('rcl_node_options_fini');
+  late final _rcl_node_options_fini = _rcl_node_options_finiPtr
+      .asFunction<int Function(ffi.Pointer<rcl_node_options_t>)>();
 
   /// Return a rcl_node_t struct with members initialized to `NULL`.
   rcl_node_t rcl_get_zero_initialized_node() {
     return _rcl_get_zero_initialized_node();
   }
 
-  late final _rcl_get_zero_initialized_node_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_get_zero_initialized_node>>(
+  late final _rcl_get_zero_initialized_nodePtr =
+      _lookup<ffi.NativeFunction<rcl_node_t Function()>>(
           'rcl_get_zero_initialized_node');
-  late final _dart_rcl_get_zero_initialized_node
-      _rcl_get_zero_initialized_node = _rcl_get_zero_initialized_node_ptr
-          .asFunction<_dart_rcl_get_zero_initialized_node>();
+  late final _rcl_get_zero_initialized_node =
+      _rcl_get_zero_initialized_nodePtr.asFunction<rcl_node_t Function()>();
 
   /// Initialize a ROS node.
   /// /**
@@ -4409,10 +4583,21 @@ class RCL {
     );
   }
 
-  late final _rcl_node_init_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_node_init>>('rcl_node_init');
-  late final _dart_rcl_node_init _rcl_node_init =
-      _rcl_node_init_ptr.asFunction<_dart_rcl_node_init>();
+  late final _rcl_node_initPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(
+              ffi.Pointer<rcl_node_t>,
+              ffi.Pointer<ffi.Int8>,
+              ffi.Pointer<ffi.Int8>,
+              ffi.Pointer<rcl_context_t>,
+              ffi.Pointer<rcl_node_options_t>)>>('rcl_node_init');
+  late final _rcl_node_init = _rcl_node_initPtr.asFunction<
+      int Function(
+          ffi.Pointer<rcl_node_t>,
+          ffi.Pointer<ffi.Int8>,
+          ffi.Pointer<ffi.Int8>,
+          ffi.Pointer<rcl_context_t>,
+          ffi.Pointer<rcl_node_options_t>)>();
 
   /// Finalize a rcl_node_t.
   /// /**
@@ -4444,10 +4629,11 @@ class RCL {
     );
   }
 
-  late final _rcl_node_fini_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_node_fini>>('rcl_node_fini');
-  late final _dart_rcl_node_fini _rcl_node_fini =
-      _rcl_node_fini_ptr.asFunction<_dart_rcl_node_fini>();
+  late final _rcl_node_finiPtr =
+      _lookup<ffi.NativeFunction<rcl_ret_t Function(ffi.Pointer<rcl_node_t>)>>(
+          'rcl_node_fini');
+  late final _rcl_node_fini =
+      _rcl_node_finiPtr.asFunction<int Function(ffi.Pointer<rcl_node_t>)>();
 
   /// Return `true` if the node is valid, else `false`.
   /// /**
@@ -4493,10 +4679,11 @@ class RCL {
         0;
   }
 
-  late final _rcl_node_is_valid_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_node_is_valid>>('rcl_node_is_valid');
-  late final _dart_rcl_node_is_valid _rcl_node_is_valid =
-      _rcl_node_is_valid_ptr.asFunction<_dart_rcl_node_is_valid>();
+  late final _rcl_node_is_validPtr =
+      _lookup<ffi.NativeFunction<ffi.Uint8 Function(ffi.Pointer<rcl_node_t>)>>(
+          'rcl_node_is_valid');
+  late final _rcl_node_is_valid =
+      _rcl_node_is_validPtr.asFunction<int Function(ffi.Pointer<rcl_node_t>)>();
 
   /// Return true if node is valid, except for the context being valid.
   /// /**
@@ -4516,12 +4703,12 @@ class RCL {
         0;
   }
 
-  late final _rcl_node_is_valid_except_context_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_node_is_valid_except_context>>(
+  late final _rcl_node_is_valid_except_contextPtr =
+      _lookup<ffi.NativeFunction<ffi.Uint8 Function(ffi.Pointer<rcl_node_t>)>>(
           'rcl_node_is_valid_except_context');
-  late final _dart_rcl_node_is_valid_except_context
-      _rcl_node_is_valid_except_context = _rcl_node_is_valid_except_context_ptr
-          .asFunction<_dart_rcl_node_is_valid_except_context>();
+  late final _rcl_node_is_valid_except_context =
+      _rcl_node_is_valid_except_contextPtr
+          .asFunction<int Function(ffi.Pointer<rcl_node_t>)>();
 
   /// Return the name of the node.
   /// /**
@@ -4553,10 +4740,12 @@ class RCL {
     );
   }
 
-  late final _rcl_node_get_name_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_node_get_name>>('rcl_node_get_name');
-  late final _dart_rcl_node_get_name _rcl_node_get_name =
-      _rcl_node_get_name_ptr.asFunction<_dart_rcl_node_get_name>();
+  late final _rcl_node_get_namePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Int8> Function(
+              ffi.Pointer<rcl_node_t>)>>('rcl_node_get_name');
+  late final _rcl_node_get_name = _rcl_node_get_namePtr
+      .asFunction<ffi.Pointer<ffi.Int8> Function(ffi.Pointer<rcl_node_t>)>();
 
   /// Return the namespace of the node.
   /// /**
@@ -4588,11 +4777,12 @@ class RCL {
     );
   }
 
-  late final _rcl_node_get_namespace_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_node_get_namespace>>(
-          'rcl_node_get_namespace');
-  late final _dart_rcl_node_get_namespace _rcl_node_get_namespace =
-      _rcl_node_get_namespace_ptr.asFunction<_dart_rcl_node_get_namespace>();
+  late final _rcl_node_get_namespacePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Int8> Function(
+              ffi.Pointer<rcl_node_t>)>>('rcl_node_get_namespace');
+  late final _rcl_node_get_namespace = _rcl_node_get_namespacePtr
+      .asFunction<ffi.Pointer<ffi.Int8> Function(ffi.Pointer<rcl_node_t>)>();
 
   /// Return the fully qualified name of the node.
   /// /**
@@ -4620,13 +4810,13 @@ class RCL {
     );
   }
 
-  late final _rcl_node_get_fully_qualified_name_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_node_get_fully_qualified_name>>(
-          'rcl_node_get_fully_qualified_name');
-  late final _dart_rcl_node_get_fully_qualified_name
-      _rcl_node_get_fully_qualified_name =
-      _rcl_node_get_fully_qualified_name_ptr
-          .asFunction<_dart_rcl_node_get_fully_qualified_name>();
+  late final _rcl_node_get_fully_qualified_namePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Int8> Function(
+              ffi.Pointer<rcl_node_t>)>>('rcl_node_get_fully_qualified_name');
+  late final _rcl_node_get_fully_qualified_name =
+      _rcl_node_get_fully_qualified_namePtr.asFunction<
+          ffi.Pointer<ffi.Int8> Function(ffi.Pointer<rcl_node_t>)>();
 
   /// Return the rcl node options.
   /// /**
@@ -4658,11 +4848,12 @@ class RCL {
     );
   }
 
-  late final _rcl_node_get_options_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_node_get_options>>(
-          'rcl_node_get_options');
-  late final _dart_rcl_node_get_options _rcl_node_get_options =
-      _rcl_node_get_options_ptr.asFunction<_dart_rcl_node_get_options>();
+  late final _rcl_node_get_optionsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<rcl_node_options_t> Function(
+              ffi.Pointer<rcl_node_t>)>>('rcl_node_get_options');
+  late final _rcl_node_get_options = _rcl_node_get_optionsPtr.asFunction<
+      ffi.Pointer<rcl_node_options_t> Function(ffi.Pointer<rcl_node_t>)>();
 
   /// Return the ROS domain ID that the node is using.
   /// /**
@@ -4694,7 +4885,7 @@ class RCL {
   ///  */
   int rcl_node_get_domain_id(
     ffi.Pointer<rcl_node_t> node,
-    ffi.Pointer<ffi.Uint64> domain_id,
+    ffi.Pointer<size_t> domain_id,
   ) {
     return _rcl_node_get_domain_id(
       node,
@@ -4702,11 +4893,12 @@ class RCL {
     );
   }
 
-  late final _rcl_node_get_domain_id_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_node_get_domain_id>>(
-          'rcl_node_get_domain_id');
-  late final _dart_rcl_node_get_domain_id _rcl_node_get_domain_id =
-      _rcl_node_get_domain_id_ptr.asFunction<_dart_rcl_node_get_domain_id>();
+  late final _rcl_node_get_domain_idPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(ffi.Pointer<rcl_node_t>,
+              ffi.Pointer<size_t>)>>('rcl_node_get_domain_id');
+  late final _rcl_node_get_domain_id = _rcl_node_get_domain_idPtr
+      .asFunction<int Function(ffi.Pointer<rcl_node_t>, ffi.Pointer<size_t>)>();
 
   /// Manually assert that this node is alive (for RMW_QOS_POLICY_LIVELINESS_MANUAL_BY_NODE)
   /// /**
@@ -4736,12 +4928,11 @@ class RCL {
     );
   }
 
-  late final _rcl_node_assert_liveliness_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_node_assert_liveliness>>(
+  late final _rcl_node_assert_livelinessPtr =
+      _lookup<ffi.NativeFunction<rcl_ret_t Function(ffi.Pointer<rcl_node_t>)>>(
           'rcl_node_assert_liveliness');
-  late final _dart_rcl_node_assert_liveliness _rcl_node_assert_liveliness =
-      _rcl_node_assert_liveliness_ptr
-          .asFunction<_dart_rcl_node_assert_liveliness>();
+  late final _rcl_node_assert_liveliness = _rcl_node_assert_livelinessPtr
+      .asFunction<int Function(ffi.Pointer<rcl_node_t>)>();
 
   /// Return the rmw node handle.
   /// /**
@@ -4777,11 +4968,12 @@ class RCL {
     );
   }
 
-  late final _rcl_node_get_rmw_handle_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_node_get_rmw_handle>>(
-          'rcl_node_get_rmw_handle');
-  late final _dart_rcl_node_get_rmw_handle _rcl_node_get_rmw_handle =
-      _rcl_node_get_rmw_handle_ptr.asFunction<_dart_rcl_node_get_rmw_handle>();
+  late final _rcl_node_get_rmw_handlePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<rmw_node_t> Function(
+              ffi.Pointer<rcl_node_t>)>>('rcl_node_get_rmw_handle');
+  late final _rcl_node_get_rmw_handle = _rcl_node_get_rmw_handlePtr
+      .asFunction<ffi.Pointer<rmw_node_t> Function(ffi.Pointer<rcl_node_t>)>();
 
   /// Return the associated rcl instance id.
   /// /**
@@ -4815,12 +5007,11 @@ class RCL {
     );
   }
 
-  late final _rcl_node_get_rcl_instance_id_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_node_get_rcl_instance_id>>(
+  late final _rcl_node_get_rcl_instance_idPtr =
+      _lookup<ffi.NativeFunction<ffi.Uint64 Function(ffi.Pointer<rcl_node_t>)>>(
           'rcl_node_get_rcl_instance_id');
-  late final _dart_rcl_node_get_rcl_instance_id _rcl_node_get_rcl_instance_id =
-      _rcl_node_get_rcl_instance_id_ptr
-          .asFunction<_dart_rcl_node_get_rcl_instance_id>();
+  late final _rcl_node_get_rcl_instance_id = _rcl_node_get_rcl_instance_idPtr
+      .asFunction<int Function(ffi.Pointer<rcl_node_t>)>();
 
   /// Return a guard condition which is triggered when the ROS graph changes.
   /// /**
@@ -4858,13 +5049,14 @@ class RCL {
     );
   }
 
-  late final _rcl_node_get_graph_guard_condition_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_node_get_graph_guard_condition>>(
-          'rcl_node_get_graph_guard_condition');
-  late final _dart_rcl_node_get_graph_guard_condition
-      _rcl_node_get_graph_guard_condition =
-      _rcl_node_get_graph_guard_condition_ptr
-          .asFunction<_dart_rcl_node_get_graph_guard_condition>();
+  late final _rcl_node_get_graph_guard_conditionPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<rcl_guard_condition_t> Function(
+              ffi.Pointer<rcl_node_t>)>>('rcl_node_get_graph_guard_condition');
+  late final _rcl_node_get_graph_guard_condition =
+      _rcl_node_get_graph_guard_conditionPtr.asFunction<
+          ffi.Pointer<rcl_guard_condition_t> Function(
+              ffi.Pointer<rcl_node_t>)>();
 
   /// Return the logger name of the node.
   /// /**
@@ -4896,12 +5088,12 @@ class RCL {
     );
   }
 
-  late final _rcl_node_get_logger_name_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_node_get_logger_name>>(
-          'rcl_node_get_logger_name');
-  late final _dart_rcl_node_get_logger_name _rcl_node_get_logger_name =
-      _rcl_node_get_logger_name_ptr
-          .asFunction<_dart_rcl_node_get_logger_name>();
+  late final _rcl_node_get_logger_namePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Int8> Function(
+              ffi.Pointer<rcl_node_t>)>>('rcl_node_get_logger_name');
+  late final _rcl_node_get_logger_name = _rcl_node_get_logger_namePtr
+      .asFunction<ffi.Pointer<ffi.Int8> Function(ffi.Pointer<rcl_node_t>)>();
 
   /// Return a rcl_client_t struct with members set to `NULL`.
   /// /**
@@ -4912,12 +5104,11 @@ class RCL {
     return _rcl_get_zero_initialized_client();
   }
 
-  late final _rcl_get_zero_initialized_client_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_get_zero_initialized_client>>(
+  late final _rcl_get_zero_initialized_clientPtr =
+      _lookup<ffi.NativeFunction<rcl_client_t Function()>>(
           'rcl_get_zero_initialized_client');
-  late final _dart_rcl_get_zero_initialized_client
-      _rcl_get_zero_initialized_client = _rcl_get_zero_initialized_client_ptr
-          .asFunction<_dart_rcl_get_zero_initialized_client>();
+  late final _rcl_get_zero_initialized_client =
+      _rcl_get_zero_initialized_clientPtr.asFunction<rcl_client_t Function()>();
 
   /// Initialize a rcl client.
   /// /**
@@ -5029,10 +5220,21 @@ class RCL {
     );
   }
 
-  late final _rcl_client_init_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_client_init>>('rcl_client_init');
-  late final _dart_rcl_client_init _rcl_client_init =
-      _rcl_client_init_ptr.asFunction<_dart_rcl_client_init>();
+  late final _rcl_client_initPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(
+              ffi.Pointer<rcl_client_t>,
+              ffi.Pointer<rcl_node_t>,
+              ffi.Pointer<rosidl_service_type_support_t>,
+              ffi.Pointer<ffi.Int8>,
+              ffi.Pointer<rcl_client_options_t>)>>('rcl_client_init');
+  late final _rcl_client_init = _rcl_client_initPtr.asFunction<
+      int Function(
+          ffi.Pointer<rcl_client_t>,
+          ffi.Pointer<rcl_node_t>,
+          ffi.Pointer<rosidl_service_type_support_t>,
+          ffi.Pointer<ffi.Int8>,
+          ffi.Pointer<rcl_client_options_t>)>();
 
   /// Finalize a rcl_client_t.
   /// /**
@@ -5065,10 +5267,12 @@ class RCL {
     );
   }
 
-  late final _rcl_client_fini_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_client_fini>>('rcl_client_fini');
-  late final _dart_rcl_client_fini _rcl_client_fini =
-      _rcl_client_fini_ptr.asFunction<_dart_rcl_client_fini>();
+  late final _rcl_client_finiPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(ffi.Pointer<rcl_client_t>,
+              ffi.Pointer<rcl_node_t>)>>('rcl_client_fini');
+  late final _rcl_client_fini = _rcl_client_finiPtr.asFunction<
+      int Function(ffi.Pointer<rcl_client_t>, ffi.Pointer<rcl_node_t>)>();
 
   /// Return the default client options in a rcl_client_options_t.
   /// /**
@@ -5081,12 +5285,12 @@ class RCL {
     return _rcl_client_get_default_options();
   }
 
-  late final _rcl_client_get_default_options_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_client_get_default_options>>(
+  late final _rcl_client_get_default_optionsPtr =
+      _lookup<ffi.NativeFunction<rcl_client_options_t Function()>>(
           'rcl_client_get_default_options');
-  late final _dart_rcl_client_get_default_options
-      _rcl_client_get_default_options = _rcl_client_get_default_options_ptr
-          .asFunction<_dart_rcl_client_get_default_options>();
+  late final _rcl_client_get_default_options =
+      _rcl_client_get_default_optionsPtr
+          .asFunction<rcl_client_options_t Function()>();
 
   /// Send a ROS request using a client.
   /// /**
@@ -5144,10 +5348,13 @@ class RCL {
     );
   }
 
-  late final _rcl_send_request_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_send_request>>('rcl_send_request');
-  late final _dart_rcl_send_request _rcl_send_request =
-      _rcl_send_request_ptr.asFunction<_dart_rcl_send_request>();
+  late final _rcl_send_requestPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(ffi.Pointer<rcl_client_t>, ffi.Pointer<ffi.Void>,
+              ffi.Pointer<ffi.Int64>)>>('rcl_send_request');
+  late final _rcl_send_request = _rcl_send_requestPtr.asFunction<
+      int Function(ffi.Pointer<rcl_client_t>, ffi.Pointer<ffi.Void>,
+          ffi.Pointer<ffi.Int64>)>();
 
   /// Take a ROS response using a client
   /// /**
@@ -5196,10 +5403,15 @@ class RCL {
     );
   }
 
-  late final _rcl_take_response_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_take_response>>('rcl_take_response');
-  late final _dart_rcl_take_response _rcl_take_response =
-      _rcl_take_response_ptr.asFunction<_dart_rcl_take_response>();
+  late final _rcl_take_responsePtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(
+              ffi.Pointer<rcl_client_t>,
+              ffi.Pointer<rmw_request_id_t>,
+              ffi.Pointer<ffi.Void>)>>('rcl_take_response');
+  late final _rcl_take_response = _rcl_take_responsePtr.asFunction<
+      int Function(ffi.Pointer<rcl_client_t>, ffi.Pointer<rmw_request_id_t>,
+          ffi.Pointer<ffi.Void>)>();
 
   /// Get the name of the service that this client will request a response from.
   /// /**
@@ -5231,12 +5443,12 @@ class RCL {
     );
   }
 
-  late final _rcl_client_get_service_name_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_client_get_service_name>>(
-          'rcl_client_get_service_name');
-  late final _dart_rcl_client_get_service_name _rcl_client_get_service_name =
-      _rcl_client_get_service_name_ptr
-          .asFunction<_dart_rcl_client_get_service_name>();
+  late final _rcl_client_get_service_namePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Int8> Function(
+              ffi.Pointer<rcl_client_t>)>>('rcl_client_get_service_name');
+  late final _rcl_client_get_service_name = _rcl_client_get_service_namePtr
+      .asFunction<ffi.Pointer<ffi.Int8> Function(ffi.Pointer<rcl_client_t>)>();
 
   /// Return the rcl client options.
   /// /**
@@ -5268,11 +5480,12 @@ class RCL {
     );
   }
 
-  late final _rcl_client_get_options_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_client_get_options>>(
-          'rcl_client_get_options');
-  late final _dart_rcl_client_get_options _rcl_client_get_options =
-      _rcl_client_get_options_ptr.asFunction<_dart_rcl_client_get_options>();
+  late final _rcl_client_get_optionsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<rcl_client_options_t> Function(
+              ffi.Pointer<rcl_client_t>)>>('rcl_client_get_options');
+  late final _rcl_client_get_options = _rcl_client_get_optionsPtr.asFunction<
+      ffi.Pointer<rcl_client_options_t> Function(ffi.Pointer<rcl_client_t>)>();
 
   /// Return the rmw client handle.
   /// /**
@@ -5308,12 +5521,13 @@ class RCL {
     );
   }
 
-  late final _rcl_client_get_rmw_handle_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_client_get_rmw_handle>>(
-          'rcl_client_get_rmw_handle');
-  late final _dart_rcl_client_get_rmw_handle _rcl_client_get_rmw_handle =
-      _rcl_client_get_rmw_handle_ptr
-          .asFunction<_dart_rcl_client_get_rmw_handle>();
+  late final _rcl_client_get_rmw_handlePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<rmw_client_t> Function(
+              ffi.Pointer<rcl_client_t>)>>('rcl_client_get_rmw_handle');
+  late final _rcl_client_get_rmw_handle =
+      _rcl_client_get_rmw_handlePtr.asFunction<
+          ffi.Pointer<rmw_client_t> Function(ffi.Pointer<rcl_client_t>)>();
 
   /// Check that the client is valid.
   /// /**
@@ -5342,11 +5556,11 @@ class RCL {
         0;
   }
 
-  late final _rcl_client_is_valid_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_client_is_valid>>(
-          'rcl_client_is_valid');
-  late final _dart_rcl_client_is_valid _rcl_client_is_valid =
-      _rcl_client_is_valid_ptr.asFunction<_dart_rcl_client_is_valid>();
+  late final _rcl_client_is_validPtr = _lookup<
+          ffi.NativeFunction<ffi.Uint8 Function(ffi.Pointer<rcl_client_t>)>>(
+      'rcl_client_is_valid');
+  late final _rcl_client_is_valid = _rcl_client_is_validPtr
+      .asFunction<int Function(ffi.Pointer<rcl_client_t>)>();
 
   /// Initialize a rcl guard_condition.
   /// /**
@@ -5399,12 +5613,16 @@ class RCL {
     );
   }
 
-  late final _rcl_guard_condition_init_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_guard_condition_init>>(
-          'rcl_guard_condition_init');
-  late final _dart_rcl_guard_condition_init _rcl_guard_condition_init =
-      _rcl_guard_condition_init_ptr
-          .asFunction<_dart_rcl_guard_condition_init>();
+  late final _rcl_guard_condition_initPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(
+              ffi.Pointer<rcl_guard_condition_t>,
+              ffi.Pointer<rcl_context_t>,
+              rcl_guard_condition_options_t)>>('rcl_guard_condition_init');
+  late final _rcl_guard_condition_init =
+      _rcl_guard_condition_initPtr.asFunction<
+          int Function(ffi.Pointer<rcl_guard_condition_t>,
+              ffi.Pointer<rcl_context_t>, rcl_guard_condition_options_t)>();
 
   /// Same as rcl_guard_condition_init(), but reusing an existing rmw handle.
   /// /**
@@ -5454,13 +5672,21 @@ class RCL {
     );
   }
 
-  late final _rcl_guard_condition_init_from_rmw_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_guard_condition_init_from_rmw>>(
-          'rcl_guard_condition_init_from_rmw');
-  late final _dart_rcl_guard_condition_init_from_rmw
-      _rcl_guard_condition_init_from_rmw =
-      _rcl_guard_condition_init_from_rmw_ptr
-          .asFunction<_dart_rcl_guard_condition_init_from_rmw>();
+  late final _rcl_guard_condition_init_from_rmwPtr = _lookup<
+          ffi.NativeFunction<
+              rcl_ret_t Function(
+                  ffi.Pointer<rcl_guard_condition_t>,
+                  ffi.Pointer<rmw_guard_condition_t>,
+                  ffi.Pointer<rcl_context_t>,
+                  rcl_guard_condition_options_t)>>(
+      'rcl_guard_condition_init_from_rmw');
+  late final _rcl_guard_condition_init_from_rmw =
+      _rcl_guard_condition_init_from_rmwPtr.asFunction<
+          int Function(
+              ffi.Pointer<rcl_guard_condition_t>,
+              ffi.Pointer<rmw_guard_condition_t>,
+              ffi.Pointer<rcl_context_t>,
+              rcl_guard_condition_options_t)>();
 
   /// Finalize a rcl_guard_condition_t.
   /// /**
@@ -5489,12 +5715,12 @@ class RCL {
     );
   }
 
-  late final _rcl_guard_condition_fini_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_guard_condition_fini>>(
-          'rcl_guard_condition_fini');
-  late final _dart_rcl_guard_condition_fini _rcl_guard_condition_fini =
-      _rcl_guard_condition_fini_ptr
-          .asFunction<_dart_rcl_guard_condition_fini>();
+  late final _rcl_guard_condition_finiPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(
+              ffi.Pointer<rcl_guard_condition_t>)>>('rcl_guard_condition_fini');
+  late final _rcl_guard_condition_fini = _rcl_guard_condition_finiPtr
+      .asFunction<int Function(ffi.Pointer<rcl_guard_condition_t>)>();
 
   /// Return the default options in a rcl_guard_condition_options_t struct.
   /// /**
@@ -5506,13 +5732,12 @@ class RCL {
     return _rcl_guard_condition_get_default_options();
   }
 
-  late final _rcl_guard_condition_get_default_options_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_guard_condition_get_default_options>>(
+  late final _rcl_guard_condition_get_default_optionsPtr =
+      _lookup<ffi.NativeFunction<rcl_guard_condition_options_t Function()>>(
           'rcl_guard_condition_get_default_options');
-  late final _dart_rcl_guard_condition_get_default_options
-      _rcl_guard_condition_get_default_options =
-      _rcl_guard_condition_get_default_options_ptr
-          .asFunction<_dart_rcl_guard_condition_get_default_options>();
+  late final _rcl_guard_condition_get_default_options =
+      _rcl_guard_condition_get_default_optionsPtr
+          .asFunction<rcl_guard_condition_options_t Function()>();
 
   /// Trigger a rcl guard condition.
   /// /**
@@ -5544,12 +5769,12 @@ class RCL {
     );
   }
 
-  late final _rcl_trigger_guard_condition_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_trigger_guard_condition>>(
-          'rcl_trigger_guard_condition');
-  late final _dart_rcl_trigger_guard_condition _rcl_trigger_guard_condition =
-      _rcl_trigger_guard_condition_ptr
-          .asFunction<_dart_rcl_trigger_guard_condition>();
+  late final _rcl_trigger_guard_conditionPtr = _lookup<
+          ffi.NativeFunction<
+              rcl_ret_t Function(ffi.Pointer<rcl_guard_condition_t>)>>(
+      'rcl_trigger_guard_condition');
+  late final _rcl_trigger_guard_condition = _rcl_trigger_guard_conditionPtr
+      .asFunction<int Function(ffi.Pointer<rcl_guard_condition_t>)>();
 
   /// Return the guard condition options.
   /// /**
@@ -5579,12 +5804,15 @@ class RCL {
     );
   }
 
-  late final _rcl_guard_condition_get_options_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_guard_condition_get_options>>(
-          'rcl_guard_condition_get_options');
-  late final _dart_rcl_guard_condition_get_options
-      _rcl_guard_condition_get_options = _rcl_guard_condition_get_options_ptr
-          .asFunction<_dart_rcl_guard_condition_get_options>();
+  late final _rcl_guard_condition_get_optionsPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Pointer<rcl_guard_condition_options_t> Function(
+                  ffi.Pointer<rcl_guard_condition_t>)>>(
+      'rcl_guard_condition_get_options');
+  late final _rcl_guard_condition_get_options =
+      _rcl_guard_condition_get_optionsPtr.asFunction<
+          ffi.Pointer<rcl_guard_condition_options_t> Function(
+              ffi.Pointer<rcl_guard_condition_t>)>();
 
   /// Return the rmw guard condition handle.
   /// /**
@@ -5620,13 +5848,15 @@ class RCL {
     );
   }
 
-  late final _rcl_guard_condition_get_rmw_handle_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_guard_condition_get_rmw_handle>>(
-          'rcl_guard_condition_get_rmw_handle');
-  late final _dart_rcl_guard_condition_get_rmw_handle
-      _rcl_guard_condition_get_rmw_handle =
-      _rcl_guard_condition_get_rmw_handle_ptr
-          .asFunction<_dart_rcl_guard_condition_get_rmw_handle>();
+  late final _rcl_guard_condition_get_rmw_handlePtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Pointer<rmw_guard_condition_t> Function(
+                  ffi.Pointer<rcl_guard_condition_t>)>>(
+      'rcl_guard_condition_get_rmw_handle');
+  late final _rcl_guard_condition_get_rmw_handle =
+      _rcl_guard_condition_get_rmw_handlePtr.asFunction<
+          ffi.Pointer<rmw_guard_condition_t> Function(
+              ffi.Pointer<rcl_guard_condition_t>)>();
 
   /// Return a rcl_service_t struct with members set to `NULL`.
   /// /**
@@ -5637,12 +5867,12 @@ class RCL {
     return _rcl_get_zero_initialized_service();
   }
 
-  late final _rcl_get_zero_initialized_service_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_get_zero_initialized_service>>(
+  late final _rcl_get_zero_initialized_servicePtr =
+      _lookup<ffi.NativeFunction<rcl_service_t Function()>>(
           'rcl_get_zero_initialized_service');
-  late final _dart_rcl_get_zero_initialized_service
-      _rcl_get_zero_initialized_service = _rcl_get_zero_initialized_service_ptr
-          .asFunction<_dart_rcl_get_zero_initialized_service>();
+  late final _rcl_get_zero_initialized_service =
+      _rcl_get_zero_initialized_servicePtr
+          .asFunction<rcl_service_t Function()>();
 
   /// Initialize a rcl service.
   /// /**
@@ -5749,10 +5979,21 @@ class RCL {
     );
   }
 
-  late final _rcl_service_init_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_service_init>>('rcl_service_init');
-  late final _dart_rcl_service_init _rcl_service_init =
-      _rcl_service_init_ptr.asFunction<_dart_rcl_service_init>();
+  late final _rcl_service_initPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(
+              ffi.Pointer<rcl_service_t>,
+              ffi.Pointer<rcl_node_t>,
+              ffi.Pointer<rosidl_service_type_support_t>,
+              ffi.Pointer<ffi.Int8>,
+              ffi.Pointer<rcl_service_options_t>)>>('rcl_service_init');
+  late final _rcl_service_init = _rcl_service_initPtr.asFunction<
+      int Function(
+          ffi.Pointer<rcl_service_t>,
+          ffi.Pointer<rcl_node_t>,
+          ffi.Pointer<rosidl_service_type_support_t>,
+          ffi.Pointer<ffi.Int8>,
+          ffi.Pointer<rcl_service_options_t>)>();
 
   /// Finalize a rcl_service_t.
   /// /**
@@ -5790,10 +6031,12 @@ class RCL {
     );
   }
 
-  late final _rcl_service_fini_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_service_fini>>('rcl_service_fini');
-  late final _dart_rcl_service_fini _rcl_service_fini =
-      _rcl_service_fini_ptr.asFunction<_dart_rcl_service_fini>();
+  late final _rcl_service_finiPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(ffi.Pointer<rcl_service_t>,
+              ffi.Pointer<rcl_node_t>)>>('rcl_service_fini');
+  late final _rcl_service_fini = _rcl_service_finiPtr.asFunction<
+      int Function(ffi.Pointer<rcl_service_t>, ffi.Pointer<rcl_node_t>)>();
 
   /// Return the default service options in a rcl_service_options_t.
   /// /**
@@ -5806,12 +6049,12 @@ class RCL {
     return _rcl_service_get_default_options();
   }
 
-  late final _rcl_service_get_default_options_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_service_get_default_options>>(
+  late final _rcl_service_get_default_optionsPtr =
+      _lookup<ffi.NativeFunction<rcl_service_options_t Function()>>(
           'rcl_service_get_default_options');
-  late final _dart_rcl_service_get_default_options
-      _rcl_service_get_default_options = _rcl_service_get_default_options_ptr
-          .asFunction<_dart_rcl_service_get_default_options>();
+  late final _rcl_service_get_default_options =
+      _rcl_service_get_default_optionsPtr
+          .asFunction<rcl_service_options_t Function()>();
 
   /// Take a pending ROS request using a rcl service.
   /// /**
@@ -5870,10 +6113,15 @@ class RCL {
     );
   }
 
-  late final _rcl_take_request_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_take_request>>('rcl_take_request');
-  late final _dart_rcl_take_request _rcl_take_request =
-      _rcl_take_request_ptr.asFunction<_dart_rcl_take_request>();
+  late final _rcl_take_requestPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(
+              ffi.Pointer<rcl_service_t>,
+              ffi.Pointer<rmw_request_id_t>,
+              ffi.Pointer<ffi.Void>)>>('rcl_take_request');
+  late final _rcl_take_request = _rcl_take_requestPtr.asFunction<
+      int Function(ffi.Pointer<rcl_service_t>, ffi.Pointer<rmw_request_id_t>,
+          ffi.Pointer<ffi.Void>)>();
 
   /// Send a ROS response to a client using a service.
   /// /**
@@ -5932,10 +6180,15 @@ class RCL {
     );
   }
 
-  late final _rcl_send_response_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_send_response>>('rcl_send_response');
-  late final _dart_rcl_send_response _rcl_send_response =
-      _rcl_send_response_ptr.asFunction<_dart_rcl_send_response>();
+  late final _rcl_send_responsePtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(
+              ffi.Pointer<rcl_service_t>,
+              ffi.Pointer<rmw_request_id_t>,
+              ffi.Pointer<ffi.Void>)>>('rcl_send_response');
+  late final _rcl_send_response = _rcl_send_responsePtr.asFunction<
+      int Function(ffi.Pointer<rcl_service_t>, ffi.Pointer<rmw_request_id_t>,
+          ffi.Pointer<ffi.Void>)>();
 
   /// Get the topic name for the service.
   /// /**
@@ -5967,12 +6220,12 @@ class RCL {
     );
   }
 
-  late final _rcl_service_get_service_name_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_service_get_service_name>>(
-          'rcl_service_get_service_name');
-  late final _dart_rcl_service_get_service_name _rcl_service_get_service_name =
-      _rcl_service_get_service_name_ptr
-          .asFunction<_dart_rcl_service_get_service_name>();
+  late final _rcl_service_get_service_namePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Int8> Function(
+              ffi.Pointer<rcl_service_t>)>>('rcl_service_get_service_name');
+  late final _rcl_service_get_service_name = _rcl_service_get_service_namePtr
+      .asFunction<ffi.Pointer<ffi.Int8> Function(ffi.Pointer<rcl_service_t>)>();
 
   /// Return the rcl service options.
   /// /**
@@ -6004,11 +6257,13 @@ class RCL {
     );
   }
 
-  late final _rcl_service_get_options_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_service_get_options>>(
-          'rcl_service_get_options');
-  late final _dart_rcl_service_get_options _rcl_service_get_options =
-      _rcl_service_get_options_ptr.asFunction<_dart_rcl_service_get_options>();
+  late final _rcl_service_get_optionsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<rcl_service_options_t> Function(
+              ffi.Pointer<rcl_service_t>)>>('rcl_service_get_options');
+  late final _rcl_service_get_options = _rcl_service_get_optionsPtr.asFunction<
+      ffi.Pointer<rcl_service_options_t> Function(
+          ffi.Pointer<rcl_service_t>)>();
 
   /// Return the rmw service handle.
   /// /**
@@ -6044,12 +6299,13 @@ class RCL {
     );
   }
 
-  late final _rcl_service_get_rmw_handle_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_service_get_rmw_handle>>(
-          'rcl_service_get_rmw_handle');
-  late final _dart_rcl_service_get_rmw_handle _rcl_service_get_rmw_handle =
-      _rcl_service_get_rmw_handle_ptr
-          .asFunction<_dart_rcl_service_get_rmw_handle>();
+  late final _rcl_service_get_rmw_handlePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<rmw_service_t> Function(
+              ffi.Pointer<rcl_service_t>)>>('rcl_service_get_rmw_handle');
+  late final _rcl_service_get_rmw_handle =
+      _rcl_service_get_rmw_handlePtr.asFunction<
+          ffi.Pointer<rmw_service_t> Function(ffi.Pointer<rcl_service_t>)>();
 
   /// Check that the service is valid.
   /// /**
@@ -6078,11 +6334,11 @@ class RCL {
         0;
   }
 
-  late final _rcl_service_is_valid_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_service_is_valid>>(
-          'rcl_service_is_valid');
-  late final _dart_rcl_service_is_valid _rcl_service_is_valid =
-      _rcl_service_is_valid_ptr.asFunction<_dart_rcl_service_is_valid>();
+  late final _rcl_service_is_validPtr = _lookup<
+          ffi.NativeFunction<ffi.Uint8 Function(ffi.Pointer<rcl_service_t>)>>(
+      'rcl_service_is_valid');
+  late final _rcl_service_is_valid = _rcl_service_is_validPtr
+      .asFunction<int Function(ffi.Pointer<rcl_service_t>)>();
 
   ffi.Pointer<rosidl_message_type_support_t> get_message_typesupport_handle(
     ffi.Pointer<rosidl_message_type_support_t> handle,
@@ -6094,12 +6350,16 @@ class RCL {
     );
   }
 
-  late final _get_message_typesupport_handle_ptr =
-      _lookup<ffi.NativeFunction<_c_get_message_typesupport_handle>>(
-          'get_message_typesupport_handle');
-  late final _dart_get_message_typesupport_handle
-      _get_message_typesupport_handle = _get_message_typesupport_handle_ptr
-          .asFunction<_dart_get_message_typesupport_handle>();
+  late final _get_message_typesupport_handlePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<rosidl_message_type_support_t> Function(
+              ffi.Pointer<rosidl_message_type_support_t>,
+              ffi.Pointer<ffi.Int8>)>>('get_message_typesupport_handle');
+  late final _get_message_typesupport_handle =
+      _get_message_typesupport_handlePtr.asFunction<
+          ffi.Pointer<rosidl_message_type_support_t> Function(
+              ffi.Pointer<rosidl_message_type_support_t>,
+              ffi.Pointer<ffi.Int8>)>();
 
   ffi.Pointer<rosidl_message_type_support_t>
       get_message_typesupport_handle_function(
@@ -6112,13 +6372,17 @@ class RCL {
     );
   }
 
-  late final _get_message_typesupport_handle_function_ptr =
-      _lookup<ffi.NativeFunction<_c_get_message_typesupport_handle_function>>(
-          'get_message_typesupport_handle_function');
-  late final _dart_get_message_typesupport_handle_function
-      _get_message_typesupport_handle_function =
-      _get_message_typesupport_handle_function_ptr
-          .asFunction<_dart_get_message_typesupport_handle_function>();
+  late final _get_message_typesupport_handle_functionPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Pointer<rosidl_message_type_support_t> Function(
+                  ffi.Pointer<rosidl_message_type_support_t>,
+                  ffi.Pointer<ffi.Int8>)>>(
+      'get_message_typesupport_handle_function');
+  late final _get_message_typesupport_handle_function =
+      _get_message_typesupport_handle_functionPtr.asFunction<
+          ffi.Pointer<rosidl_message_type_support_t> Function(
+              ffi.Pointer<rosidl_message_type_support_t>,
+              ffi.Pointer<ffi.Int8>)>();
 
   /// Return a rcl_subscription_t struct with members set to `NULL`.
   /// /**
@@ -6129,13 +6393,12 @@ class RCL {
     return _rcl_get_zero_initialized_subscription();
   }
 
-  late final _rcl_get_zero_initialized_subscription_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_get_zero_initialized_subscription>>(
+  late final _rcl_get_zero_initialized_subscriptionPtr =
+      _lookup<ffi.NativeFunction<rcl_subscription_t Function()>>(
           'rcl_get_zero_initialized_subscription');
-  late final _dart_rcl_get_zero_initialized_subscription
-      _rcl_get_zero_initialized_subscription =
-      _rcl_get_zero_initialized_subscription_ptr
-          .asFunction<_dart_rcl_get_zero_initialized_subscription>();
+  late final _rcl_get_zero_initialized_subscription =
+      _rcl_get_zero_initialized_subscriptionPtr
+          .asFunction<rcl_subscription_t Function()>();
 
   /// Initialize a ROS subscription.
   /// /**
@@ -6241,11 +6504,22 @@ class RCL {
     );
   }
 
-  late final _rcl_subscription_init_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_subscription_init>>(
-          'rcl_subscription_init');
-  late final _dart_rcl_subscription_init _rcl_subscription_init =
-      _rcl_subscription_init_ptr.asFunction<_dart_rcl_subscription_init>();
+  late final _rcl_subscription_initPtr = _lookup<
+          ffi.NativeFunction<
+              rcl_ret_t Function(
+                  ffi.Pointer<rcl_subscription_t>,
+                  ffi.Pointer<rcl_node_t>,
+                  ffi.Pointer<rosidl_message_type_support_t>,
+                  ffi.Pointer<ffi.Int8>,
+                  ffi.Pointer<rcl_subscription_options_t>)>>(
+      'rcl_subscription_init');
+  late final _rcl_subscription_init = _rcl_subscription_initPtr.asFunction<
+      int Function(
+          ffi.Pointer<rcl_subscription_t>,
+          ffi.Pointer<rcl_node_t>,
+          ffi.Pointer<rosidl_message_type_support_t>,
+          ffi.Pointer<ffi.Int8>,
+          ffi.Pointer<rcl_subscription_options_t>)>();
 
   /// Finalize a rcl_subscription_t.
   /// /**
@@ -6283,11 +6557,12 @@ class RCL {
     );
   }
 
-  late final _rcl_subscription_fini_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_subscription_fini>>(
-          'rcl_subscription_fini');
-  late final _dart_rcl_subscription_fini _rcl_subscription_fini =
-      _rcl_subscription_fini_ptr.asFunction<_dart_rcl_subscription_fini>();
+  late final _rcl_subscription_finiPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(ffi.Pointer<rcl_subscription_t>,
+              ffi.Pointer<rcl_node_t>)>>('rcl_subscription_fini');
+  late final _rcl_subscription_fini = _rcl_subscription_finiPtr.asFunction<
+      int Function(ffi.Pointer<rcl_subscription_t>, ffi.Pointer<rcl_node_t>)>();
 
   /// Return the default subscription options in a rcl_subscription_options_t.
   /// /**
@@ -6301,13 +6576,12 @@ class RCL {
     return _rcl_subscription_get_default_options();
   }
 
-  late final _rcl_subscription_get_default_options_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_subscription_get_default_options>>(
+  late final _rcl_subscription_get_default_optionsPtr =
+      _lookup<ffi.NativeFunction<rcl_subscription_options_t Function()>>(
           'rcl_subscription_get_default_options');
-  late final _dart_rcl_subscription_get_default_options
-      _rcl_subscription_get_default_options =
-      _rcl_subscription_get_default_options_ptr
-          .asFunction<_dart_rcl_subscription_get_default_options>();
+  late final _rcl_subscription_get_default_options =
+      _rcl_subscription_get_default_optionsPtr
+          .asFunction<rcl_subscription_options_t Function()>();
 
   /// Take a ROS message from a topic using a rcl subscription.
   /// /**
@@ -6379,10 +6653,19 @@ class RCL {
     );
   }
 
-  late final _rcl_take_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_take>>('rcl_take');
-  late final _dart_rcl_take _rcl_take =
-      _rcl_take_ptr.asFunction<_dart_rcl_take>();
+  late final _rcl_takePtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(
+              ffi.Pointer<rcl_subscription_t>,
+              ffi.Pointer<ffi.Void>,
+              ffi.Pointer<rmw_message_info_t>,
+              ffi.Pointer<rmw_subscription_allocation_t>)>>('rcl_take');
+  late final _rcl_take = _rcl_takePtr.asFunction<
+      int Function(
+          ffi.Pointer<rcl_subscription_t>,
+          ffi.Pointer<ffi.Void>,
+          ffi.Pointer<rmw_message_info_t>,
+          ffi.Pointer<rmw_subscription_allocation_t>)>();
 
   /// Take a serialized raw message from a topic using a rcl subscription.
   /// /**
@@ -6422,7 +6705,7 @@ class RCL {
   ///  */
   int rcl_take_serialized_message(
     ffi.Pointer<rcl_subscription_t> subscription,
-    ffi.Pointer<rcutils_uint8_array_t> serialized_message,
+    ffi.Pointer<rcl_serialized_message_t> serialized_message,
     ffi.Pointer<rmw_message_info_t> message_info,
     ffi.Pointer<rmw_subscription_allocation_t> allocation,
   ) {
@@ -6434,12 +6717,21 @@ class RCL {
     );
   }
 
-  late final _rcl_take_serialized_message_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_take_serialized_message>>(
-          'rcl_take_serialized_message');
-  late final _dart_rcl_take_serialized_message _rcl_take_serialized_message =
-      _rcl_take_serialized_message_ptr
-          .asFunction<_dart_rcl_take_serialized_message>();
+  late final _rcl_take_serialized_messagePtr = _lookup<
+          ffi.NativeFunction<
+              rcl_ret_t Function(
+                  ffi.Pointer<rcl_subscription_t>,
+                  ffi.Pointer<rcl_serialized_message_t>,
+                  ffi.Pointer<rmw_message_info_t>,
+                  ffi.Pointer<rmw_subscription_allocation_t>)>>(
+      'rcl_take_serialized_message');
+  late final _rcl_take_serialized_message =
+      _rcl_take_serialized_messagePtr.asFunction<
+          int Function(
+              ffi.Pointer<rcl_subscription_t>,
+              ffi.Pointer<rcl_serialized_message_t>,
+              ffi.Pointer<rmw_message_info_t>,
+              ffi.Pointer<rmw_subscription_allocation_t>)>();
 
   /// Take a loaned message from a topic using a rcl subscription.
   /// /**
@@ -6484,11 +6776,20 @@ class RCL {
     );
   }
 
-  late final _rcl_take_loaned_message_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_take_loaned_message>>(
-          'rcl_take_loaned_message');
-  late final _dart_rcl_take_loaned_message _rcl_take_loaned_message =
-      _rcl_take_loaned_message_ptr.asFunction<_dart_rcl_take_loaned_message>();
+  late final _rcl_take_loaned_messagePtr = _lookup<
+          ffi.NativeFunction<
+              rcl_ret_t Function(
+                  ffi.Pointer<rcl_subscription_t>,
+                  ffi.Pointer<ffi.Pointer<ffi.Void>>,
+                  ffi.Pointer<rmw_message_info_t>,
+                  ffi.Pointer<rmw_subscription_allocation_t>)>>(
+      'rcl_take_loaned_message');
+  late final _rcl_take_loaned_message = _rcl_take_loaned_messagePtr.asFunction<
+      int Function(
+          ffi.Pointer<rcl_subscription_t>,
+          ffi.Pointer<ffi.Pointer<ffi.Void>>,
+          ffi.Pointer<rmw_message_info_t>,
+          ffi.Pointer<rmw_subscription_allocation_t>)>();
 
   /// Return a loaned message from a topic using a rcl subscription.
   /// /**
@@ -6523,13 +6824,15 @@ class RCL {
     );
   }
 
-  late final _rcl_return_loaned_message_from_subscription_ptr = _lookup<
-          ffi.NativeFunction<_c_rcl_return_loaned_message_from_subscription>>(
+  late final _rcl_return_loaned_message_from_subscriptionPtr = _lookup<
+          ffi.NativeFunction<
+              rcl_ret_t Function(
+                  ffi.Pointer<rcl_subscription_t>, ffi.Pointer<ffi.Void>)>>(
       'rcl_return_loaned_message_from_subscription');
-  late final _dart_rcl_return_loaned_message_from_subscription
-      _rcl_return_loaned_message_from_subscription =
-      _rcl_return_loaned_message_from_subscription_ptr
-          .asFunction<_dart_rcl_return_loaned_message_from_subscription>();
+  late final _rcl_return_loaned_message_from_subscription =
+      _rcl_return_loaned_message_from_subscriptionPtr.asFunction<
+          int Function(
+              ffi.Pointer<rcl_subscription_t>, ffi.Pointer<ffi.Void>)>();
 
   /// Get the topic name for the subscription.
   /// /**
@@ -6561,12 +6864,13 @@ class RCL {
     );
   }
 
-  late final _rcl_subscription_get_topic_name_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_subscription_get_topic_name>>(
-          'rcl_subscription_get_topic_name');
-  late final _dart_rcl_subscription_get_topic_name
-      _rcl_subscription_get_topic_name = _rcl_subscription_get_topic_name_ptr
-          .asFunction<_dart_rcl_subscription_get_topic_name>();
+  late final _rcl_subscription_get_topic_namePtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Pointer<ffi.Int8> Function(ffi.Pointer<rcl_subscription_t>)>>(
+      'rcl_subscription_get_topic_name');
+  late final _rcl_subscription_get_topic_name =
+      _rcl_subscription_get_topic_namePtr.asFunction<
+          ffi.Pointer<ffi.Int8> Function(ffi.Pointer<rcl_subscription_t>)>();
 
   /// Return the rcl subscription options.
   /// /**
@@ -6598,12 +6902,15 @@ class RCL {
     );
   }
 
-  late final _rcl_subscription_get_options_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_subscription_get_options>>(
-          'rcl_subscription_get_options');
-  late final _dart_rcl_subscription_get_options _rcl_subscription_get_options =
-      _rcl_subscription_get_options_ptr
-          .asFunction<_dart_rcl_subscription_get_options>();
+  late final _rcl_subscription_get_optionsPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Pointer<rcl_subscription_options_t> Function(
+                  ffi.Pointer<rcl_subscription_t>)>>(
+      'rcl_subscription_get_options');
+  late final _rcl_subscription_get_options =
+      _rcl_subscription_get_optionsPtr.asFunction<
+          ffi.Pointer<rcl_subscription_options_t> Function(
+              ffi.Pointer<rcl_subscription_t>)>();
 
   /// Return the rmw subscription handle.
   /// /**
@@ -6639,12 +6946,15 @@ class RCL {
     );
   }
 
-  late final _rcl_subscription_get_rmw_handle_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_subscription_get_rmw_handle>>(
-          'rcl_subscription_get_rmw_handle');
-  late final _dart_rcl_subscription_get_rmw_handle
-      _rcl_subscription_get_rmw_handle = _rcl_subscription_get_rmw_handle_ptr
-          .asFunction<_dart_rcl_subscription_get_rmw_handle>();
+  late final _rcl_subscription_get_rmw_handlePtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Pointer<rmw_subscription_t> Function(
+                  ffi.Pointer<rcl_subscription_t>)>>(
+      'rcl_subscription_get_rmw_handle');
+  late final _rcl_subscription_get_rmw_handle =
+      _rcl_subscription_get_rmw_handlePtr.asFunction<
+          ffi.Pointer<rmw_subscription_t> Function(
+              ffi.Pointer<rcl_subscription_t>)>();
 
   /// Check that the subscription is valid.
   /// /**
@@ -6673,12 +6983,12 @@ class RCL {
         0;
   }
 
-  late final _rcl_subscription_is_valid_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_subscription_is_valid>>(
-          'rcl_subscription_is_valid');
-  late final _dart_rcl_subscription_is_valid _rcl_subscription_is_valid =
-      _rcl_subscription_is_valid_ptr
-          .asFunction<_dart_rcl_subscription_is_valid>();
+  late final _rcl_subscription_is_validPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Uint8 Function(
+              ffi.Pointer<rcl_subscription_t>)>>('rcl_subscription_is_valid');
+  late final _rcl_subscription_is_valid = _rcl_subscription_is_validPtr
+      .asFunction<int Function(ffi.Pointer<rcl_subscription_t>)>();
 
   /// Get the number of publishers matched to a subscription.
   /// /**
@@ -6702,7 +7012,7 @@ class RCL {
   ///  */
   int rcl_subscription_get_publisher_count(
     ffi.Pointer<rcl_subscription_t> subscription,
-    ffi.Pointer<ffi.Uint64> publisher_count,
+    ffi.Pointer<size_t> publisher_count,
   ) {
     return _rcl_subscription_get_publisher_count(
       subscription,
@@ -6710,13 +7020,13 @@ class RCL {
     );
   }
 
-  late final _rcl_subscription_get_publisher_count_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_subscription_get_publisher_count>>(
-          'rcl_subscription_get_publisher_count');
-  late final _dart_rcl_subscription_get_publisher_count
-      _rcl_subscription_get_publisher_count =
-      _rcl_subscription_get_publisher_count_ptr
-          .asFunction<_dart_rcl_subscription_get_publisher_count>();
+  late final _rcl_subscription_get_publisher_countPtr = _lookup<
+      ffi.NativeFunction<
+          rmw_ret_t Function(ffi.Pointer<rcl_subscription_t>,
+              ffi.Pointer<size_t>)>>('rcl_subscription_get_publisher_count');
+  late final _rcl_subscription_get_publisher_count =
+      _rcl_subscription_get_publisher_countPtr.asFunction<
+          int Function(ffi.Pointer<rcl_subscription_t>, ffi.Pointer<size_t>)>();
 
   /// Get the actual qos settings of the subscription.
   /// /**
@@ -6747,12 +7057,15 @@ class RCL {
     );
   }
 
-  late final _rcl_subscription_get_actual_qos_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_subscription_get_actual_qos>>(
-          'rcl_subscription_get_actual_qos');
-  late final _dart_rcl_subscription_get_actual_qos
-      _rcl_subscription_get_actual_qos = _rcl_subscription_get_actual_qos_ptr
-          .asFunction<_dart_rcl_subscription_get_actual_qos>();
+  late final _rcl_subscription_get_actual_qosPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Pointer<rmw_qos_profile_t> Function(
+                  ffi.Pointer<rcl_subscription_t>)>>(
+      'rcl_subscription_get_actual_qos');
+  late final _rcl_subscription_get_actual_qos =
+      _rcl_subscription_get_actual_qosPtr.asFunction<
+          ffi.Pointer<rmw_qos_profile_t> Function(
+              ffi.Pointer<rcl_subscription_t>)>();
 
   /// Check if subscription instance can loan messages.
   /// /**
@@ -6768,13 +7081,13 @@ class RCL {
         0;
   }
 
-  late final _rcl_subscription_can_loan_messages_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_subscription_can_loan_messages>>(
-          'rcl_subscription_can_loan_messages');
-  late final _dart_rcl_subscription_can_loan_messages
-      _rcl_subscription_can_loan_messages =
-      _rcl_subscription_can_loan_messages_ptr
-          .asFunction<_dart_rcl_subscription_can_loan_messages>();
+  late final _rcl_subscription_can_loan_messagesPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Uint8 Function(ffi.Pointer<rcl_subscription_t>)>>(
+      'rcl_subscription_can_loan_messages');
+  late final _rcl_subscription_can_loan_messages =
+      _rcl_subscription_can_loan_messagesPtr
+          .asFunction<int Function(ffi.Pointer<rcl_subscription_t>)>();
 
   /// Check if the clock has valid values.
   /// /**
@@ -6795,10 +7108,11 @@ class RCL {
         0;
   }
 
-  late final _rcl_clock_valid_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_clock_valid>>('rcl_clock_valid');
-  late final _dart_rcl_clock_valid _rcl_clock_valid =
-      _rcl_clock_valid_ptr.asFunction<_dart_rcl_clock_valid>();
+  late final _rcl_clock_validPtr =
+      _lookup<ffi.NativeFunction<ffi.Uint8 Function(ffi.Pointer<rcl_clock_t>)>>(
+          'rcl_clock_valid');
+  late final _rcl_clock_valid =
+      _rcl_clock_validPtr.asFunction<int Function(ffi.Pointer<rcl_clock_t>)>();
 
   /// Initialize a clock based on the passed type.
   /// /**
@@ -6814,7 +7128,7 @@ class RCL {
   int rcl_clock_init(
     int clock_type,
     ffi.Pointer<rcl_clock_t> clock,
-    ffi.Pointer<rcutils_allocator_t> allocator,
+    ffi.Pointer<rcl_allocator_t> allocator,
   ) {
     return _rcl_clock_init(
       clock_type,
@@ -6823,10 +7137,13 @@ class RCL {
     );
   }
 
-  late final _rcl_clock_init_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_clock_init>>('rcl_clock_init');
-  late final _dart_rcl_clock_init _rcl_clock_init =
-      _rcl_clock_init_ptr.asFunction<_dart_rcl_clock_init>();
+  late final _rcl_clock_initPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(ffi.Int32, ffi.Pointer<rcl_clock_t>,
+              ffi.Pointer<rcl_allocator_t>)>>('rcl_clock_init');
+  late final _rcl_clock_init = _rcl_clock_initPtr.asFunction<
+      int Function(
+          int, ffi.Pointer<rcl_clock_t>, ffi.Pointer<rcl_allocator_t>)>();
 
   /// Finalize a clock.
   /// /**
@@ -6849,10 +7166,11 @@ class RCL {
     );
   }
 
-  late final _rcl_clock_fini_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_clock_fini>>('rcl_clock_fini');
-  late final _dart_rcl_clock_fini _rcl_clock_fini =
-      _rcl_clock_fini_ptr.asFunction<_dart_rcl_clock_fini>();
+  late final _rcl_clock_finiPtr =
+      _lookup<ffi.NativeFunction<rcl_ret_t Function(ffi.Pointer<rcl_clock_t>)>>(
+          'rcl_clock_fini');
+  late final _rcl_clock_fini =
+      _rcl_clock_finiPtr.asFunction<int Function(ffi.Pointer<rcl_clock_t>)>();
 
   /// Initialize a clock as a RCL_ROS_TIME time source.
   /// /**
@@ -6867,7 +7185,7 @@ class RCL {
   ///  */
   int rcl_ros_clock_init(
     ffi.Pointer<rcl_clock_t> clock,
-    ffi.Pointer<rcutils_allocator_t> allocator,
+    ffi.Pointer<rcl_allocator_t> allocator,
   ) {
     return _rcl_ros_clock_init(
       clock,
@@ -6875,10 +7193,12 @@ class RCL {
     );
   }
 
-  late final _rcl_ros_clock_init_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_ros_clock_init>>('rcl_ros_clock_init');
-  late final _dart_rcl_ros_clock_init _rcl_ros_clock_init =
-      _rcl_ros_clock_init_ptr.asFunction<_dart_rcl_ros_clock_init>();
+  late final _rcl_ros_clock_initPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(ffi.Pointer<rcl_clock_t>,
+              ffi.Pointer<rcl_allocator_t>)>>('rcl_ros_clock_init');
+  late final _rcl_ros_clock_init = _rcl_ros_clock_initPtr.asFunction<
+      int Function(ffi.Pointer<rcl_clock_t>, ffi.Pointer<rcl_allocator_t>)>();
 
   /// Finalize a clock as a `RCL_ROS_TIME` time source.
   /// /**
@@ -6899,10 +7219,11 @@ class RCL {
     );
   }
 
-  late final _rcl_ros_clock_fini_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_ros_clock_fini>>('rcl_ros_clock_fini');
-  late final _dart_rcl_ros_clock_fini _rcl_ros_clock_fini =
-      _rcl_ros_clock_fini_ptr.asFunction<_dart_rcl_ros_clock_fini>();
+  late final _rcl_ros_clock_finiPtr =
+      _lookup<ffi.NativeFunction<rcl_ret_t Function(ffi.Pointer<rcl_clock_t>)>>(
+          'rcl_ros_clock_fini');
+  late final _rcl_ros_clock_fini = _rcl_ros_clock_finiPtr
+      .asFunction<int Function(ffi.Pointer<rcl_clock_t>)>();
 
   /// Initialize a clock as a `RCL_STEADY_TIME` time source.
   /// /**
@@ -6917,7 +7238,7 @@ class RCL {
   ///  */
   int rcl_steady_clock_init(
     ffi.Pointer<rcl_clock_t> clock,
-    ffi.Pointer<rcutils_allocator_t> allocator,
+    ffi.Pointer<rcl_allocator_t> allocator,
   ) {
     return _rcl_steady_clock_init(
       clock,
@@ -6925,11 +7246,12 @@ class RCL {
     );
   }
 
-  late final _rcl_steady_clock_init_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_steady_clock_init>>(
-          'rcl_steady_clock_init');
-  late final _dart_rcl_steady_clock_init _rcl_steady_clock_init =
-      _rcl_steady_clock_init_ptr.asFunction<_dart_rcl_steady_clock_init>();
+  late final _rcl_steady_clock_initPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(ffi.Pointer<rcl_clock_t>,
+              ffi.Pointer<rcl_allocator_t>)>>('rcl_steady_clock_init');
+  late final _rcl_steady_clock_init = _rcl_steady_clock_initPtr.asFunction<
+      int Function(ffi.Pointer<rcl_clock_t>, ffi.Pointer<rcl_allocator_t>)>();
 
   /// Finalize a clock as a `RCL_STEADY_TIME` time source.
   /// /**
@@ -6952,11 +7274,11 @@ class RCL {
     );
   }
 
-  late final _rcl_steady_clock_fini_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_steady_clock_fini>>(
+  late final _rcl_steady_clock_finiPtr =
+      _lookup<ffi.NativeFunction<rcl_ret_t Function(ffi.Pointer<rcl_clock_t>)>>(
           'rcl_steady_clock_fini');
-  late final _dart_rcl_steady_clock_fini _rcl_steady_clock_fini =
-      _rcl_steady_clock_fini_ptr.asFunction<_dart_rcl_steady_clock_fini>();
+  late final _rcl_steady_clock_fini = _rcl_steady_clock_finiPtr
+      .asFunction<int Function(ffi.Pointer<rcl_clock_t>)>();
 
   /// Initialize a clock as a `RCL_SYSTEM_TIME` time source.
   /// /**
@@ -6973,7 +7295,7 @@ class RCL {
   ///  */
   int rcl_system_clock_init(
     ffi.Pointer<rcl_clock_t> clock,
-    ffi.Pointer<rcutils_allocator_t> allocator,
+    ffi.Pointer<rcl_allocator_t> allocator,
   ) {
     return _rcl_system_clock_init(
       clock,
@@ -6981,11 +7303,12 @@ class RCL {
     );
   }
 
-  late final _rcl_system_clock_init_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_system_clock_init>>(
-          'rcl_system_clock_init');
-  late final _dart_rcl_system_clock_init _rcl_system_clock_init =
-      _rcl_system_clock_init_ptr.asFunction<_dart_rcl_system_clock_init>();
+  late final _rcl_system_clock_initPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(ffi.Pointer<rcl_clock_t>,
+              ffi.Pointer<rcl_allocator_t>)>>('rcl_system_clock_init');
+  late final _rcl_system_clock_init = _rcl_system_clock_initPtr.asFunction<
+      int Function(ffi.Pointer<rcl_clock_t>, ffi.Pointer<rcl_allocator_t>)>();
 
   /// Finalize a clock as a `RCL_SYSTEM_TIME` time source.
   /// /**
@@ -7008,11 +7331,11 @@ class RCL {
     );
   }
 
-  late final _rcl_system_clock_fini_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_system_clock_fini>>(
+  late final _rcl_system_clock_finiPtr =
+      _lookup<ffi.NativeFunction<rcl_ret_t Function(ffi.Pointer<rcl_clock_t>)>>(
           'rcl_system_clock_fini');
-  late final _dart_rcl_system_clock_fini _rcl_system_clock_fini =
-      _rcl_system_clock_fini_ptr.asFunction<_dart_rcl_system_clock_fini>();
+  late final _rcl_system_clock_fini = _rcl_system_clock_finiPtr
+      .asFunction<int Function(ffi.Pointer<rcl_clock_t>)>();
 
   /// Compute the difference between two time points
   /// /**
@@ -7042,11 +7365,15 @@ class RCL {
     );
   }
 
-  late final _rcl_difference_times_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_difference_times>>(
-          'rcl_difference_times');
-  late final _dart_rcl_difference_times _rcl_difference_times =
-      _rcl_difference_times_ptr.asFunction<_dart_rcl_difference_times>();
+  late final _rcl_difference_timesPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(
+              ffi.Pointer<rcl_time_point_t>,
+              ffi.Pointer<rcl_time_point_t>,
+              ffi.Pointer<rcl_duration_t>)>>('rcl_difference_times');
+  late final _rcl_difference_times = _rcl_difference_timesPtr.asFunction<
+      int Function(ffi.Pointer<rcl_time_point_t>, ffi.Pointer<rcl_time_point_t>,
+          ffi.Pointer<rcl_duration_t>)>();
 
   /// Fill the time point value with the current value of the associated clock.
   /// /**
@@ -7060,7 +7387,7 @@ class RCL {
   ///  */
   int rcl_clock_get_now(
     ffi.Pointer<rcl_clock_t> clock,
-    ffi.Pointer<ffi.Int64> time_point_value,
+    ffi.Pointer<rcl_time_point_value_t> time_point_value,
   ) {
     return _rcl_clock_get_now(
       clock,
@@ -7068,10 +7395,13 @@ class RCL {
     );
   }
 
-  late final _rcl_clock_get_now_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_clock_get_now>>('rcl_clock_get_now');
-  late final _dart_rcl_clock_get_now _rcl_clock_get_now =
-      _rcl_clock_get_now_ptr.asFunction<_dart_rcl_clock_get_now>();
+  late final _rcl_clock_get_nowPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(ffi.Pointer<rcl_clock_t>,
+              ffi.Pointer<rcl_time_point_value_t>)>>('rcl_clock_get_now');
+  late final _rcl_clock_get_now = _rcl_clock_get_nowPtr.asFunction<
+      int Function(
+          ffi.Pointer<rcl_clock_t>, ffi.Pointer<rcl_time_point_value_t>)>();
 
   /// Enable the ROS time abstraction override.
   /// /**
@@ -7092,12 +7422,11 @@ class RCL {
     );
   }
 
-  late final _rcl_enable_ros_time_override_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_enable_ros_time_override>>(
+  late final _rcl_enable_ros_time_overridePtr =
+      _lookup<ffi.NativeFunction<rcl_ret_t Function(ffi.Pointer<rcl_clock_t>)>>(
           'rcl_enable_ros_time_override');
-  late final _dart_rcl_enable_ros_time_override _rcl_enable_ros_time_override =
-      _rcl_enable_ros_time_override_ptr
-          .asFunction<_dart_rcl_enable_ros_time_override>();
+  late final _rcl_enable_ros_time_override = _rcl_enable_ros_time_overridePtr
+      .asFunction<int Function(ffi.Pointer<rcl_clock_t>)>();
 
   /// Disable the ROS time abstraction override.
   /// /**
@@ -7118,12 +7447,11 @@ class RCL {
     );
   }
 
-  late final _rcl_disable_ros_time_override_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_disable_ros_time_override>>(
+  late final _rcl_disable_ros_time_overridePtr =
+      _lookup<ffi.NativeFunction<rcl_ret_t Function(ffi.Pointer<rcl_clock_t>)>>(
           'rcl_disable_ros_time_override');
-  late final _dart_rcl_disable_ros_time_override
-      _rcl_disable_ros_time_override = _rcl_disable_ros_time_override_ptr
-          .asFunction<_dart_rcl_disable_ros_time_override>();
+  late final _rcl_disable_ros_time_override = _rcl_disable_ros_time_overridePtr
+      .asFunction<int Function(ffi.Pointer<rcl_clock_t>)>();
 
   /// Check if the `RCL_ROS_TIME` time source has the override enabled.
   /// /**
@@ -7147,12 +7475,13 @@ class RCL {
     );
   }
 
-  late final _rcl_is_enabled_ros_time_override_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_is_enabled_ros_time_override>>(
-          'rcl_is_enabled_ros_time_override');
-  late final _dart_rcl_is_enabled_ros_time_override
-      _rcl_is_enabled_ros_time_override = _rcl_is_enabled_ros_time_override_ptr
-          .asFunction<_dart_rcl_is_enabled_ros_time_override>();
+  late final _rcl_is_enabled_ros_time_overridePtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(ffi.Pointer<rcl_clock_t>,
+              ffi.Pointer<ffi.Uint8>)>>('rcl_is_enabled_ros_time_override');
+  late final _rcl_is_enabled_ros_time_override =
+      _rcl_is_enabled_ros_time_overridePtr.asFunction<
+          int Function(ffi.Pointer<rcl_clock_t>, ffi.Pointer<ffi.Uint8>)>();
 
   /// Set the current time for this `RCL_ROS_TIME` time source.
   /// /**
@@ -7177,12 +7506,12 @@ class RCL {
     );
   }
 
-  late final _rcl_set_ros_time_override_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_set_ros_time_override>>(
-          'rcl_set_ros_time_override');
-  late final _dart_rcl_set_ros_time_override _rcl_set_ros_time_override =
-      _rcl_set_ros_time_override_ptr
-          .asFunction<_dart_rcl_set_ros_time_override>();
+  late final _rcl_set_ros_time_overridePtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(ffi.Pointer<rcl_clock_t>,
+              rcl_time_point_value_t)>>('rcl_set_ros_time_override');
+  late final _rcl_set_ros_time_override = _rcl_set_ros_time_overridePtr
+      .asFunction<int Function(ffi.Pointer<rcl_clock_t>, int)>();
 
   /// Add a callback to be called when a time jump exceeds a threshold.
   /// /**
@@ -7202,7 +7531,7 @@ class RCL {
   int rcl_clock_add_jump_callback(
     ffi.Pointer<rcl_clock_t> clock,
     rcl_jump_threshold_t threshold,
-    ffi.Pointer<ffi.NativeFunction<rcl_jump_callback_t>> callback,
+    rcl_jump_callback_t callback,
     ffi.Pointer<ffi.Void> user_data,
   ) {
     return _rcl_clock_add_jump_callback(
@@ -7213,12 +7542,17 @@ class RCL {
     );
   }
 
-  late final _rcl_clock_add_jump_callback_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_clock_add_jump_callback>>(
-          'rcl_clock_add_jump_callback');
-  late final _dart_rcl_clock_add_jump_callback _rcl_clock_add_jump_callback =
-      _rcl_clock_add_jump_callback_ptr
-          .asFunction<_dart_rcl_clock_add_jump_callback>();
+  late final _rcl_clock_add_jump_callbackPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(
+              ffi.Pointer<rcl_clock_t>,
+              rcl_jump_threshold_t,
+              rcl_jump_callback_t,
+              ffi.Pointer<ffi.Void>)>>('rcl_clock_add_jump_callback');
+  late final _rcl_clock_add_jump_callback =
+      _rcl_clock_add_jump_callbackPtr.asFunction<
+          int Function(ffi.Pointer<rcl_clock_t>, rcl_jump_threshold_t,
+              rcl_jump_callback_t, ffi.Pointer<ffi.Void>)>();
 
   /// Remove a previously added time jump callback.
   /// /**
@@ -7232,7 +7566,7 @@ class RCL {
   ///  */
   int rcl_clock_remove_jump_callback(
     ffi.Pointer<rcl_clock_t> clock,
-    ffi.Pointer<ffi.NativeFunction<rcl_jump_callback_t>> callback,
+    rcl_jump_callback_t callback,
     ffi.Pointer<ffi.Void> user_data,
   ) {
     return _rcl_clock_remove_jump_callback(
@@ -7242,12 +7576,14 @@ class RCL {
     );
   }
 
-  late final _rcl_clock_remove_jump_callback_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_clock_remove_jump_callback>>(
-          'rcl_clock_remove_jump_callback');
-  late final _dart_rcl_clock_remove_jump_callback
-      _rcl_clock_remove_jump_callback = _rcl_clock_remove_jump_callback_ptr
-          .asFunction<_dart_rcl_clock_remove_jump_callback>();
+  late final _rcl_clock_remove_jump_callbackPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(ffi.Pointer<rcl_clock_t>, rcl_jump_callback_t,
+              ffi.Pointer<ffi.Void>)>>('rcl_clock_remove_jump_callback');
+  late final _rcl_clock_remove_jump_callback =
+      _rcl_clock_remove_jump_callbackPtr.asFunction<
+          int Function(ffi.Pointer<rcl_clock_t>, rcl_jump_callback_t,
+              ffi.Pointer<ffi.Void>)>();
 
   ffi.Pointer<rosidl_message_bounds_t> get_message_bounds_handle(
     ffi.Pointer<rosidl_message_bounds_t> handle,
@@ -7259,12 +7595,15 @@ class RCL {
     );
   }
 
-  late final _get_message_bounds_handle_ptr =
-      _lookup<ffi.NativeFunction<_c_get_message_bounds_handle>>(
-          'get_message_bounds_handle');
-  late final _dart_get_message_bounds_handle _get_message_bounds_handle =
-      _get_message_bounds_handle_ptr
-          .asFunction<_dart_get_message_bounds_handle>();
+  late final _get_message_bounds_handlePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<rosidl_message_bounds_t> Function(
+              ffi.Pointer<rosidl_message_bounds_t>,
+              ffi.Pointer<ffi.Int8>)>>('get_message_bounds_handle');
+  late final _get_message_bounds_handle =
+      _get_message_bounds_handlePtr.asFunction<
+          ffi.Pointer<rosidl_message_bounds_t> Function(
+              ffi.Pointer<rosidl_message_bounds_t>, ffi.Pointer<ffi.Int8>)>();
 
   ffi.Pointer<rosidl_message_bounds_t> get_message_bounds_handle_function(
     ffi.Pointer<rosidl_message_bounds_t> handle,
@@ -7276,13 +7615,15 @@ class RCL {
     );
   }
 
-  late final _get_message_bounds_handle_function_ptr =
-      _lookup<ffi.NativeFunction<_c_get_message_bounds_handle_function>>(
-          'get_message_bounds_handle_function');
-  late final _dart_get_message_bounds_handle_function
-      _get_message_bounds_handle_function =
-      _get_message_bounds_handle_function_ptr
-          .asFunction<_dart_get_message_bounds_handle_function>();
+  late final _get_message_bounds_handle_functionPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<rosidl_message_bounds_t> Function(
+              ffi.Pointer<rosidl_message_bounds_t>,
+              ffi.Pointer<ffi.Int8>)>>('get_message_bounds_handle_function');
+  late final _get_message_bounds_handle_function =
+      _get_message_bounds_handle_functionPtr.asFunction<
+          ffi.Pointer<rosidl_message_bounds_t> Function(
+              ffi.Pointer<rosidl_message_bounds_t>, ffi.Pointer<ffi.Int8>)>();
 
   late final ffi.Pointer<rmw_qos_profile_t> _rmw_qos_profile_sensor_data =
       _lookup<rmw_qos_profile_t>('rmw_qos_profile_sensor_data');
@@ -7324,25 +7665,23 @@ class RCL {
     return _rmw_get_default_subscription_options();
   }
 
-  late final _rmw_get_default_subscription_options_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_get_default_subscription_options>>(
+  late final _rmw_get_default_subscription_optionsPtr =
+      _lookup<ffi.NativeFunction<rmw_subscription_options_t Function()>>(
           'rmw_get_default_subscription_options');
-  late final _dart_rmw_get_default_subscription_options
-      _rmw_get_default_subscription_options =
-      _rmw_get_default_subscription_options_ptr
-          .asFunction<_dart_rmw_get_default_subscription_options>();
+  late final _rmw_get_default_subscription_options =
+      _rmw_get_default_subscription_optionsPtr
+          .asFunction<rmw_subscription_options_t Function()>();
 
   ffi.Pointer<ffi.Int8> rmw_get_implementation_identifier() {
     return _rmw_get_implementation_identifier();
   }
 
-  late final _rmw_get_implementation_identifier_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_get_implementation_identifier>>(
+  late final _rmw_get_implementation_identifierPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Int8> Function()>>(
           'rmw_get_implementation_identifier');
-  late final _dart_rmw_get_implementation_identifier
-      _rmw_get_implementation_identifier =
-      _rmw_get_implementation_identifier_ptr
-          .asFunction<_dart_rmw_get_implementation_identifier>();
+  late final _rmw_get_implementation_identifier =
+      _rmw_get_implementation_identifierPtr
+          .asFunction<ffi.Pointer<ffi.Int8> Function()>();
 
   /// Get the unique serialization format for this middleware.
   /// /**
@@ -7360,12 +7699,11 @@ class RCL {
     return _rmw_get_serialization_format();
   }
 
-  late final _rmw_get_serialization_format_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_get_serialization_format>>(
+  late final _rmw_get_serialization_formatPtr =
+      _lookup<ffi.NativeFunction<ffi.Pointer<ffi.Int8> Function()>>(
           'rmw_get_serialization_format');
-  late final _dart_rmw_get_serialization_format _rmw_get_serialization_format =
-      _rmw_get_serialization_format_ptr
-          .asFunction<_dart_rmw_get_serialization_format>();
+  late final _rmw_get_serialization_format = _rmw_get_serialization_formatPtr
+      .asFunction<ffi.Pointer<ffi.Int8> Function()>();
 
   /// TODO(wjwwood): refactor this API to return a return code when updated to use an allocator
   /// Create a node and return a handle to that node.
@@ -7427,10 +7765,23 @@ class RCL {
     );
   }
 
-  late final _rmw_create_node_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_create_node>>('rmw_create_node');
-  late final _dart_rmw_create_node _rmw_create_node =
-      _rmw_create_node_ptr.asFunction<_dart_rmw_create_node>();
+  late final _rmw_create_nodePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<rmw_node_t> Function(
+              ffi.Pointer<rmw_context_t>,
+              ffi.Pointer<ffi.Int8>,
+              ffi.Pointer<ffi.Int8>,
+              size_t,
+              ffi.Pointer<rmw_node_security_options_t>,
+              ffi.Uint8)>>('rmw_create_node');
+  late final _rmw_create_node = _rmw_create_nodePtr.asFunction<
+      ffi.Pointer<rmw_node_t> Function(
+          ffi.Pointer<rmw_context_t>,
+          ffi.Pointer<ffi.Int8>,
+          ffi.Pointer<ffi.Int8>,
+          int,
+          ffi.Pointer<rmw_node_security_options_t>,
+          int)>();
 
   /// Finalize a given node handle, reclaim the resources, and deallocate the node handle.
   /// /**
@@ -7447,10 +7798,11 @@ class RCL {
     );
   }
 
-  late final _rmw_destroy_node_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_destroy_node>>('rmw_destroy_node');
-  late final _dart_rmw_destroy_node _rmw_destroy_node =
-      _rmw_destroy_node_ptr.asFunction<_dart_rmw_destroy_node>();
+  late final _rmw_destroy_nodePtr =
+      _lookup<ffi.NativeFunction<rmw_ret_t Function(ffi.Pointer<rmw_node_t>)>>(
+          'rmw_destroy_node');
+  late final _rmw_destroy_node =
+      _rmw_destroy_nodePtr.asFunction<int Function(ffi.Pointer<rmw_node_t>)>();
 
   /// Manually assert that this node is alive (for RMW_QOS_POLICY_LIVELINESS_MANUAL_BY_NODE)
   /// /**
@@ -7479,12 +7831,11 @@ class RCL {
     );
   }
 
-  late final _rmw_node_assert_liveliness_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_node_assert_liveliness>>(
+  late final _rmw_node_assert_livelinessPtr =
+      _lookup<ffi.NativeFunction<rmw_ret_t Function(ffi.Pointer<rmw_node_t>)>>(
           'rmw_node_assert_liveliness');
-  late final _dart_rmw_node_assert_liveliness _rmw_node_assert_liveliness =
-      _rmw_node_assert_liveliness_ptr
-          .asFunction<_dart_rmw_node_assert_liveliness>();
+  late final _rmw_node_assert_liveliness = _rmw_node_assert_livelinessPtr
+      .asFunction<int Function(ffi.Pointer<rmw_node_t>)>();
 
   /// Return a guard condition which is triggered when the ROS graph changes.
   /// /**
@@ -7521,13 +7872,14 @@ class RCL {
     );
   }
 
-  late final _rmw_node_get_graph_guard_condition_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_node_get_graph_guard_condition>>(
-          'rmw_node_get_graph_guard_condition');
-  late final _dart_rmw_node_get_graph_guard_condition
-      _rmw_node_get_graph_guard_condition =
-      _rmw_node_get_graph_guard_condition_ptr
-          .asFunction<_dart_rmw_node_get_graph_guard_condition>();
+  late final _rmw_node_get_graph_guard_conditionPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<rmw_guard_condition_t> Function(
+              ffi.Pointer<rmw_node_t>)>>('rmw_node_get_graph_guard_condition');
+  late final _rmw_node_get_graph_guard_condition =
+      _rmw_node_get_graph_guard_conditionPtr.asFunction<
+          ffi.Pointer<rmw_guard_condition_t> Function(
+              ffi.Pointer<rmw_node_t>)>();
 
   /// Initialize a publisher allocation to be used with later publications.
   /// /**
@@ -7558,12 +7910,19 @@ class RCL {
     );
   }
 
-  late final _rmw_init_publisher_allocation_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_init_publisher_allocation>>(
-          'rmw_init_publisher_allocation');
-  late final _dart_rmw_init_publisher_allocation
-      _rmw_init_publisher_allocation = _rmw_init_publisher_allocation_ptr
-          .asFunction<_dart_rmw_init_publisher_allocation>();
+  late final _rmw_init_publisher_allocationPtr = _lookup<
+          ffi.NativeFunction<
+              rmw_ret_t Function(
+                  ffi.Pointer<rosidl_message_type_support_t>,
+                  ffi.Pointer<rosidl_message_bounds_t>,
+                  ffi.Pointer<rmw_publisher_allocation_t>)>>(
+      'rmw_init_publisher_allocation');
+  late final _rmw_init_publisher_allocation =
+      _rmw_init_publisher_allocationPtr.asFunction<
+          int Function(
+              ffi.Pointer<rosidl_message_type_support_t>,
+              ffi.Pointer<rosidl_message_bounds_t>,
+              ffi.Pointer<rmw_publisher_allocation_t>)>();
 
   /// Destroy a publisher allocation object.
   /// /**
@@ -7582,25 +7941,24 @@ class RCL {
     );
   }
 
-  late final _rmw_fini_publisher_allocation_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_fini_publisher_allocation>>(
-          'rmw_fini_publisher_allocation');
-  late final _dart_rmw_fini_publisher_allocation
-      _rmw_fini_publisher_allocation = _rmw_fini_publisher_allocation_ptr
-          .asFunction<_dart_rmw_fini_publisher_allocation>();
+  late final _rmw_fini_publisher_allocationPtr = _lookup<
+          ffi.NativeFunction<
+              rmw_ret_t Function(ffi.Pointer<rmw_publisher_allocation_t>)>>(
+      'rmw_fini_publisher_allocation');
+  late final _rmw_fini_publisher_allocation = _rmw_fini_publisher_allocationPtr
+      .asFunction<int Function(ffi.Pointer<rmw_publisher_allocation_t>)>();
 
   /// Return a rmw_publisher_options_t initialized with default values.
   rmw_publisher_options_t rmw_get_default_publisher_options() {
     return _rmw_get_default_publisher_options();
   }
 
-  late final _rmw_get_default_publisher_options_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_get_default_publisher_options>>(
+  late final _rmw_get_default_publisher_optionsPtr =
+      _lookup<ffi.NativeFunction<rmw_publisher_options_t Function()>>(
           'rmw_get_default_publisher_options');
-  late final _dart_rmw_get_default_publisher_options
-      _rmw_get_default_publisher_options =
-      _rmw_get_default_publisher_options_ptr
-          .asFunction<_dart_rmw_get_default_publisher_options>();
+  late final _rmw_get_default_publisher_options =
+      _rmw_get_default_publisher_optionsPtr
+          .asFunction<rmw_publisher_options_t Function()>();
 
   /// Create and return an rmw publisher.
   /// /**
@@ -7627,11 +7985,21 @@ class RCL {
     );
   }
 
-  late final _rmw_create_publisher_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_create_publisher>>(
-          'rmw_create_publisher');
-  late final _dart_rmw_create_publisher _rmw_create_publisher =
-      _rmw_create_publisher_ptr.asFunction<_dart_rmw_create_publisher>();
+  late final _rmw_create_publisherPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<rmw_publisher_t> Function(
+              ffi.Pointer<rmw_node_t>,
+              ffi.Pointer<rosidl_message_type_support_t>,
+              ffi.Pointer<ffi.Int8>,
+              ffi.Pointer<rmw_qos_profile_t>,
+              ffi.Pointer<rmw_publisher_options_t>)>>('rmw_create_publisher');
+  late final _rmw_create_publisher = _rmw_create_publisherPtr.asFunction<
+      ffi.Pointer<rmw_publisher_t> Function(
+          ffi.Pointer<rmw_node_t>,
+          ffi.Pointer<rosidl_message_type_support_t>,
+          ffi.Pointer<ffi.Int8>,
+          ffi.Pointer<rmw_qos_profile_t>,
+          ffi.Pointer<rmw_publisher_options_t>)>();
 
   int rmw_destroy_publisher(
     ffi.Pointer<rmw_node_t> node,
@@ -7643,11 +8011,12 @@ class RCL {
     );
   }
 
-  late final _rmw_destroy_publisher_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_destroy_publisher>>(
-          'rmw_destroy_publisher');
-  late final _dart_rmw_destroy_publisher _rmw_destroy_publisher =
-      _rmw_destroy_publisher_ptr.asFunction<_dart_rmw_destroy_publisher>();
+  late final _rmw_destroy_publisherPtr = _lookup<
+      ffi.NativeFunction<
+          rmw_ret_t Function(ffi.Pointer<rmw_node_t>,
+              ffi.Pointer<rmw_publisher_t>)>>('rmw_destroy_publisher');
+  late final _rmw_destroy_publisher = _rmw_destroy_publisherPtr.asFunction<
+      int Function(ffi.Pointer<rmw_node_t>, ffi.Pointer<rmw_publisher_t>)>();
 
   /// Borrow a loaned message.
   /// /**
@@ -7679,12 +8048,19 @@ class RCL {
     );
   }
 
-  late final _rmw_borrow_loaned_message_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_borrow_loaned_message>>(
-          'rmw_borrow_loaned_message');
-  late final _dart_rmw_borrow_loaned_message _rmw_borrow_loaned_message =
-      _rmw_borrow_loaned_message_ptr
-          .asFunction<_dart_rmw_borrow_loaned_message>();
+  late final _rmw_borrow_loaned_messagePtr = _lookup<
+          ffi.NativeFunction<
+              rmw_ret_t Function(
+                  ffi.Pointer<rmw_publisher_t>,
+                  ffi.Pointer<rosidl_message_type_support_t>,
+                  ffi.Pointer<ffi.Pointer<ffi.Void>>)>>(
+      'rmw_borrow_loaned_message');
+  late final _rmw_borrow_loaned_message =
+      _rmw_borrow_loaned_messagePtr.asFunction<
+          int Function(
+              ffi.Pointer<rmw_publisher_t>,
+              ffi.Pointer<rosidl_message_type_support_t>,
+              ffi.Pointer<ffi.Pointer<ffi.Void>>)>();
 
   /// Return a loaned message previously borrow from a publisher.
   /// /**
@@ -7708,13 +8084,14 @@ class RCL {
     );
   }
 
-  late final _rmw_return_loaned_message_from_publisher_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_return_loaned_message_from_publisher>>(
-          'rmw_return_loaned_message_from_publisher');
-  late final _dart_rmw_return_loaned_message_from_publisher
-      _rmw_return_loaned_message_from_publisher =
-      _rmw_return_loaned_message_from_publisher_ptr
-          .asFunction<_dart_rmw_return_loaned_message_from_publisher>();
+  late final _rmw_return_loaned_message_from_publisherPtr = _lookup<
+          ffi.NativeFunction<
+              rmw_ret_t Function(
+                  ffi.Pointer<rmw_publisher_t>, ffi.Pointer<ffi.Void>)>>(
+      'rmw_return_loaned_message_from_publisher');
+  late final _rmw_return_loaned_message_from_publisher =
+      _rmw_return_loaned_message_from_publisherPtr.asFunction<
+          int Function(ffi.Pointer<rmw_publisher_t>, ffi.Pointer<ffi.Void>)>();
 
   /// Publish a given ros_message
   /// /**
@@ -7739,10 +8116,15 @@ class RCL {
     );
   }
 
-  late final _rmw_publish_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_publish>>('rmw_publish');
-  late final _dart_rmw_publish _rmw_publish =
-      _rmw_publish_ptr.asFunction<_dart_rmw_publish>();
+  late final _rmw_publishPtr = _lookup<
+      ffi.NativeFunction<
+          rmw_ret_t Function(
+              ffi.Pointer<rmw_publisher_t>,
+              ffi.Pointer<ffi.Void>,
+              ffi.Pointer<rmw_publisher_allocation_t>)>>('rmw_publish');
+  late final _rmw_publish = _rmw_publishPtr.asFunction<
+      int Function(ffi.Pointer<rmw_publisher_t>, ffi.Pointer<ffi.Void>,
+          ffi.Pointer<rmw_publisher_allocation_t>)>();
 
   /// Publish a loaned ros_message.
   /// /**
@@ -7774,12 +8156,17 @@ class RCL {
     );
   }
 
-  late final _rmw_publish_loaned_message_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_publish_loaned_message>>(
-          'rmw_publish_loaned_message');
-  late final _dart_rmw_publish_loaned_message _rmw_publish_loaned_message =
-      _rmw_publish_loaned_message_ptr
-          .asFunction<_dart_rmw_publish_loaned_message>();
+  late final _rmw_publish_loaned_messagePtr = _lookup<
+          ffi.NativeFunction<
+              rmw_ret_t Function(
+                  ffi.Pointer<rmw_publisher_t>,
+                  ffi.Pointer<ffi.Void>,
+                  ffi.Pointer<rmw_publisher_allocation_t>)>>(
+      'rmw_publish_loaned_message');
+  late final _rmw_publish_loaned_message =
+      _rmw_publish_loaned_messagePtr.asFunction<
+          int Function(ffi.Pointer<rmw_publisher_t>, ffi.Pointer<ffi.Void>,
+              ffi.Pointer<rmw_publisher_allocation_t>)>();
 
   /// Retrieve the number of matched subscriptions to a publisher.
   /// /**
@@ -7794,7 +8181,7 @@ class RCL {
   ///  */
   int rmw_publisher_count_matched_subscriptions(
     ffi.Pointer<rmw_publisher_t> publisher,
-    ffi.Pointer<ffi.Uint64> subscription_count,
+    ffi.Pointer<size_t> subscription_count,
   ) {
     return _rmw_publisher_count_matched_subscriptions(
       publisher,
@@ -7802,13 +8189,14 @@ class RCL {
     );
   }
 
-  late final _rmw_publisher_count_matched_subscriptions_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_publisher_count_matched_subscriptions>>(
-          'rmw_publisher_count_matched_subscriptions');
-  late final _dart_rmw_publisher_count_matched_subscriptions
-      _rmw_publisher_count_matched_subscriptions =
-      _rmw_publisher_count_matched_subscriptions_ptr
-          .asFunction<_dart_rmw_publisher_count_matched_subscriptions>();
+  late final _rmw_publisher_count_matched_subscriptionsPtr = _lookup<
+          ffi.NativeFunction<
+              rmw_ret_t Function(
+                  ffi.Pointer<rmw_publisher_t>, ffi.Pointer<size_t>)>>(
+      'rmw_publisher_count_matched_subscriptions');
+  late final _rmw_publisher_count_matched_subscriptions =
+      _rmw_publisher_count_matched_subscriptionsPtr.asFunction<
+          int Function(ffi.Pointer<rmw_publisher_t>, ffi.Pointer<size_t>)>();
 
   /// Retrieve the actual qos settings of the publisher.
   /// /**
@@ -7839,12 +8227,14 @@ class RCL {
     );
   }
 
-  late final _rmw_publisher_get_actual_qos_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_publisher_get_actual_qos>>(
-          'rmw_publisher_get_actual_qos');
-  late final _dart_rmw_publisher_get_actual_qos _rmw_publisher_get_actual_qos =
-      _rmw_publisher_get_actual_qos_ptr
-          .asFunction<_dart_rmw_publisher_get_actual_qos>();
+  late final _rmw_publisher_get_actual_qosPtr = _lookup<
+      ffi.NativeFunction<
+          rmw_ret_t Function(ffi.Pointer<rmw_publisher_t>,
+              ffi.Pointer<rmw_qos_profile_t>)>>('rmw_publisher_get_actual_qos');
+  late final _rmw_publisher_get_actual_qos =
+      _rmw_publisher_get_actual_qosPtr.asFunction<
+          int Function(
+              ffi.Pointer<rmw_publisher_t>, ffi.Pointer<rmw_qos_profile_t>)>();
 
   /// Publish an already serialized message.
   /// /**
@@ -7862,7 +8252,7 @@ class RCL {
   ///  */
   int rmw_publish_serialized_message(
     ffi.Pointer<rmw_publisher_t> publisher,
-    ffi.Pointer<rcutils_uint8_array_t> serialized_message,
+    ffi.Pointer<rmw_serialized_message_t> serialized_message,
     ffi.Pointer<rmw_publisher_allocation_t> allocation,
   ) {
     return _rmw_publish_serialized_message(
@@ -7872,12 +8262,19 @@ class RCL {
     );
   }
 
-  late final _rmw_publish_serialized_message_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_publish_serialized_message>>(
-          'rmw_publish_serialized_message');
-  late final _dart_rmw_publish_serialized_message
-      _rmw_publish_serialized_message = _rmw_publish_serialized_message_ptr
-          .asFunction<_dart_rmw_publish_serialized_message>();
+  late final _rmw_publish_serialized_messagePtr = _lookup<
+          ffi.NativeFunction<
+              rmw_ret_t Function(
+                  ffi.Pointer<rmw_publisher_t>,
+                  ffi.Pointer<rmw_serialized_message_t>,
+                  ffi.Pointer<rmw_publisher_allocation_t>)>>(
+      'rmw_publish_serialized_message');
+  late final _rmw_publish_serialized_message =
+      _rmw_publish_serialized_messagePtr.asFunction<
+          int Function(
+              ffi.Pointer<rmw_publisher_t>,
+              ffi.Pointer<rmw_serialized_message_t>,
+              ffi.Pointer<rmw_publisher_allocation_t>)>();
 
   /// Compute the size of a serialized message.
   /// /**
@@ -7893,7 +8290,7 @@ class RCL {
   int rmw_get_serialized_message_size(
     ffi.Pointer<rosidl_message_type_support_t> type_support,
     ffi.Pointer<rosidl_message_bounds_t> message_bounds,
-    ffi.Pointer<ffi.Uint64> size,
+    ffi.Pointer<size_t> size,
   ) {
     return _rmw_get_serialized_message_size(
       type_support,
@@ -7902,12 +8299,16 @@ class RCL {
     );
   }
 
-  late final _rmw_get_serialized_message_size_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_get_serialized_message_size>>(
-          'rmw_get_serialized_message_size');
-  late final _dart_rmw_get_serialized_message_size
-      _rmw_get_serialized_message_size = _rmw_get_serialized_message_size_ptr
-          .asFunction<_dart_rmw_get_serialized_message_size>();
+  late final _rmw_get_serialized_message_sizePtr = _lookup<
+      ffi.NativeFunction<
+          rmw_ret_t Function(
+              ffi.Pointer<rosidl_message_type_support_t>,
+              ffi.Pointer<rosidl_message_bounds_t>,
+              ffi.Pointer<size_t>)>>('rmw_get_serialized_message_size');
+  late final _rmw_get_serialized_message_size =
+      _rmw_get_serialized_message_sizePtr.asFunction<
+          int Function(ffi.Pointer<rosidl_message_type_support_t>,
+              ffi.Pointer<rosidl_message_bounds_t>, ffi.Pointer<size_t>)>();
 
   /// Manually assert that this Publisher is alive (for RMW_QOS_POLICY_LIVELINESS_MANUAL_BY_TOPIC)
   /// /**
@@ -7936,12 +8337,12 @@ class RCL {
     );
   }
 
-  late final _rmw_publisher_assert_liveliness_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_publisher_assert_liveliness>>(
-          'rmw_publisher_assert_liveliness');
-  late final _dart_rmw_publisher_assert_liveliness
-      _rmw_publisher_assert_liveliness = _rmw_publisher_assert_liveliness_ptr
-          .asFunction<_dart_rmw_publisher_assert_liveliness>();
+  late final _rmw_publisher_assert_livelinessPtr = _lookup<
+          ffi.NativeFunction<rmw_ret_t Function(ffi.Pointer<rmw_publisher_t>)>>(
+      'rmw_publisher_assert_liveliness');
+  late final _rmw_publisher_assert_liveliness =
+      _rmw_publisher_assert_livelinessPtr
+          .asFunction<int Function(ffi.Pointer<rmw_publisher_t>)>();
 
   /// Serialize a ROS message into a rmw_serialized_message_t.
   /// /**
@@ -7959,7 +8360,7 @@ class RCL {
   int rmw_serialize(
     ffi.Pointer<ffi.Void> ros_message,
     ffi.Pointer<rosidl_message_type_support_t> type_support,
-    ffi.Pointer<rcutils_uint8_array_t> serialized_message,
+    ffi.Pointer<rmw_serialized_message_t> serialized_message,
   ) {
     return _rmw_serialize(
       ros_message,
@@ -7968,10 +8369,17 @@ class RCL {
     );
   }
 
-  late final _rmw_serialize_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_serialize>>('rmw_serialize');
-  late final _dart_rmw_serialize _rmw_serialize =
-      _rmw_serialize_ptr.asFunction<_dart_rmw_serialize>();
+  late final _rmw_serializePtr = _lookup<
+      ffi.NativeFunction<
+          rmw_ret_t Function(
+              ffi.Pointer<ffi.Void>,
+              ffi.Pointer<rosidl_message_type_support_t>,
+              ffi.Pointer<rmw_serialized_message_t>)>>('rmw_serialize');
+  late final _rmw_serialize = _rmw_serializePtr.asFunction<
+      int Function(
+          ffi.Pointer<ffi.Void>,
+          ffi.Pointer<rosidl_message_type_support_t>,
+          ffi.Pointer<rmw_serialized_message_t>)>();
 
   /// Deserialize a ROS message.
   /// /**
@@ -7990,7 +8398,7 @@ class RCL {
   ///  * \return `RMW_RET_ERROR` if an unexpected error occurs.
   ///  */
   int rmw_deserialize(
-    ffi.Pointer<rcutils_uint8_array_t> serialized_message,
+    ffi.Pointer<rmw_serialized_message_t> serialized_message,
     ffi.Pointer<rosidl_message_type_support_t> type_support,
     ffi.Pointer<ffi.Void> ros_message,
   ) {
@@ -8001,10 +8409,15 @@ class RCL {
     );
   }
 
-  late final _rmw_deserialize_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_deserialize>>('rmw_deserialize');
-  late final _dart_rmw_deserialize _rmw_deserialize =
-      _rmw_deserialize_ptr.asFunction<_dart_rmw_deserialize>();
+  late final _rmw_deserializePtr = _lookup<
+      ffi.NativeFunction<
+          rmw_ret_t Function(
+              ffi.Pointer<rmw_serialized_message_t>,
+              ffi.Pointer<rosidl_message_type_support_t>,
+              ffi.Pointer<ffi.Void>)>>('rmw_deserialize');
+  late final _rmw_deserialize = _rmw_deserializePtr.asFunction<
+      int Function(ffi.Pointer<rmw_serialized_message_t>,
+          ffi.Pointer<rosidl_message_type_support_t>, ffi.Pointer<ffi.Void>)>();
 
   /// Initialize a subscription allocation to be used with later `take`s.
   /// /**
@@ -8035,12 +8448,19 @@ class RCL {
     );
   }
 
-  late final _rmw_init_subscription_allocation_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_init_subscription_allocation>>(
-          'rmw_init_subscription_allocation');
-  late final _dart_rmw_init_subscription_allocation
-      _rmw_init_subscription_allocation = _rmw_init_subscription_allocation_ptr
-          .asFunction<_dart_rmw_init_subscription_allocation>();
+  late final _rmw_init_subscription_allocationPtr = _lookup<
+          ffi.NativeFunction<
+              rmw_ret_t Function(
+                  ffi.Pointer<rosidl_message_type_support_t>,
+                  ffi.Pointer<rosidl_message_bounds_t>,
+                  ffi.Pointer<rmw_subscription_allocation_t>)>>(
+      'rmw_init_subscription_allocation');
+  late final _rmw_init_subscription_allocation =
+      _rmw_init_subscription_allocationPtr.asFunction<
+          int Function(
+              ffi.Pointer<rosidl_message_type_support_t>,
+              ffi.Pointer<rosidl_message_bounds_t>,
+              ffi.Pointer<rmw_subscription_allocation_t>)>();
 
   /// Destroy a publisher allocation object.
   /// /**
@@ -8059,12 +8479,13 @@ class RCL {
     );
   }
 
-  late final _rmw_fini_subscription_allocation_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_fini_subscription_allocation>>(
-          'rmw_fini_subscription_allocation');
-  late final _dart_rmw_fini_subscription_allocation
-      _rmw_fini_subscription_allocation = _rmw_fini_subscription_allocation_ptr
-          .asFunction<_dart_rmw_fini_subscription_allocation>();
+  late final _rmw_fini_subscription_allocationPtr = _lookup<
+          ffi.NativeFunction<
+              rmw_ret_t Function(ffi.Pointer<rmw_subscription_allocation_t>)>>(
+      'rmw_fini_subscription_allocation');
+  late final _rmw_fini_subscription_allocation =
+      _rmw_fini_subscription_allocationPtr.asFunction<
+          int Function(ffi.Pointer<rmw_subscription_allocation_t>)>();
 
   /// Create and return an rmw subscription.
   /// /**
@@ -8091,11 +8512,22 @@ class RCL {
     );
   }
 
-  late final _rmw_create_subscription_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_create_subscription>>(
-          'rmw_create_subscription');
-  late final _dart_rmw_create_subscription _rmw_create_subscription =
-      _rmw_create_subscription_ptr.asFunction<_dart_rmw_create_subscription>();
+  late final _rmw_create_subscriptionPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Pointer<rmw_subscription_t> Function(
+                  ffi.Pointer<rmw_node_t>,
+                  ffi.Pointer<rosidl_message_type_support_t>,
+                  ffi.Pointer<ffi.Int8>,
+                  ffi.Pointer<rmw_qos_profile_t>,
+                  ffi.Pointer<rmw_subscription_options_t>)>>(
+      'rmw_create_subscription');
+  late final _rmw_create_subscription = _rmw_create_subscriptionPtr.asFunction<
+      ffi.Pointer<rmw_subscription_t> Function(
+          ffi.Pointer<rmw_node_t>,
+          ffi.Pointer<rosidl_message_type_support_t>,
+          ffi.Pointer<ffi.Int8>,
+          ffi.Pointer<rmw_qos_profile_t>,
+          ffi.Pointer<rmw_subscription_options_t>)>();
 
   int rmw_destroy_subscription(
     ffi.Pointer<rmw_node_t> node,
@@ -8107,12 +8539,14 @@ class RCL {
     );
   }
 
-  late final _rmw_destroy_subscription_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_destroy_subscription>>(
-          'rmw_destroy_subscription');
-  late final _dart_rmw_destroy_subscription _rmw_destroy_subscription =
-      _rmw_destroy_subscription_ptr
-          .asFunction<_dart_rmw_destroy_subscription>();
+  late final _rmw_destroy_subscriptionPtr = _lookup<
+      ffi.NativeFunction<
+          rmw_ret_t Function(ffi.Pointer<rmw_node_t>,
+              ffi.Pointer<rmw_subscription_t>)>>('rmw_destroy_subscription');
+  late final _rmw_destroy_subscription =
+      _rmw_destroy_subscriptionPtr.asFunction<
+          int Function(
+              ffi.Pointer<rmw_node_t>, ffi.Pointer<rmw_subscription_t>)>();
 
   /// Retrieve the number of matched publishers to a subscription.
   /// /**
@@ -8127,7 +8561,7 @@ class RCL {
   ///  */
   int rmw_subscription_count_matched_publishers(
     ffi.Pointer<rmw_subscription_t> subscription,
-    ffi.Pointer<ffi.Uint64> publisher_count,
+    ffi.Pointer<size_t> publisher_count,
   ) {
     return _rmw_subscription_count_matched_publishers(
       subscription,
@@ -8135,13 +8569,14 @@ class RCL {
     );
   }
 
-  late final _rmw_subscription_count_matched_publishers_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_subscription_count_matched_publishers>>(
-          'rmw_subscription_count_matched_publishers');
-  late final _dart_rmw_subscription_count_matched_publishers
-      _rmw_subscription_count_matched_publishers =
-      _rmw_subscription_count_matched_publishers_ptr
-          .asFunction<_dart_rmw_subscription_count_matched_publishers>();
+  late final _rmw_subscription_count_matched_publishersPtr = _lookup<
+          ffi.NativeFunction<
+              rmw_ret_t Function(
+                  ffi.Pointer<rmw_subscription_t>, ffi.Pointer<size_t>)>>(
+      'rmw_subscription_count_matched_publishers');
+  late final _rmw_subscription_count_matched_publishers =
+      _rmw_subscription_count_matched_publishersPtr.asFunction<
+          int Function(ffi.Pointer<rmw_subscription_t>, ffi.Pointer<size_t>)>();
 
   /// Retrieve the actual qos settings of the subscription.
   /// /**
@@ -8172,12 +8607,15 @@ class RCL {
     );
   }
 
-  late final _rmw_subscription_get_actual_qos_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_subscription_get_actual_qos>>(
-          'rmw_subscription_get_actual_qos');
-  late final _dart_rmw_subscription_get_actual_qos
-      _rmw_subscription_get_actual_qos = _rmw_subscription_get_actual_qos_ptr
-          .asFunction<_dart_rmw_subscription_get_actual_qos>();
+  late final _rmw_subscription_get_actual_qosPtr = _lookup<
+          ffi.NativeFunction<
+              rmw_ret_t Function(ffi.Pointer<rmw_subscription_t>,
+                  ffi.Pointer<rmw_qos_profile_t>)>>(
+      'rmw_subscription_get_actual_qos');
+  late final _rmw_subscription_get_actual_qos =
+      _rmw_subscription_get_actual_qosPtr.asFunction<
+          int Function(ffi.Pointer<rmw_subscription_t>,
+              ffi.Pointer<rmw_qos_profile_t>)>();
 
   /// Take an incoming message from a subscription.
   /// /**
@@ -8204,10 +8642,19 @@ class RCL {
     );
   }
 
-  late final _rmw_take_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_take>>('rmw_take');
-  late final _dart_rmw_take _rmw_take =
-      _rmw_take_ptr.asFunction<_dart_rmw_take>();
+  late final _rmw_takePtr = _lookup<
+      ffi.NativeFunction<
+          rmw_ret_t Function(
+              ffi.Pointer<rmw_subscription_t>,
+              ffi.Pointer<ffi.Void>,
+              ffi.Pointer<ffi.Uint8>,
+              ffi.Pointer<rmw_subscription_allocation_t>)>>('rmw_take');
+  late final _rmw_take = _rmw_takePtr.asFunction<
+      int Function(
+          ffi.Pointer<rmw_subscription_t>,
+          ffi.Pointer<ffi.Void>,
+          ffi.Pointer<ffi.Uint8>,
+          ffi.Pointer<rmw_subscription_allocation_t>)>();
 
   /// Take an incoming message from a subscription with additional metadata.
   /// /**
@@ -8237,10 +8684,22 @@ class RCL {
     );
   }
 
-  late final _rmw_take_with_info_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_take_with_info>>('rmw_take_with_info');
-  late final _dart_rmw_take_with_info _rmw_take_with_info =
-      _rmw_take_with_info_ptr.asFunction<_dart_rmw_take_with_info>();
+  late final _rmw_take_with_infoPtr = _lookup<
+          ffi.NativeFunction<
+              rmw_ret_t Function(
+                  ffi.Pointer<rmw_subscription_t>,
+                  ffi.Pointer<ffi.Void>,
+                  ffi.Pointer<ffi.Uint8>,
+                  ffi.Pointer<rmw_message_info_t>,
+                  ffi.Pointer<rmw_subscription_allocation_t>)>>(
+      'rmw_take_with_info');
+  late final _rmw_take_with_info = _rmw_take_with_infoPtr.asFunction<
+      int Function(
+          ffi.Pointer<rmw_subscription_t>,
+          ffi.Pointer<ffi.Void>,
+          ffi.Pointer<ffi.Uint8>,
+          ffi.Pointer<rmw_message_info_t>,
+          ffi.Pointer<rmw_subscription_allocation_t>)>();
 
   /// Take a message without deserializing it.
   /// /**
@@ -8261,7 +8720,7 @@ class RCL {
   ///  */
   int rmw_take_serialized_message(
     ffi.Pointer<rmw_subscription_t> subscription,
-    ffi.Pointer<rcutils_uint8_array_t> serialized_message,
+    ffi.Pointer<rmw_serialized_message_t> serialized_message,
     ffi.Pointer<ffi.Uint8> taken,
     ffi.Pointer<rmw_subscription_allocation_t> allocation,
   ) {
@@ -8273,12 +8732,21 @@ class RCL {
     );
   }
 
-  late final _rmw_take_serialized_message_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_take_serialized_message>>(
-          'rmw_take_serialized_message');
-  late final _dart_rmw_take_serialized_message _rmw_take_serialized_message =
-      _rmw_take_serialized_message_ptr
-          .asFunction<_dart_rmw_take_serialized_message>();
+  late final _rmw_take_serialized_messagePtr = _lookup<
+          ffi.NativeFunction<
+              rmw_ret_t Function(
+                  ffi.Pointer<rmw_subscription_t>,
+                  ffi.Pointer<rmw_serialized_message_t>,
+                  ffi.Pointer<ffi.Uint8>,
+                  ffi.Pointer<rmw_subscription_allocation_t>)>>(
+      'rmw_take_serialized_message');
+  late final _rmw_take_serialized_message =
+      _rmw_take_serialized_messagePtr.asFunction<
+          int Function(
+              ffi.Pointer<rmw_subscription_t>,
+              ffi.Pointer<rmw_serialized_message_t>,
+              ffi.Pointer<ffi.Uint8>,
+              ffi.Pointer<rmw_subscription_allocation_t>)>();
 
   /// Take a message without deserializing it and with its additional message information.
   /// /**
@@ -8296,7 +8764,7 @@ class RCL {
   ///  */
   int rmw_take_serialized_message_with_info(
     ffi.Pointer<rmw_subscription_t> subscription,
-    ffi.Pointer<rcutils_uint8_array_t> serialized_message,
+    ffi.Pointer<rmw_serialized_message_t> serialized_message,
     ffi.Pointer<ffi.Uint8> taken,
     ffi.Pointer<rmw_message_info_t> message_info,
     ffi.Pointer<rmw_subscription_allocation_t> allocation,
@@ -8310,13 +8778,23 @@ class RCL {
     );
   }
 
-  late final _rmw_take_serialized_message_with_info_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_take_serialized_message_with_info>>(
-          'rmw_take_serialized_message_with_info');
-  late final _dart_rmw_take_serialized_message_with_info
-      _rmw_take_serialized_message_with_info =
-      _rmw_take_serialized_message_with_info_ptr
-          .asFunction<_dart_rmw_take_serialized_message_with_info>();
+  late final _rmw_take_serialized_message_with_infoPtr = _lookup<
+          ffi.NativeFunction<
+              rmw_ret_t Function(
+                  ffi.Pointer<rmw_subscription_t>,
+                  ffi.Pointer<rmw_serialized_message_t>,
+                  ffi.Pointer<ffi.Uint8>,
+                  ffi.Pointer<rmw_message_info_t>,
+                  ffi.Pointer<rmw_subscription_allocation_t>)>>(
+      'rmw_take_serialized_message_with_info');
+  late final _rmw_take_serialized_message_with_info =
+      _rmw_take_serialized_message_with_infoPtr.asFunction<
+          int Function(
+              ffi.Pointer<rmw_subscription_t>,
+              ffi.Pointer<rmw_serialized_message_t>,
+              ffi.Pointer<ffi.Uint8>,
+              ffi.Pointer<rmw_message_info_t>,
+              ffi.Pointer<rmw_subscription_allocation_t>)>();
 
   /// Take a loaned message.
   /// /**
@@ -8346,11 +8824,20 @@ class RCL {
     );
   }
 
-  late final _rmw_take_loaned_message_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_take_loaned_message>>(
-          'rmw_take_loaned_message');
-  late final _dart_rmw_take_loaned_message _rmw_take_loaned_message =
-      _rmw_take_loaned_message_ptr.asFunction<_dart_rmw_take_loaned_message>();
+  late final _rmw_take_loaned_messagePtr = _lookup<
+          ffi.NativeFunction<
+              rmw_ret_t Function(
+                  ffi.Pointer<rmw_subscription_t>,
+                  ffi.Pointer<ffi.Pointer<ffi.Void>>,
+                  ffi.Pointer<ffi.Uint8>,
+                  ffi.Pointer<rmw_subscription_allocation_t>)>>(
+      'rmw_take_loaned_message');
+  late final _rmw_take_loaned_message = _rmw_take_loaned_messagePtr.asFunction<
+      int Function(
+          ffi.Pointer<rmw_subscription_t>,
+          ffi.Pointer<ffi.Pointer<ffi.Void>>,
+          ffi.Pointer<ffi.Uint8>,
+          ffi.Pointer<rmw_subscription_allocation_t>)>();
 
   /// Take a loaned message and with its additional message information.
   /// /**
@@ -8383,13 +8870,23 @@ class RCL {
     );
   }
 
-  late final _rmw_take_loaned_message_with_info_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_take_loaned_message_with_info>>(
-          'rmw_take_loaned_message_with_info');
-  late final _dart_rmw_take_loaned_message_with_info
-      _rmw_take_loaned_message_with_info =
-      _rmw_take_loaned_message_with_info_ptr
-          .asFunction<_dart_rmw_take_loaned_message_with_info>();
+  late final _rmw_take_loaned_message_with_infoPtr = _lookup<
+          ffi.NativeFunction<
+              rmw_ret_t Function(
+                  ffi.Pointer<rmw_subscription_t>,
+                  ffi.Pointer<ffi.Pointer<ffi.Void>>,
+                  ffi.Pointer<ffi.Uint8>,
+                  ffi.Pointer<rmw_message_info_t>,
+                  ffi.Pointer<rmw_subscription_allocation_t>)>>(
+      'rmw_take_loaned_message_with_info');
+  late final _rmw_take_loaned_message_with_info =
+      _rmw_take_loaned_message_with_infoPtr.asFunction<
+          int Function(
+              ffi.Pointer<rmw_subscription_t>,
+              ffi.Pointer<ffi.Pointer<ffi.Void>>,
+              ffi.Pointer<ffi.Uint8>,
+              ffi.Pointer<rmw_message_info_t>,
+              ffi.Pointer<rmw_subscription_allocation_t>)>();
 
   /// Return a loaned message previously taken from a subscription.
   /// /**
@@ -8412,13 +8909,15 @@ class RCL {
     );
   }
 
-  late final _rmw_return_loaned_message_from_subscription_ptr = _lookup<
-          ffi.NativeFunction<_c_rmw_return_loaned_message_from_subscription>>(
+  late final _rmw_return_loaned_message_from_subscriptionPtr = _lookup<
+          ffi.NativeFunction<
+              rmw_ret_t Function(
+                  ffi.Pointer<rmw_subscription_t>, ffi.Pointer<ffi.Void>)>>(
       'rmw_return_loaned_message_from_subscription');
-  late final _dart_rmw_return_loaned_message_from_subscription
-      _rmw_return_loaned_message_from_subscription =
-      _rmw_return_loaned_message_from_subscription_ptr
-          .asFunction<_dart_rmw_return_loaned_message_from_subscription>();
+  late final _rmw_return_loaned_message_from_subscription =
+      _rmw_return_loaned_message_from_subscriptionPtr.asFunction<
+          int Function(
+              ffi.Pointer<rmw_subscription_t>, ffi.Pointer<ffi.Void>)>();
 
   ffi.Pointer<rmw_client_t> rmw_create_client(
     ffi.Pointer<rmw_node_t> node,
@@ -8434,10 +8933,19 @@ class RCL {
     );
   }
 
-  late final _rmw_create_client_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_create_client>>('rmw_create_client');
-  late final _dart_rmw_create_client _rmw_create_client =
-      _rmw_create_client_ptr.asFunction<_dart_rmw_create_client>();
+  late final _rmw_create_clientPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<rmw_client_t> Function(
+              ffi.Pointer<rmw_node_t>,
+              ffi.Pointer<rosidl_service_type_support_t>,
+              ffi.Pointer<ffi.Int8>,
+              ffi.Pointer<rmw_qos_profile_t>)>>('rmw_create_client');
+  late final _rmw_create_client = _rmw_create_clientPtr.asFunction<
+      ffi.Pointer<rmw_client_t> Function(
+          ffi.Pointer<rmw_node_t>,
+          ffi.Pointer<rosidl_service_type_support_t>,
+          ffi.Pointer<ffi.Int8>,
+          ffi.Pointer<rmw_qos_profile_t>)>();
 
   int rmw_destroy_client(
     ffi.Pointer<rmw_node_t> node,
@@ -8449,10 +8957,12 @@ class RCL {
     );
   }
 
-  late final _rmw_destroy_client_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_destroy_client>>('rmw_destroy_client');
-  late final _dart_rmw_destroy_client _rmw_destroy_client =
-      _rmw_destroy_client_ptr.asFunction<_dart_rmw_destroy_client>();
+  late final _rmw_destroy_clientPtr = _lookup<
+      ffi.NativeFunction<
+          rmw_ret_t Function(ffi.Pointer<rmw_node_t>,
+              ffi.Pointer<rmw_client_t>)>>('rmw_destroy_client');
+  late final _rmw_destroy_client = _rmw_destroy_clientPtr.asFunction<
+      int Function(ffi.Pointer<rmw_node_t>, ffi.Pointer<rmw_client_t>)>();
 
   int rmw_send_request(
     ffi.Pointer<rmw_client_t> client,
@@ -8466,10 +8976,13 @@ class RCL {
     );
   }
 
-  late final _rmw_send_request_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_send_request>>('rmw_send_request');
-  late final _dart_rmw_send_request _rmw_send_request =
-      _rmw_send_request_ptr.asFunction<_dart_rmw_send_request>();
+  late final _rmw_send_requestPtr = _lookup<
+      ffi.NativeFunction<
+          rmw_ret_t Function(ffi.Pointer<rmw_client_t>, ffi.Pointer<ffi.Void>,
+              ffi.Pointer<ffi.Int64>)>>('rmw_send_request');
+  late final _rmw_send_request = _rmw_send_requestPtr.asFunction<
+      int Function(ffi.Pointer<rmw_client_t>, ffi.Pointer<ffi.Void>,
+          ffi.Pointer<ffi.Int64>)>();
 
   int rmw_take_response(
     ffi.Pointer<rmw_client_t> client,
@@ -8485,10 +8998,16 @@ class RCL {
     );
   }
 
-  late final _rmw_take_response_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_take_response>>('rmw_take_response');
-  late final _dart_rmw_take_response _rmw_take_response =
-      _rmw_take_response_ptr.asFunction<_dart_rmw_take_response>();
+  late final _rmw_take_responsePtr = _lookup<
+      ffi.NativeFunction<
+          rmw_ret_t Function(
+              ffi.Pointer<rmw_client_t>,
+              ffi.Pointer<rmw_request_id_t>,
+              ffi.Pointer<ffi.Void>,
+              ffi.Pointer<ffi.Uint8>)>>('rmw_take_response');
+  late final _rmw_take_response = _rmw_take_responsePtr.asFunction<
+      int Function(ffi.Pointer<rmw_client_t>, ffi.Pointer<rmw_request_id_t>,
+          ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Uint8>)>();
 
   ffi.Pointer<rmw_service_t> rmw_create_service(
     ffi.Pointer<rmw_node_t> node,
@@ -8504,10 +9023,19 @@ class RCL {
     );
   }
 
-  late final _rmw_create_service_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_create_service>>('rmw_create_service');
-  late final _dart_rmw_create_service _rmw_create_service =
-      _rmw_create_service_ptr.asFunction<_dart_rmw_create_service>();
+  late final _rmw_create_servicePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<rmw_service_t> Function(
+              ffi.Pointer<rmw_node_t>,
+              ffi.Pointer<rosidl_service_type_support_t>,
+              ffi.Pointer<ffi.Int8>,
+              ffi.Pointer<rmw_qos_profile_t>)>>('rmw_create_service');
+  late final _rmw_create_service = _rmw_create_servicePtr.asFunction<
+      ffi.Pointer<rmw_service_t> Function(
+          ffi.Pointer<rmw_node_t>,
+          ffi.Pointer<rosidl_service_type_support_t>,
+          ffi.Pointer<ffi.Int8>,
+          ffi.Pointer<rmw_qos_profile_t>)>();
 
   int rmw_destroy_service(
     ffi.Pointer<rmw_node_t> node,
@@ -8519,11 +9047,12 @@ class RCL {
     );
   }
 
-  late final _rmw_destroy_service_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_destroy_service>>(
-          'rmw_destroy_service');
-  late final _dart_rmw_destroy_service _rmw_destroy_service =
-      _rmw_destroy_service_ptr.asFunction<_dart_rmw_destroy_service>();
+  late final _rmw_destroy_servicePtr = _lookup<
+      ffi.NativeFunction<
+          rmw_ret_t Function(ffi.Pointer<rmw_node_t>,
+              ffi.Pointer<rmw_service_t>)>>('rmw_destroy_service');
+  late final _rmw_destroy_service = _rmw_destroy_servicePtr.asFunction<
+      int Function(ffi.Pointer<rmw_node_t>, ffi.Pointer<rmw_service_t>)>();
 
   int rmw_take_request(
     ffi.Pointer<rmw_service_t> service,
@@ -8539,10 +9068,16 @@ class RCL {
     );
   }
 
-  late final _rmw_take_request_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_take_request>>('rmw_take_request');
-  late final _dart_rmw_take_request _rmw_take_request =
-      _rmw_take_request_ptr.asFunction<_dart_rmw_take_request>();
+  late final _rmw_take_requestPtr = _lookup<
+      ffi.NativeFunction<
+          rmw_ret_t Function(
+              ffi.Pointer<rmw_service_t>,
+              ffi.Pointer<rmw_request_id_t>,
+              ffi.Pointer<ffi.Void>,
+              ffi.Pointer<ffi.Uint8>)>>('rmw_take_request');
+  late final _rmw_take_request = _rmw_take_requestPtr.asFunction<
+      int Function(ffi.Pointer<rmw_service_t>, ffi.Pointer<rmw_request_id_t>,
+          ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Uint8>)>();
 
   int rmw_send_response(
     ffi.Pointer<rmw_service_t> service,
@@ -8556,10 +9091,15 @@ class RCL {
     );
   }
 
-  late final _rmw_send_response_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_send_response>>('rmw_send_response');
-  late final _dart_rmw_send_response _rmw_send_response =
-      _rmw_send_response_ptr.asFunction<_dart_rmw_send_response>();
+  late final _rmw_send_responsePtr = _lookup<
+      ffi.NativeFunction<
+          rmw_ret_t Function(
+              ffi.Pointer<rmw_service_t>,
+              ffi.Pointer<rmw_request_id_t>,
+              ffi.Pointer<ffi.Void>)>>('rmw_send_response');
+  late final _rmw_send_response = _rmw_send_responsePtr.asFunction<
+      int Function(ffi.Pointer<rmw_service_t>, ffi.Pointer<rmw_request_id_t>,
+          ffi.Pointer<ffi.Void>)>();
 
   /// TODO(wjwwood): refactor this API to return a return code when updated to use an allocator
   /// Create a guard condition and return a handle to that guard condition.
@@ -8595,12 +9135,14 @@ class RCL {
     );
   }
 
-  late final _rmw_create_guard_condition_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_create_guard_condition>>(
-          'rmw_create_guard_condition');
-  late final _dart_rmw_create_guard_condition _rmw_create_guard_condition =
-      _rmw_create_guard_condition_ptr
-          .asFunction<_dart_rmw_create_guard_condition>();
+  late final _rmw_create_guard_conditionPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<rmw_guard_condition_t> Function(
+              ffi.Pointer<rmw_context_t>)>>('rmw_create_guard_condition');
+  late final _rmw_create_guard_condition =
+      _rmw_create_guard_conditionPtr.asFunction<
+          ffi.Pointer<rmw_guard_condition_t> Function(
+              ffi.Pointer<rmw_context_t>)>();
 
   /// Finalize a given guard condition handle, reclaim the resources, and deallocate the handle.
   /// /**
@@ -8617,12 +9159,12 @@ class RCL {
     );
   }
 
-  late final _rmw_destroy_guard_condition_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_destroy_guard_condition>>(
-          'rmw_destroy_guard_condition');
-  late final _dart_rmw_destroy_guard_condition _rmw_destroy_guard_condition =
-      _rmw_destroy_guard_condition_ptr
-          .asFunction<_dart_rmw_destroy_guard_condition>();
+  late final _rmw_destroy_guard_conditionPtr = _lookup<
+          ffi.NativeFunction<
+              rmw_ret_t Function(ffi.Pointer<rmw_guard_condition_t>)>>(
+      'rmw_destroy_guard_condition');
+  late final _rmw_destroy_guard_condition = _rmw_destroy_guard_conditionPtr
+      .asFunction<int Function(ffi.Pointer<rmw_guard_condition_t>)>();
 
   int rmw_trigger_guard_condition(
     ffi.Pointer<rmw_guard_condition_t> guard_condition,
@@ -8632,12 +9174,12 @@ class RCL {
     );
   }
 
-  late final _rmw_trigger_guard_condition_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_trigger_guard_condition>>(
-          'rmw_trigger_guard_condition');
-  late final _dart_rmw_trigger_guard_condition _rmw_trigger_guard_condition =
-      _rmw_trigger_guard_condition_ptr
-          .asFunction<_dart_rmw_trigger_guard_condition>();
+  late final _rmw_trigger_guard_conditionPtr = _lookup<
+          ffi.NativeFunction<
+              rmw_ret_t Function(ffi.Pointer<rmw_guard_condition_t>)>>(
+      'rmw_trigger_guard_condition');
+  late final _rmw_trigger_guard_condition = _rmw_trigger_guard_conditionPtr
+      .asFunction<int Function(ffi.Pointer<rmw_guard_condition_t>)>();
 
   /// Create a wait set to store conditions that the middleware will block on.
   /// /**
@@ -8667,11 +9209,12 @@ class RCL {
     );
   }
 
-  late final _rmw_create_wait_set_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_create_wait_set>>(
-          'rmw_create_wait_set');
-  late final _dart_rmw_create_wait_set _rmw_create_wait_set =
-      _rmw_create_wait_set_ptr.asFunction<_dart_rmw_create_wait_set>();
+  late final _rmw_create_wait_setPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<rmw_wait_set_t> Function(
+              ffi.Pointer<rmw_context_t>, size_t)>>('rmw_create_wait_set');
+  late final _rmw_create_wait_set = _rmw_create_wait_setPtr.asFunction<
+      ffi.Pointer<rmw_wait_set_t> Function(ffi.Pointer<rmw_context_t>, int)>();
 
   int rmw_destroy_wait_set(
     ffi.Pointer<rmw_wait_set_t> wait_set,
@@ -8681,11 +9224,11 @@ class RCL {
     );
   }
 
-  late final _rmw_destroy_wait_set_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_destroy_wait_set>>(
-          'rmw_destroy_wait_set');
-  late final _dart_rmw_destroy_wait_set _rmw_destroy_wait_set =
-      _rmw_destroy_wait_set_ptr.asFunction<_dart_rmw_destroy_wait_set>();
+  late final _rmw_destroy_wait_setPtr = _lookup<
+          ffi.NativeFunction<rmw_ret_t Function(ffi.Pointer<rmw_wait_set_t>)>>(
+      'rmw_destroy_wait_set');
+  late final _rmw_destroy_wait_set = _rmw_destroy_wait_setPtr
+      .asFunction<int Function(ffi.Pointer<rmw_wait_set_t>)>();
 
   /// Waits on sets of different waitable entities and returns when one is ready.
   /// /**
@@ -8741,10 +9284,25 @@ class RCL {
     );
   }
 
-  late final _rmw_wait_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_wait>>('rmw_wait');
-  late final _dart_rmw_wait _rmw_wait =
-      _rmw_wait_ptr.asFunction<_dart_rmw_wait>();
+  late final _rmw_waitPtr = _lookup<
+      ffi.NativeFunction<
+          rmw_ret_t Function(
+              ffi.Pointer<rmw_subscriptions_t>,
+              ffi.Pointer<rmw_guard_conditions_t>,
+              ffi.Pointer<rmw_services_t>,
+              ffi.Pointer<rmw_clients_t>,
+              ffi.Pointer<rmw_events_t>,
+              ffi.Pointer<rmw_wait_set_t>,
+              ffi.Pointer<rmw_time_t>)>>('rmw_wait');
+  late final _rmw_wait = _rmw_waitPtr.asFunction<
+      int Function(
+          ffi.Pointer<rmw_subscriptions_t>,
+          ffi.Pointer<rmw_guard_conditions_t>,
+          ffi.Pointer<rmw_services_t>,
+          ffi.Pointer<rmw_clients_t>,
+          ffi.Pointer<rmw_events_t>,
+          ffi.Pointer<rmw_wait_set_t>,
+          ffi.Pointer<rmw_time_t>)>();
 
   /// Return a list of node name and namespaces discovered via a node.
   /// /**
@@ -8785,15 +9343,20 @@ class RCL {
     );
   }
 
-  late final _rmw_get_node_names_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_get_node_names>>('rmw_get_node_names');
-  late final _dart_rmw_get_node_names _rmw_get_node_names =
-      _rmw_get_node_names_ptr.asFunction<_dart_rmw_get_node_names>();
+  late final _rmw_get_node_namesPtr = _lookup<
+      ffi.NativeFunction<
+          rmw_ret_t Function(
+              ffi.Pointer<rmw_node_t>,
+              ffi.Pointer<rcutils_string_array_t>,
+              ffi.Pointer<rcutils_string_array_t>)>>('rmw_get_node_names');
+  late final _rmw_get_node_names = _rmw_get_node_namesPtr.asFunction<
+      int Function(ffi.Pointer<rmw_node_t>, ffi.Pointer<rcutils_string_array_t>,
+          ffi.Pointer<rcutils_string_array_t>)>();
 
   int rmw_count_publishers(
     ffi.Pointer<rmw_node_t> node,
     ffi.Pointer<ffi.Int8> topic_name,
-    ffi.Pointer<ffi.Uint64> count,
+    ffi.Pointer<size_t> count,
   ) {
     return _rmw_count_publishers(
       node,
@@ -8802,16 +9365,18 @@ class RCL {
     );
   }
 
-  late final _rmw_count_publishers_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_count_publishers>>(
-          'rmw_count_publishers');
-  late final _dart_rmw_count_publishers _rmw_count_publishers =
-      _rmw_count_publishers_ptr.asFunction<_dart_rmw_count_publishers>();
+  late final _rmw_count_publishersPtr = _lookup<
+      ffi.NativeFunction<
+          rmw_ret_t Function(ffi.Pointer<rmw_node_t>, ffi.Pointer<ffi.Int8>,
+              ffi.Pointer<size_t>)>>('rmw_count_publishers');
+  late final _rmw_count_publishers = _rmw_count_publishersPtr.asFunction<
+      int Function(ffi.Pointer<rmw_node_t>, ffi.Pointer<ffi.Int8>,
+          ffi.Pointer<size_t>)>();
 
   int rmw_count_subscribers(
     ffi.Pointer<rmw_node_t> node,
     ffi.Pointer<ffi.Int8> topic_name,
-    ffi.Pointer<ffi.Uint64> count,
+    ffi.Pointer<size_t> count,
   ) {
     return _rmw_count_subscribers(
       node,
@@ -8820,11 +9385,13 @@ class RCL {
     );
   }
 
-  late final _rmw_count_subscribers_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_count_subscribers>>(
-          'rmw_count_subscribers');
-  late final _dart_rmw_count_subscribers _rmw_count_subscribers =
-      _rmw_count_subscribers_ptr.asFunction<_dart_rmw_count_subscribers>();
+  late final _rmw_count_subscribersPtr = _lookup<
+      ffi.NativeFunction<
+          rmw_ret_t Function(ffi.Pointer<rmw_node_t>, ffi.Pointer<ffi.Int8>,
+              ffi.Pointer<size_t>)>>('rmw_count_subscribers');
+  late final _rmw_count_subscribers = _rmw_count_subscribersPtr.asFunction<
+      int Function(ffi.Pointer<rmw_node_t>, ffi.Pointer<ffi.Int8>,
+          ffi.Pointer<size_t>)>();
 
   int rmw_get_gid_for_publisher(
     ffi.Pointer<rmw_publisher_t> publisher,
@@ -8836,12 +9403,13 @@ class RCL {
     );
   }
 
-  late final _rmw_get_gid_for_publisher_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_get_gid_for_publisher>>(
-          'rmw_get_gid_for_publisher');
-  late final _dart_rmw_get_gid_for_publisher _rmw_get_gid_for_publisher =
-      _rmw_get_gid_for_publisher_ptr
-          .asFunction<_dart_rmw_get_gid_for_publisher>();
+  late final _rmw_get_gid_for_publisherPtr = _lookup<
+      ffi.NativeFunction<
+          rmw_ret_t Function(ffi.Pointer<rmw_publisher_t>,
+              ffi.Pointer<rmw_gid_t>)>>('rmw_get_gid_for_publisher');
+  late final _rmw_get_gid_for_publisher =
+      _rmw_get_gid_for_publisherPtr.asFunction<
+          int Function(ffi.Pointer<rmw_publisher_t>, ffi.Pointer<rmw_gid_t>)>();
 
   int rmw_compare_gids_equal(
     ffi.Pointer<rmw_gid_t> gid1,
@@ -8855,11 +9423,13 @@ class RCL {
     );
   }
 
-  late final _rmw_compare_gids_equal_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_compare_gids_equal>>(
-          'rmw_compare_gids_equal');
-  late final _dart_rmw_compare_gids_equal _rmw_compare_gids_equal =
-      _rmw_compare_gids_equal_ptr.asFunction<_dart_rmw_compare_gids_equal>();
+  late final _rmw_compare_gids_equalPtr = _lookup<
+      ffi.NativeFunction<
+          rmw_ret_t Function(ffi.Pointer<rmw_gid_t>, ffi.Pointer<rmw_gid_t>,
+              ffi.Pointer<ffi.Uint8>)>>('rmw_compare_gids_equal');
+  late final _rmw_compare_gids_equal = _rmw_compare_gids_equalPtr.asFunction<
+      int Function(ffi.Pointer<rmw_gid_t>, ffi.Pointer<rmw_gid_t>,
+          ffi.Pointer<ffi.Uint8>)>();
 
   /// Check if a service server is available for the given service client.
   /// /**
@@ -8900,12 +9470,14 @@ class RCL {
     );
   }
 
-  late final _rmw_service_server_is_available_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_service_server_is_available>>(
-          'rmw_service_server_is_available');
-  late final _dart_rmw_service_server_is_available
-      _rmw_service_server_is_available = _rmw_service_server_is_available_ptr
-          .asFunction<_dart_rmw_service_server_is_available>();
+  late final _rmw_service_server_is_availablePtr = _lookup<
+      ffi.NativeFunction<
+          rmw_ret_t Function(ffi.Pointer<rmw_node_t>, ffi.Pointer<rmw_client_t>,
+              ffi.Pointer<ffi.Uint8>)>>('rmw_service_server_is_available');
+  late final _rmw_service_server_is_available =
+      _rmw_service_server_is_availablePtr.asFunction<
+          int Function(ffi.Pointer<rmw_node_t>, ffi.Pointer<rmw_client_t>,
+              ffi.Pointer<ffi.Uint8>)>();
 
   int rmw_set_log_severity(
     int severity,
@@ -8915,23 +9487,22 @@ class RCL {
     );
   }
 
-  late final _rmw_set_log_severity_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_set_log_severity>>(
+  late final _rmw_set_log_severityPtr =
+      _lookup<ffi.NativeFunction<rmw_ret_t Function(ffi.Int32)>>(
           'rmw_set_log_severity');
-  late final _dart_rmw_set_log_severity _rmw_set_log_severity =
-      _rmw_set_log_severity_ptr.asFunction<_dart_rmw_set_log_severity>();
+  late final _rmw_set_log_severity =
+      _rmw_set_log_severityPtr.asFunction<int Function(int)>();
 
   /// Return a zero initialized timer.
   rcl_timer_t rcl_get_zero_initialized_timer() {
     return _rcl_get_zero_initialized_timer();
   }
 
-  late final _rcl_get_zero_initialized_timer_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_get_zero_initialized_timer>>(
+  late final _rcl_get_zero_initialized_timerPtr =
+      _lookup<ffi.NativeFunction<rcl_timer_t Function()>>(
           'rcl_get_zero_initialized_timer');
-  late final _dart_rcl_get_zero_initialized_timer
-      _rcl_get_zero_initialized_timer = _rcl_get_zero_initialized_timer_ptr
-          .asFunction<_dart_rcl_get_zero_initialized_timer>();
+  late final _rcl_get_zero_initialized_timer =
+      _rcl_get_zero_initialized_timerPtr.asFunction<rcl_timer_t Function()>();
 
   /// Initialize a timer.
   /// /**
@@ -9024,8 +9595,8 @@ class RCL {
     ffi.Pointer<rcl_clock_t> clock,
     ffi.Pointer<rcl_context_t> context,
     int period,
-    ffi.Pointer<ffi.NativeFunction<rcl_timer_callback_t>> callback,
-    rcutils_allocator_t allocator,
+    rcl_timer_callback_t callback,
+    rcl_allocator_t allocator,
   ) {
     return _rcl_timer_init(
       timer,
@@ -9037,10 +9608,23 @@ class RCL {
     );
   }
 
-  late final _rcl_timer_init_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_timer_init>>('rcl_timer_init');
-  late final _dart_rcl_timer_init _rcl_timer_init =
-      _rcl_timer_init_ptr.asFunction<_dart_rcl_timer_init>();
+  late final _rcl_timer_initPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(
+              ffi.Pointer<rcl_timer_t>,
+              ffi.Pointer<rcl_clock_t>,
+              ffi.Pointer<rcl_context_t>,
+              ffi.Int64,
+              rcl_timer_callback_t,
+              rcl_allocator_t)>>('rcl_timer_init');
+  late final _rcl_timer_init = _rcl_timer_initPtr.asFunction<
+      int Function(
+          ffi.Pointer<rcl_timer_t>,
+          ffi.Pointer<rcl_clock_t>,
+          ffi.Pointer<rcl_context_t>,
+          int,
+          rcl_timer_callback_t,
+          rcl_allocator_t)>();
 
   /// Finalize a timer.
   /// /**
@@ -9076,10 +9660,11 @@ class RCL {
     );
   }
 
-  late final _rcl_timer_fini_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_timer_fini>>('rcl_timer_fini');
-  late final _dart_rcl_timer_fini _rcl_timer_fini =
-      _rcl_timer_fini_ptr.asFunction<_dart_rcl_timer_fini>();
+  late final _rcl_timer_finiPtr =
+      _lookup<ffi.NativeFunction<rcl_ret_t Function(ffi.Pointer<rcl_timer_t>)>>(
+          'rcl_timer_fini');
+  late final _rcl_timer_fini =
+      _rcl_timer_finiPtr.asFunction<int Function(ffi.Pointer<rcl_timer_t>)>();
 
   /// Call the timer's callback and set the last call time.
   /// /**
@@ -9128,10 +9713,11 @@ class RCL {
     );
   }
 
-  late final _rcl_timer_call_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_timer_call>>('rcl_timer_call');
-  late final _dart_rcl_timer_call _rcl_timer_call =
-      _rcl_timer_call_ptr.asFunction<_dart_rcl_timer_call>();
+  late final _rcl_timer_callPtr =
+      _lookup<ffi.NativeFunction<rcl_ret_t Function(ffi.Pointer<rcl_timer_t>)>>(
+          'rcl_timer_call');
+  late final _rcl_timer_call =
+      _rcl_timer_callPtr.asFunction<int Function(ffi.Pointer<rcl_timer_t>)>();
 
   /// Retrieve the clock of the timer.
   /// /**
@@ -9164,10 +9750,13 @@ class RCL {
     );
   }
 
-  late final _rcl_timer_clock_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_timer_clock>>('rcl_timer_clock');
-  late final _dart_rcl_timer_clock _rcl_timer_clock =
-      _rcl_timer_clock_ptr.asFunction<_dart_rcl_timer_clock>();
+  late final _rcl_timer_clockPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(ffi.Pointer<rcl_timer_t>,
+              ffi.Pointer<ffi.Pointer<rcl_clock_t>>)>>('rcl_timer_clock');
+  late final _rcl_timer_clock = _rcl_timer_clockPtr.asFunction<
+      int Function(
+          ffi.Pointer<rcl_timer_t>, ffi.Pointer<ffi.Pointer<rcl_clock_t>>)>();
 
   /// Calculates whether or not the timer should be called.
   /// /**
@@ -9204,10 +9793,12 @@ class RCL {
     );
   }
 
-  late final _rcl_timer_is_ready_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_timer_is_ready>>('rcl_timer_is_ready');
-  late final _dart_rcl_timer_is_ready _rcl_timer_is_ready =
-      _rcl_timer_is_ready_ptr.asFunction<_dart_rcl_timer_is_ready>();
+  late final _rcl_timer_is_readyPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(ffi.Pointer<rcl_timer_t>,
+              ffi.Pointer<ffi.Uint8>)>>('rcl_timer_is_ready');
+  late final _rcl_timer_is_ready = _rcl_timer_is_readyPtr.asFunction<
+      int Function(ffi.Pointer<rcl_timer_t>, ffi.Pointer<ffi.Uint8>)>();
 
   /// Calculate and retrieve the time until the next call in nanoseconds.
   /// /**
@@ -9249,13 +9840,13 @@ class RCL {
     );
   }
 
-  late final _rcl_timer_get_time_until_next_call_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_timer_get_time_until_next_call>>(
-          'rcl_timer_get_time_until_next_call');
-  late final _dart_rcl_timer_get_time_until_next_call
-      _rcl_timer_get_time_until_next_call =
-      _rcl_timer_get_time_until_next_call_ptr
-          .asFunction<_dart_rcl_timer_get_time_until_next_call>();
+  late final _rcl_timer_get_time_until_next_callPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(ffi.Pointer<rcl_timer_t>,
+              ffi.Pointer<ffi.Int64>)>>('rcl_timer_get_time_until_next_call');
+  late final _rcl_timer_get_time_until_next_call =
+      _rcl_timer_get_time_until_next_callPtr.asFunction<
+          int Function(ffi.Pointer<rcl_timer_t>, ffi.Pointer<ffi.Int64>)>();
 
   /// Retrieve the time since the previous call to rcl_timer_call() occurred.
   /// /**
@@ -9294,13 +9885,13 @@ class RCL {
     );
   }
 
-  late final _rcl_timer_get_time_since_last_call_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_timer_get_time_since_last_call>>(
-          'rcl_timer_get_time_since_last_call');
-  late final _dart_rcl_timer_get_time_since_last_call
-      _rcl_timer_get_time_since_last_call =
-      _rcl_timer_get_time_since_last_call_ptr
-          .asFunction<_dart_rcl_timer_get_time_since_last_call>();
+  late final _rcl_timer_get_time_since_last_callPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(ffi.Pointer<rcl_timer_t>,
+              ffi.Pointer<ffi.Int64>)>>('rcl_timer_get_time_since_last_call');
+  late final _rcl_timer_get_time_since_last_call =
+      _rcl_timer_get_time_since_last_callPtr.asFunction<
+          int Function(ffi.Pointer<rcl_timer_t>, ffi.Pointer<ffi.Int64>)>();
 
   /// Retrieve the period of the timer.
   /// /**
@@ -9334,11 +9925,12 @@ class RCL {
     );
   }
 
-  late final _rcl_timer_get_period_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_timer_get_period>>(
-          'rcl_timer_get_period');
-  late final _dart_rcl_timer_get_period _rcl_timer_get_period =
-      _rcl_timer_get_period_ptr.asFunction<_dart_rcl_timer_get_period>();
+  late final _rcl_timer_get_periodPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(ffi.Pointer<rcl_timer_t>,
+              ffi.Pointer<ffi.Int64>)>>('rcl_timer_get_period');
+  late final _rcl_timer_get_period = _rcl_timer_get_periodPtr.asFunction<
+      int Function(ffi.Pointer<rcl_timer_t>, ffi.Pointer<ffi.Int64>)>();
 
   /// Exchange the period of the timer and return the previous period.
   /// /**
@@ -9378,12 +9970,14 @@ class RCL {
     );
   }
 
-  late final _rcl_timer_exchange_period_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_timer_exchange_period>>(
-          'rcl_timer_exchange_period');
-  late final _dart_rcl_timer_exchange_period _rcl_timer_exchange_period =
-      _rcl_timer_exchange_period_ptr
-          .asFunction<_dart_rcl_timer_exchange_period>();
+  late final _rcl_timer_exchange_periodPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(ffi.Pointer<rcl_timer_t>, ffi.Int64,
+              ffi.Pointer<ffi.Int64>)>>('rcl_timer_exchange_period');
+  late final _rcl_timer_exchange_period =
+      _rcl_timer_exchange_periodPtr.asFunction<
+          int Function(
+              ffi.Pointer<rcl_timer_t>, int, ffi.Pointer<ffi.Int64>)>();
 
   /// Return the current timer callback.
   /// /**
@@ -9403,7 +9997,7 @@ class RCL {
   ///  * \param[in] timer handle to the timer from the callback should be returned
   ///  * \return function pointer to the callback, or `NULL` if an error occurred
   ///  */
-  ffi.Pointer<ffi.NativeFunction<rcl_timer_callback_t>> rcl_timer_get_callback(
+  rcl_timer_callback_t rcl_timer_get_callback(
     ffi.Pointer<rcl_timer_t> timer,
   ) {
     return _rcl_timer_get_callback(
@@ -9411,11 +10005,12 @@ class RCL {
     );
   }
 
-  late final _rcl_timer_get_callback_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_timer_get_callback>>(
-          'rcl_timer_get_callback');
-  late final _dart_rcl_timer_get_callback _rcl_timer_get_callback =
-      _rcl_timer_get_callback_ptr.asFunction<_dart_rcl_timer_get_callback>();
+  late final _rcl_timer_get_callbackPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_timer_callback_t Function(
+              ffi.Pointer<rcl_timer_t>)>>('rcl_timer_get_callback');
+  late final _rcl_timer_get_callback = _rcl_timer_get_callbackPtr
+      .asFunction<rcl_timer_callback_t Function(ffi.Pointer<rcl_timer_t>)>();
 
   /// Exchange the current timer callback and return the current callback.
   /// /**
@@ -9439,10 +10034,9 @@ class RCL {
   ///  * \param[in] new_callback the callback to be exchanged into the timer
   ///  * \return function pointer to the old callback, or `NULL` if an error occurred
   ///  */
-  ffi.Pointer<ffi.NativeFunction<rcl_timer_callback_t>>
-      rcl_timer_exchange_callback(
+  rcl_timer_callback_t rcl_timer_exchange_callback(
     ffi.Pointer<rcl_timer_t> timer,
-    ffi.Pointer<ffi.NativeFunction<rcl_timer_callback_t>> new_callback,
+    rcl_timer_callback_t new_callback,
   ) {
     return _rcl_timer_exchange_callback(
       timer,
@@ -9450,12 +10044,14 @@ class RCL {
     );
   }
 
-  late final _rcl_timer_exchange_callback_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_timer_exchange_callback>>(
-          'rcl_timer_exchange_callback');
-  late final _dart_rcl_timer_exchange_callback _rcl_timer_exchange_callback =
-      _rcl_timer_exchange_callback_ptr
-          .asFunction<_dart_rcl_timer_exchange_callback>();
+  late final _rcl_timer_exchange_callbackPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_timer_callback_t Function(ffi.Pointer<rcl_timer_t>,
+              rcl_timer_callback_t)>>('rcl_timer_exchange_callback');
+  late final _rcl_timer_exchange_callback =
+      _rcl_timer_exchange_callbackPtr.asFunction<
+          rcl_timer_callback_t Function(
+              ffi.Pointer<rcl_timer_t>, rcl_timer_callback_t)>();
 
   /// Cancel a timer.
   /// /**
@@ -9488,10 +10084,11 @@ class RCL {
     );
   }
 
-  late final _rcl_timer_cancel_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_timer_cancel>>('rcl_timer_cancel');
-  late final _dart_rcl_timer_cancel _rcl_timer_cancel =
-      _rcl_timer_cancel_ptr.asFunction<_dart_rcl_timer_cancel>();
+  late final _rcl_timer_cancelPtr =
+      _lookup<ffi.NativeFunction<rcl_ret_t Function(ffi.Pointer<rcl_timer_t>)>>(
+          'rcl_timer_cancel');
+  late final _rcl_timer_cancel =
+      _rcl_timer_cancelPtr.asFunction<int Function(ffi.Pointer<rcl_timer_t>)>();
 
   /// Retrieve the canceled state of a timer.
   /// /**
@@ -9527,11 +10124,12 @@ class RCL {
     );
   }
 
-  late final _rcl_timer_is_canceled_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_timer_is_canceled>>(
-          'rcl_timer_is_canceled');
-  late final _dart_rcl_timer_is_canceled _rcl_timer_is_canceled =
-      _rcl_timer_is_canceled_ptr.asFunction<_dart_rcl_timer_is_canceled>();
+  late final _rcl_timer_is_canceledPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(ffi.Pointer<rcl_timer_t>,
+              ffi.Pointer<ffi.Uint8>)>>('rcl_timer_is_canceled');
+  late final _rcl_timer_is_canceled = _rcl_timer_is_canceledPtr.asFunction<
+      int Function(ffi.Pointer<rcl_timer_t>, ffi.Pointer<ffi.Uint8>)>();
 
   /// Reset a timer.
   /// /**
@@ -9562,10 +10160,11 @@ class RCL {
     );
   }
 
-  late final _rcl_timer_reset_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_timer_reset>>('rcl_timer_reset');
-  late final _dart_rcl_timer_reset _rcl_timer_reset =
-      _rcl_timer_reset_ptr.asFunction<_dart_rcl_timer_reset>();
+  late final _rcl_timer_resetPtr =
+      _lookup<ffi.NativeFunction<rcl_ret_t Function(ffi.Pointer<rcl_timer_t>)>>(
+          'rcl_timer_reset');
+  late final _rcl_timer_reset =
+      _rcl_timer_resetPtr.asFunction<int Function(ffi.Pointer<rcl_timer_t>)>();
 
   /// Return the allocator for the timer.
   /// /**
@@ -9586,7 +10185,7 @@ class RCL {
   ///  * \param[inout] timer handle to the timer object
   ///  * \return pointer to the allocator, or `NULL` if an error occurred
   ///  */
-  ffi.Pointer<rcutils_allocator_t> rcl_timer_get_allocator(
+  ffi.Pointer<rcl_allocator_t> rcl_timer_get_allocator(
     ffi.Pointer<rcl_timer_t> timer,
   ) {
     return _rcl_timer_get_allocator(
@@ -9594,11 +10193,12 @@ class RCL {
     );
   }
 
-  late final _rcl_timer_get_allocator_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_timer_get_allocator>>(
-          'rcl_timer_get_allocator');
-  late final _dart_rcl_timer_get_allocator _rcl_timer_get_allocator =
-      _rcl_timer_get_allocator_ptr.asFunction<_dart_rcl_timer_get_allocator>();
+  late final _rcl_timer_get_allocatorPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<rcl_allocator_t> Function(
+              ffi.Pointer<rcl_timer_t>)>>('rcl_timer_get_allocator');
+  late final _rcl_timer_get_allocator = _rcl_timer_get_allocatorPtr.asFunction<
+      ffi.Pointer<rcl_allocator_t> Function(ffi.Pointer<rcl_timer_t>)>();
 
   /// Retrieve a guard condition used by the timer to wake the waitset when using ROSTime.
   /// /**
@@ -9622,12 +10222,14 @@ class RCL {
     );
   }
 
-  late final _rcl_timer_get_guard_condition_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_timer_get_guard_condition>>(
-          'rcl_timer_get_guard_condition');
-  late final _dart_rcl_timer_get_guard_condition
-      _rcl_timer_get_guard_condition = _rcl_timer_get_guard_condition_ptr
-          .asFunction<_dart_rcl_timer_get_guard_condition>();
+  late final _rcl_timer_get_guard_conditionPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<rcl_guard_condition_t> Function(
+              ffi.Pointer<rcl_timer_t>)>>('rcl_timer_get_guard_condition');
+  late final _rcl_timer_get_guard_condition =
+      _rcl_timer_get_guard_conditionPtr.asFunction<
+          ffi.Pointer<rcl_guard_condition_t> Function(
+              ffi.Pointer<rcl_timer_t>)>();
 
   /// Return a rcl_publisher_t struct with members set to `NULL`.
   /// /**
@@ -9638,13 +10240,12 @@ class RCL {
     return _rcl_get_zero_initialized_publisher();
   }
 
-  late final _rcl_get_zero_initialized_publisher_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_get_zero_initialized_publisher>>(
+  late final _rcl_get_zero_initialized_publisherPtr =
+      _lookup<ffi.NativeFunction<rcl_publisher_t Function()>>(
           'rcl_get_zero_initialized_publisher');
-  late final _dart_rcl_get_zero_initialized_publisher
-      _rcl_get_zero_initialized_publisher =
-      _rcl_get_zero_initialized_publisher_ptr
-          .asFunction<_dart_rcl_get_zero_initialized_publisher>();
+  late final _rcl_get_zero_initialized_publisher =
+      _rcl_get_zero_initialized_publisherPtr
+          .asFunction<rcl_publisher_t Function()>();
 
   /// Initialize a rcl publisher.
   /// /**
@@ -9749,10 +10350,21 @@ class RCL {
     );
   }
 
-  late final _rcl_publisher_init_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_publisher_init>>('rcl_publisher_init');
-  late final _dart_rcl_publisher_init _rcl_publisher_init =
-      _rcl_publisher_init_ptr.asFunction<_dart_rcl_publisher_init>();
+  late final _rcl_publisher_initPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(
+              ffi.Pointer<rcl_publisher_t>,
+              ffi.Pointer<rcl_node_t>,
+              ffi.Pointer<rosidl_message_type_support_t>,
+              ffi.Pointer<ffi.Int8>,
+              ffi.Pointer<rcl_publisher_options_t>)>>('rcl_publisher_init');
+  late final _rcl_publisher_init = _rcl_publisher_initPtr.asFunction<
+      int Function(
+          ffi.Pointer<rcl_publisher_t>,
+          ffi.Pointer<rcl_node_t>,
+          ffi.Pointer<rosidl_message_type_support_t>,
+          ffi.Pointer<ffi.Int8>,
+          ffi.Pointer<rcl_publisher_options_t>)>();
 
   /// Finalize a rcl_publisher_t.
   /// /**
@@ -9788,10 +10400,12 @@ class RCL {
     );
   }
 
-  late final _rcl_publisher_fini_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_publisher_fini>>('rcl_publisher_fini');
-  late final _dart_rcl_publisher_fini _rcl_publisher_fini =
-      _rcl_publisher_fini_ptr.asFunction<_dart_rcl_publisher_fini>();
+  late final _rcl_publisher_finiPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(ffi.Pointer<rcl_publisher_t>,
+              ffi.Pointer<rcl_node_t>)>>('rcl_publisher_fini');
+  late final _rcl_publisher_fini = _rcl_publisher_finiPtr.asFunction<
+      int Function(ffi.Pointer<rcl_publisher_t>, ffi.Pointer<rcl_node_t>)>();
 
   /// Return the default publisher options in a rcl_publisher_options_t.
   /// /**
@@ -9804,13 +10418,12 @@ class RCL {
     return _rcl_publisher_get_default_options();
   }
 
-  late final _rcl_publisher_get_default_options_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_publisher_get_default_options>>(
+  late final _rcl_publisher_get_default_optionsPtr =
+      _lookup<ffi.NativeFunction<rcl_publisher_options_t Function()>>(
           'rcl_publisher_get_default_options');
-  late final _dart_rcl_publisher_get_default_options
-      _rcl_publisher_get_default_options =
-      _rcl_publisher_get_default_options_ptr
-          .asFunction<_dart_rcl_publisher_get_default_options>();
+  late final _rcl_publisher_get_default_options =
+      _rcl_publisher_get_default_optionsPtr
+          .asFunction<rcl_publisher_options_t Function()>();
 
   /// Borrow a loaned message.
   /// /**
@@ -9848,12 +10461,19 @@ class RCL {
     );
   }
 
-  late final _rcl_borrow_loaned_message_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_borrow_loaned_message>>(
-          'rcl_borrow_loaned_message');
-  late final _dart_rcl_borrow_loaned_message _rcl_borrow_loaned_message =
-      _rcl_borrow_loaned_message_ptr
-          .asFunction<_dart_rcl_borrow_loaned_message>();
+  late final _rcl_borrow_loaned_messagePtr = _lookup<
+          ffi.NativeFunction<
+              rcl_ret_t Function(
+                  ffi.Pointer<rcl_publisher_t>,
+                  ffi.Pointer<rosidl_message_type_support_t>,
+                  ffi.Pointer<ffi.Pointer<ffi.Void>>)>>(
+      'rcl_borrow_loaned_message');
+  late final _rcl_borrow_loaned_message =
+      _rcl_borrow_loaned_messagePtr.asFunction<
+          int Function(
+              ffi.Pointer<rcl_publisher_t>,
+              ffi.Pointer<rosidl_message_type_support_t>,
+              ffi.Pointer<ffi.Pointer<ffi.Void>>)>();
 
   /// Return a loaned message previously borrowed from a publisher.
   /// /**
@@ -9886,13 +10506,14 @@ class RCL {
     );
   }
 
-  late final _rcl_return_loaned_message_from_publisher_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_return_loaned_message_from_publisher>>(
-          'rcl_return_loaned_message_from_publisher');
-  late final _dart_rcl_return_loaned_message_from_publisher
-      _rcl_return_loaned_message_from_publisher =
-      _rcl_return_loaned_message_from_publisher_ptr
-          .asFunction<_dart_rcl_return_loaned_message_from_publisher>();
+  late final _rcl_return_loaned_message_from_publisherPtr = _lookup<
+          ffi.NativeFunction<
+              rcl_ret_t Function(
+                  ffi.Pointer<rcl_publisher_t>, ffi.Pointer<ffi.Void>)>>(
+      'rcl_return_loaned_message_from_publisher');
+  late final _rcl_return_loaned_message_from_publisher =
+      _rcl_return_loaned_message_from_publisherPtr.asFunction<
+          int Function(ffi.Pointer<rcl_publisher_t>, ffi.Pointer<ffi.Void>)>();
 
   /// Publish a ROS message on a topic using a publisher.
   /// /**
@@ -9963,10 +10584,15 @@ class RCL {
     );
   }
 
-  late final _rcl_publish_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_publish>>('rcl_publish');
-  late final _dart_rcl_publish _rcl_publish =
-      _rcl_publish_ptr.asFunction<_dart_rcl_publish>();
+  late final _rcl_publishPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(
+              ffi.Pointer<rcl_publisher_t>,
+              ffi.Pointer<ffi.Void>,
+              ffi.Pointer<rmw_publisher_allocation_t>)>>('rcl_publish');
+  late final _rcl_publish = _rcl_publishPtr.asFunction<
+      int Function(ffi.Pointer<rcl_publisher_t>, ffi.Pointer<ffi.Void>,
+          ffi.Pointer<rmw_publisher_allocation_t>)>();
 
   /// Publish a serialized message on a topic using a publisher.
   /// /**
@@ -10001,7 +10627,7 @@ class RCL {
   ///  */
   int rcl_publish_serialized_message(
     ffi.Pointer<rcl_publisher_t> publisher,
-    ffi.Pointer<rcutils_uint8_array_t> serialized_message,
+    ffi.Pointer<rcl_serialized_message_t> serialized_message,
     ffi.Pointer<rmw_publisher_allocation_t> allocation,
   ) {
     return _rcl_publish_serialized_message(
@@ -10011,12 +10637,19 @@ class RCL {
     );
   }
 
-  late final _rcl_publish_serialized_message_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_publish_serialized_message>>(
-          'rcl_publish_serialized_message');
-  late final _dart_rcl_publish_serialized_message
-      _rcl_publish_serialized_message = _rcl_publish_serialized_message_ptr
-          .asFunction<_dart_rcl_publish_serialized_message>();
+  late final _rcl_publish_serialized_messagePtr = _lookup<
+          ffi.NativeFunction<
+              rcl_ret_t Function(
+                  ffi.Pointer<rcl_publisher_t>,
+                  ffi.Pointer<rcl_serialized_message_t>,
+                  ffi.Pointer<rmw_publisher_allocation_t>)>>(
+      'rcl_publish_serialized_message');
+  late final _rcl_publish_serialized_message =
+      _rcl_publish_serialized_messagePtr.asFunction<
+          int Function(
+              ffi.Pointer<rcl_publisher_t>,
+              ffi.Pointer<rcl_serialized_message_t>,
+              ffi.Pointer<rmw_publisher_allocation_t>)>();
 
   /// Publish a loaned message on a topic using a publisher.
   /// /**
@@ -10063,12 +10696,17 @@ class RCL {
     );
   }
 
-  late final _rcl_publish_loaned_message_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_publish_loaned_message>>(
-          'rcl_publish_loaned_message');
-  late final _dart_rcl_publish_loaned_message _rcl_publish_loaned_message =
-      _rcl_publish_loaned_message_ptr
-          .asFunction<_dart_rcl_publish_loaned_message>();
+  late final _rcl_publish_loaned_messagePtr = _lookup<
+          ffi.NativeFunction<
+              rcl_ret_t Function(
+                  ffi.Pointer<rcl_publisher_t>,
+                  ffi.Pointer<ffi.Void>,
+                  ffi.Pointer<rmw_publisher_allocation_t>)>>(
+      'rcl_publish_loaned_message');
+  late final _rcl_publish_loaned_message =
+      _rcl_publish_loaned_messagePtr.asFunction<
+          int Function(ffi.Pointer<rcl_publisher_t>, ffi.Pointer<ffi.Void>,
+              ffi.Pointer<rmw_publisher_allocation_t>)>();
 
   /// Manually assert that this Publisher is alive (for RMW_QOS_POLICY_LIVELINESS_MANUAL_BY_TOPIC)
   /// /**
@@ -10098,12 +10736,12 @@ class RCL {
     );
   }
 
-  late final _rcl_publisher_assert_liveliness_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_publisher_assert_liveliness>>(
-          'rcl_publisher_assert_liveliness');
-  late final _dart_rcl_publisher_assert_liveliness
-      _rcl_publisher_assert_liveliness = _rcl_publisher_assert_liveliness_ptr
-          .asFunction<_dart_rcl_publisher_assert_liveliness>();
+  late final _rcl_publisher_assert_livelinessPtr = _lookup<
+          ffi.NativeFunction<rcl_ret_t Function(ffi.Pointer<rcl_publisher_t>)>>(
+      'rcl_publisher_assert_liveliness');
+  late final _rcl_publisher_assert_liveliness =
+      _rcl_publisher_assert_livelinessPtr
+          .asFunction<int Function(ffi.Pointer<rcl_publisher_t>)>();
 
   /// Get the topic name for the publisher.
   /// /**
@@ -10135,12 +10773,13 @@ class RCL {
     );
   }
 
-  late final _rcl_publisher_get_topic_name_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_publisher_get_topic_name>>(
-          'rcl_publisher_get_topic_name');
-  late final _dart_rcl_publisher_get_topic_name _rcl_publisher_get_topic_name =
-      _rcl_publisher_get_topic_name_ptr
-          .asFunction<_dart_rcl_publisher_get_topic_name>();
+  late final _rcl_publisher_get_topic_namePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Int8> Function(
+              ffi.Pointer<rcl_publisher_t>)>>('rcl_publisher_get_topic_name');
+  late final _rcl_publisher_get_topic_name =
+      _rcl_publisher_get_topic_namePtr.asFunction<
+          ffi.Pointer<ffi.Int8> Function(ffi.Pointer<rcl_publisher_t>)>();
 
   /// Return the rcl publisher options.
   /// /**
@@ -10172,12 +10811,14 @@ class RCL {
     );
   }
 
-  late final _rcl_publisher_get_options_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_publisher_get_options>>(
-          'rcl_publisher_get_options');
-  late final _dart_rcl_publisher_get_options _rcl_publisher_get_options =
-      _rcl_publisher_get_options_ptr
-          .asFunction<_dart_rcl_publisher_get_options>();
+  late final _rcl_publisher_get_optionsPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<rcl_publisher_options_t> Function(
+              ffi.Pointer<rcl_publisher_t>)>>('rcl_publisher_get_options');
+  late final _rcl_publisher_get_options =
+      _rcl_publisher_get_optionsPtr.asFunction<
+          ffi.Pointer<rcl_publisher_options_t> Function(
+              ffi.Pointer<rcl_publisher_t>)>();
 
   /// Return the rmw publisher handle.
   /// /**
@@ -10213,12 +10854,14 @@ class RCL {
     );
   }
 
-  late final _rcl_publisher_get_rmw_handle_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_publisher_get_rmw_handle>>(
-          'rcl_publisher_get_rmw_handle');
-  late final _dart_rcl_publisher_get_rmw_handle _rcl_publisher_get_rmw_handle =
-      _rcl_publisher_get_rmw_handle_ptr
-          .asFunction<_dart_rcl_publisher_get_rmw_handle>();
+  late final _rcl_publisher_get_rmw_handlePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<rmw_publisher_t> Function(
+              ffi.Pointer<rcl_publisher_t>)>>('rcl_publisher_get_rmw_handle');
+  late final _rcl_publisher_get_rmw_handle =
+      _rcl_publisher_get_rmw_handlePtr.asFunction<
+          ffi.Pointer<rmw_publisher_t> Function(
+              ffi.Pointer<rcl_publisher_t>)>();
 
   /// Return the context associated with this publisher.
   /// /**
@@ -10251,12 +10894,13 @@ class RCL {
     );
   }
 
-  late final _rcl_publisher_get_context_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_publisher_get_context>>(
-          'rcl_publisher_get_context');
-  late final _dart_rcl_publisher_get_context _rcl_publisher_get_context =
-      _rcl_publisher_get_context_ptr
-          .asFunction<_dart_rcl_publisher_get_context>();
+  late final _rcl_publisher_get_contextPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<rcl_context_t> Function(
+              ffi.Pointer<rcl_publisher_t>)>>('rcl_publisher_get_context');
+  late final _rcl_publisher_get_context =
+      _rcl_publisher_get_contextPtr.asFunction<
+          ffi.Pointer<rcl_context_t> Function(ffi.Pointer<rcl_publisher_t>)>();
 
   /// Return true if the publisher is valid, otherwise false.
   /// /**
@@ -10285,11 +10929,11 @@ class RCL {
         0;
   }
 
-  late final _rcl_publisher_is_valid_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_publisher_is_valid>>(
-          'rcl_publisher_is_valid');
-  late final _dart_rcl_publisher_is_valid _rcl_publisher_is_valid =
-      _rcl_publisher_is_valid_ptr.asFunction<_dart_rcl_publisher_is_valid>();
+  late final _rcl_publisher_is_validPtr = _lookup<
+          ffi.NativeFunction<ffi.Uint8 Function(ffi.Pointer<rcl_publisher_t>)>>(
+      'rcl_publisher_is_valid');
+  late final _rcl_publisher_is_valid = _rcl_publisher_is_validPtr
+      .asFunction<int Function(ffi.Pointer<rcl_publisher_t>)>();
 
   /// Return true if the publisher is valid except the context, otherwise false.
   /// /**
@@ -10309,13 +10953,12 @@ class RCL {
         0;
   }
 
-  late final _rcl_publisher_is_valid_except_context_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_publisher_is_valid_except_context>>(
-          'rcl_publisher_is_valid_except_context');
-  late final _dart_rcl_publisher_is_valid_except_context
-      _rcl_publisher_is_valid_except_context =
-      _rcl_publisher_is_valid_except_context_ptr
-          .asFunction<_dart_rcl_publisher_is_valid_except_context>();
+  late final _rcl_publisher_is_valid_except_contextPtr = _lookup<
+          ffi.NativeFunction<ffi.Uint8 Function(ffi.Pointer<rcl_publisher_t>)>>(
+      'rcl_publisher_is_valid_except_context');
+  late final _rcl_publisher_is_valid_except_context =
+      _rcl_publisher_is_valid_except_contextPtr
+          .asFunction<int Function(ffi.Pointer<rcl_publisher_t>)>();
 
   /// Get the number of subscriptions matched to a publisher.
   /// /**
@@ -10339,7 +10982,7 @@ class RCL {
   ///  */
   int rcl_publisher_get_subscription_count(
     ffi.Pointer<rcl_publisher_t> publisher,
-    ffi.Pointer<ffi.Uint64> subscription_count,
+    ffi.Pointer<size_t> subscription_count,
   ) {
     return _rcl_publisher_get_subscription_count(
       publisher,
@@ -10347,13 +10990,13 @@ class RCL {
     );
   }
 
-  late final _rcl_publisher_get_subscription_count_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_publisher_get_subscription_count>>(
-          'rcl_publisher_get_subscription_count');
-  late final _dart_rcl_publisher_get_subscription_count
-      _rcl_publisher_get_subscription_count =
-      _rcl_publisher_get_subscription_count_ptr
-          .asFunction<_dart_rcl_publisher_get_subscription_count>();
+  late final _rcl_publisher_get_subscription_countPtr = _lookup<
+      ffi.NativeFunction<
+          rmw_ret_t Function(ffi.Pointer<rcl_publisher_t>,
+              ffi.Pointer<size_t>)>>('rcl_publisher_get_subscription_count');
+  late final _rcl_publisher_get_subscription_count =
+      _rcl_publisher_get_subscription_countPtr.asFunction<
+          int Function(ffi.Pointer<rcl_publisher_t>, ffi.Pointer<size_t>)>();
 
   /// Get the actual qos settings of the publisher.
   /// /**
@@ -10384,12 +11027,14 @@ class RCL {
     );
   }
 
-  late final _rcl_publisher_get_actual_qos_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_publisher_get_actual_qos>>(
-          'rcl_publisher_get_actual_qos');
-  late final _dart_rcl_publisher_get_actual_qos _rcl_publisher_get_actual_qos =
-      _rcl_publisher_get_actual_qos_ptr
-          .asFunction<_dart_rcl_publisher_get_actual_qos>();
+  late final _rcl_publisher_get_actual_qosPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<rmw_qos_profile_t> Function(
+              ffi.Pointer<rcl_publisher_t>)>>('rcl_publisher_get_actual_qos');
+  late final _rcl_publisher_get_actual_qos =
+      _rcl_publisher_get_actual_qosPtr.asFunction<
+          ffi.Pointer<rmw_qos_profile_t> Function(
+              ffi.Pointer<rcl_publisher_t>)>();
 
   /// Check if publisher instance can loan messages.
   /// /**
@@ -10405,12 +11050,12 @@ class RCL {
         0;
   }
 
-  late final _rcl_publisher_can_loan_messages_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_publisher_can_loan_messages>>(
-          'rcl_publisher_can_loan_messages');
-  late final _dart_rcl_publisher_can_loan_messages
-      _rcl_publisher_can_loan_messages = _rcl_publisher_can_loan_messages_ptr
-          .asFunction<_dart_rcl_publisher_can_loan_messages>();
+  late final _rcl_publisher_can_loan_messagesPtr = _lookup<
+          ffi.NativeFunction<ffi.Uint8 Function(ffi.Pointer<rcl_publisher_t>)>>(
+      'rcl_publisher_can_loan_messages');
+  late final _rcl_publisher_can_loan_messages =
+      _rcl_publisher_can_loan_messagesPtr
+          .asFunction<int Function(ffi.Pointer<rcl_publisher_t>)>();
 
   /// Return a rcl_event_t struct with members set to `NULL`.
   /// /**
@@ -10421,12 +11066,11 @@ class RCL {
     return _rcl_get_zero_initialized_event();
   }
 
-  late final _rcl_get_zero_initialized_event_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_get_zero_initialized_event>>(
+  late final _rcl_get_zero_initialized_eventPtr =
+      _lookup<ffi.NativeFunction<rcl_event_t Function()>>(
           'rcl_get_zero_initialized_event');
-  late final _dart_rcl_get_zero_initialized_event
-      _rcl_get_zero_initialized_event = _rcl_get_zero_initialized_event_ptr
-          .asFunction<_dart_rcl_get_zero_initialized_event>();
+  late final _rcl_get_zero_initialized_event =
+      _rcl_get_zero_initialized_eventPtr.asFunction<rcl_event_t Function()>();
 
   /// Initialize an rcl_event_t with a publisher.
   /// /**
@@ -10451,12 +11095,16 @@ class RCL {
     );
   }
 
-  late final _rcl_publisher_event_init_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_publisher_event_init>>(
-          'rcl_publisher_event_init');
-  late final _dart_rcl_publisher_event_init _rcl_publisher_event_init =
-      _rcl_publisher_event_init_ptr
-          .asFunction<_dart_rcl_publisher_event_init>();
+  late final _rcl_publisher_event_initPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(
+              ffi.Pointer<rcl_event_t>,
+              ffi.Pointer<rcl_publisher_t>,
+              ffi.Int32)>>('rcl_publisher_event_init');
+  late final _rcl_publisher_event_init =
+      _rcl_publisher_event_initPtr.asFunction<
+          int Function(
+              ffi.Pointer<rcl_event_t>, ffi.Pointer<rcl_publisher_t>, int)>();
 
   /// Initialize an rcl_event_t with a subscription.
   /// /**
@@ -10481,12 +11129,16 @@ class RCL {
     );
   }
 
-  late final _rcl_subscription_event_init_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_subscription_event_init>>(
-          'rcl_subscription_event_init');
-  late final _dart_rcl_subscription_event_init _rcl_subscription_event_init =
-      _rcl_subscription_event_init_ptr
-          .asFunction<_dart_rcl_subscription_event_init>();
+  late final _rcl_subscription_event_initPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(
+              ffi.Pointer<rcl_event_t>,
+              ffi.Pointer<rcl_subscription_t>,
+              ffi.Int32)>>('rcl_subscription_event_init');
+  late final _rcl_subscription_event_init =
+      _rcl_subscription_event_initPtr.asFunction<
+          int Function(ffi.Pointer<rcl_event_t>,
+              ffi.Pointer<rcl_subscription_t>, int)>();
 
   /// Take event using the event handle.
   /// /**
@@ -10509,10 +11161,12 @@ class RCL {
     );
   }
 
-  late final _rcl_take_event_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_take_event>>('rcl_take_event');
-  late final _dart_rcl_take_event _rcl_take_event =
-      _rcl_take_event_ptr.asFunction<_dart_rcl_take_event>();
+  late final _rcl_take_eventPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(ffi.Pointer<rcl_event_t>,
+              ffi.Pointer<ffi.Void>)>>('rcl_take_event');
+  late final _rcl_take_event = _rcl_take_eventPtr.asFunction<
+      int Function(ffi.Pointer<rcl_event_t>, ffi.Pointer<ffi.Void>)>();
 
   /// Finalize an event.
   /// /**
@@ -10531,10 +11185,11 @@ class RCL {
     );
   }
 
-  late final _rcl_event_fini_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_event_fini>>('rcl_event_fini');
-  late final _dart_rcl_event_fini _rcl_event_fini =
-      _rcl_event_fini_ptr.asFunction<_dart_rcl_event_fini>();
+  late final _rcl_event_finiPtr =
+      _lookup<ffi.NativeFunction<rcl_ret_t Function(ffi.Pointer<rcl_event_t>)>>(
+          'rcl_event_fini');
+  late final _rcl_event_fini =
+      _rcl_event_finiPtr.asFunction<int Function(ffi.Pointer<rcl_event_t>)>();
 
   /// Return the rmw event handle.
   /// /**
@@ -10570,25 +11225,25 @@ class RCL {
     );
   }
 
-  late final _rcl_event_get_rmw_handle_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_event_get_rmw_handle>>(
-          'rcl_event_get_rmw_handle');
-  late final _dart_rcl_event_get_rmw_handle _rcl_event_get_rmw_handle =
-      _rcl_event_get_rmw_handle_ptr
-          .asFunction<_dart_rcl_event_get_rmw_handle>();
+  late final _rcl_event_get_rmw_handlePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<rmw_event_t> Function(
+              ffi.Pointer<rcl_event_t>)>>('rcl_event_get_rmw_handle');
+  late final _rcl_event_get_rmw_handle =
+      _rcl_event_get_rmw_handlePtr.asFunction<
+          ffi.Pointer<rmw_event_t> Function(ffi.Pointer<rcl_event_t>)>();
 
   /// Return a rmw_names_and_types_t struct with members initialized to `NULL`.
   rmw_names_and_types_t rmw_get_zero_initialized_names_and_types() {
     return _rmw_get_zero_initialized_names_and_types();
   }
 
-  late final _rmw_get_zero_initialized_names_and_types_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_get_zero_initialized_names_and_types>>(
+  late final _rmw_get_zero_initialized_names_and_typesPtr =
+      _lookup<ffi.NativeFunction<rmw_names_and_types_t Function()>>(
           'rmw_get_zero_initialized_names_and_types');
-  late final _dart_rmw_get_zero_initialized_names_and_types
-      _rmw_get_zero_initialized_names_and_types =
-      _rmw_get_zero_initialized_names_and_types_ptr
-          .asFunction<_dart_rmw_get_zero_initialized_names_and_types>();
+  late final _rmw_get_zero_initialized_names_and_types =
+      _rmw_get_zero_initialized_names_and_typesPtr
+          .asFunction<rmw_names_and_types_t Function()>();
 
   /// Check that a rmw_topic_names_and_types_t struct is zero initialized.
   int rmw_names_and_types_check_zero(
@@ -10599,12 +11254,13 @@ class RCL {
     );
   }
 
-  late final _rmw_names_and_types_check_zero_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_names_and_types_check_zero>>(
-          'rmw_names_and_types_check_zero');
-  late final _dart_rmw_names_and_types_check_zero
-      _rmw_names_and_types_check_zero = _rmw_names_and_types_check_zero_ptr
-          .asFunction<_dart_rmw_names_and_types_check_zero>();
+  late final _rmw_names_and_types_check_zeroPtr = _lookup<
+          ffi.NativeFunction<
+              rmw_ret_t Function(ffi.Pointer<rmw_names_and_types_t>)>>(
+      'rmw_names_and_types_check_zero');
+  late final _rmw_names_and_types_check_zero =
+      _rmw_names_and_types_check_zeroPtr
+          .asFunction<int Function(ffi.Pointer<rmw_names_and_types_t>)>();
 
   /// Initialize a rmw_names_and_types_t object.
   /// /**
@@ -10633,12 +11289,14 @@ class RCL {
     );
   }
 
-  late final _rmw_names_and_types_init_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_names_and_types_init>>(
-          'rmw_names_and_types_init');
-  late final _dart_rmw_names_and_types_init _rmw_names_and_types_init =
-      _rmw_names_and_types_init_ptr
-          .asFunction<_dart_rmw_names_and_types_init>();
+  late final _rmw_names_and_types_initPtr = _lookup<
+      ffi.NativeFunction<
+          rmw_ret_t Function(ffi.Pointer<rmw_names_and_types_t>, size_t,
+              ffi.Pointer<rcutils_allocator_t>)>>('rmw_names_and_types_init');
+  late final _rmw_names_and_types_init =
+      _rmw_names_and_types_initPtr.asFunction<
+          int Function(ffi.Pointer<rmw_names_and_types_t>, int,
+              ffi.Pointer<rcutils_allocator_t>)>();
 
   /// Finalize a rmw_names_and_types_t object.
   /// /**
@@ -10664,12 +11322,12 @@ class RCL {
     );
   }
 
-  late final _rmw_names_and_types_fini_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_names_and_types_fini>>(
-          'rmw_names_and_types_fini');
-  late final _dart_rmw_names_and_types_fini _rmw_names_and_types_fini =
-      _rmw_names_and_types_fini_ptr
-          .asFunction<_dart_rmw_names_and_types_fini>();
+  late final _rmw_names_and_types_finiPtr = _lookup<
+      ffi.NativeFunction<
+          rmw_ret_t Function(
+              ffi.Pointer<rmw_names_and_types_t>)>>('rmw_names_and_types_fini');
+  late final _rmw_names_and_types_fini = _rmw_names_and_types_finiPtr
+      .asFunction<int Function(ffi.Pointer<rmw_names_and_types_t>)>();
 
   /// Return a list of topic names and their types.
   /// /**
@@ -10731,12 +11389,21 @@ class RCL {
     );
   }
 
-  late final _rmw_get_topic_names_and_types_ptr =
-      _lookup<ffi.NativeFunction<_c_rmw_get_topic_names_and_types>>(
-          'rmw_get_topic_names_and_types');
-  late final _dart_rmw_get_topic_names_and_types
-      _rmw_get_topic_names_and_types = _rmw_get_topic_names_and_types_ptr
-          .asFunction<_dart_rmw_get_topic_names_and_types>();
+  late final _rmw_get_topic_names_and_typesPtr = _lookup<
+          ffi.NativeFunction<
+              rmw_ret_t Function(
+                  ffi.Pointer<rmw_node_t>,
+                  ffi.Pointer<rcutils_allocator_t>,
+                  ffi.Uint8,
+                  ffi.Pointer<rmw_names_and_types_t>)>>(
+      'rmw_get_topic_names_and_types');
+  late final _rmw_get_topic_names_and_types =
+      _rmw_get_topic_names_and_typesPtr.asFunction<
+          int Function(
+              ffi.Pointer<rmw_node_t>,
+              ffi.Pointer<rcutils_allocator_t>,
+              int,
+              ffi.Pointer<rmw_names_and_types_t>)>();
 
   /// Do lexical analysis on a string.
   /// /**
@@ -10763,7 +11430,7 @@ class RCL {
   int rcl_lexer_analyze(
     ffi.Pointer<ffi.Int8> text,
     ffi.Pointer<ffi.Int32> lexeme,
-    ffi.Pointer<ffi.Uint64> length,
+    ffi.Pointer<size_t> length,
   ) {
     return _rcl_lexer_analyze(
       text,
@@ -10772,10 +11439,13 @@ class RCL {
     );
   }
 
-  late final _rcl_lexer_analyze_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_lexer_analyze>>('rcl_lexer_analyze');
-  late final _dart_rcl_lexer_analyze _rcl_lexer_analyze =
-      _rcl_lexer_analyze_ptr.asFunction<_dart_rcl_lexer_analyze>();
+  late final _rcl_lexer_analyzePtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(ffi.Pointer<ffi.Int8>, ffi.Pointer<ffi.Int32>,
+              ffi.Pointer<size_t>)>>('rcl_lexer_analyze');
+  late final _rcl_lexer_analyze = _rcl_lexer_analyzePtr.asFunction<
+      int Function(ffi.Pointer<ffi.Int8>, ffi.Pointer<ffi.Int32>,
+          ffi.Pointer<size_t>)>();
 
   /// Initialization of rcl.
   /// /**
@@ -10836,10 +11506,16 @@ class RCL {
     );
   }
 
-  late final _rcl_init_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_init>>('rcl_init');
-  late final _dart_rcl_init _rcl_init =
-      _rcl_init_ptr.asFunction<_dart_rcl_init>();
+  late final _rcl_initPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(
+              ffi.Int32,
+              ffi.Pointer<ffi.Pointer<ffi.Int8>>,
+              ffi.Pointer<rcl_init_options_t>,
+              ffi.Pointer<rcl_context_t>)>>('rcl_init');
+  late final _rcl_init = _rcl_initPtr.asFunction<
+      int Function(int, ffi.Pointer<ffi.Pointer<ffi.Int8>>,
+          ffi.Pointer<rcl_init_options_t>, ffi.Pointer<rcl_context_t>)>();
 
   /// Shutdown a given rcl context.
   /// /**
@@ -10873,23 +11549,23 @@ class RCL {
     );
   }
 
-  late final _rcl_shutdown_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_shutdown>>('rcl_shutdown');
-  late final _dart_rcl_shutdown _rcl_shutdown =
-      _rcl_shutdown_ptr.asFunction<_dart_rcl_shutdown>();
+  late final _rcl_shutdownPtr = _lookup<
+          ffi.NativeFunction<rcl_ret_t Function(ffi.Pointer<rcl_context_t>)>>(
+      'rcl_shutdown');
+  late final _rcl_shutdown =
+      _rcl_shutdownPtr.asFunction<int Function(ffi.Pointer<rcl_context_t>)>();
 
   /// Return a rcl_wait_set_t struct with members set to `NULL`.
   rcl_wait_set_t rcl_get_zero_initialized_wait_set() {
     return _rcl_get_zero_initialized_wait_set();
   }
 
-  late final _rcl_get_zero_initialized_wait_set_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_get_zero_initialized_wait_set>>(
+  late final _rcl_get_zero_initialized_wait_setPtr =
+      _lookup<ffi.NativeFunction<rcl_wait_set_t Function()>>(
           'rcl_get_zero_initialized_wait_set');
-  late final _dart_rcl_get_zero_initialized_wait_set
-      _rcl_get_zero_initialized_wait_set =
-      _rcl_get_zero_initialized_wait_set_ptr
-          .asFunction<_dart_rcl_get_zero_initialized_wait_set>();
+  late final _rcl_get_zero_initialized_wait_set =
+      _rcl_get_zero_initialized_wait_setPtr
+          .asFunction<rcl_wait_set_t Function()>();
 
   /// Initialize a rcl wait set with space for items to be waited on.
   /// /**
@@ -10952,7 +11628,7 @@ class RCL {
     int number_of_services,
     int number_of_events,
     ffi.Pointer<rcl_context_t> context,
-    rcutils_allocator_t allocator,
+    rcl_allocator_t allocator,
   ) {
     return _rcl_wait_set_init(
       wait_set,
@@ -10967,10 +11643,21 @@ class RCL {
     );
   }
 
-  late final _rcl_wait_set_init_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_wait_set_init>>('rcl_wait_set_init');
-  late final _dart_rcl_wait_set_init _rcl_wait_set_init =
-      _rcl_wait_set_init_ptr.asFunction<_dart_rcl_wait_set_init>();
+  late final _rcl_wait_set_initPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(
+              ffi.Pointer<rcl_wait_set_t>,
+              size_t,
+              size_t,
+              size_t,
+              size_t,
+              size_t,
+              size_t,
+              ffi.Pointer<rcl_context_t>,
+              rcl_allocator_t)>>('rcl_wait_set_init');
+  late final _rcl_wait_set_init = _rcl_wait_set_initPtr.asFunction<
+      int Function(ffi.Pointer<rcl_wait_set_t>, int, int, int, int, int, int,
+          ffi.Pointer<rcl_context_t>, rcl_allocator_t)>();
 
   /// Finalize a rcl wait set.
   /// /**
@@ -11005,10 +11692,11 @@ class RCL {
     );
   }
 
-  late final _rcl_wait_set_fini_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_wait_set_fini>>('rcl_wait_set_fini');
-  late final _dart_rcl_wait_set_fini _rcl_wait_set_fini =
-      _rcl_wait_set_fini_ptr.asFunction<_dart_rcl_wait_set_fini>();
+  late final _rcl_wait_set_finiPtr = _lookup<
+          ffi.NativeFunction<rcl_ret_t Function(ffi.Pointer<rcl_wait_set_t>)>>(
+      'rcl_wait_set_fini');
+  late final _rcl_wait_set_fini = _rcl_wait_set_finiPtr
+      .asFunction<int Function(ffi.Pointer<rcl_wait_set_t>)>();
 
   /// Retrieve the wait set's allocator.
   /// /**
@@ -11031,7 +11719,7 @@ class RCL {
   ///  */
   int rcl_wait_set_get_allocator(
     ffi.Pointer<rcl_wait_set_t> wait_set,
-    ffi.Pointer<rcutils_allocator_t> allocator,
+    ffi.Pointer<rcl_allocator_t> allocator,
   ) {
     return _rcl_wait_set_get_allocator(
       wait_set,
@@ -11039,12 +11727,14 @@ class RCL {
     );
   }
 
-  late final _rcl_wait_set_get_allocator_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_wait_set_get_allocator>>(
-          'rcl_wait_set_get_allocator');
-  late final _dart_rcl_wait_set_get_allocator _rcl_wait_set_get_allocator =
-      _rcl_wait_set_get_allocator_ptr
-          .asFunction<_dart_rcl_wait_set_get_allocator>();
+  late final _rcl_wait_set_get_allocatorPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(ffi.Pointer<rcl_wait_set_t>,
+              ffi.Pointer<rcl_allocator_t>)>>('rcl_wait_set_get_allocator');
+  late final _rcl_wait_set_get_allocator =
+      _rcl_wait_set_get_allocatorPtr.asFunction<
+          int Function(
+              ffi.Pointer<rcl_wait_set_t>, ffi.Pointer<rcl_allocator_t>)>();
 
   /// Store a pointer to the given subscription in the next empty spot in the set.
   /// /**
@@ -11075,7 +11765,7 @@ class RCL {
   int rcl_wait_set_add_subscription(
     ffi.Pointer<rcl_wait_set_t> wait_set,
     ffi.Pointer<rcl_subscription_t> subscription,
-    ffi.Pointer<ffi.Uint64> index,
+    ffi.Pointer<size_t> index,
   ) {
     return _rcl_wait_set_add_subscription(
       wait_set,
@@ -11084,12 +11774,16 @@ class RCL {
     );
   }
 
-  late final _rcl_wait_set_add_subscription_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_wait_set_add_subscription>>(
-          'rcl_wait_set_add_subscription');
-  late final _dart_rcl_wait_set_add_subscription
-      _rcl_wait_set_add_subscription = _rcl_wait_set_add_subscription_ptr
-          .asFunction<_dart_rcl_wait_set_add_subscription>();
+  late final _rcl_wait_set_add_subscriptionPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(
+              ffi.Pointer<rcl_wait_set_t>,
+              ffi.Pointer<rcl_subscription_t>,
+              ffi.Pointer<size_t>)>>('rcl_wait_set_add_subscription');
+  late final _rcl_wait_set_add_subscription =
+      _rcl_wait_set_add_subscriptionPtr.asFunction<
+          int Function(ffi.Pointer<rcl_wait_set_t>,
+              ffi.Pointer<rcl_subscription_t>, ffi.Pointer<size_t>)>();
 
   /// Remove (sets to `NULL`) all entities in the wait set.
   /// /**
@@ -11122,10 +11816,11 @@ class RCL {
     );
   }
 
-  late final _rcl_wait_set_clear_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_wait_set_clear>>('rcl_wait_set_clear');
-  late final _dart_rcl_wait_set_clear _rcl_wait_set_clear =
-      _rcl_wait_set_clear_ptr.asFunction<_dart_rcl_wait_set_clear>();
+  late final _rcl_wait_set_clearPtr = _lookup<
+          ffi.NativeFunction<rcl_ret_t Function(ffi.Pointer<rcl_wait_set_t>)>>(
+      'rcl_wait_set_clear');
+  late final _rcl_wait_set_clear = _rcl_wait_set_clearPtr
+      .asFunction<int Function(ffi.Pointer<rcl_wait_set_t>)>();
 
   /// Reallocate space for entities in the wait set.
   /// /**
@@ -11184,11 +11879,13 @@ class RCL {
     );
   }
 
-  late final _rcl_wait_set_resize_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_wait_set_resize>>(
-          'rcl_wait_set_resize');
-  late final _dart_rcl_wait_set_resize _rcl_wait_set_resize =
-      _rcl_wait_set_resize_ptr.asFunction<_dart_rcl_wait_set_resize>();
+  late final _rcl_wait_set_resizePtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(ffi.Pointer<rcl_wait_set_t>, size_t, size_t,
+              size_t, size_t, size_t, size_t)>>('rcl_wait_set_resize');
+  late final _rcl_wait_set_resize = _rcl_wait_set_resizePtr.asFunction<
+      int Function(
+          ffi.Pointer<rcl_wait_set_t>, int, int, int, int, int, int)>();
 
   /// Store a pointer to the guard condition in the next empty spot in the set.
   /// /**
@@ -11198,7 +11895,7 @@ class RCL {
   int rcl_wait_set_add_guard_condition(
     ffi.Pointer<rcl_wait_set_t> wait_set,
     ffi.Pointer<rcl_guard_condition_t> guard_condition,
-    ffi.Pointer<ffi.Uint64> index,
+    ffi.Pointer<size_t> index,
   ) {
     return _rcl_wait_set_add_guard_condition(
       wait_set,
@@ -11207,12 +11904,16 @@ class RCL {
     );
   }
 
-  late final _rcl_wait_set_add_guard_condition_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_wait_set_add_guard_condition>>(
-          'rcl_wait_set_add_guard_condition');
-  late final _dart_rcl_wait_set_add_guard_condition
-      _rcl_wait_set_add_guard_condition = _rcl_wait_set_add_guard_condition_ptr
-          .asFunction<_dart_rcl_wait_set_add_guard_condition>();
+  late final _rcl_wait_set_add_guard_conditionPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(
+              ffi.Pointer<rcl_wait_set_t>,
+              ffi.Pointer<rcl_guard_condition_t>,
+              ffi.Pointer<size_t>)>>('rcl_wait_set_add_guard_condition');
+  late final _rcl_wait_set_add_guard_condition =
+      _rcl_wait_set_add_guard_conditionPtr.asFunction<
+          int Function(ffi.Pointer<rcl_wait_set_t>,
+              ffi.Pointer<rcl_guard_condition_t>, ffi.Pointer<size_t>)>();
 
   /// Store a pointer to the timer in the next empty spot in the set.
   /// /**
@@ -11222,7 +11923,7 @@ class RCL {
   int rcl_wait_set_add_timer(
     ffi.Pointer<rcl_wait_set_t> wait_set,
     ffi.Pointer<rcl_timer_t> timer,
-    ffi.Pointer<ffi.Uint64> index,
+    ffi.Pointer<size_t> index,
   ) {
     return _rcl_wait_set_add_timer(
       wait_set,
@@ -11231,11 +11932,15 @@ class RCL {
     );
   }
 
-  late final _rcl_wait_set_add_timer_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_wait_set_add_timer>>(
-          'rcl_wait_set_add_timer');
-  late final _dart_rcl_wait_set_add_timer _rcl_wait_set_add_timer =
-      _rcl_wait_set_add_timer_ptr.asFunction<_dart_rcl_wait_set_add_timer>();
+  late final _rcl_wait_set_add_timerPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(
+              ffi.Pointer<rcl_wait_set_t>,
+              ffi.Pointer<rcl_timer_t>,
+              ffi.Pointer<size_t>)>>('rcl_wait_set_add_timer');
+  late final _rcl_wait_set_add_timer = _rcl_wait_set_add_timerPtr.asFunction<
+      int Function(ffi.Pointer<rcl_wait_set_t>, ffi.Pointer<rcl_timer_t>,
+          ffi.Pointer<size_t>)>();
 
   /// Store a pointer to the client in the next empty spot in the set.
   /// /**
@@ -11245,7 +11950,7 @@ class RCL {
   int rcl_wait_set_add_client(
     ffi.Pointer<rcl_wait_set_t> wait_set,
     ffi.Pointer<rcl_client_t> client,
-    ffi.Pointer<ffi.Uint64> index,
+    ffi.Pointer<size_t> index,
   ) {
     return _rcl_wait_set_add_client(
       wait_set,
@@ -11254,11 +11959,15 @@ class RCL {
     );
   }
 
-  late final _rcl_wait_set_add_client_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_wait_set_add_client>>(
-          'rcl_wait_set_add_client');
-  late final _dart_rcl_wait_set_add_client _rcl_wait_set_add_client =
-      _rcl_wait_set_add_client_ptr.asFunction<_dart_rcl_wait_set_add_client>();
+  late final _rcl_wait_set_add_clientPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(
+              ffi.Pointer<rcl_wait_set_t>,
+              ffi.Pointer<rcl_client_t>,
+              ffi.Pointer<size_t>)>>('rcl_wait_set_add_client');
+  late final _rcl_wait_set_add_client = _rcl_wait_set_add_clientPtr.asFunction<
+      int Function(ffi.Pointer<rcl_wait_set_t>, ffi.Pointer<rcl_client_t>,
+          ffi.Pointer<size_t>)>();
 
   /// Store a pointer to the service in the next empty spot in the set.
   /// /**
@@ -11268,7 +11977,7 @@ class RCL {
   int rcl_wait_set_add_service(
     ffi.Pointer<rcl_wait_set_t> wait_set,
     ffi.Pointer<rcl_service_t> service,
-    ffi.Pointer<ffi.Uint64> index,
+    ffi.Pointer<size_t> index,
   ) {
     return _rcl_wait_set_add_service(
       wait_set,
@@ -11277,12 +11986,16 @@ class RCL {
     );
   }
 
-  late final _rcl_wait_set_add_service_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_wait_set_add_service>>(
-          'rcl_wait_set_add_service');
-  late final _dart_rcl_wait_set_add_service _rcl_wait_set_add_service =
-      _rcl_wait_set_add_service_ptr
-          .asFunction<_dart_rcl_wait_set_add_service>();
+  late final _rcl_wait_set_add_servicePtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(
+              ffi.Pointer<rcl_wait_set_t>,
+              ffi.Pointer<rcl_service_t>,
+              ffi.Pointer<size_t>)>>('rcl_wait_set_add_service');
+  late final _rcl_wait_set_add_service =
+      _rcl_wait_set_add_servicePtr.asFunction<
+          int Function(ffi.Pointer<rcl_wait_set_t>, ffi.Pointer<rcl_service_t>,
+              ffi.Pointer<size_t>)>();
 
   /// Store a pointer to the event in the next empty spot in the set.
   /// /**
@@ -11292,7 +12005,7 @@ class RCL {
   int rcl_wait_set_add_event(
     ffi.Pointer<rcl_wait_set_t> wait_set,
     ffi.Pointer<rcl_event_t> event,
-    ffi.Pointer<ffi.Uint64> index,
+    ffi.Pointer<size_t> index,
   ) {
     return _rcl_wait_set_add_event(
       wait_set,
@@ -11301,11 +12014,15 @@ class RCL {
     );
   }
 
-  late final _rcl_wait_set_add_event_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_wait_set_add_event>>(
-          'rcl_wait_set_add_event');
-  late final _dart_rcl_wait_set_add_event _rcl_wait_set_add_event =
-      _rcl_wait_set_add_event_ptr.asFunction<_dart_rcl_wait_set_add_event>();
+  late final _rcl_wait_set_add_eventPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(
+              ffi.Pointer<rcl_wait_set_t>,
+              ffi.Pointer<rcl_event_t>,
+              ffi.Pointer<size_t>)>>('rcl_wait_set_add_event');
+  late final _rcl_wait_set_add_event = _rcl_wait_set_add_eventPtr.asFunction<
+      int Function(ffi.Pointer<rcl_wait_set_t>, ffi.Pointer<rcl_event_t>,
+          ffi.Pointer<size_t>)>();
 
   /// Block until the wait set is ready or until the timeout has been exceeded.
   /// /**
@@ -11409,10 +12126,12 @@ class RCL {
     );
   }
 
-  late final _rcl_wait_ptr =
-      _lookup<ffi.NativeFunction<_c_rcl_wait>>('rcl_wait');
-  late final _dart_rcl_wait _rcl_wait =
-      _rcl_wait_ptr.asFunction<_dart_rcl_wait>();
+  late final _rcl_waitPtr = _lookup<
+      ffi.NativeFunction<
+          rcl_ret_t Function(
+              ffi.Pointer<rcl_wait_set_t>, ffi.Int64)>>('rcl_wait');
+  late final _rcl_wait =
+      _rcl_waitPtr.asFunction<int Function(ffi.Pointer<rcl_wait_set_t>, int)>();
 }
 
 class rosidl_service_type_support_t extends ffi.Struct {
@@ -11420,9 +12139,14 @@ class rosidl_service_type_support_t extends ffi.Struct {
 
   external ffi.Pointer<ffi.Void> data;
 
-  external ffi.Pointer<
-      ffi.NativeFunction<rosidl_service_typesupport_handle_function>> func;
+  external rosidl_service_typesupport_handle_function func;
 }
+
+typedef rosidl_service_typesupport_handle_function = ffi.Pointer<
+    ffi.NativeFunction<
+        ffi.Pointer<rosidl_service_type_support_t> Function(
+            ffi.Pointer<rosidl_service_type_support_t>,
+            ffi.Pointer<ffi.Int8>)>>;
 
 /// Encapsulation of an allocator.
 /// /**
@@ -11442,11 +12166,17 @@ class rosidl_service_type_support_t extends ffi.Struct {
 class rcutils_allocator_t extends ffi.Struct {
   /// Allocate memory, given a size and the `state` pointer.
   ///   /** An error should be indicated by returning `NULL`. */
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_1>> allocate;
+  external ffi.Pointer<
+          ffi.NativeFunction<
+              ffi.Pointer<ffi.Void> Function(size_t, ffi.Pointer<ffi.Void>)>>
+      allocate;
 
   /// Deallocate previously allocated memory, mimicking free().
   ///   /** Also takes the `state` pointer. */
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_2>> deallocate;
+  external ffi.Pointer<
+          ffi.NativeFunction<
+              ffi.Void Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>
+      deallocate;
 
   /// Reallocate if possible, otherwise it deallocates and allocates.
   ///   /**
@@ -11459,11 +12189,18 @@ class rcutils_allocator_t extends ffi.Struct {
   ///    * For reallocf-like behavior use rcutils_reallocf().
   ///    * This function must be able to take an input pointer of `NULL` and succeed.
   ///    */
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_3>> reallocate;
+  external ffi.Pointer<
+          ffi.NativeFunction<
+              ffi.Pointer<ffi.Void> Function(
+                  ffi.Pointer<ffi.Void>, size_t, ffi.Pointer<ffi.Void>)>>
+      reallocate;
 
   /// Allocate memory with all elements set to zero, given a number of elements and their size.
   ///   /** An error should be indicated by returning `NULL`. */
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_4>> zero_allocate;
+  external ffi.Pointer<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Void> Function(
+              size_t, size_t, ffi.Pointer<ffi.Void>)>> zero_allocate;
 
   /// Implementation defined state storage.
   ///   /**
@@ -11473,6 +12210,8 @@ class rcutils_allocator_t extends ffi.Struct {
   ///    */
   external ffi.Pointer<ffi.Void> state;
 }
+
+typedef size_t = ffi.Uint64;
 
 class __va_list_tag extends ffi.Struct {
   @ffi.Uint32()
@@ -11505,6 +12244,8 @@ class rcutils_error_state_t extends ffi.Struct {
   external int line_number;
 }
 
+typedef rcutils_ret_t = ffi.Int32;
+
 class rcutils_array_list_impl_t extends ffi.Opaque {}
 
 class rcutils_array_list_t extends ffi.Struct {
@@ -11520,10 +12261,10 @@ class rcutils_char_array_t extends ffi.Struct {
   @ffi.Uint8()
   external int owns_buffer;
 
-  @ffi.Uint64()
+  @size_t()
   external int buffer_length;
 
-  @ffi.Uint64()
+  @size_t()
   external int buffer_capacity;
 
   external rcutils_allocator_t allocator;
@@ -11535,8 +12276,28 @@ class rcutils_hash_map_t extends ffi.Struct {
   external ffi.Pointer<rcutils_hash_map_impl_t> impl;
 }
 
+/// The function signature for a key hashing function.
+/// /**
+///  * \param key The key that needs to be hashed
+///  * \return A hash value for the provided string
+///  */
+typedef rcutils_hash_map_key_hasher_t
+    = ffi.Pointer<ffi.NativeFunction<size_t Function(ffi.Pointer<ffi.Void>)>>;
+
+/// The function signature for a key comparison function.
+/// /**
+///  * \param val1 The first value to compare
+///  * \param val2 The second value to compare
+///  * \return A negative number if val1 < val2, or
+///  * \return A positve number if val1 > val2, or
+///  * \return Zero if val1 == val2
+///  */
+typedef rcutils_hash_map_key_cmp_t = ffi.Pointer<
+    ffi.NativeFunction<
+        ffi.Int32 Function(ffi.Pointer<ffi.Void>, ffi.Pointer<ffi.Void>)>>;
+
 class rcutils_string_array_t extends ffi.Struct {
-  @ffi.Uint64()
+  @size_t()
   external int size;
 
   external ffi.Pointer<ffi.Pointer<ffi.Int8>> data;
@@ -11553,14 +12314,17 @@ class rcutils_string_map_t extends ffi.Struct {
 class rcutils_uint8_array_t extends ffi.Struct {
   external ffi.Pointer<ffi.Uint8> buffer;
 
-  @ffi.Uint64()
+  @size_t()
   external int buffer_length;
 
-  @ffi.Uint64()
+  @size_t()
   external int buffer_capacity;
 
   external rcutils_allocator_t allocator;
 }
+
+/// A single point in time, measured in nanoseconds since the Unix epoch.
+typedef rcutils_time_point_value_t = ffi.Int64;
 
 /// The structure identifying the caller location in the source code.
 class rcutils_log_location_t extends ffi.Struct {
@@ -11571,7 +12335,7 @@ class rcutils_log_location_t extends ffi.Struct {
   external ffi.Pointer<ffi.Int8> file_name;
 
   /// The line number containing the log call.
-  @ffi.Uint64()
+  @size_t()
   external int line_number;
 }
 
@@ -11595,6 +12359,25 @@ abstract class RCUTILS_LOG_SEVERITY {
   /// < The fatal log level
   static const int RCUTILS_LOG_SEVERITY_FATAL = 50;
 }
+
+/// The function signature to log messages.
+/// /**
+///  * \param location The pointer to the location struct
+///  * \param severity The severity level
+///  * \param name The name of the logger
+///  * \param timestamp The timestamp
+///  * \param format The format string
+///  * \param args The variable argument list
+///  */
+typedef rcutils_logging_output_handler_t = ffi.Pointer<
+    ffi.NativeFunction<
+        ffi.Void Function(
+            ffi.Pointer<rcutils_log_location_t>,
+            ffi.Int32,
+            ffi.Pointer<ffi.Int8>,
+            rcutils_time_point_value_t,
+            ffi.Pointer<ffi.Int8>,
+            ffi.Pointer<ffi.Pointer<__va_list_tag>>)>>;
 
 class rmw_init_options_impl_t extends ffi.Opaque {}
 
@@ -11621,6 +12404,8 @@ class rmw_init_options_t extends ffi.Struct {
   external ffi.Pointer<rmw_init_options_impl_t> impl;
 }
 
+typedef rmw_ret_t = ffi.Int32;
+
 class rmw_context_impl_t extends ffi.Opaque {}
 
 /// Initialization context structure which is used to store init specific information.
@@ -11640,10 +12425,10 @@ class rmw_context_t extends ffi.Struct {
 class rmw_loaned_message_sequence_t extends ffi.Struct {
   external ffi.Pointer<ffi.Void> message_sequence;
 
-  @ffi.Uint64()
+  @size_t()
   external int size;
 
-  @ffi.Uint64()
+  @size_t()
   external int capacity;
 }
 
@@ -11791,7 +12576,7 @@ class rmw_subscription_allocation_t extends ffi.Struct {
 ///  */
 class rmw_subscriptions_t extends ffi.Struct {
   /// The number of subscribers represented by the array.
-  @ffi.Uint64()
+  @size_t()
   external int subscriber_count;
 
   /// Pointer to an array of void * pointers of subscriptions.
@@ -11807,7 +12592,7 @@ class rmw_subscriptions_t extends ffi.Struct {
 ///  */
 class rmw_services_t extends ffi.Struct {
   /// The number of services represented by the array.
-  @ffi.Uint64()
+  @size_t()
   external int service_count;
 
   /// Pointer to an array of void * pointers of services.
@@ -11823,7 +12608,7 @@ class rmw_services_t extends ffi.Struct {
 ///  */
 class rmw_clients_t extends ffi.Struct {
   /// The number of clients represented by the array.
-  @ffi.Uint64()
+  @size_t()
   external int client_count;
 
   /// Pointer to an array of void * pointers of clients.
@@ -11832,7 +12617,7 @@ class rmw_clients_t extends ffi.Struct {
 
 class rmw_events_t extends ffi.Struct {
   /// The number of events represented by the array.
-  @ffi.Uint64()
+  @size_t()
   external int event_count;
 
   /// Pointer to an array of void * pointers of events.
@@ -11848,7 +12633,7 @@ class rmw_events_t extends ffi.Struct {
 ///  */
 class rmw_guard_conditions_t extends ffi.Struct {
   /// The number of guard conditions represented by the array.
-  @ffi.Uint64()
+  @size_t()
   external int guard_condition_count;
 
   /// Pointer to an array of void * pointers of guard conditions.
@@ -11926,7 +12711,7 @@ class rmw_qos_profile_t extends ffi.Struct {
   external int history;
 
   /// Size of the message queue.
-  @ffi.Uint64()
+  @size_t()
   external int depth;
 
   /// Reliabiilty QoS policy setting
@@ -11982,10 +12767,10 @@ class rmw_message_info_t extends ffi.Struct {
 class rmw_message_info_sequence_t extends ffi.Struct {
   external ffi.Pointer<rmw_message_info_t> message_info_sequence;
 
-  @ffi.Uint64()
+  @size_t()
   external int size;
 
-  @ffi.Uint64()
+  @size_t()
   external int capacity;
 }
 
@@ -12071,44 +12856,44 @@ class rmw_offered_deadline_missed_status_t extends ffi.Struct {
 
 /// \typedef rcl_bool_array_t
 /// \brief Array of bool values
-class rcl_bool_array_t extends ffi.Struct {
+class rcl_bool_array_s extends ffi.Struct {
   external ffi.Pointer<ffi.Uint8> values;
 
-  @ffi.Uint64()
+  @size_t()
   external int size;
 }
 
 /// \typedef rcl_int64_array_t
 /// \brief Array of int64_t values
-class rcl_int64_array_t extends ffi.Struct {
+class rcl_int64_array_s extends ffi.Struct {
   external ffi.Pointer<ffi.Int64> values;
 
-  @ffi.Uint64()
+  @size_t()
   external int size;
 }
 
 /// \typedef rcl_double_array_t
 /// \brief Array of double values
-class rcl_double_array_t extends ffi.Struct {
+class rcl_double_array_s extends ffi.Struct {
   external ffi.Pointer<ffi.Double> values;
 
-  @ffi.Uint64()
+  @size_t()
   external int size;
 }
 
 /// \typedef rcl_byte_array_t
 /// \brief Array of byte values
-class rcl_byte_array_t extends ffi.Struct {
+class rcl_byte_array_s extends ffi.Struct {
   external ffi.Pointer<ffi.Uint8> values;
 
-  @ffi.Uint64()
+  @size_t()
   external int size;
 }
 
 /// \typedef rcl_variant_t
 /// \brief variant_t stores the value of a parameter
 /// Only one pointer in this struct will store the value
-class rcl_variant_t extends ffi.Struct {
+class rcl_variant_s extends ffi.Struct {
   /// < If bool, gets stored here
   external ffi.Pointer<ffi.Uint8> bool_value;
 
@@ -12137,9 +12922,25 @@ class rcl_variant_t extends ffi.Struct {
   external ffi.Pointer<rcutils_string_array_t> string_array_value;
 }
 
+/// \typedef rcl_byte_array_t
+/// \brief Array of byte values
+typedef rcl_byte_array_t = rcl_byte_array_s;
+
+/// \typedef rcl_bool_array_t
+/// \brief Array of bool values
+typedef rcl_bool_array_t = rcl_bool_array_s;
+
+/// \typedef rcl_int64_array_t
+/// \brief Array of int64_t values
+typedef rcl_int64_array_t = rcl_int64_array_s;
+
+/// \typedef rcl_double_array_t
+/// \brief Array of double values
+typedef rcl_double_array_t = rcl_double_array_s;
+
 /// \typedef rcl_node_params_t
 /// \brief node_params_t stores all the parameters(key:value) of a single node
-class rcl_node_params_t extends ffi.Struct {
+class rcl_node_params_s extends ffi.Struct {
   /// < Array of parameter names (keys)
   external ffi.Pointer<ffi.Pointer<ffi.Int8>> parameter_names;
 
@@ -12147,13 +12948,18 @@ class rcl_node_params_t extends ffi.Struct {
   external ffi.Pointer<rcl_variant_t> parameter_values;
 
   /// < Number of parameters in the node
-  @ffi.Uint64()
+  @size_t()
   external int num_params;
 }
 
+/// \typedef rcl_variant_t
+/// \brief variant_t stores the value of a parameter
+/// Only one pointer in this struct will store the value
+typedef rcl_variant_t = rcl_variant_s;
+
 /// \typedef rcl_params_t
 /// \brief params_t stores all the parameters of all nodes of a process
-class rcl_params_t extends ffi.Struct {
+class rcl_params_s extends ffi.Struct {
   /// < List of names of the node
   external ffi.Pointer<ffi.Pointer<ffi.Int8>> node_names;
 
@@ -12161,12 +12967,16 @@ class rcl_params_t extends ffi.Struct {
   external ffi.Pointer<rcl_node_params_t> params;
 
   /// < Number of nodes
-  @ffi.Uint64()
+  @size_t()
   external int num_nodes;
 
   /// < Allocator used
   external rcutils_allocator_t allocator;
 }
+
+/// \typedef rcl_node_params_t
+/// \brief node_params_t stores all the parameters(key:value) of a single node
+typedef rcl_node_params_t = rcl_node_params_s;
 
 class rcl_arguments_impl_t extends ffi.Opaque {}
 
@@ -12175,6 +12985,13 @@ class rcl_arguments_t extends ffi.Struct {
   /// Private implementation pointer.
   external ffi.Pointer<rcl_arguments_impl_t> impl;
 }
+
+typedef rcl_ret_t = rmw_ret_t;
+typedef rcl_allocator_t = rcutils_allocator_t;
+
+/// \typedef rcl_params_t
+/// \brief params_t stores all the parameters of all nodes of a process
+typedef rcl_params_t = rcl_params_s;
 
 class rcl_init_options_impl_t extends ffi.Opaque {}
 
@@ -12263,6 +13080,8 @@ class rcl_context_t extends ffi.Struct {
   external ffi.Array<ffi.Uint8> instance_id_storage;
 }
 
+typedef rcl_context_instance_id_t = ffi.Uint64;
+
 /// Structure which encapsulates the options for creating a rcl_node_t.
 class rcl_node_options_t extends ffi.Struct {
   /// If set, then this value overrides the ROS_DOMAIN_ID environment variable.
@@ -12276,11 +13095,11 @@ class rcl_node_options_t extends ffi.Struct {
   ///    *   a safe value for the default RCL_NODE_OPTIONS_DEFAULT_DOMAIN_ID?
   ///    *   (currently max size_t)
   ///    */
-  @ffi.Uint64()
+  @size_t()
   external int domain_id;
 
   /// Custom allocator used for internal allocations.
-  external rcutils_allocator_t allocator;
+  external rcl_allocator_t allocator;
 
   /// If false then only use arguments in this struct, otherwise use global arguments also.
   @ffi.Uint8()
@@ -12318,7 +13137,7 @@ class rcl_client_options_t extends ffi.Struct {
 
   /// Custom allocator for the client, used for incidental allocations.
   ///   /** For default behavior (malloc/free), use: rcl_get_default_allocator() */
-  external rcutils_allocator_t allocator;
+  external rcl_allocator_t allocator;
 }
 
 /// Internal rcl guard condition implementation struct.
@@ -12327,7 +13146,7 @@ class rcl_guard_condition_impl_t extends ffi.Opaque {}
 /// Options available for a rcl guard condition.
 class rcl_guard_condition_options_t extends ffi.Struct {
   /// Custom allocator for the guard condition, used for internal allocations.
-  external rcutils_allocator_t allocator;
+  external rcl_allocator_t allocator;
 }
 
 /// Internal rcl implementation struct.
@@ -12345,7 +13164,7 @@ class rcl_service_options_t extends ffi.Struct {
 
   /// Custom allocator for the service, used for incidental allocations.
   ///   /** For default behavior (malloc/free), see: rcl_get_default_allocator() */
-  external rcutils_allocator_t allocator;
+  external rcl_allocator_t allocator;
 }
 
 class rosidl_message_type_support_t extends ffi.Struct {
@@ -12353,9 +13172,14 @@ class rosidl_message_type_support_t extends ffi.Struct {
 
   external ffi.Pointer<ffi.Void> data;
 
-  external ffi.Pointer<
-      ffi.NativeFunction<rosidl_message_typesupport_handle_function>> func;
+  external rosidl_message_typesupport_handle_function func;
 }
+
+typedef rosidl_message_typesupport_handle_function = ffi.Pointer<
+    ffi.NativeFunction<
+        ffi.Pointer<rosidl_message_type_support_t> Function(
+            ffi.Pointer<rosidl_message_type_support_t>,
+            ffi.Pointer<ffi.Int8>)>>;
 
 /// Internal rcl implementation struct.
 class rcl_subscription_impl_t extends ffi.Opaque {}
@@ -12372,11 +13196,22 @@ class rcl_subscription_options_t extends ffi.Struct {
 
   /// Custom allocator for the subscription, used for incidental allocations.
   ///   /** For default behavior (malloc/free), see: rcl_get_default_allocator() */
-  external rcutils_allocator_t allocator;
+  external rcl_allocator_t allocator;
 
   /// rmw specific subscription options, e.g. the rmw implementation specific payload.
   external rmw_subscription_options_t rmw_subscription_options;
 }
+
+/// typedef for rmw_serialized_message_t;
+typedef rcl_serialized_message_t = rmw_serialized_message_t;
+
+/// aliases for rcutils_uint8_array_t
+/// /*
+///  * For now this is a simple aliasing from a serialized message to a uint8 array.
+///  * However, in future developments this serialized message can become something
+///  * more complex and is therefore aliased.
+///  */
+typedef rmw_serialized_message_t = rcutils_uint8_array_t;
 
 /// Time source type, used to indicate the source of a time measurement.
 abstract class rcl_clock_type_t {
@@ -12388,9 +13223,15 @@ abstract class rcl_clock_type_t {
 
 /// A duration of time, measured in nanoseconds and its source.
 class rcl_duration_t extends ffi.Struct {
-  @ffi.Int64()
+  @rcl_duration_value_t()
   external int nanoseconds;
 }
+
+/// A duration of time, measured in nanoseconds.
+typedef rcl_duration_value_t = rcutils_duration_value_t;
+
+/// A duration of time, measured in nanoseconds.
+typedef rcutils_duration_value_t = ffi.Int64;
 
 /// Enumeration to describe the type of time jump.
 abstract class rcl_clock_change_t {
@@ -12434,12 +13275,22 @@ class rcl_jump_threshold_t extends ffi.Struct {
 
 /// Struct to describe an added callback.
 class rcl_jump_callback_info_t extends ffi.Struct {
-  external ffi.Pointer<ffi.NativeFunction<rcl_jump_callback_t>> callback;
+  external rcl_jump_callback_t callback;
 
   external rcl_jump_threshold_t threshold;
 
   external ffi.Pointer<ffi.Void> user_data;
 }
+
+/// Signature of a time jump callback.
+/// \param[in] time_jump A description of the jump in time.
+/// \param[in] before_jump Every jump callback is called twice: once before the clock changes and
+/// once after. This is true the first call and false the second.
+/// \param[in] user_data A pointer given at callback registration which is passed to the callback.
+typedef rcl_jump_callback_t = ffi.Pointer<
+    ffi.NativeFunction<
+        ffi.Void Function(
+            ffi.Pointer<rcl_time_jump_t>, ffi.Uint8, ffi.Pointer<ffi.Void>)>>;
 
 /// Encapsulation of a time source.
 class rcl_clock_t extends ffi.Struct {
@@ -12450,20 +13301,27 @@ class rcl_clock_t extends ffi.Struct {
   external ffi.Pointer<rcl_jump_callback_info_t> jump_callbacks;
 
   /// Number of callbacks in jump_callbacks.
-  @ffi.Uint64()
+  @size_t()
   external int num_jump_callbacks;
 
-  external ffi.Pointer<ffi.NativeFunction<_typedefC_5>> get_now;
+  external ffi.Pointer<
+          ffi.NativeFunction<
+              rcl_ret_t Function(
+                  ffi.Pointer<ffi.Void>, ffi.Pointer<rcl_time_point_value_t>)>>
+      get_now;
 
   /// void (*set_now) (rcl_time_point_value_t);
   external ffi.Pointer<ffi.Void> data;
 
-  external rcutils_allocator_t allocator;
+  external rcl_allocator_t allocator;
 }
+
+/// A single point in time, measured in nanoseconds since the Unix epoch.
+typedef rcl_time_point_value_t = rcutils_time_point_value_t;
 
 /// A single point in time, measured in nanoseconds, the reference point is based on the source.
 class rcl_time_point_t extends ffi.Struct {
-  @ffi.Int64()
+  @rcl_time_point_value_t()
   external int nanoseconds;
 
   @ffi.Int32()
@@ -12475,9 +13333,13 @@ class rosidl_message_bounds_t extends ffi.Struct {
 
   external ffi.Pointer<ffi.Void> data;
 
-  external ffi
-      .Pointer<ffi.NativeFunction<rosidl_message_bounds_handle_function>> func;
+  external rosidl_message_bounds_handle_function func;
 }
+
+typedef rosidl_message_bounds_handle_function = ffi.Pointer<
+    ffi.NativeFunction<
+        ffi.Pointer<rosidl_message_bounds_t> Function(
+            ffi.Pointer<rosidl_message_bounds_t>, ffi.Pointer<ffi.Int8>)>>;
 
 class rcl_timer_impl_t extends ffi.Opaque {}
 
@@ -12486,6 +13348,22 @@ class rcl_timer_t extends ffi.Struct {
   /// Private implementation pointer.
   external ffi.Pointer<rcl_timer_impl_t> impl;
 }
+
+/// User callback signature for timers.
+/// /**
+///  * The first argument the callback gets is a pointer to the timer.
+///  * This can be used to cancel the timer, query the time until the next
+///  * timer callback, exchange the callback with a different one, etc.
+///  *
+///  * The only caveat is that the function rcl_timer_get_time_since_last_call()
+///  * will return the time since just before this callback was called, not the
+///  * previous call.
+///  * Therefore the second argument given is the time since the previous callback
+///  * was called, because that information is no longer accessible via the timer.
+///  * The time since the last callback call is given in nanoseconds.
+///  */
+typedef rcl_timer_callback_t = ffi.Pointer<
+    ffi.NativeFunction<ffi.Void Function(ffi.Pointer<rcl_timer_t>, ffi.Int64)>>;
 
 /// Internal rcl publisher implementation struct.
 class rcl_publisher_impl_t extends ffi.Opaque {}
@@ -12502,7 +13380,7 @@ class rcl_publisher_options_t extends ffi.Struct {
 
   /// Custom allocator for the publisher, used for incidental allocations.
   ///   /** For default behavior (malloc/free), use: rcl_get_default_allocator() */
-  external rcutils_allocator_t allocator;
+  external rcl_allocator_t allocator;
 
   /// rmw specific publisher options, e.g. the rmw implementation specific payload.
   external rmw_publisher_options_t rmw_publisher_options;
@@ -12617,37 +13495,37 @@ class rcl_wait_set_t extends ffi.Struct {
   /// Storage for subscription pointers.
   external ffi.Pointer<ffi.Pointer<rcl_subscription_t>> subscriptions;
 
-  @ffi.Uint64()
+  @size_t()
   external int size_of_subscriptions;
 
   /// Storage for guard condition pointers.
   external ffi.Pointer<ffi.Pointer<rcl_guard_condition_t>> guard_conditions;
 
-  @ffi.Uint64()
+  @size_t()
   external int size_of_guard_conditions;
 
   /// Storage for timer pointers.
   external ffi.Pointer<ffi.Pointer<rcl_timer_t>> timers;
 
-  @ffi.Uint64()
+  @size_t()
   external int size_of_timers;
 
   /// Storage for client pointers.
   external ffi.Pointer<ffi.Pointer<rcl_client_t>> clients;
 
-  @ffi.Uint64()
+  @size_t()
   external int size_of_clients;
 
   /// Storage for service pointers.
   external ffi.Pointer<ffi.Pointer<rcl_service_t>> services;
 
-  @ffi.Uint64()
+  @size_t()
   external int size_of_services;
 
   /// Storage for event pointers.
   external ffi.Pointer<ffi.Pointer<rcl_event_t>> events;
 
-  @ffi.Uint64()
+  @size_t()
   external int size_of_events;
 
   /// Implementation specific storage.
@@ -12831,3276 +13709,3 @@ const String RCL_PARAM_FILE_ARG_RULE = '__params:=';
 const int RCL_CONTEXT_ATOMIC_INSTANCE_ID_STORAGE_SIZE = 8;
 
 const int RCL_NODE_OPTIONS_DEFAULT_DOMAIN_ID = -1;
-
-typedef _c_get_service_typesupport_handle
-    = ffi.Pointer<rosidl_service_type_support_t> Function(
-  ffi.Pointer<rosidl_service_type_support_t> handle,
-  ffi.Pointer<ffi.Int8> identifier,
-);
-
-typedef _dart_get_service_typesupport_handle
-    = ffi.Pointer<rosidl_service_type_support_t> Function(
-  ffi.Pointer<rosidl_service_type_support_t> handle,
-  ffi.Pointer<ffi.Int8> identifier,
-);
-
-typedef _c_get_service_typesupport_handle_function
-    = ffi.Pointer<rosidl_service_type_support_t> Function(
-  ffi.Pointer<rosidl_service_type_support_t> handle,
-  ffi.Pointer<ffi.Int8> identifier,
-);
-
-typedef _dart_get_service_typesupport_handle_function
-    = ffi.Pointer<rosidl_service_type_support_t> Function(
-  ffi.Pointer<rosidl_service_type_support_t> handle,
-  ffi.Pointer<ffi.Int8> identifier,
-);
-
-typedef _c_rcutils_get_zero_initialized_allocator = rcutils_allocator_t
-    Function();
-
-typedef _dart_rcutils_get_zero_initialized_allocator = rcutils_allocator_t
-    Function();
-
-typedef _c_rcutils_get_default_allocator = rcutils_allocator_t Function();
-
-typedef _dart_rcutils_get_default_allocator = rcutils_allocator_t Function();
-
-typedef _c_rcutils_allocator_is_valid = ffi.Uint8 Function(
-  ffi.Pointer<rcutils_allocator_t> allocator,
-);
-
-typedef _dart_rcutils_allocator_is_valid = int Function(
-  ffi.Pointer<rcutils_allocator_t> allocator,
-);
-
-typedef _c_rcutils_reallocf = ffi.Pointer<ffi.Void> Function(
-  ffi.Pointer<ffi.Void> pointer,
-  ffi.Uint64 size,
-  ffi.Pointer<rcutils_allocator_t> allocator,
-);
-
-typedef _dart_rcutils_reallocf = ffi.Pointer<ffi.Void> Function(
-  ffi.Pointer<ffi.Void> pointer,
-  int size,
-  ffi.Pointer<rcutils_allocator_t> allocator,
-);
-
-typedef _c_rcutils_snprintf = ffi.Int32 Function(
-  ffi.Pointer<ffi.Int8> buffer,
-  ffi.Uint64 buffer_size,
-  ffi.Pointer<ffi.Int8> format,
-);
-
-typedef _dart_rcutils_snprintf = int Function(
-  ffi.Pointer<ffi.Int8> buffer,
-  int buffer_size,
-  ffi.Pointer<ffi.Int8> format,
-);
-
-typedef _c_rcutils_vsnprintf = ffi.Int32 Function(
-  ffi.Pointer<ffi.Int8> buffer,
-  ffi.Uint64 buffer_size,
-  ffi.Pointer<ffi.Int8> format,
-  ffi.Pointer<__va_list_tag> args,
-);
-
-typedef _dart_rcutils_vsnprintf = int Function(
-  ffi.Pointer<ffi.Int8> buffer,
-  int buffer_size,
-  ffi.Pointer<ffi.Int8> format,
-  ffi.Pointer<__va_list_tag> args,
-);
-
-typedef _c_rcutils_initialize_error_handling_thread_local_storage = ffi.Int32
-    Function(
-  rcutils_allocator_t allocator,
-);
-
-typedef _dart_rcutils_initialize_error_handling_thread_local_storage = int
-    Function(
-  rcutils_allocator_t allocator,
-);
-
-typedef _c_rcutils_set_error_state = ffi.Void Function(
-  ffi.Pointer<ffi.Int8> error_string,
-  ffi.Pointer<ffi.Int8> file,
-  ffi.Uint64 line_number,
-);
-
-typedef _dart_rcutils_set_error_state = void Function(
-  ffi.Pointer<ffi.Int8> error_string,
-  ffi.Pointer<ffi.Int8> file,
-  int line_number,
-);
-
-typedef _c_rcutils_error_is_set = ffi.Uint8 Function();
-
-typedef _dart_rcutils_error_is_set = int Function();
-
-typedef _c_rcutils_get_error_state = ffi.Pointer<rcutils_error_state_t>
-    Function();
-
-typedef _dart_rcutils_get_error_state = ffi.Pointer<rcutils_error_state_t>
-    Function();
-
-typedef _c_rcutils_get_error_string = rcutils_error_string_t Function();
-
-typedef _dart_rcutils_get_error_string = rcutils_error_string_t Function();
-
-typedef _c_rcutils_reset_error = ffi.Void Function();
-
-typedef _dart_rcutils_reset_error = void Function();
-
-typedef _c_rcutils_get_zero_initialized_array_list = rcutils_array_list_t
-    Function();
-
-typedef _dart_rcutils_get_zero_initialized_array_list = rcutils_array_list_t
-    Function();
-
-typedef _c_rcutils_array_list_init = ffi.Int32 Function(
-  ffi.Pointer<rcutils_array_list_t> array_list,
-  ffi.Uint64 initial_capacity,
-  ffi.Uint64 data_size,
-  ffi.Pointer<rcutils_allocator_t> allocator,
-);
-
-typedef _dart_rcutils_array_list_init = int Function(
-  ffi.Pointer<rcutils_array_list_t> array_list,
-  int initial_capacity,
-  int data_size,
-  ffi.Pointer<rcutils_allocator_t> allocator,
-);
-
-typedef _c_rcutils_array_list_fini = ffi.Int32 Function(
-  ffi.Pointer<rcutils_array_list_t> array_list,
-);
-
-typedef _dart_rcutils_array_list_fini = int Function(
-  ffi.Pointer<rcutils_array_list_t> array_list,
-);
-
-typedef _c_rcutils_array_list_add = ffi.Int32 Function(
-  ffi.Pointer<rcutils_array_list_t> array_list,
-  ffi.Pointer<ffi.Void> data,
-);
-
-typedef _dart_rcutils_array_list_add = int Function(
-  ffi.Pointer<rcutils_array_list_t> array_list,
-  ffi.Pointer<ffi.Void> data,
-);
-
-typedef _c_rcutils_array_list_set = ffi.Int32 Function(
-  ffi.Pointer<rcutils_array_list_t> array_list,
-  ffi.Uint64 index,
-  ffi.Pointer<ffi.Void> data,
-);
-
-typedef _dart_rcutils_array_list_set = int Function(
-  ffi.Pointer<rcutils_array_list_t> array_list,
-  int index,
-  ffi.Pointer<ffi.Void> data,
-);
-
-typedef _c_rcutils_array_list_remove = ffi.Int32 Function(
-  ffi.Pointer<rcutils_array_list_t> array_list,
-  ffi.Uint64 index,
-);
-
-typedef _dart_rcutils_array_list_remove = int Function(
-  ffi.Pointer<rcutils_array_list_t> array_list,
-  int index,
-);
-
-typedef _c_rcutils_array_list_get = ffi.Int32 Function(
-  ffi.Pointer<rcutils_array_list_t> array_list,
-  ffi.Uint64 index,
-  ffi.Pointer<ffi.Void> data,
-);
-
-typedef _dart_rcutils_array_list_get = int Function(
-  ffi.Pointer<rcutils_array_list_t> array_list,
-  int index,
-  ffi.Pointer<ffi.Void> data,
-);
-
-typedef _c_rcutils_array_list_get_size = ffi.Int32 Function(
-  ffi.Pointer<rcutils_array_list_t> array_list,
-  ffi.Pointer<ffi.Uint64> size,
-);
-
-typedef _dart_rcutils_array_list_get_size = int Function(
-  ffi.Pointer<rcutils_array_list_t> array_list,
-  ffi.Pointer<ffi.Uint64> size,
-);
-
-typedef _c_rcutils_get_zero_initialized_char_array = rcutils_char_array_t
-    Function();
-
-typedef _dart_rcutils_get_zero_initialized_char_array = rcutils_char_array_t
-    Function();
-
-typedef _c_rcutils_char_array_init = ffi.Int32 Function(
-  ffi.Pointer<rcutils_char_array_t> char_array,
-  ffi.Uint64 buffer_capacity,
-  ffi.Pointer<rcutils_allocator_t> allocator,
-);
-
-typedef _dart_rcutils_char_array_init = int Function(
-  ffi.Pointer<rcutils_char_array_t> char_array,
-  int buffer_capacity,
-  ffi.Pointer<rcutils_allocator_t> allocator,
-);
-
-typedef _c_rcutils_char_array_fini = ffi.Int32 Function(
-  ffi.Pointer<rcutils_char_array_t> char_array,
-);
-
-typedef _dart_rcutils_char_array_fini = int Function(
-  ffi.Pointer<rcutils_char_array_t> char_array,
-);
-
-typedef _c_rcutils_char_array_resize = ffi.Int32 Function(
-  ffi.Pointer<rcutils_char_array_t> char_array,
-  ffi.Uint64 new_size,
-);
-
-typedef _dart_rcutils_char_array_resize = int Function(
-  ffi.Pointer<rcutils_char_array_t> char_array,
-  int new_size,
-);
-
-typedef _c_rcutils_char_array_expand_as_needed = ffi.Int32 Function(
-  ffi.Pointer<rcutils_char_array_t> char_array,
-  ffi.Uint64 new_size,
-);
-
-typedef _dart_rcutils_char_array_expand_as_needed = int Function(
-  ffi.Pointer<rcutils_char_array_t> char_array,
-  int new_size,
-);
-
-typedef _c_rcutils_char_array_vsprintf = ffi.Int32 Function(
-  ffi.Pointer<rcutils_char_array_t> char_array,
-  ffi.Pointer<ffi.Int8> format,
-  ffi.Pointer<__va_list_tag> args,
-);
-
-typedef _dart_rcutils_char_array_vsprintf = int Function(
-  ffi.Pointer<rcutils_char_array_t> char_array,
-  ffi.Pointer<ffi.Int8> format,
-  ffi.Pointer<__va_list_tag> args,
-);
-
-typedef _c_rcutils_char_array_strncat = ffi.Int32 Function(
-  ffi.Pointer<rcutils_char_array_t> char_array,
-  ffi.Pointer<ffi.Int8> src,
-  ffi.Uint64 n,
-);
-
-typedef _dart_rcutils_char_array_strncat = int Function(
-  ffi.Pointer<rcutils_char_array_t> char_array,
-  ffi.Pointer<ffi.Int8> src,
-  int n,
-);
-
-typedef _c_rcutils_char_array_strcat = ffi.Int32 Function(
-  ffi.Pointer<rcutils_char_array_t> char_array,
-  ffi.Pointer<ffi.Int8> src,
-);
-
-typedef _dart_rcutils_char_array_strcat = int Function(
-  ffi.Pointer<rcutils_char_array_t> char_array,
-  ffi.Pointer<ffi.Int8> src,
-);
-
-typedef _c_rcutils_char_array_memcpy = ffi.Int32 Function(
-  ffi.Pointer<rcutils_char_array_t> char_array,
-  ffi.Pointer<ffi.Int8> src,
-  ffi.Uint64 n,
-);
-
-typedef _dart_rcutils_char_array_memcpy = int Function(
-  ffi.Pointer<rcutils_char_array_t> char_array,
-  ffi.Pointer<ffi.Int8> src,
-  int n,
-);
-
-typedef _c_rcutils_char_array_strcpy = ffi.Int32 Function(
-  ffi.Pointer<rcutils_char_array_t> char_array,
-  ffi.Pointer<ffi.Int8> src,
-);
-
-typedef _dart_rcutils_char_array_strcpy = int Function(
-  ffi.Pointer<rcutils_char_array_t> char_array,
-  ffi.Pointer<ffi.Int8> src,
-);
-
-typedef _c_rcutils_hash_map_string_hash_func = ffi.Uint64 Function(
-  ffi.Pointer<ffi.Void> key_str,
-);
-
-typedef _dart_rcutils_hash_map_string_hash_func = int Function(
-  ffi.Pointer<ffi.Void> key_str,
-);
-
-typedef _c_rcutils_hash_map_string_cmp_func = ffi.Int32 Function(
-  ffi.Pointer<ffi.Void> val1,
-  ffi.Pointer<ffi.Void> val2,
-);
-
-typedef _dart_rcutils_hash_map_string_cmp_func = int Function(
-  ffi.Pointer<ffi.Void> val1,
-  ffi.Pointer<ffi.Void> val2,
-);
-
-typedef _c_rcutils_get_zero_initialized_hash_map = rcutils_hash_map_t
-    Function();
-
-typedef _dart_rcutils_get_zero_initialized_hash_map = rcutils_hash_map_t
-    Function();
-
-typedef rcutils_hash_map_key_hasher_t = ffi.Uint64 Function(
-  ffi.Pointer<ffi.Void>,
-);
-
-typedef rcutils_hash_map_key_cmp_t = ffi.Int32 Function(
-  ffi.Pointer<ffi.Void>,
-  ffi.Pointer<ffi.Void>,
-);
-
-typedef _c_rcutils_hash_map_init = ffi.Int32 Function(
-  ffi.Pointer<rcutils_hash_map_t> hash_map,
-  ffi.Uint64 initial_capacity,
-  ffi.Uint64 key_size,
-  ffi.Uint64 data_size,
-  ffi.Pointer<ffi.NativeFunction<rcutils_hash_map_key_hasher_t>>
-      key_hashing_func,
-  ffi.Pointer<ffi.NativeFunction<rcutils_hash_map_key_cmp_t>> key_cmp_func,
-  ffi.Pointer<rcutils_allocator_t> allocator,
-);
-
-typedef _dart_rcutils_hash_map_init = int Function(
-  ffi.Pointer<rcutils_hash_map_t> hash_map,
-  int initial_capacity,
-  int key_size,
-  int data_size,
-  ffi.Pointer<ffi.NativeFunction<rcutils_hash_map_key_hasher_t>>
-      key_hashing_func,
-  ffi.Pointer<ffi.NativeFunction<rcutils_hash_map_key_cmp_t>> key_cmp_func,
-  ffi.Pointer<rcutils_allocator_t> allocator,
-);
-
-typedef _c_rcutils_hash_map_fini = ffi.Int32 Function(
-  ffi.Pointer<rcutils_hash_map_t> hash_map,
-);
-
-typedef _dart_rcutils_hash_map_fini = int Function(
-  ffi.Pointer<rcutils_hash_map_t> hash_map,
-);
-
-typedef _c_rcutils_hash_map_get_capacity = ffi.Int32 Function(
-  ffi.Pointer<rcutils_hash_map_t> hash_map,
-  ffi.Pointer<ffi.Uint64> capacity,
-);
-
-typedef _dart_rcutils_hash_map_get_capacity = int Function(
-  ffi.Pointer<rcutils_hash_map_t> hash_map,
-  ffi.Pointer<ffi.Uint64> capacity,
-);
-
-typedef _c_rcutils_hash_map_get_size = ffi.Int32 Function(
-  ffi.Pointer<rcutils_hash_map_t> hash_map,
-  ffi.Pointer<ffi.Uint64> size,
-);
-
-typedef _dart_rcutils_hash_map_get_size = int Function(
-  ffi.Pointer<rcutils_hash_map_t> hash_map,
-  ffi.Pointer<ffi.Uint64> size,
-);
-
-typedef _c_rcutils_hash_map_set = ffi.Int32 Function(
-  ffi.Pointer<rcutils_hash_map_t> hash_map,
-  ffi.Pointer<ffi.Void> key,
-  ffi.Pointer<ffi.Void> value,
-);
-
-typedef _dart_rcutils_hash_map_set = int Function(
-  ffi.Pointer<rcutils_hash_map_t> hash_map,
-  ffi.Pointer<ffi.Void> key,
-  ffi.Pointer<ffi.Void> value,
-);
-
-typedef _c_rcutils_hash_map_unset = ffi.Int32 Function(
-  ffi.Pointer<rcutils_hash_map_t> hash_map,
-  ffi.Pointer<ffi.Void> key,
-);
-
-typedef _dart_rcutils_hash_map_unset = int Function(
-  ffi.Pointer<rcutils_hash_map_t> hash_map,
-  ffi.Pointer<ffi.Void> key,
-);
-
-typedef _c_rcutils_hash_map_key_exists = ffi.Uint8 Function(
-  ffi.Pointer<rcutils_hash_map_t> hash_map,
-  ffi.Pointer<ffi.Void> key,
-);
-
-typedef _dart_rcutils_hash_map_key_exists = int Function(
-  ffi.Pointer<rcutils_hash_map_t> hash_map,
-  ffi.Pointer<ffi.Void> key,
-);
-
-typedef _c_rcutils_hash_map_get = ffi.Int32 Function(
-  ffi.Pointer<rcutils_hash_map_t> hash_map,
-  ffi.Pointer<ffi.Void> key,
-  ffi.Pointer<ffi.Void> data,
-);
-
-typedef _dart_rcutils_hash_map_get = int Function(
-  ffi.Pointer<rcutils_hash_map_t> hash_map,
-  ffi.Pointer<ffi.Void> key,
-  ffi.Pointer<ffi.Void> data,
-);
-
-typedef _c_rcutils_hash_map_get_next_key_and_data = ffi.Int32 Function(
-  ffi.Pointer<rcutils_hash_map_t> hash_map,
-  ffi.Pointer<ffi.Void> previous_key,
-  ffi.Pointer<ffi.Void> key,
-  ffi.Pointer<ffi.Void> data,
-);
-
-typedef _dart_rcutils_hash_map_get_next_key_and_data = int Function(
-  ffi.Pointer<rcutils_hash_map_t> hash_map,
-  ffi.Pointer<ffi.Void> previous_key,
-  ffi.Pointer<ffi.Void> key,
-  ffi.Pointer<ffi.Void> data,
-);
-
-typedef _c_rcutils_get_zero_initialized_string_array = rcutils_string_array_t
-    Function();
-
-typedef _dart_rcutils_get_zero_initialized_string_array = rcutils_string_array_t
-    Function();
-
-typedef _c_rcutils_string_array_init = ffi.Int32 Function(
-  ffi.Pointer<rcutils_string_array_t> string_array,
-  ffi.Uint64 size,
-  ffi.Pointer<rcutils_allocator_t> allocator,
-);
-
-typedef _dart_rcutils_string_array_init = int Function(
-  ffi.Pointer<rcutils_string_array_t> string_array,
-  int size,
-  ffi.Pointer<rcutils_allocator_t> allocator,
-);
-
-typedef _c_rcutils_string_array_fini = ffi.Int32 Function(
-  ffi.Pointer<rcutils_string_array_t> string_array,
-);
-
-typedef _dart_rcutils_string_array_fini = int Function(
-  ffi.Pointer<rcutils_string_array_t> string_array,
-);
-
-typedef _c_rcutils_string_array_cmp = ffi.Int32 Function(
-  ffi.Pointer<rcutils_string_array_t> lhs,
-  ffi.Pointer<rcutils_string_array_t> rhs,
-  ffi.Pointer<ffi.Int32> res,
-);
-
-typedef _dart_rcutils_string_array_cmp = int Function(
-  ffi.Pointer<rcutils_string_array_t> lhs,
-  ffi.Pointer<rcutils_string_array_t> rhs,
-  ffi.Pointer<ffi.Int32> res,
-);
-
-typedef _c_rcutils_get_zero_initialized_string_map = rcutils_string_map_t
-    Function();
-
-typedef _dart_rcutils_get_zero_initialized_string_map = rcutils_string_map_t
-    Function();
-
-typedef _c_rcutils_string_map_init = ffi.Int32 Function(
-  ffi.Pointer<rcutils_string_map_t> string_map,
-  ffi.Uint64 initial_capacity,
-  rcutils_allocator_t allocator,
-);
-
-typedef _dart_rcutils_string_map_init = int Function(
-  ffi.Pointer<rcutils_string_map_t> string_map,
-  int initial_capacity,
-  rcutils_allocator_t allocator,
-);
-
-typedef _c_rcutils_string_map_fini = ffi.Int32 Function(
-  ffi.Pointer<rcutils_string_map_t> string_map,
-);
-
-typedef _dart_rcutils_string_map_fini = int Function(
-  ffi.Pointer<rcutils_string_map_t> string_map,
-);
-
-typedef _c_rcutils_string_map_get_capacity = ffi.Int32 Function(
-  ffi.Pointer<rcutils_string_map_t> string_map,
-  ffi.Pointer<ffi.Uint64> capacity,
-);
-
-typedef _dart_rcutils_string_map_get_capacity = int Function(
-  ffi.Pointer<rcutils_string_map_t> string_map,
-  ffi.Pointer<ffi.Uint64> capacity,
-);
-
-typedef _c_rcutils_string_map_get_size = ffi.Int32 Function(
-  ffi.Pointer<rcutils_string_map_t> string_map,
-  ffi.Pointer<ffi.Uint64> size,
-);
-
-typedef _dart_rcutils_string_map_get_size = int Function(
-  ffi.Pointer<rcutils_string_map_t> string_map,
-  ffi.Pointer<ffi.Uint64> size,
-);
-
-typedef _c_rcutils_string_map_reserve = ffi.Int32 Function(
-  ffi.Pointer<rcutils_string_map_t> string_map,
-  ffi.Uint64 capacity,
-);
-
-typedef _dart_rcutils_string_map_reserve = int Function(
-  ffi.Pointer<rcutils_string_map_t> string_map,
-  int capacity,
-);
-
-typedef _c_rcutils_string_map_clear = ffi.Int32 Function(
-  ffi.Pointer<rcutils_string_map_t> string_map,
-);
-
-typedef _dart_rcutils_string_map_clear = int Function(
-  ffi.Pointer<rcutils_string_map_t> string_map,
-);
-
-typedef _c_rcutils_string_map_set = ffi.Int32 Function(
-  ffi.Pointer<rcutils_string_map_t> string_map,
-  ffi.Pointer<ffi.Int8> key,
-  ffi.Pointer<ffi.Int8> value,
-);
-
-typedef _dart_rcutils_string_map_set = int Function(
-  ffi.Pointer<rcutils_string_map_t> string_map,
-  ffi.Pointer<ffi.Int8> key,
-  ffi.Pointer<ffi.Int8> value,
-);
-
-typedef _c_rcutils_string_map_set_no_resize = ffi.Int32 Function(
-  ffi.Pointer<rcutils_string_map_t> string_map,
-  ffi.Pointer<ffi.Int8> key,
-  ffi.Pointer<ffi.Int8> value,
-);
-
-typedef _dart_rcutils_string_map_set_no_resize = int Function(
-  ffi.Pointer<rcutils_string_map_t> string_map,
-  ffi.Pointer<ffi.Int8> key,
-  ffi.Pointer<ffi.Int8> value,
-);
-
-typedef _c_rcutils_string_map_unset = ffi.Int32 Function(
-  ffi.Pointer<rcutils_string_map_t> string_map,
-  ffi.Pointer<ffi.Int8> key,
-);
-
-typedef _dart_rcutils_string_map_unset = int Function(
-  ffi.Pointer<rcutils_string_map_t> string_map,
-  ffi.Pointer<ffi.Int8> key,
-);
-
-typedef _c_rcutils_string_map_key_exists = ffi.Uint8 Function(
-  ffi.Pointer<rcutils_string_map_t> string_map,
-  ffi.Pointer<ffi.Int8> key,
-);
-
-typedef _dart_rcutils_string_map_key_exists = int Function(
-  ffi.Pointer<rcutils_string_map_t> string_map,
-  ffi.Pointer<ffi.Int8> key,
-);
-
-typedef _c_rcutils_string_map_key_existsn = ffi.Uint8 Function(
-  ffi.Pointer<rcutils_string_map_t> string_map,
-  ffi.Pointer<ffi.Int8> key,
-  ffi.Uint64 key_length,
-);
-
-typedef _dart_rcutils_string_map_key_existsn = int Function(
-  ffi.Pointer<rcutils_string_map_t> string_map,
-  ffi.Pointer<ffi.Int8> key,
-  int key_length,
-);
-
-typedef _c_rcutils_string_map_get = ffi.Pointer<ffi.Int8> Function(
-  ffi.Pointer<rcutils_string_map_t> string_map,
-  ffi.Pointer<ffi.Int8> key,
-);
-
-typedef _dart_rcutils_string_map_get = ffi.Pointer<ffi.Int8> Function(
-  ffi.Pointer<rcutils_string_map_t> string_map,
-  ffi.Pointer<ffi.Int8> key,
-);
-
-typedef _c_rcutils_string_map_getn = ffi.Pointer<ffi.Int8> Function(
-  ffi.Pointer<rcutils_string_map_t> string_map,
-  ffi.Pointer<ffi.Int8> key,
-  ffi.Uint64 key_length,
-);
-
-typedef _dart_rcutils_string_map_getn = ffi.Pointer<ffi.Int8> Function(
-  ffi.Pointer<rcutils_string_map_t> string_map,
-  ffi.Pointer<ffi.Int8> key,
-  int key_length,
-);
-
-typedef _c_rcutils_string_map_get_next_key = ffi.Pointer<ffi.Int8> Function(
-  ffi.Pointer<rcutils_string_map_t> string_map,
-  ffi.Pointer<ffi.Int8> key,
-);
-
-typedef _dart_rcutils_string_map_get_next_key = ffi.Pointer<ffi.Int8> Function(
-  ffi.Pointer<rcutils_string_map_t> string_map,
-  ffi.Pointer<ffi.Int8> key,
-);
-
-typedef _c_rcutils_string_map_copy = ffi.Int32 Function(
-  ffi.Pointer<rcutils_string_map_t> src_string_map,
-  ffi.Pointer<rcutils_string_map_t> dst_string_map,
-);
-
-typedef _dart_rcutils_string_map_copy = int Function(
-  ffi.Pointer<rcutils_string_map_t> src_string_map,
-  ffi.Pointer<rcutils_string_map_t> dst_string_map,
-);
-
-typedef _c_rcutils_get_zero_initialized_uint8_array = rcutils_uint8_array_t
-    Function();
-
-typedef _dart_rcutils_get_zero_initialized_uint8_array = rcutils_uint8_array_t
-    Function();
-
-typedef _c_rcutils_uint8_array_init = ffi.Int32 Function(
-  ffi.Pointer<rcutils_uint8_array_t> uint8_array,
-  ffi.Uint64 buffer_capacity,
-  ffi.Pointer<rcutils_allocator_t> allocator,
-);
-
-typedef _dart_rcutils_uint8_array_init = int Function(
-  ffi.Pointer<rcutils_uint8_array_t> uint8_array,
-  int buffer_capacity,
-  ffi.Pointer<rcutils_allocator_t> allocator,
-);
-
-typedef _c_rcutils_uint8_array_fini = ffi.Int32 Function(
-  ffi.Pointer<rcutils_uint8_array_t> uint8_array,
-);
-
-typedef _dart_rcutils_uint8_array_fini = int Function(
-  ffi.Pointer<rcutils_uint8_array_t> uint8_array,
-);
-
-typedef _c_rcutils_uint8_array_resize = ffi.Int32 Function(
-  ffi.Pointer<rcutils_uint8_array_t> uint8_array,
-  ffi.Uint64 new_size,
-);
-
-typedef _dart_rcutils_uint8_array_resize = int Function(
-  ffi.Pointer<rcutils_uint8_array_t> uint8_array,
-  int new_size,
-);
-
-typedef _c_rcutils_system_time_now = ffi.Int32 Function(
-  ffi.Pointer<ffi.Int64> now,
-);
-
-typedef _dart_rcutils_system_time_now = int Function(
-  ffi.Pointer<ffi.Int64> now,
-);
-
-typedef _c_rcutils_steady_time_now = ffi.Int32 Function(
-  ffi.Pointer<ffi.Int64> now,
-);
-
-typedef _dart_rcutils_steady_time_now = int Function(
-  ffi.Pointer<ffi.Int64> now,
-);
-
-typedef _c_rcutils_time_point_value_as_nanoseconds_string = ffi.Int32 Function(
-  ffi.Pointer<ffi.Int64> time_point,
-  ffi.Pointer<ffi.Int8> str,
-  ffi.Uint64 str_size,
-);
-
-typedef _dart_rcutils_time_point_value_as_nanoseconds_string = int Function(
-  ffi.Pointer<ffi.Int64> time_point,
-  ffi.Pointer<ffi.Int8> str,
-  int str_size,
-);
-
-typedef _c_rcutils_time_point_value_as_seconds_string = ffi.Int32 Function(
-  ffi.Pointer<ffi.Int64> time_point,
-  ffi.Pointer<ffi.Int8> str,
-  ffi.Uint64 str_size,
-);
-
-typedef _dart_rcutils_time_point_value_as_seconds_string = int Function(
-  ffi.Pointer<ffi.Int64> time_point,
-  ffi.Pointer<ffi.Int8> str,
-  int str_size,
-);
-
-typedef _c_rcutils_logging_initialize_with_allocator = ffi.Int32 Function(
-  rcutils_allocator_t allocator,
-);
-
-typedef _dart_rcutils_logging_initialize_with_allocator = int Function(
-  rcutils_allocator_t allocator,
-);
-
-typedef _c_rcutils_logging_initialize = ffi.Int32 Function();
-
-typedef _dart_rcutils_logging_initialize = int Function();
-
-typedef _c_rcutils_logging_shutdown = ffi.Int32 Function();
-
-typedef _dart_rcutils_logging_shutdown = int Function();
-
-typedef _c_rcutils_logging_severity_level_from_string = ffi.Int32 Function(
-  ffi.Pointer<ffi.Int8> severity_string,
-  rcutils_allocator_t allocator,
-  ffi.Pointer<ffi.Int32> severity,
-);
-
-typedef _dart_rcutils_logging_severity_level_from_string = int Function(
-  ffi.Pointer<ffi.Int8> severity_string,
-  rcutils_allocator_t allocator,
-  ffi.Pointer<ffi.Int32> severity,
-);
-
-typedef rcutils_logging_output_handler_t = ffi.Void Function(
-  ffi.Pointer<rcutils_log_location_t>,
-  ffi.Int32,
-  ffi.Pointer<ffi.Int8>,
-  ffi.Int64,
-  ffi.Pointer<ffi.Int8>,
-  ffi.Pointer<ffi.Pointer<__va_list_tag>>,
-);
-
-typedef _c_rcutils_logging_get_output_handler
-    = ffi.Pointer<ffi.NativeFunction<rcutils_logging_output_handler_t>>
-        Function();
-
-typedef _dart_rcutils_logging_get_output_handler
-    = ffi.Pointer<ffi.NativeFunction<rcutils_logging_output_handler_t>>
-        Function();
-
-typedef _c_rcutils_logging_set_output_handler = ffi.Void Function(
-  ffi.Pointer<ffi.NativeFunction<rcutils_logging_output_handler_t>> function,
-);
-
-typedef _dart_rcutils_logging_set_output_handler = void Function(
-  ffi.Pointer<ffi.NativeFunction<rcutils_logging_output_handler_t>> function,
-);
-
-typedef _c_rcutils_logging_format_message = ffi.Int32 Function(
-  ffi.Pointer<rcutils_log_location_t> location,
-  ffi.Int32 severity,
-  ffi.Pointer<ffi.Int8> name,
-  ffi.Int64 timestamp,
-  ffi.Pointer<ffi.Int8> msg,
-  ffi.Pointer<rcutils_char_array_t> logging_output,
-);
-
-typedef _dart_rcutils_logging_format_message = int Function(
-  ffi.Pointer<rcutils_log_location_t> location,
-  int severity,
-  ffi.Pointer<ffi.Int8> name,
-  int timestamp,
-  ffi.Pointer<ffi.Int8> msg,
-  ffi.Pointer<rcutils_char_array_t> logging_output,
-);
-
-typedef _c_rcutils_logging_get_default_logger_level = ffi.Int32 Function();
-
-typedef _dart_rcutils_logging_get_default_logger_level = int Function();
-
-typedef _c_rcutils_logging_set_default_logger_level = ffi.Void Function(
-  ffi.Int32 level,
-);
-
-typedef _dart_rcutils_logging_set_default_logger_level = void Function(
-  int level,
-);
-
-typedef _c_rcutils_logging_get_logger_level = ffi.Int32 Function(
-  ffi.Pointer<ffi.Int8> name,
-);
-
-typedef _dart_rcutils_logging_get_logger_level = int Function(
-  ffi.Pointer<ffi.Int8> name,
-);
-
-typedef _c_rcutils_logging_get_logger_leveln = ffi.Int32 Function(
-  ffi.Pointer<ffi.Int8> name,
-  ffi.Uint64 name_length,
-);
-
-typedef _dart_rcutils_logging_get_logger_leveln = int Function(
-  ffi.Pointer<ffi.Int8> name,
-  int name_length,
-);
-
-typedef _c_rcutils_logging_set_logger_level = ffi.Int32 Function(
-  ffi.Pointer<ffi.Int8> name,
-  ffi.Int32 level,
-);
-
-typedef _dart_rcutils_logging_set_logger_level = int Function(
-  ffi.Pointer<ffi.Int8> name,
-  int level,
-);
-
-typedef _c_rcutils_logging_logger_is_enabled_for = ffi.Uint8 Function(
-  ffi.Pointer<ffi.Int8> name,
-  ffi.Int32 severity,
-);
-
-typedef _dart_rcutils_logging_logger_is_enabled_for = int Function(
-  ffi.Pointer<ffi.Int8> name,
-  int severity,
-);
-
-typedef _c_rcutils_logging_get_logger_effective_level = ffi.Int32 Function(
-  ffi.Pointer<ffi.Int8> name,
-);
-
-typedef _dart_rcutils_logging_get_logger_effective_level = int Function(
-  ffi.Pointer<ffi.Int8> name,
-);
-
-typedef _c_rcutils_log = ffi.Void Function(
-  ffi.Pointer<rcutils_log_location_t> location,
-  ffi.Int32 severity,
-  ffi.Pointer<ffi.Int8> name,
-  ffi.Pointer<ffi.Int8> format,
-);
-
-typedef _dart_rcutils_log = void Function(
-  ffi.Pointer<rcutils_log_location_t> location,
-  int severity,
-  ffi.Pointer<ffi.Int8> name,
-  ffi.Pointer<ffi.Int8> format,
-);
-
-typedef _c_rcutils_logging_console_output_handler = ffi.Void Function(
-  ffi.Pointer<rcutils_log_location_t> location,
-  ffi.Int32 severity,
-  ffi.Pointer<ffi.Int8> name,
-  ffi.Int64 timestamp,
-  ffi.Pointer<ffi.Int8> format,
-  ffi.Pointer<ffi.Pointer<__va_list_tag>> args,
-);
-
-typedef _dart_rcutils_logging_console_output_handler = void Function(
-  ffi.Pointer<rcutils_log_location_t> location,
-  int severity,
-  ffi.Pointer<ffi.Int8> name,
-  int timestamp,
-  ffi.Pointer<ffi.Int8> format,
-  ffi.Pointer<ffi.Pointer<__va_list_tag>> args,
-);
-
-typedef _c_rmw_get_zero_initialized_init_options = rmw_init_options_t
-    Function();
-
-typedef _dart_rmw_get_zero_initialized_init_options = rmw_init_options_t
-    Function();
-
-typedef _c_rmw_init_options_init = ffi.Int32 Function(
-  ffi.Pointer<rmw_init_options_t> init_options,
-  rcutils_allocator_t allocator,
-);
-
-typedef _dart_rmw_init_options_init = int Function(
-  ffi.Pointer<rmw_init_options_t> init_options,
-  rcutils_allocator_t allocator,
-);
-
-typedef _c_rmw_init_options_copy = ffi.Int32 Function(
-  ffi.Pointer<rmw_init_options_t> src,
-  ffi.Pointer<rmw_init_options_t> dst,
-);
-
-typedef _dart_rmw_init_options_copy = int Function(
-  ffi.Pointer<rmw_init_options_t> src,
-  ffi.Pointer<rmw_init_options_t> dst,
-);
-
-typedef _c_rmw_init_options_fini = ffi.Int32 Function(
-  ffi.Pointer<rmw_init_options_t> init_options,
-);
-
-typedef _dart_rmw_init_options_fini = int Function(
-  ffi.Pointer<rmw_init_options_t> init_options,
-);
-
-typedef _c_rmw_get_zero_initialized_context = rmw_context_t Function();
-
-typedef _dart_rmw_get_zero_initialized_context = rmw_context_t Function();
-
-typedef _c_rmw_init = ffi.Int32 Function(
-  ffi.Pointer<rmw_init_options_t> options,
-  ffi.Pointer<rmw_context_t> context,
-);
-
-typedef _dart_rmw_init = int Function(
-  ffi.Pointer<rmw_init_options_t> options,
-  ffi.Pointer<rmw_context_t> context,
-);
-
-typedef _c_rmw_shutdown = ffi.Int32 Function(
-  ffi.Pointer<rmw_context_t> context,
-);
-
-typedef _dart_rmw_shutdown = int Function(
-  ffi.Pointer<rmw_context_t> context,
-);
-
-typedef _c_rmw_context_fini = ffi.Int32 Function(
-  ffi.Pointer<rmw_context_t> context,
-);
-
-typedef _dart_rmw_context_fini = int Function(
-  ffi.Pointer<rmw_context_t> context,
-);
-
-typedef _c_rmw_get_zero_initialized_loaned_message_sequence
-    = rmw_loaned_message_sequence_t Function();
-
-typedef _dart_rmw_get_zero_initialized_loaned_message_sequence
-    = rmw_loaned_message_sequence_t Function();
-
-typedef _c_rcl_get_zero_initialized_arguments = rcl_arguments_t Function();
-
-typedef _dart_rcl_get_zero_initialized_arguments = rcl_arguments_t Function();
-
-typedef _c_rcl_parse_arguments = ffi.Int32 Function(
-  ffi.Int32 argc,
-  ffi.Pointer<ffi.Pointer<ffi.Int8>> argv,
-  rcutils_allocator_t allocator,
-  ffi.Pointer<rcl_arguments_t> args_output,
-);
-
-typedef _dart_rcl_parse_arguments = int Function(
-  int argc,
-  ffi.Pointer<ffi.Pointer<ffi.Int8>> argv,
-  rcutils_allocator_t allocator,
-  ffi.Pointer<rcl_arguments_t> args_output,
-);
-
-typedef _c_rcl_arguments_get_count_unparsed = ffi.Int32 Function(
-  ffi.Pointer<rcl_arguments_t> args,
-);
-
-typedef _dart_rcl_arguments_get_count_unparsed = int Function(
-  ffi.Pointer<rcl_arguments_t> args,
-);
-
-typedef _c_rcl_arguments_get_unparsed = ffi.Int32 Function(
-  ffi.Pointer<rcl_arguments_t> args,
-  rcutils_allocator_t allocator,
-  ffi.Pointer<ffi.Pointer<ffi.Int32>> output_unparsed_indices,
-);
-
-typedef _dart_rcl_arguments_get_unparsed = int Function(
-  ffi.Pointer<rcl_arguments_t> args,
-  rcutils_allocator_t allocator,
-  ffi.Pointer<ffi.Pointer<ffi.Int32>> output_unparsed_indices,
-);
-
-typedef _c_rcl_arguments_get_count_unparsed_ros = ffi.Int32 Function(
-  ffi.Pointer<rcl_arguments_t> args,
-);
-
-typedef _dart_rcl_arguments_get_count_unparsed_ros = int Function(
-  ffi.Pointer<rcl_arguments_t> args,
-);
-
-typedef _c_rcl_arguments_get_unparsed_ros = ffi.Int32 Function(
-  ffi.Pointer<rcl_arguments_t> args,
-  rcutils_allocator_t allocator,
-  ffi.Pointer<ffi.Pointer<ffi.Int32>> output_unparsed_ros_indices,
-);
-
-typedef _dart_rcl_arguments_get_unparsed_ros = int Function(
-  ffi.Pointer<rcl_arguments_t> args,
-  rcutils_allocator_t allocator,
-  ffi.Pointer<ffi.Pointer<ffi.Int32>> output_unparsed_ros_indices,
-);
-
-typedef _c_rcl_arguments_get_param_files_count = ffi.Int32 Function(
-  ffi.Pointer<rcl_arguments_t> args,
-);
-
-typedef _dart_rcl_arguments_get_param_files_count = int Function(
-  ffi.Pointer<rcl_arguments_t> args,
-);
-
-typedef _c_rcl_arguments_get_param_files = ffi.Int32 Function(
-  ffi.Pointer<rcl_arguments_t> arguments,
-  rcutils_allocator_t allocator,
-  ffi.Pointer<ffi.Pointer<ffi.Pointer<ffi.Int8>>> parameter_files,
-);
-
-typedef _dart_rcl_arguments_get_param_files = int Function(
-  ffi.Pointer<rcl_arguments_t> arguments,
-  rcutils_allocator_t allocator,
-  ffi.Pointer<ffi.Pointer<ffi.Pointer<ffi.Int8>>> parameter_files,
-);
-
-typedef _c_rcl_arguments_get_param_overrides = ffi.Int32 Function(
-  ffi.Pointer<rcl_arguments_t> arguments,
-  ffi.Pointer<ffi.Pointer<rcl_params_t>> parameter_overrides,
-);
-
-typedef _dart_rcl_arguments_get_param_overrides = int Function(
-  ffi.Pointer<rcl_arguments_t> arguments,
-  ffi.Pointer<ffi.Pointer<rcl_params_t>> parameter_overrides,
-);
-
-typedef _c_rcl_remove_ros_arguments = ffi.Int32 Function(
-  ffi.Pointer<ffi.Pointer<ffi.Int8>> argv,
-  ffi.Pointer<rcl_arguments_t> args,
-  rcutils_allocator_t allocator,
-  ffi.Pointer<ffi.Int32> nonros_argc,
-  ffi.Pointer<ffi.Pointer<ffi.Pointer<ffi.Int8>>> nonros_argv,
-);
-
-typedef _dart_rcl_remove_ros_arguments = int Function(
-  ffi.Pointer<ffi.Pointer<ffi.Int8>> argv,
-  ffi.Pointer<rcl_arguments_t> args,
-  rcutils_allocator_t allocator,
-  ffi.Pointer<ffi.Int32> nonros_argc,
-  ffi.Pointer<ffi.Pointer<ffi.Pointer<ffi.Int8>>> nonros_argv,
-);
-
-typedef _c_rcl_arguments_copy = ffi.Int32 Function(
-  ffi.Pointer<rcl_arguments_t> args,
-  ffi.Pointer<rcl_arguments_t> args_out,
-);
-
-typedef _dart_rcl_arguments_copy = int Function(
-  ffi.Pointer<rcl_arguments_t> args,
-  ffi.Pointer<rcl_arguments_t> args_out,
-);
-
-typedef _c_rcl_arguments_fini = ffi.Int32 Function(
-  ffi.Pointer<rcl_arguments_t> args,
-);
-
-typedef _dart_rcl_arguments_fini = int Function(
-  ffi.Pointer<rcl_arguments_t> args,
-);
-
-typedef _c_rcl_get_zero_initialized_init_options = rcl_init_options_t
-    Function();
-
-typedef _dart_rcl_get_zero_initialized_init_options = rcl_init_options_t
-    Function();
-
-typedef _c_rcl_init_options_init = ffi.Int32 Function(
-  ffi.Pointer<rcl_init_options_t> init_options,
-  rcutils_allocator_t allocator,
-);
-
-typedef _dart_rcl_init_options_init = int Function(
-  ffi.Pointer<rcl_init_options_t> init_options,
-  rcutils_allocator_t allocator,
-);
-
-typedef _c_rcl_init_options_copy = ffi.Int32 Function(
-  ffi.Pointer<rcl_init_options_t> src,
-  ffi.Pointer<rcl_init_options_t> dst,
-);
-
-typedef _dart_rcl_init_options_copy = int Function(
-  ffi.Pointer<rcl_init_options_t> src,
-  ffi.Pointer<rcl_init_options_t> dst,
-);
-
-typedef _c_rcl_init_options_fini = ffi.Int32 Function(
-  ffi.Pointer<rcl_init_options_t> init_options,
-);
-
-typedef _dart_rcl_init_options_fini = int Function(
-  ffi.Pointer<rcl_init_options_t> init_options,
-);
-
-typedef _c_rcl_init_options_get_rmw_init_options
-    = ffi.Pointer<rmw_init_options_t> Function(
-  ffi.Pointer<rcl_init_options_t> init_options,
-);
-
-typedef _dart_rcl_init_options_get_rmw_init_options
-    = ffi.Pointer<rmw_init_options_t> Function(
-  ffi.Pointer<rcl_init_options_t> init_options,
-);
-
-typedef _c_rcl_get_zero_initialized_context = rcl_context_t Function();
-
-typedef _dart_rcl_get_zero_initialized_context = rcl_context_t Function();
-
-typedef _c_rcl_context_fini = ffi.Int32 Function(
-  ffi.Pointer<rcl_context_t> context,
-);
-
-typedef _dart_rcl_context_fini = int Function(
-  ffi.Pointer<rcl_context_t> context,
-);
-
-typedef _c_rcl_context_get_init_options = ffi.Pointer<rcl_init_options_t>
-    Function(
-  ffi.Pointer<rcl_context_t> context,
-);
-
-typedef _dart_rcl_context_get_init_options = ffi.Pointer<rcl_init_options_t>
-    Function(
-  ffi.Pointer<rcl_context_t> context,
-);
-
-typedef _c_rcl_context_get_instance_id = ffi.Uint64 Function(
-  ffi.Pointer<rcl_context_t> context,
-);
-
-typedef _dart_rcl_context_get_instance_id = int Function(
-  ffi.Pointer<rcl_context_t> context,
-);
-
-typedef _c_rcl_context_is_valid = ffi.Uint8 Function(
-  ffi.Pointer<rcl_context_t> context,
-);
-
-typedef _dart_rcl_context_is_valid = int Function(
-  ffi.Pointer<rcl_context_t> context,
-);
-
-typedef _c_rcl_context_get_rmw_context = ffi.Pointer<rmw_context_t> Function(
-  ffi.Pointer<rcl_context_t> context,
-);
-
-typedef _dart_rcl_context_get_rmw_context = ffi.Pointer<rmw_context_t> Function(
-  ffi.Pointer<rcl_context_t> context,
-);
-
-typedef _c_rcl_node_get_default_options = rcl_node_options_t Function();
-
-typedef _dart_rcl_node_get_default_options = rcl_node_options_t Function();
-
-typedef _c_rcl_node_options_copy = ffi.Int32 Function(
-  ffi.Pointer<rcl_node_options_t> options,
-  ffi.Pointer<rcl_node_options_t> options_out,
-);
-
-typedef _dart_rcl_node_options_copy = int Function(
-  ffi.Pointer<rcl_node_options_t> options,
-  ffi.Pointer<rcl_node_options_t> options_out,
-);
-
-typedef _c_rcl_node_options_fini = ffi.Int32 Function(
-  ffi.Pointer<rcl_node_options_t> options,
-);
-
-typedef _dart_rcl_node_options_fini = int Function(
-  ffi.Pointer<rcl_node_options_t> options,
-);
-
-typedef _c_rcl_get_zero_initialized_node = rcl_node_t Function();
-
-typedef _dart_rcl_get_zero_initialized_node = rcl_node_t Function();
-
-typedef _c_rcl_node_init = ffi.Int32 Function(
-  ffi.Pointer<rcl_node_t> node,
-  ffi.Pointer<ffi.Int8> name,
-  ffi.Pointer<ffi.Int8> namespace_,
-  ffi.Pointer<rcl_context_t> context,
-  ffi.Pointer<rcl_node_options_t> options,
-);
-
-typedef _dart_rcl_node_init = int Function(
-  ffi.Pointer<rcl_node_t> node,
-  ffi.Pointer<ffi.Int8> name,
-  ffi.Pointer<ffi.Int8> namespace_,
-  ffi.Pointer<rcl_context_t> context,
-  ffi.Pointer<rcl_node_options_t> options,
-);
-
-typedef _c_rcl_node_fini = ffi.Int32 Function(
-  ffi.Pointer<rcl_node_t> node,
-);
-
-typedef _dart_rcl_node_fini = int Function(
-  ffi.Pointer<rcl_node_t> node,
-);
-
-typedef _c_rcl_node_is_valid = ffi.Uint8 Function(
-  ffi.Pointer<rcl_node_t> node,
-);
-
-typedef _dart_rcl_node_is_valid = int Function(
-  ffi.Pointer<rcl_node_t> node,
-);
-
-typedef _c_rcl_node_is_valid_except_context = ffi.Uint8 Function(
-  ffi.Pointer<rcl_node_t> node,
-);
-
-typedef _dart_rcl_node_is_valid_except_context = int Function(
-  ffi.Pointer<rcl_node_t> node,
-);
-
-typedef _c_rcl_node_get_name = ffi.Pointer<ffi.Int8> Function(
-  ffi.Pointer<rcl_node_t> node,
-);
-
-typedef _dart_rcl_node_get_name = ffi.Pointer<ffi.Int8> Function(
-  ffi.Pointer<rcl_node_t> node,
-);
-
-typedef _c_rcl_node_get_namespace = ffi.Pointer<ffi.Int8> Function(
-  ffi.Pointer<rcl_node_t> node,
-);
-
-typedef _dart_rcl_node_get_namespace = ffi.Pointer<ffi.Int8> Function(
-  ffi.Pointer<rcl_node_t> node,
-);
-
-typedef _c_rcl_node_get_fully_qualified_name = ffi.Pointer<ffi.Int8> Function(
-  ffi.Pointer<rcl_node_t> node,
-);
-
-typedef _dart_rcl_node_get_fully_qualified_name = ffi.Pointer<ffi.Int8>
-    Function(
-  ffi.Pointer<rcl_node_t> node,
-);
-
-typedef _c_rcl_node_get_options = ffi.Pointer<rcl_node_options_t> Function(
-  ffi.Pointer<rcl_node_t> node,
-);
-
-typedef _dart_rcl_node_get_options = ffi.Pointer<rcl_node_options_t> Function(
-  ffi.Pointer<rcl_node_t> node,
-);
-
-typedef _c_rcl_node_get_domain_id = ffi.Int32 Function(
-  ffi.Pointer<rcl_node_t> node,
-  ffi.Pointer<ffi.Uint64> domain_id,
-);
-
-typedef _dart_rcl_node_get_domain_id = int Function(
-  ffi.Pointer<rcl_node_t> node,
-  ffi.Pointer<ffi.Uint64> domain_id,
-);
-
-typedef _c_rcl_node_assert_liveliness = ffi.Int32 Function(
-  ffi.Pointer<rcl_node_t> node,
-);
-
-typedef _dart_rcl_node_assert_liveliness = int Function(
-  ffi.Pointer<rcl_node_t> node,
-);
-
-typedef _c_rcl_node_get_rmw_handle = ffi.Pointer<rmw_node_t> Function(
-  ffi.Pointer<rcl_node_t> node,
-);
-
-typedef _dart_rcl_node_get_rmw_handle = ffi.Pointer<rmw_node_t> Function(
-  ffi.Pointer<rcl_node_t> node,
-);
-
-typedef _c_rcl_node_get_rcl_instance_id = ffi.Uint64 Function(
-  ffi.Pointer<rcl_node_t> node,
-);
-
-typedef _dart_rcl_node_get_rcl_instance_id = int Function(
-  ffi.Pointer<rcl_node_t> node,
-);
-
-typedef _c_rcl_node_get_graph_guard_condition
-    = ffi.Pointer<rcl_guard_condition_t> Function(
-  ffi.Pointer<rcl_node_t> node,
-);
-
-typedef _dart_rcl_node_get_graph_guard_condition
-    = ffi.Pointer<rcl_guard_condition_t> Function(
-  ffi.Pointer<rcl_node_t> node,
-);
-
-typedef _c_rcl_node_get_logger_name = ffi.Pointer<ffi.Int8> Function(
-  ffi.Pointer<rcl_node_t> node,
-);
-
-typedef _dart_rcl_node_get_logger_name = ffi.Pointer<ffi.Int8> Function(
-  ffi.Pointer<rcl_node_t> node,
-);
-
-typedef _c_rcl_get_zero_initialized_client = rcl_client_t Function();
-
-typedef _dart_rcl_get_zero_initialized_client = rcl_client_t Function();
-
-typedef _c_rcl_client_init = ffi.Int32 Function(
-  ffi.Pointer<rcl_client_t> client,
-  ffi.Pointer<rcl_node_t> node,
-  ffi.Pointer<rosidl_service_type_support_t> type_support,
-  ffi.Pointer<ffi.Int8> service_name,
-  ffi.Pointer<rcl_client_options_t> options,
-);
-
-typedef _dart_rcl_client_init = int Function(
-  ffi.Pointer<rcl_client_t> client,
-  ffi.Pointer<rcl_node_t> node,
-  ffi.Pointer<rosidl_service_type_support_t> type_support,
-  ffi.Pointer<ffi.Int8> service_name,
-  ffi.Pointer<rcl_client_options_t> options,
-);
-
-typedef _c_rcl_client_fini = ffi.Int32 Function(
-  ffi.Pointer<rcl_client_t> client,
-  ffi.Pointer<rcl_node_t> node,
-);
-
-typedef _dart_rcl_client_fini = int Function(
-  ffi.Pointer<rcl_client_t> client,
-  ffi.Pointer<rcl_node_t> node,
-);
-
-typedef _c_rcl_client_get_default_options = rcl_client_options_t Function();
-
-typedef _dart_rcl_client_get_default_options = rcl_client_options_t Function();
-
-typedef _c_rcl_send_request = ffi.Int32 Function(
-  ffi.Pointer<rcl_client_t> client,
-  ffi.Pointer<ffi.Void> ros_request,
-  ffi.Pointer<ffi.Int64> sequence_number,
-);
-
-typedef _dart_rcl_send_request = int Function(
-  ffi.Pointer<rcl_client_t> client,
-  ffi.Pointer<ffi.Void> ros_request,
-  ffi.Pointer<ffi.Int64> sequence_number,
-);
-
-typedef _c_rcl_take_response = ffi.Int32 Function(
-  ffi.Pointer<rcl_client_t> client,
-  ffi.Pointer<rmw_request_id_t> request_header,
-  ffi.Pointer<ffi.Void> ros_response,
-);
-
-typedef _dart_rcl_take_response = int Function(
-  ffi.Pointer<rcl_client_t> client,
-  ffi.Pointer<rmw_request_id_t> request_header,
-  ffi.Pointer<ffi.Void> ros_response,
-);
-
-typedef _c_rcl_client_get_service_name = ffi.Pointer<ffi.Int8> Function(
-  ffi.Pointer<rcl_client_t> client,
-);
-
-typedef _dart_rcl_client_get_service_name = ffi.Pointer<ffi.Int8> Function(
-  ffi.Pointer<rcl_client_t> client,
-);
-
-typedef _c_rcl_client_get_options = ffi.Pointer<rcl_client_options_t> Function(
-  ffi.Pointer<rcl_client_t> client,
-);
-
-typedef _dart_rcl_client_get_options = ffi.Pointer<rcl_client_options_t>
-    Function(
-  ffi.Pointer<rcl_client_t> client,
-);
-
-typedef _c_rcl_client_get_rmw_handle = ffi.Pointer<rmw_client_t> Function(
-  ffi.Pointer<rcl_client_t> client,
-);
-
-typedef _dart_rcl_client_get_rmw_handle = ffi.Pointer<rmw_client_t> Function(
-  ffi.Pointer<rcl_client_t> client,
-);
-
-typedef _c_rcl_client_is_valid = ffi.Uint8 Function(
-  ffi.Pointer<rcl_client_t> client,
-);
-
-typedef _dart_rcl_client_is_valid = int Function(
-  ffi.Pointer<rcl_client_t> client,
-);
-
-typedef _c_rcl_guard_condition_init = ffi.Int32 Function(
-  ffi.Pointer<rcl_guard_condition_t> guard_condition,
-  ffi.Pointer<rcl_context_t> context,
-  rcl_guard_condition_options_t options,
-);
-
-typedef _dart_rcl_guard_condition_init = int Function(
-  ffi.Pointer<rcl_guard_condition_t> guard_condition,
-  ffi.Pointer<rcl_context_t> context,
-  rcl_guard_condition_options_t options,
-);
-
-typedef _c_rcl_guard_condition_init_from_rmw = ffi.Int32 Function(
-  ffi.Pointer<rcl_guard_condition_t> guard_condition,
-  ffi.Pointer<rmw_guard_condition_t> rmw_guard_condition,
-  ffi.Pointer<rcl_context_t> context,
-  rcl_guard_condition_options_t options,
-);
-
-typedef _dart_rcl_guard_condition_init_from_rmw = int Function(
-  ffi.Pointer<rcl_guard_condition_t> guard_condition,
-  ffi.Pointer<rmw_guard_condition_t> rmw_guard_condition,
-  ffi.Pointer<rcl_context_t> context,
-  rcl_guard_condition_options_t options,
-);
-
-typedef _c_rcl_guard_condition_fini = ffi.Int32 Function(
-  ffi.Pointer<rcl_guard_condition_t> guard_condition,
-);
-
-typedef _dart_rcl_guard_condition_fini = int Function(
-  ffi.Pointer<rcl_guard_condition_t> guard_condition,
-);
-
-typedef _c_rcl_guard_condition_get_default_options
-    = rcl_guard_condition_options_t Function();
-
-typedef _dart_rcl_guard_condition_get_default_options
-    = rcl_guard_condition_options_t Function();
-
-typedef _c_rcl_trigger_guard_condition = ffi.Int32 Function(
-  ffi.Pointer<rcl_guard_condition_t> guard_condition,
-);
-
-typedef _dart_rcl_trigger_guard_condition = int Function(
-  ffi.Pointer<rcl_guard_condition_t> guard_condition,
-);
-
-typedef _c_rcl_guard_condition_get_options
-    = ffi.Pointer<rcl_guard_condition_options_t> Function(
-  ffi.Pointer<rcl_guard_condition_t> guard_condition,
-);
-
-typedef _dart_rcl_guard_condition_get_options
-    = ffi.Pointer<rcl_guard_condition_options_t> Function(
-  ffi.Pointer<rcl_guard_condition_t> guard_condition,
-);
-
-typedef _c_rcl_guard_condition_get_rmw_handle
-    = ffi.Pointer<rmw_guard_condition_t> Function(
-  ffi.Pointer<rcl_guard_condition_t> guard_condition,
-);
-
-typedef _dart_rcl_guard_condition_get_rmw_handle
-    = ffi.Pointer<rmw_guard_condition_t> Function(
-  ffi.Pointer<rcl_guard_condition_t> guard_condition,
-);
-
-typedef _c_rcl_get_zero_initialized_service = rcl_service_t Function();
-
-typedef _dart_rcl_get_zero_initialized_service = rcl_service_t Function();
-
-typedef _c_rcl_service_init = ffi.Int32 Function(
-  ffi.Pointer<rcl_service_t> service,
-  ffi.Pointer<rcl_node_t> node,
-  ffi.Pointer<rosidl_service_type_support_t> type_support,
-  ffi.Pointer<ffi.Int8> service_name,
-  ffi.Pointer<rcl_service_options_t> options,
-);
-
-typedef _dart_rcl_service_init = int Function(
-  ffi.Pointer<rcl_service_t> service,
-  ffi.Pointer<rcl_node_t> node,
-  ffi.Pointer<rosidl_service_type_support_t> type_support,
-  ffi.Pointer<ffi.Int8> service_name,
-  ffi.Pointer<rcl_service_options_t> options,
-);
-
-typedef _c_rcl_service_fini = ffi.Int32 Function(
-  ffi.Pointer<rcl_service_t> service,
-  ffi.Pointer<rcl_node_t> node,
-);
-
-typedef _dart_rcl_service_fini = int Function(
-  ffi.Pointer<rcl_service_t> service,
-  ffi.Pointer<rcl_node_t> node,
-);
-
-typedef _c_rcl_service_get_default_options = rcl_service_options_t Function();
-
-typedef _dart_rcl_service_get_default_options = rcl_service_options_t
-    Function();
-
-typedef _c_rcl_take_request = ffi.Int32 Function(
-  ffi.Pointer<rcl_service_t> service,
-  ffi.Pointer<rmw_request_id_t> request_header,
-  ffi.Pointer<ffi.Void> ros_request,
-);
-
-typedef _dart_rcl_take_request = int Function(
-  ffi.Pointer<rcl_service_t> service,
-  ffi.Pointer<rmw_request_id_t> request_header,
-  ffi.Pointer<ffi.Void> ros_request,
-);
-
-typedef _c_rcl_send_response = ffi.Int32 Function(
-  ffi.Pointer<rcl_service_t> service,
-  ffi.Pointer<rmw_request_id_t> response_header,
-  ffi.Pointer<ffi.Void> ros_response,
-);
-
-typedef _dart_rcl_send_response = int Function(
-  ffi.Pointer<rcl_service_t> service,
-  ffi.Pointer<rmw_request_id_t> response_header,
-  ffi.Pointer<ffi.Void> ros_response,
-);
-
-typedef _c_rcl_service_get_service_name = ffi.Pointer<ffi.Int8> Function(
-  ffi.Pointer<rcl_service_t> service,
-);
-
-typedef _dart_rcl_service_get_service_name = ffi.Pointer<ffi.Int8> Function(
-  ffi.Pointer<rcl_service_t> service,
-);
-
-typedef _c_rcl_service_get_options = ffi.Pointer<rcl_service_options_t>
-    Function(
-  ffi.Pointer<rcl_service_t> service,
-);
-
-typedef _dart_rcl_service_get_options = ffi.Pointer<rcl_service_options_t>
-    Function(
-  ffi.Pointer<rcl_service_t> service,
-);
-
-typedef _c_rcl_service_get_rmw_handle = ffi.Pointer<rmw_service_t> Function(
-  ffi.Pointer<rcl_service_t> service,
-);
-
-typedef _dart_rcl_service_get_rmw_handle = ffi.Pointer<rmw_service_t> Function(
-  ffi.Pointer<rcl_service_t> service,
-);
-
-typedef _c_rcl_service_is_valid = ffi.Uint8 Function(
-  ffi.Pointer<rcl_service_t> service,
-);
-
-typedef _dart_rcl_service_is_valid = int Function(
-  ffi.Pointer<rcl_service_t> service,
-);
-
-typedef _c_get_message_typesupport_handle
-    = ffi.Pointer<rosidl_message_type_support_t> Function(
-  ffi.Pointer<rosidl_message_type_support_t> handle,
-  ffi.Pointer<ffi.Int8> identifier,
-);
-
-typedef _dart_get_message_typesupport_handle
-    = ffi.Pointer<rosidl_message_type_support_t> Function(
-  ffi.Pointer<rosidl_message_type_support_t> handle,
-  ffi.Pointer<ffi.Int8> identifier,
-);
-
-typedef _c_get_message_typesupport_handle_function
-    = ffi.Pointer<rosidl_message_type_support_t> Function(
-  ffi.Pointer<rosidl_message_type_support_t> handle,
-  ffi.Pointer<ffi.Int8> identifier,
-);
-
-typedef _dart_get_message_typesupport_handle_function
-    = ffi.Pointer<rosidl_message_type_support_t> Function(
-  ffi.Pointer<rosidl_message_type_support_t> handle,
-  ffi.Pointer<ffi.Int8> identifier,
-);
-
-typedef _c_rcl_get_zero_initialized_subscription = rcl_subscription_t
-    Function();
-
-typedef _dart_rcl_get_zero_initialized_subscription = rcl_subscription_t
-    Function();
-
-typedef _c_rcl_subscription_init = ffi.Int32 Function(
-  ffi.Pointer<rcl_subscription_t> subscription,
-  ffi.Pointer<rcl_node_t> node,
-  ffi.Pointer<rosidl_message_type_support_t> type_support,
-  ffi.Pointer<ffi.Int8> topic_name,
-  ffi.Pointer<rcl_subscription_options_t> options,
-);
-
-typedef _dart_rcl_subscription_init = int Function(
-  ffi.Pointer<rcl_subscription_t> subscription,
-  ffi.Pointer<rcl_node_t> node,
-  ffi.Pointer<rosidl_message_type_support_t> type_support,
-  ffi.Pointer<ffi.Int8> topic_name,
-  ffi.Pointer<rcl_subscription_options_t> options,
-);
-
-typedef _c_rcl_subscription_fini = ffi.Int32 Function(
-  ffi.Pointer<rcl_subscription_t> subscription,
-  ffi.Pointer<rcl_node_t> node,
-);
-
-typedef _dart_rcl_subscription_fini = int Function(
-  ffi.Pointer<rcl_subscription_t> subscription,
-  ffi.Pointer<rcl_node_t> node,
-);
-
-typedef _c_rcl_subscription_get_default_options = rcl_subscription_options_t
-    Function();
-
-typedef _dart_rcl_subscription_get_default_options = rcl_subscription_options_t
-    Function();
-
-typedef _c_rcl_take = ffi.Int32 Function(
-  ffi.Pointer<rcl_subscription_t> subscription,
-  ffi.Pointer<ffi.Void> ros_message,
-  ffi.Pointer<rmw_message_info_t> message_info,
-  ffi.Pointer<rmw_subscription_allocation_t> allocation,
-);
-
-typedef _dart_rcl_take = int Function(
-  ffi.Pointer<rcl_subscription_t> subscription,
-  ffi.Pointer<ffi.Void> ros_message,
-  ffi.Pointer<rmw_message_info_t> message_info,
-  ffi.Pointer<rmw_subscription_allocation_t> allocation,
-);
-
-typedef _c_rcl_take_serialized_message = ffi.Int32 Function(
-  ffi.Pointer<rcl_subscription_t> subscription,
-  ffi.Pointer<rcutils_uint8_array_t> serialized_message,
-  ffi.Pointer<rmw_message_info_t> message_info,
-  ffi.Pointer<rmw_subscription_allocation_t> allocation,
-);
-
-typedef _dart_rcl_take_serialized_message = int Function(
-  ffi.Pointer<rcl_subscription_t> subscription,
-  ffi.Pointer<rcutils_uint8_array_t> serialized_message,
-  ffi.Pointer<rmw_message_info_t> message_info,
-  ffi.Pointer<rmw_subscription_allocation_t> allocation,
-);
-
-typedef _c_rcl_take_loaned_message = ffi.Int32 Function(
-  ffi.Pointer<rcl_subscription_t> subscription,
-  ffi.Pointer<ffi.Pointer<ffi.Void>> loaned_message,
-  ffi.Pointer<rmw_message_info_t> message_info,
-  ffi.Pointer<rmw_subscription_allocation_t> allocation,
-);
-
-typedef _dart_rcl_take_loaned_message = int Function(
-  ffi.Pointer<rcl_subscription_t> subscription,
-  ffi.Pointer<ffi.Pointer<ffi.Void>> loaned_message,
-  ffi.Pointer<rmw_message_info_t> message_info,
-  ffi.Pointer<rmw_subscription_allocation_t> allocation,
-);
-
-typedef _c_rcl_return_loaned_message_from_subscription = ffi.Int32 Function(
-  ffi.Pointer<rcl_subscription_t> subscription,
-  ffi.Pointer<ffi.Void> loaned_message,
-);
-
-typedef _dart_rcl_return_loaned_message_from_subscription = int Function(
-  ffi.Pointer<rcl_subscription_t> subscription,
-  ffi.Pointer<ffi.Void> loaned_message,
-);
-
-typedef _c_rcl_subscription_get_topic_name = ffi.Pointer<ffi.Int8> Function(
-  ffi.Pointer<rcl_subscription_t> subscription,
-);
-
-typedef _dart_rcl_subscription_get_topic_name = ffi.Pointer<ffi.Int8> Function(
-  ffi.Pointer<rcl_subscription_t> subscription,
-);
-
-typedef _c_rcl_subscription_get_options
-    = ffi.Pointer<rcl_subscription_options_t> Function(
-  ffi.Pointer<rcl_subscription_t> subscription,
-);
-
-typedef _dart_rcl_subscription_get_options
-    = ffi.Pointer<rcl_subscription_options_t> Function(
-  ffi.Pointer<rcl_subscription_t> subscription,
-);
-
-typedef _c_rcl_subscription_get_rmw_handle = ffi.Pointer<rmw_subscription_t>
-    Function(
-  ffi.Pointer<rcl_subscription_t> subscription,
-);
-
-typedef _dart_rcl_subscription_get_rmw_handle = ffi.Pointer<rmw_subscription_t>
-    Function(
-  ffi.Pointer<rcl_subscription_t> subscription,
-);
-
-typedef _c_rcl_subscription_is_valid = ffi.Uint8 Function(
-  ffi.Pointer<rcl_subscription_t> subscription,
-);
-
-typedef _dart_rcl_subscription_is_valid = int Function(
-  ffi.Pointer<rcl_subscription_t> subscription,
-);
-
-typedef _c_rcl_subscription_get_publisher_count = ffi.Int32 Function(
-  ffi.Pointer<rcl_subscription_t> subscription,
-  ffi.Pointer<ffi.Uint64> publisher_count,
-);
-
-typedef _dart_rcl_subscription_get_publisher_count = int Function(
-  ffi.Pointer<rcl_subscription_t> subscription,
-  ffi.Pointer<ffi.Uint64> publisher_count,
-);
-
-typedef _c_rcl_subscription_get_actual_qos = ffi.Pointer<rmw_qos_profile_t>
-    Function(
-  ffi.Pointer<rcl_subscription_t> subscription,
-);
-
-typedef _dart_rcl_subscription_get_actual_qos = ffi.Pointer<rmw_qos_profile_t>
-    Function(
-  ffi.Pointer<rcl_subscription_t> subscription,
-);
-
-typedef _c_rcl_subscription_can_loan_messages = ffi.Uint8 Function(
-  ffi.Pointer<rcl_subscription_t> subscription,
-);
-
-typedef _dart_rcl_subscription_can_loan_messages = int Function(
-  ffi.Pointer<rcl_subscription_t> subscription,
-);
-
-typedef _c_rcl_clock_valid = ffi.Uint8 Function(
-  ffi.Pointer<rcl_clock_t> clock,
-);
-
-typedef _dart_rcl_clock_valid = int Function(
-  ffi.Pointer<rcl_clock_t> clock,
-);
-
-typedef _c_rcl_clock_init = ffi.Int32 Function(
-  ffi.Int32 clock_type,
-  ffi.Pointer<rcl_clock_t> clock,
-  ffi.Pointer<rcutils_allocator_t> allocator,
-);
-
-typedef _dart_rcl_clock_init = int Function(
-  int clock_type,
-  ffi.Pointer<rcl_clock_t> clock,
-  ffi.Pointer<rcutils_allocator_t> allocator,
-);
-
-typedef _c_rcl_clock_fini = ffi.Int32 Function(
-  ffi.Pointer<rcl_clock_t> clock,
-);
-
-typedef _dart_rcl_clock_fini = int Function(
-  ffi.Pointer<rcl_clock_t> clock,
-);
-
-typedef _c_rcl_ros_clock_init = ffi.Int32 Function(
-  ffi.Pointer<rcl_clock_t> clock,
-  ffi.Pointer<rcutils_allocator_t> allocator,
-);
-
-typedef _dart_rcl_ros_clock_init = int Function(
-  ffi.Pointer<rcl_clock_t> clock,
-  ffi.Pointer<rcutils_allocator_t> allocator,
-);
-
-typedef _c_rcl_ros_clock_fini = ffi.Int32 Function(
-  ffi.Pointer<rcl_clock_t> clock,
-);
-
-typedef _dart_rcl_ros_clock_fini = int Function(
-  ffi.Pointer<rcl_clock_t> clock,
-);
-
-typedef _c_rcl_steady_clock_init = ffi.Int32 Function(
-  ffi.Pointer<rcl_clock_t> clock,
-  ffi.Pointer<rcutils_allocator_t> allocator,
-);
-
-typedef _dart_rcl_steady_clock_init = int Function(
-  ffi.Pointer<rcl_clock_t> clock,
-  ffi.Pointer<rcutils_allocator_t> allocator,
-);
-
-typedef _c_rcl_steady_clock_fini = ffi.Int32 Function(
-  ffi.Pointer<rcl_clock_t> clock,
-);
-
-typedef _dart_rcl_steady_clock_fini = int Function(
-  ffi.Pointer<rcl_clock_t> clock,
-);
-
-typedef _c_rcl_system_clock_init = ffi.Int32 Function(
-  ffi.Pointer<rcl_clock_t> clock,
-  ffi.Pointer<rcutils_allocator_t> allocator,
-);
-
-typedef _dart_rcl_system_clock_init = int Function(
-  ffi.Pointer<rcl_clock_t> clock,
-  ffi.Pointer<rcutils_allocator_t> allocator,
-);
-
-typedef _c_rcl_system_clock_fini = ffi.Int32 Function(
-  ffi.Pointer<rcl_clock_t> clock,
-);
-
-typedef _dart_rcl_system_clock_fini = int Function(
-  ffi.Pointer<rcl_clock_t> clock,
-);
-
-typedef _c_rcl_difference_times = ffi.Int32 Function(
-  ffi.Pointer<rcl_time_point_t> start,
-  ffi.Pointer<rcl_time_point_t> finish,
-  ffi.Pointer<rcl_duration_t> delta,
-);
-
-typedef _dart_rcl_difference_times = int Function(
-  ffi.Pointer<rcl_time_point_t> start,
-  ffi.Pointer<rcl_time_point_t> finish,
-  ffi.Pointer<rcl_duration_t> delta,
-);
-
-typedef _c_rcl_clock_get_now = ffi.Int32 Function(
-  ffi.Pointer<rcl_clock_t> clock,
-  ffi.Pointer<ffi.Int64> time_point_value,
-);
-
-typedef _dart_rcl_clock_get_now = int Function(
-  ffi.Pointer<rcl_clock_t> clock,
-  ffi.Pointer<ffi.Int64> time_point_value,
-);
-
-typedef _c_rcl_enable_ros_time_override = ffi.Int32 Function(
-  ffi.Pointer<rcl_clock_t> clock,
-);
-
-typedef _dart_rcl_enable_ros_time_override = int Function(
-  ffi.Pointer<rcl_clock_t> clock,
-);
-
-typedef _c_rcl_disable_ros_time_override = ffi.Int32 Function(
-  ffi.Pointer<rcl_clock_t> clock,
-);
-
-typedef _dart_rcl_disable_ros_time_override = int Function(
-  ffi.Pointer<rcl_clock_t> clock,
-);
-
-typedef _c_rcl_is_enabled_ros_time_override = ffi.Int32 Function(
-  ffi.Pointer<rcl_clock_t> clock,
-  ffi.Pointer<ffi.Uint8> is_enabled,
-);
-
-typedef _dart_rcl_is_enabled_ros_time_override = int Function(
-  ffi.Pointer<rcl_clock_t> clock,
-  ffi.Pointer<ffi.Uint8> is_enabled,
-);
-
-typedef _c_rcl_set_ros_time_override = ffi.Int32 Function(
-  ffi.Pointer<rcl_clock_t> clock,
-  ffi.Int64 time_value,
-);
-
-typedef _dart_rcl_set_ros_time_override = int Function(
-  ffi.Pointer<rcl_clock_t> clock,
-  int time_value,
-);
-
-typedef rcl_jump_callback_t = ffi.Void Function(
-  ffi.Pointer<rcl_time_jump_t>,
-  ffi.Uint8,
-  ffi.Pointer<ffi.Void>,
-);
-
-typedef _c_rcl_clock_add_jump_callback = ffi.Int32 Function(
-  ffi.Pointer<rcl_clock_t> clock,
-  rcl_jump_threshold_t threshold,
-  ffi.Pointer<ffi.NativeFunction<rcl_jump_callback_t>> callback,
-  ffi.Pointer<ffi.Void> user_data,
-);
-
-typedef _dart_rcl_clock_add_jump_callback = int Function(
-  ffi.Pointer<rcl_clock_t> clock,
-  rcl_jump_threshold_t threshold,
-  ffi.Pointer<ffi.NativeFunction<rcl_jump_callback_t>> callback,
-  ffi.Pointer<ffi.Void> user_data,
-);
-
-typedef _c_rcl_clock_remove_jump_callback = ffi.Int32 Function(
-  ffi.Pointer<rcl_clock_t> clock,
-  ffi.Pointer<ffi.NativeFunction<rcl_jump_callback_t>> callback,
-  ffi.Pointer<ffi.Void> user_data,
-);
-
-typedef _dart_rcl_clock_remove_jump_callback = int Function(
-  ffi.Pointer<rcl_clock_t> clock,
-  ffi.Pointer<ffi.NativeFunction<rcl_jump_callback_t>> callback,
-  ffi.Pointer<ffi.Void> user_data,
-);
-
-typedef _c_get_message_bounds_handle = ffi.Pointer<rosidl_message_bounds_t>
-    Function(
-  ffi.Pointer<rosidl_message_bounds_t> handle,
-  ffi.Pointer<ffi.Int8> identifier,
-);
-
-typedef _dart_get_message_bounds_handle = ffi.Pointer<rosidl_message_bounds_t>
-    Function(
-  ffi.Pointer<rosidl_message_bounds_t> handle,
-  ffi.Pointer<ffi.Int8> identifier,
-);
-
-typedef _c_get_message_bounds_handle_function
-    = ffi.Pointer<rosidl_message_bounds_t> Function(
-  ffi.Pointer<rosidl_message_bounds_t> handle,
-  ffi.Pointer<ffi.Int8> identifier,
-);
-
-typedef _dart_get_message_bounds_handle_function
-    = ffi.Pointer<rosidl_message_bounds_t> Function(
-  ffi.Pointer<rosidl_message_bounds_t> handle,
-  ffi.Pointer<ffi.Int8> identifier,
-);
-
-typedef _c_rmw_get_default_subscription_options = rmw_subscription_options_t
-    Function();
-
-typedef _dart_rmw_get_default_subscription_options = rmw_subscription_options_t
-    Function();
-
-typedef _c_rmw_get_implementation_identifier = ffi.Pointer<ffi.Int8> Function();
-
-typedef _dart_rmw_get_implementation_identifier = ffi.Pointer<ffi.Int8>
-    Function();
-
-typedef _c_rmw_get_serialization_format = ffi.Pointer<ffi.Int8> Function();
-
-typedef _dart_rmw_get_serialization_format = ffi.Pointer<ffi.Int8> Function();
-
-typedef _c_rmw_create_node = ffi.Pointer<rmw_node_t> Function(
-  ffi.Pointer<rmw_context_t> context,
-  ffi.Pointer<ffi.Int8> name,
-  ffi.Pointer<ffi.Int8> namespace_,
-  ffi.Uint64 domain_id,
-  ffi.Pointer<rmw_node_security_options_t> security_options,
-  ffi.Uint8 localhost_only,
-);
-
-typedef _dart_rmw_create_node = ffi.Pointer<rmw_node_t> Function(
-  ffi.Pointer<rmw_context_t> context,
-  ffi.Pointer<ffi.Int8> name,
-  ffi.Pointer<ffi.Int8> namespace_,
-  int domain_id,
-  ffi.Pointer<rmw_node_security_options_t> security_options,
-  int localhost_only,
-);
-
-typedef _c_rmw_destroy_node = ffi.Int32 Function(
-  ffi.Pointer<rmw_node_t> node,
-);
-
-typedef _dart_rmw_destroy_node = int Function(
-  ffi.Pointer<rmw_node_t> node,
-);
-
-typedef _c_rmw_node_assert_liveliness = ffi.Int32 Function(
-  ffi.Pointer<rmw_node_t> node,
-);
-
-typedef _dart_rmw_node_assert_liveliness = int Function(
-  ffi.Pointer<rmw_node_t> node,
-);
-
-typedef _c_rmw_node_get_graph_guard_condition
-    = ffi.Pointer<rmw_guard_condition_t> Function(
-  ffi.Pointer<rmw_node_t> node,
-);
-
-typedef _dart_rmw_node_get_graph_guard_condition
-    = ffi.Pointer<rmw_guard_condition_t> Function(
-  ffi.Pointer<rmw_node_t> node,
-);
-
-typedef _c_rmw_init_publisher_allocation = ffi.Int32 Function(
-  ffi.Pointer<rosidl_message_type_support_t> type_support,
-  ffi.Pointer<rosidl_message_bounds_t> message_bounds,
-  ffi.Pointer<rmw_publisher_allocation_t> allocation,
-);
-
-typedef _dart_rmw_init_publisher_allocation = int Function(
-  ffi.Pointer<rosidl_message_type_support_t> type_support,
-  ffi.Pointer<rosidl_message_bounds_t> message_bounds,
-  ffi.Pointer<rmw_publisher_allocation_t> allocation,
-);
-
-typedef _c_rmw_fini_publisher_allocation = ffi.Int32 Function(
-  ffi.Pointer<rmw_publisher_allocation_t> allocation,
-);
-
-typedef _dart_rmw_fini_publisher_allocation = int Function(
-  ffi.Pointer<rmw_publisher_allocation_t> allocation,
-);
-
-typedef _c_rmw_get_default_publisher_options = rmw_publisher_options_t
-    Function();
-
-typedef _dart_rmw_get_default_publisher_options = rmw_publisher_options_t
-    Function();
-
-typedef _c_rmw_create_publisher = ffi.Pointer<rmw_publisher_t> Function(
-  ffi.Pointer<rmw_node_t> node,
-  ffi.Pointer<rosidl_message_type_support_t> type_support,
-  ffi.Pointer<ffi.Int8> topic_name,
-  ffi.Pointer<rmw_qos_profile_t> qos_policies,
-  ffi.Pointer<rmw_publisher_options_t> publisher_options,
-);
-
-typedef _dart_rmw_create_publisher = ffi.Pointer<rmw_publisher_t> Function(
-  ffi.Pointer<rmw_node_t> node,
-  ffi.Pointer<rosidl_message_type_support_t> type_support,
-  ffi.Pointer<ffi.Int8> topic_name,
-  ffi.Pointer<rmw_qos_profile_t> qos_policies,
-  ffi.Pointer<rmw_publisher_options_t> publisher_options,
-);
-
-typedef _c_rmw_destroy_publisher = ffi.Int32 Function(
-  ffi.Pointer<rmw_node_t> node,
-  ffi.Pointer<rmw_publisher_t> publisher,
-);
-
-typedef _dart_rmw_destroy_publisher = int Function(
-  ffi.Pointer<rmw_node_t> node,
-  ffi.Pointer<rmw_publisher_t> publisher,
-);
-
-typedef _c_rmw_borrow_loaned_message = ffi.Int32 Function(
-  ffi.Pointer<rmw_publisher_t> publisher,
-  ffi.Pointer<rosidl_message_type_support_t> type_support,
-  ffi.Pointer<ffi.Pointer<ffi.Void>> ros_message,
-);
-
-typedef _dart_rmw_borrow_loaned_message = int Function(
-  ffi.Pointer<rmw_publisher_t> publisher,
-  ffi.Pointer<rosidl_message_type_support_t> type_support,
-  ffi.Pointer<ffi.Pointer<ffi.Void>> ros_message,
-);
-
-typedef _c_rmw_return_loaned_message_from_publisher = ffi.Int32 Function(
-  ffi.Pointer<rmw_publisher_t> publisher,
-  ffi.Pointer<ffi.Void> loaned_message,
-);
-
-typedef _dart_rmw_return_loaned_message_from_publisher = int Function(
-  ffi.Pointer<rmw_publisher_t> publisher,
-  ffi.Pointer<ffi.Void> loaned_message,
-);
-
-typedef _c_rmw_publish = ffi.Int32 Function(
-  ffi.Pointer<rmw_publisher_t> publisher,
-  ffi.Pointer<ffi.Void> ros_message,
-  ffi.Pointer<rmw_publisher_allocation_t> allocation,
-);
-
-typedef _dart_rmw_publish = int Function(
-  ffi.Pointer<rmw_publisher_t> publisher,
-  ffi.Pointer<ffi.Void> ros_message,
-  ffi.Pointer<rmw_publisher_allocation_t> allocation,
-);
-
-typedef _c_rmw_publish_loaned_message = ffi.Int32 Function(
-  ffi.Pointer<rmw_publisher_t> publisher,
-  ffi.Pointer<ffi.Void> ros_message,
-  ffi.Pointer<rmw_publisher_allocation_t> allocation,
-);
-
-typedef _dart_rmw_publish_loaned_message = int Function(
-  ffi.Pointer<rmw_publisher_t> publisher,
-  ffi.Pointer<ffi.Void> ros_message,
-  ffi.Pointer<rmw_publisher_allocation_t> allocation,
-);
-
-typedef _c_rmw_publisher_count_matched_subscriptions = ffi.Int32 Function(
-  ffi.Pointer<rmw_publisher_t> publisher,
-  ffi.Pointer<ffi.Uint64> subscription_count,
-);
-
-typedef _dart_rmw_publisher_count_matched_subscriptions = int Function(
-  ffi.Pointer<rmw_publisher_t> publisher,
-  ffi.Pointer<ffi.Uint64> subscription_count,
-);
-
-typedef _c_rmw_publisher_get_actual_qos = ffi.Int32 Function(
-  ffi.Pointer<rmw_publisher_t> publisher,
-  ffi.Pointer<rmw_qos_profile_t> qos,
-);
-
-typedef _dart_rmw_publisher_get_actual_qos = int Function(
-  ffi.Pointer<rmw_publisher_t> publisher,
-  ffi.Pointer<rmw_qos_profile_t> qos,
-);
-
-typedef _c_rmw_publish_serialized_message = ffi.Int32 Function(
-  ffi.Pointer<rmw_publisher_t> publisher,
-  ffi.Pointer<rcutils_uint8_array_t> serialized_message,
-  ffi.Pointer<rmw_publisher_allocation_t> allocation,
-);
-
-typedef _dart_rmw_publish_serialized_message = int Function(
-  ffi.Pointer<rmw_publisher_t> publisher,
-  ffi.Pointer<rcutils_uint8_array_t> serialized_message,
-  ffi.Pointer<rmw_publisher_allocation_t> allocation,
-);
-
-typedef _c_rmw_get_serialized_message_size = ffi.Int32 Function(
-  ffi.Pointer<rosidl_message_type_support_t> type_support,
-  ffi.Pointer<rosidl_message_bounds_t> message_bounds,
-  ffi.Pointer<ffi.Uint64> size,
-);
-
-typedef _dart_rmw_get_serialized_message_size = int Function(
-  ffi.Pointer<rosidl_message_type_support_t> type_support,
-  ffi.Pointer<rosidl_message_bounds_t> message_bounds,
-  ffi.Pointer<ffi.Uint64> size,
-);
-
-typedef _c_rmw_publisher_assert_liveliness = ffi.Int32 Function(
-  ffi.Pointer<rmw_publisher_t> publisher,
-);
-
-typedef _dart_rmw_publisher_assert_liveliness = int Function(
-  ffi.Pointer<rmw_publisher_t> publisher,
-);
-
-typedef _c_rmw_serialize = ffi.Int32 Function(
-  ffi.Pointer<ffi.Void> ros_message,
-  ffi.Pointer<rosidl_message_type_support_t> type_support,
-  ffi.Pointer<rcutils_uint8_array_t> serialized_message,
-);
-
-typedef _dart_rmw_serialize = int Function(
-  ffi.Pointer<ffi.Void> ros_message,
-  ffi.Pointer<rosidl_message_type_support_t> type_support,
-  ffi.Pointer<rcutils_uint8_array_t> serialized_message,
-);
-
-typedef _c_rmw_deserialize = ffi.Int32 Function(
-  ffi.Pointer<rcutils_uint8_array_t> serialized_message,
-  ffi.Pointer<rosidl_message_type_support_t> type_support,
-  ffi.Pointer<ffi.Void> ros_message,
-);
-
-typedef _dart_rmw_deserialize = int Function(
-  ffi.Pointer<rcutils_uint8_array_t> serialized_message,
-  ffi.Pointer<rosidl_message_type_support_t> type_support,
-  ffi.Pointer<ffi.Void> ros_message,
-);
-
-typedef _c_rmw_init_subscription_allocation = ffi.Int32 Function(
-  ffi.Pointer<rosidl_message_type_support_t> type_support,
-  ffi.Pointer<rosidl_message_bounds_t> message_bounds,
-  ffi.Pointer<rmw_subscription_allocation_t> allocation,
-);
-
-typedef _dart_rmw_init_subscription_allocation = int Function(
-  ffi.Pointer<rosidl_message_type_support_t> type_support,
-  ffi.Pointer<rosidl_message_bounds_t> message_bounds,
-  ffi.Pointer<rmw_subscription_allocation_t> allocation,
-);
-
-typedef _c_rmw_fini_subscription_allocation = ffi.Int32 Function(
-  ffi.Pointer<rmw_subscription_allocation_t> allocation,
-);
-
-typedef _dart_rmw_fini_subscription_allocation = int Function(
-  ffi.Pointer<rmw_subscription_allocation_t> allocation,
-);
-
-typedef _c_rmw_create_subscription = ffi.Pointer<rmw_subscription_t> Function(
-  ffi.Pointer<rmw_node_t> node,
-  ffi.Pointer<rosidl_message_type_support_t> type_support,
-  ffi.Pointer<ffi.Int8> topic_name,
-  ffi.Pointer<rmw_qos_profile_t> qos_policies,
-  ffi.Pointer<rmw_subscription_options_t> subscription_options,
-);
-
-typedef _dart_rmw_create_subscription = ffi.Pointer<rmw_subscription_t>
-    Function(
-  ffi.Pointer<rmw_node_t> node,
-  ffi.Pointer<rosidl_message_type_support_t> type_support,
-  ffi.Pointer<ffi.Int8> topic_name,
-  ffi.Pointer<rmw_qos_profile_t> qos_policies,
-  ffi.Pointer<rmw_subscription_options_t> subscription_options,
-);
-
-typedef _c_rmw_destroy_subscription = ffi.Int32 Function(
-  ffi.Pointer<rmw_node_t> node,
-  ffi.Pointer<rmw_subscription_t> subscription,
-);
-
-typedef _dart_rmw_destroy_subscription = int Function(
-  ffi.Pointer<rmw_node_t> node,
-  ffi.Pointer<rmw_subscription_t> subscription,
-);
-
-typedef _c_rmw_subscription_count_matched_publishers = ffi.Int32 Function(
-  ffi.Pointer<rmw_subscription_t> subscription,
-  ffi.Pointer<ffi.Uint64> publisher_count,
-);
-
-typedef _dart_rmw_subscription_count_matched_publishers = int Function(
-  ffi.Pointer<rmw_subscription_t> subscription,
-  ffi.Pointer<ffi.Uint64> publisher_count,
-);
-
-typedef _c_rmw_subscription_get_actual_qos = ffi.Int32 Function(
-  ffi.Pointer<rmw_subscription_t> subscription,
-  ffi.Pointer<rmw_qos_profile_t> qos,
-);
-
-typedef _dart_rmw_subscription_get_actual_qos = int Function(
-  ffi.Pointer<rmw_subscription_t> subscription,
-  ffi.Pointer<rmw_qos_profile_t> qos,
-);
-
-typedef _c_rmw_take = ffi.Int32 Function(
-  ffi.Pointer<rmw_subscription_t> subscription,
-  ffi.Pointer<ffi.Void> ros_message,
-  ffi.Pointer<ffi.Uint8> taken,
-  ffi.Pointer<rmw_subscription_allocation_t> allocation,
-);
-
-typedef _dart_rmw_take = int Function(
-  ffi.Pointer<rmw_subscription_t> subscription,
-  ffi.Pointer<ffi.Void> ros_message,
-  ffi.Pointer<ffi.Uint8> taken,
-  ffi.Pointer<rmw_subscription_allocation_t> allocation,
-);
-
-typedef _c_rmw_take_with_info = ffi.Int32 Function(
-  ffi.Pointer<rmw_subscription_t> subscription,
-  ffi.Pointer<ffi.Void> ros_message,
-  ffi.Pointer<ffi.Uint8> taken,
-  ffi.Pointer<rmw_message_info_t> message_info,
-  ffi.Pointer<rmw_subscription_allocation_t> allocation,
-);
-
-typedef _dart_rmw_take_with_info = int Function(
-  ffi.Pointer<rmw_subscription_t> subscription,
-  ffi.Pointer<ffi.Void> ros_message,
-  ffi.Pointer<ffi.Uint8> taken,
-  ffi.Pointer<rmw_message_info_t> message_info,
-  ffi.Pointer<rmw_subscription_allocation_t> allocation,
-);
-
-typedef _c_rmw_take_serialized_message = ffi.Int32 Function(
-  ffi.Pointer<rmw_subscription_t> subscription,
-  ffi.Pointer<rcutils_uint8_array_t> serialized_message,
-  ffi.Pointer<ffi.Uint8> taken,
-  ffi.Pointer<rmw_subscription_allocation_t> allocation,
-);
-
-typedef _dart_rmw_take_serialized_message = int Function(
-  ffi.Pointer<rmw_subscription_t> subscription,
-  ffi.Pointer<rcutils_uint8_array_t> serialized_message,
-  ffi.Pointer<ffi.Uint8> taken,
-  ffi.Pointer<rmw_subscription_allocation_t> allocation,
-);
-
-typedef _c_rmw_take_serialized_message_with_info = ffi.Int32 Function(
-  ffi.Pointer<rmw_subscription_t> subscription,
-  ffi.Pointer<rcutils_uint8_array_t> serialized_message,
-  ffi.Pointer<ffi.Uint8> taken,
-  ffi.Pointer<rmw_message_info_t> message_info,
-  ffi.Pointer<rmw_subscription_allocation_t> allocation,
-);
-
-typedef _dart_rmw_take_serialized_message_with_info = int Function(
-  ffi.Pointer<rmw_subscription_t> subscription,
-  ffi.Pointer<rcutils_uint8_array_t> serialized_message,
-  ffi.Pointer<ffi.Uint8> taken,
-  ffi.Pointer<rmw_message_info_t> message_info,
-  ffi.Pointer<rmw_subscription_allocation_t> allocation,
-);
-
-typedef _c_rmw_take_loaned_message = ffi.Int32 Function(
-  ffi.Pointer<rmw_subscription_t> subscription,
-  ffi.Pointer<ffi.Pointer<ffi.Void>> loaned_message,
-  ffi.Pointer<ffi.Uint8> taken,
-  ffi.Pointer<rmw_subscription_allocation_t> allocation,
-);
-
-typedef _dart_rmw_take_loaned_message = int Function(
-  ffi.Pointer<rmw_subscription_t> subscription,
-  ffi.Pointer<ffi.Pointer<ffi.Void>> loaned_message,
-  ffi.Pointer<ffi.Uint8> taken,
-  ffi.Pointer<rmw_subscription_allocation_t> allocation,
-);
-
-typedef _c_rmw_take_loaned_message_with_info = ffi.Int32 Function(
-  ffi.Pointer<rmw_subscription_t> subscription,
-  ffi.Pointer<ffi.Pointer<ffi.Void>> loaned_message,
-  ffi.Pointer<ffi.Uint8> taken,
-  ffi.Pointer<rmw_message_info_t> message_info,
-  ffi.Pointer<rmw_subscription_allocation_t> allocation,
-);
-
-typedef _dart_rmw_take_loaned_message_with_info = int Function(
-  ffi.Pointer<rmw_subscription_t> subscription,
-  ffi.Pointer<ffi.Pointer<ffi.Void>> loaned_message,
-  ffi.Pointer<ffi.Uint8> taken,
-  ffi.Pointer<rmw_message_info_t> message_info,
-  ffi.Pointer<rmw_subscription_allocation_t> allocation,
-);
-
-typedef _c_rmw_return_loaned_message_from_subscription = ffi.Int32 Function(
-  ffi.Pointer<rmw_subscription_t> subscription,
-  ffi.Pointer<ffi.Void> loaned_message,
-);
-
-typedef _dart_rmw_return_loaned_message_from_subscription = int Function(
-  ffi.Pointer<rmw_subscription_t> subscription,
-  ffi.Pointer<ffi.Void> loaned_message,
-);
-
-typedef _c_rmw_create_client = ffi.Pointer<rmw_client_t> Function(
-  ffi.Pointer<rmw_node_t> node,
-  ffi.Pointer<rosidl_service_type_support_t> type_support,
-  ffi.Pointer<ffi.Int8> service_name,
-  ffi.Pointer<rmw_qos_profile_t> qos_policies,
-);
-
-typedef _dart_rmw_create_client = ffi.Pointer<rmw_client_t> Function(
-  ffi.Pointer<rmw_node_t> node,
-  ffi.Pointer<rosidl_service_type_support_t> type_support,
-  ffi.Pointer<ffi.Int8> service_name,
-  ffi.Pointer<rmw_qos_profile_t> qos_policies,
-);
-
-typedef _c_rmw_destroy_client = ffi.Int32 Function(
-  ffi.Pointer<rmw_node_t> node,
-  ffi.Pointer<rmw_client_t> client,
-);
-
-typedef _dart_rmw_destroy_client = int Function(
-  ffi.Pointer<rmw_node_t> node,
-  ffi.Pointer<rmw_client_t> client,
-);
-
-typedef _c_rmw_send_request = ffi.Int32 Function(
-  ffi.Pointer<rmw_client_t> client,
-  ffi.Pointer<ffi.Void> ros_request,
-  ffi.Pointer<ffi.Int64> sequence_id,
-);
-
-typedef _dart_rmw_send_request = int Function(
-  ffi.Pointer<rmw_client_t> client,
-  ffi.Pointer<ffi.Void> ros_request,
-  ffi.Pointer<ffi.Int64> sequence_id,
-);
-
-typedef _c_rmw_take_response = ffi.Int32 Function(
-  ffi.Pointer<rmw_client_t> client,
-  ffi.Pointer<rmw_request_id_t> request_header,
-  ffi.Pointer<ffi.Void> ros_response,
-  ffi.Pointer<ffi.Uint8> taken,
-);
-
-typedef _dart_rmw_take_response = int Function(
-  ffi.Pointer<rmw_client_t> client,
-  ffi.Pointer<rmw_request_id_t> request_header,
-  ffi.Pointer<ffi.Void> ros_response,
-  ffi.Pointer<ffi.Uint8> taken,
-);
-
-typedef _c_rmw_create_service = ffi.Pointer<rmw_service_t> Function(
-  ffi.Pointer<rmw_node_t> node,
-  ffi.Pointer<rosidl_service_type_support_t> type_support,
-  ffi.Pointer<ffi.Int8> service_name,
-  ffi.Pointer<rmw_qos_profile_t> qos_policies,
-);
-
-typedef _dart_rmw_create_service = ffi.Pointer<rmw_service_t> Function(
-  ffi.Pointer<rmw_node_t> node,
-  ffi.Pointer<rosidl_service_type_support_t> type_support,
-  ffi.Pointer<ffi.Int8> service_name,
-  ffi.Pointer<rmw_qos_profile_t> qos_policies,
-);
-
-typedef _c_rmw_destroy_service = ffi.Int32 Function(
-  ffi.Pointer<rmw_node_t> node,
-  ffi.Pointer<rmw_service_t> service,
-);
-
-typedef _dart_rmw_destroy_service = int Function(
-  ffi.Pointer<rmw_node_t> node,
-  ffi.Pointer<rmw_service_t> service,
-);
-
-typedef _c_rmw_take_request = ffi.Int32 Function(
-  ffi.Pointer<rmw_service_t> service,
-  ffi.Pointer<rmw_request_id_t> request_header,
-  ffi.Pointer<ffi.Void> ros_request,
-  ffi.Pointer<ffi.Uint8> taken,
-);
-
-typedef _dart_rmw_take_request = int Function(
-  ffi.Pointer<rmw_service_t> service,
-  ffi.Pointer<rmw_request_id_t> request_header,
-  ffi.Pointer<ffi.Void> ros_request,
-  ffi.Pointer<ffi.Uint8> taken,
-);
-
-typedef _c_rmw_send_response = ffi.Int32 Function(
-  ffi.Pointer<rmw_service_t> service,
-  ffi.Pointer<rmw_request_id_t> request_header,
-  ffi.Pointer<ffi.Void> ros_response,
-);
-
-typedef _dart_rmw_send_response = int Function(
-  ffi.Pointer<rmw_service_t> service,
-  ffi.Pointer<rmw_request_id_t> request_header,
-  ffi.Pointer<ffi.Void> ros_response,
-);
-
-typedef _c_rmw_create_guard_condition = ffi.Pointer<rmw_guard_condition_t>
-    Function(
-  ffi.Pointer<rmw_context_t> context,
-);
-
-typedef _dart_rmw_create_guard_condition = ffi.Pointer<rmw_guard_condition_t>
-    Function(
-  ffi.Pointer<rmw_context_t> context,
-);
-
-typedef _c_rmw_destroy_guard_condition = ffi.Int32 Function(
-  ffi.Pointer<rmw_guard_condition_t> guard_condition,
-);
-
-typedef _dart_rmw_destroy_guard_condition = int Function(
-  ffi.Pointer<rmw_guard_condition_t> guard_condition,
-);
-
-typedef _c_rmw_trigger_guard_condition = ffi.Int32 Function(
-  ffi.Pointer<rmw_guard_condition_t> guard_condition,
-);
-
-typedef _dart_rmw_trigger_guard_condition = int Function(
-  ffi.Pointer<rmw_guard_condition_t> guard_condition,
-);
-
-typedef _c_rmw_create_wait_set = ffi.Pointer<rmw_wait_set_t> Function(
-  ffi.Pointer<rmw_context_t> context,
-  ffi.Uint64 max_conditions,
-);
-
-typedef _dart_rmw_create_wait_set = ffi.Pointer<rmw_wait_set_t> Function(
-  ffi.Pointer<rmw_context_t> context,
-  int max_conditions,
-);
-
-typedef _c_rmw_destroy_wait_set = ffi.Int32 Function(
-  ffi.Pointer<rmw_wait_set_t> wait_set,
-);
-
-typedef _dart_rmw_destroy_wait_set = int Function(
-  ffi.Pointer<rmw_wait_set_t> wait_set,
-);
-
-typedef _c_rmw_wait = ffi.Int32 Function(
-  ffi.Pointer<rmw_subscriptions_t> subscriptions,
-  ffi.Pointer<rmw_guard_conditions_t> guard_conditions,
-  ffi.Pointer<rmw_services_t> services,
-  ffi.Pointer<rmw_clients_t> clients,
-  ffi.Pointer<rmw_events_t> events,
-  ffi.Pointer<rmw_wait_set_t> wait_set,
-  ffi.Pointer<rmw_time_t> wait_timeout,
-);
-
-typedef _dart_rmw_wait = int Function(
-  ffi.Pointer<rmw_subscriptions_t> subscriptions,
-  ffi.Pointer<rmw_guard_conditions_t> guard_conditions,
-  ffi.Pointer<rmw_services_t> services,
-  ffi.Pointer<rmw_clients_t> clients,
-  ffi.Pointer<rmw_events_t> events,
-  ffi.Pointer<rmw_wait_set_t> wait_set,
-  ffi.Pointer<rmw_time_t> wait_timeout,
-);
-
-typedef _c_rmw_get_node_names = ffi.Int32 Function(
-  ffi.Pointer<rmw_node_t> node,
-  ffi.Pointer<rcutils_string_array_t> node_names,
-  ffi.Pointer<rcutils_string_array_t> node_namespaces,
-);
-
-typedef _dart_rmw_get_node_names = int Function(
-  ffi.Pointer<rmw_node_t> node,
-  ffi.Pointer<rcutils_string_array_t> node_names,
-  ffi.Pointer<rcutils_string_array_t> node_namespaces,
-);
-
-typedef _c_rmw_count_publishers = ffi.Int32 Function(
-  ffi.Pointer<rmw_node_t> node,
-  ffi.Pointer<ffi.Int8> topic_name,
-  ffi.Pointer<ffi.Uint64> count,
-);
-
-typedef _dart_rmw_count_publishers = int Function(
-  ffi.Pointer<rmw_node_t> node,
-  ffi.Pointer<ffi.Int8> topic_name,
-  ffi.Pointer<ffi.Uint64> count,
-);
-
-typedef _c_rmw_count_subscribers = ffi.Int32 Function(
-  ffi.Pointer<rmw_node_t> node,
-  ffi.Pointer<ffi.Int8> topic_name,
-  ffi.Pointer<ffi.Uint64> count,
-);
-
-typedef _dart_rmw_count_subscribers = int Function(
-  ffi.Pointer<rmw_node_t> node,
-  ffi.Pointer<ffi.Int8> topic_name,
-  ffi.Pointer<ffi.Uint64> count,
-);
-
-typedef _c_rmw_get_gid_for_publisher = ffi.Int32 Function(
-  ffi.Pointer<rmw_publisher_t> publisher,
-  ffi.Pointer<rmw_gid_t> gid,
-);
-
-typedef _dart_rmw_get_gid_for_publisher = int Function(
-  ffi.Pointer<rmw_publisher_t> publisher,
-  ffi.Pointer<rmw_gid_t> gid,
-);
-
-typedef _c_rmw_compare_gids_equal = ffi.Int32 Function(
-  ffi.Pointer<rmw_gid_t> gid1,
-  ffi.Pointer<rmw_gid_t> gid2,
-  ffi.Pointer<ffi.Uint8> result,
-);
-
-typedef _dart_rmw_compare_gids_equal = int Function(
-  ffi.Pointer<rmw_gid_t> gid1,
-  ffi.Pointer<rmw_gid_t> gid2,
-  ffi.Pointer<ffi.Uint8> result,
-);
-
-typedef _c_rmw_service_server_is_available = ffi.Int32 Function(
-  ffi.Pointer<rmw_node_t> node,
-  ffi.Pointer<rmw_client_t> client,
-  ffi.Pointer<ffi.Uint8> is_available,
-);
-
-typedef _dart_rmw_service_server_is_available = int Function(
-  ffi.Pointer<rmw_node_t> node,
-  ffi.Pointer<rmw_client_t> client,
-  ffi.Pointer<ffi.Uint8> is_available,
-);
-
-typedef _c_rmw_set_log_severity = ffi.Int32 Function(
-  ffi.Int32 severity,
-);
-
-typedef _dart_rmw_set_log_severity = int Function(
-  int severity,
-);
-
-typedef _c_rcl_get_zero_initialized_timer = rcl_timer_t Function();
-
-typedef _dart_rcl_get_zero_initialized_timer = rcl_timer_t Function();
-
-typedef rcl_timer_callback_t = ffi.Void Function(
-  ffi.Pointer<rcl_timer_t>,
-  ffi.Int64,
-);
-
-typedef _c_rcl_timer_init = ffi.Int32 Function(
-  ffi.Pointer<rcl_timer_t> timer,
-  ffi.Pointer<rcl_clock_t> clock,
-  ffi.Pointer<rcl_context_t> context,
-  ffi.Int64 period,
-  ffi.Pointer<ffi.NativeFunction<rcl_timer_callback_t>> callback,
-  rcutils_allocator_t allocator,
-);
-
-typedef _dart_rcl_timer_init = int Function(
-  ffi.Pointer<rcl_timer_t> timer,
-  ffi.Pointer<rcl_clock_t> clock,
-  ffi.Pointer<rcl_context_t> context,
-  int period,
-  ffi.Pointer<ffi.NativeFunction<rcl_timer_callback_t>> callback,
-  rcutils_allocator_t allocator,
-);
-
-typedef _c_rcl_timer_fini = ffi.Int32 Function(
-  ffi.Pointer<rcl_timer_t> timer,
-);
-
-typedef _dart_rcl_timer_fini = int Function(
-  ffi.Pointer<rcl_timer_t> timer,
-);
-
-typedef _c_rcl_timer_call = ffi.Int32 Function(
-  ffi.Pointer<rcl_timer_t> timer,
-);
-
-typedef _dart_rcl_timer_call = int Function(
-  ffi.Pointer<rcl_timer_t> timer,
-);
-
-typedef _c_rcl_timer_clock = ffi.Int32 Function(
-  ffi.Pointer<rcl_timer_t> timer,
-  ffi.Pointer<ffi.Pointer<rcl_clock_t>> clock,
-);
-
-typedef _dart_rcl_timer_clock = int Function(
-  ffi.Pointer<rcl_timer_t> timer,
-  ffi.Pointer<ffi.Pointer<rcl_clock_t>> clock,
-);
-
-typedef _c_rcl_timer_is_ready = ffi.Int32 Function(
-  ffi.Pointer<rcl_timer_t> timer,
-  ffi.Pointer<ffi.Uint8> is_ready,
-);
-
-typedef _dart_rcl_timer_is_ready = int Function(
-  ffi.Pointer<rcl_timer_t> timer,
-  ffi.Pointer<ffi.Uint8> is_ready,
-);
-
-typedef _c_rcl_timer_get_time_until_next_call = ffi.Int32 Function(
-  ffi.Pointer<rcl_timer_t> timer,
-  ffi.Pointer<ffi.Int64> time_until_next_call,
-);
-
-typedef _dart_rcl_timer_get_time_until_next_call = int Function(
-  ffi.Pointer<rcl_timer_t> timer,
-  ffi.Pointer<ffi.Int64> time_until_next_call,
-);
-
-typedef _c_rcl_timer_get_time_since_last_call = ffi.Int32 Function(
-  ffi.Pointer<rcl_timer_t> timer,
-  ffi.Pointer<ffi.Int64> time_since_last_call,
-);
-
-typedef _dart_rcl_timer_get_time_since_last_call = int Function(
-  ffi.Pointer<rcl_timer_t> timer,
-  ffi.Pointer<ffi.Int64> time_since_last_call,
-);
-
-typedef _c_rcl_timer_get_period = ffi.Int32 Function(
-  ffi.Pointer<rcl_timer_t> timer,
-  ffi.Pointer<ffi.Int64> period,
-);
-
-typedef _dart_rcl_timer_get_period = int Function(
-  ffi.Pointer<rcl_timer_t> timer,
-  ffi.Pointer<ffi.Int64> period,
-);
-
-typedef _c_rcl_timer_exchange_period = ffi.Int32 Function(
-  ffi.Pointer<rcl_timer_t> timer,
-  ffi.Int64 new_period,
-  ffi.Pointer<ffi.Int64> old_period,
-);
-
-typedef _dart_rcl_timer_exchange_period = int Function(
-  ffi.Pointer<rcl_timer_t> timer,
-  int new_period,
-  ffi.Pointer<ffi.Int64> old_period,
-);
-
-typedef _c_rcl_timer_get_callback
-    = ffi.Pointer<ffi.NativeFunction<rcl_timer_callback_t>> Function(
-  ffi.Pointer<rcl_timer_t> timer,
-);
-
-typedef _dart_rcl_timer_get_callback
-    = ffi.Pointer<ffi.NativeFunction<rcl_timer_callback_t>> Function(
-  ffi.Pointer<rcl_timer_t> timer,
-);
-
-typedef _c_rcl_timer_exchange_callback
-    = ffi.Pointer<ffi.NativeFunction<rcl_timer_callback_t>> Function(
-  ffi.Pointer<rcl_timer_t> timer,
-  ffi.Pointer<ffi.NativeFunction<rcl_timer_callback_t>> new_callback,
-);
-
-typedef _dart_rcl_timer_exchange_callback
-    = ffi.Pointer<ffi.NativeFunction<rcl_timer_callback_t>> Function(
-  ffi.Pointer<rcl_timer_t> timer,
-  ffi.Pointer<ffi.NativeFunction<rcl_timer_callback_t>> new_callback,
-);
-
-typedef _c_rcl_timer_cancel = ffi.Int32 Function(
-  ffi.Pointer<rcl_timer_t> timer,
-);
-
-typedef _dart_rcl_timer_cancel = int Function(
-  ffi.Pointer<rcl_timer_t> timer,
-);
-
-typedef _c_rcl_timer_is_canceled = ffi.Int32 Function(
-  ffi.Pointer<rcl_timer_t> timer,
-  ffi.Pointer<ffi.Uint8> is_canceled,
-);
-
-typedef _dart_rcl_timer_is_canceled = int Function(
-  ffi.Pointer<rcl_timer_t> timer,
-  ffi.Pointer<ffi.Uint8> is_canceled,
-);
-
-typedef _c_rcl_timer_reset = ffi.Int32 Function(
-  ffi.Pointer<rcl_timer_t> timer,
-);
-
-typedef _dart_rcl_timer_reset = int Function(
-  ffi.Pointer<rcl_timer_t> timer,
-);
-
-typedef _c_rcl_timer_get_allocator = ffi.Pointer<rcutils_allocator_t> Function(
-  ffi.Pointer<rcl_timer_t> timer,
-);
-
-typedef _dart_rcl_timer_get_allocator = ffi.Pointer<rcutils_allocator_t>
-    Function(
-  ffi.Pointer<rcl_timer_t> timer,
-);
-
-typedef _c_rcl_timer_get_guard_condition = ffi.Pointer<rcl_guard_condition_t>
-    Function(
-  ffi.Pointer<rcl_timer_t> timer,
-);
-
-typedef _dart_rcl_timer_get_guard_condition = ffi.Pointer<rcl_guard_condition_t>
-    Function(
-  ffi.Pointer<rcl_timer_t> timer,
-);
-
-typedef _c_rcl_get_zero_initialized_publisher = rcl_publisher_t Function();
-
-typedef _dart_rcl_get_zero_initialized_publisher = rcl_publisher_t Function();
-
-typedef _c_rcl_publisher_init = ffi.Int32 Function(
-  ffi.Pointer<rcl_publisher_t> publisher,
-  ffi.Pointer<rcl_node_t> node,
-  ffi.Pointer<rosidl_message_type_support_t> type_support,
-  ffi.Pointer<ffi.Int8> topic_name,
-  ffi.Pointer<rcl_publisher_options_t> options,
-);
-
-typedef _dart_rcl_publisher_init = int Function(
-  ffi.Pointer<rcl_publisher_t> publisher,
-  ffi.Pointer<rcl_node_t> node,
-  ffi.Pointer<rosidl_message_type_support_t> type_support,
-  ffi.Pointer<ffi.Int8> topic_name,
-  ffi.Pointer<rcl_publisher_options_t> options,
-);
-
-typedef _c_rcl_publisher_fini = ffi.Int32 Function(
-  ffi.Pointer<rcl_publisher_t> publisher,
-  ffi.Pointer<rcl_node_t> node,
-);
-
-typedef _dart_rcl_publisher_fini = int Function(
-  ffi.Pointer<rcl_publisher_t> publisher,
-  ffi.Pointer<rcl_node_t> node,
-);
-
-typedef _c_rcl_publisher_get_default_options = rcl_publisher_options_t
-    Function();
-
-typedef _dart_rcl_publisher_get_default_options = rcl_publisher_options_t
-    Function();
-
-typedef _c_rcl_borrow_loaned_message = ffi.Int32 Function(
-  ffi.Pointer<rcl_publisher_t> publisher,
-  ffi.Pointer<rosidl_message_type_support_t> type_support,
-  ffi.Pointer<ffi.Pointer<ffi.Void>> ros_message,
-);
-
-typedef _dart_rcl_borrow_loaned_message = int Function(
-  ffi.Pointer<rcl_publisher_t> publisher,
-  ffi.Pointer<rosidl_message_type_support_t> type_support,
-  ffi.Pointer<ffi.Pointer<ffi.Void>> ros_message,
-);
-
-typedef _c_rcl_return_loaned_message_from_publisher = ffi.Int32 Function(
-  ffi.Pointer<rcl_publisher_t> publisher,
-  ffi.Pointer<ffi.Void> loaned_message,
-);
-
-typedef _dart_rcl_return_loaned_message_from_publisher = int Function(
-  ffi.Pointer<rcl_publisher_t> publisher,
-  ffi.Pointer<ffi.Void> loaned_message,
-);
-
-typedef _c_rcl_publish = ffi.Int32 Function(
-  ffi.Pointer<rcl_publisher_t> publisher,
-  ffi.Pointer<ffi.Void> ros_message,
-  ffi.Pointer<rmw_publisher_allocation_t> allocation,
-);
-
-typedef _dart_rcl_publish = int Function(
-  ffi.Pointer<rcl_publisher_t> publisher,
-  ffi.Pointer<ffi.Void> ros_message,
-  ffi.Pointer<rmw_publisher_allocation_t> allocation,
-);
-
-typedef _c_rcl_publish_serialized_message = ffi.Int32 Function(
-  ffi.Pointer<rcl_publisher_t> publisher,
-  ffi.Pointer<rcutils_uint8_array_t> serialized_message,
-  ffi.Pointer<rmw_publisher_allocation_t> allocation,
-);
-
-typedef _dart_rcl_publish_serialized_message = int Function(
-  ffi.Pointer<rcl_publisher_t> publisher,
-  ffi.Pointer<rcutils_uint8_array_t> serialized_message,
-  ffi.Pointer<rmw_publisher_allocation_t> allocation,
-);
-
-typedef _c_rcl_publish_loaned_message = ffi.Int32 Function(
-  ffi.Pointer<rcl_publisher_t> publisher,
-  ffi.Pointer<ffi.Void> ros_message,
-  ffi.Pointer<rmw_publisher_allocation_t> allocation,
-);
-
-typedef _dart_rcl_publish_loaned_message = int Function(
-  ffi.Pointer<rcl_publisher_t> publisher,
-  ffi.Pointer<ffi.Void> ros_message,
-  ffi.Pointer<rmw_publisher_allocation_t> allocation,
-);
-
-typedef _c_rcl_publisher_assert_liveliness = ffi.Int32 Function(
-  ffi.Pointer<rcl_publisher_t> publisher,
-);
-
-typedef _dart_rcl_publisher_assert_liveliness = int Function(
-  ffi.Pointer<rcl_publisher_t> publisher,
-);
-
-typedef _c_rcl_publisher_get_topic_name = ffi.Pointer<ffi.Int8> Function(
-  ffi.Pointer<rcl_publisher_t> publisher,
-);
-
-typedef _dart_rcl_publisher_get_topic_name = ffi.Pointer<ffi.Int8> Function(
-  ffi.Pointer<rcl_publisher_t> publisher,
-);
-
-typedef _c_rcl_publisher_get_options = ffi.Pointer<rcl_publisher_options_t>
-    Function(
-  ffi.Pointer<rcl_publisher_t> publisher,
-);
-
-typedef _dart_rcl_publisher_get_options = ffi.Pointer<rcl_publisher_options_t>
-    Function(
-  ffi.Pointer<rcl_publisher_t> publisher,
-);
-
-typedef _c_rcl_publisher_get_rmw_handle = ffi.Pointer<rmw_publisher_t> Function(
-  ffi.Pointer<rcl_publisher_t> publisher,
-);
-
-typedef _dart_rcl_publisher_get_rmw_handle = ffi.Pointer<rmw_publisher_t>
-    Function(
-  ffi.Pointer<rcl_publisher_t> publisher,
-);
-
-typedef _c_rcl_publisher_get_context = ffi.Pointer<rcl_context_t> Function(
-  ffi.Pointer<rcl_publisher_t> publisher,
-);
-
-typedef _dart_rcl_publisher_get_context = ffi.Pointer<rcl_context_t> Function(
-  ffi.Pointer<rcl_publisher_t> publisher,
-);
-
-typedef _c_rcl_publisher_is_valid = ffi.Uint8 Function(
-  ffi.Pointer<rcl_publisher_t> publisher,
-);
-
-typedef _dart_rcl_publisher_is_valid = int Function(
-  ffi.Pointer<rcl_publisher_t> publisher,
-);
-
-typedef _c_rcl_publisher_is_valid_except_context = ffi.Uint8 Function(
-  ffi.Pointer<rcl_publisher_t> publisher,
-);
-
-typedef _dart_rcl_publisher_is_valid_except_context = int Function(
-  ffi.Pointer<rcl_publisher_t> publisher,
-);
-
-typedef _c_rcl_publisher_get_subscription_count = ffi.Int32 Function(
-  ffi.Pointer<rcl_publisher_t> publisher,
-  ffi.Pointer<ffi.Uint64> subscription_count,
-);
-
-typedef _dart_rcl_publisher_get_subscription_count = int Function(
-  ffi.Pointer<rcl_publisher_t> publisher,
-  ffi.Pointer<ffi.Uint64> subscription_count,
-);
-
-typedef _c_rcl_publisher_get_actual_qos = ffi.Pointer<rmw_qos_profile_t>
-    Function(
-  ffi.Pointer<rcl_publisher_t> publisher,
-);
-
-typedef _dart_rcl_publisher_get_actual_qos = ffi.Pointer<rmw_qos_profile_t>
-    Function(
-  ffi.Pointer<rcl_publisher_t> publisher,
-);
-
-typedef _c_rcl_publisher_can_loan_messages = ffi.Uint8 Function(
-  ffi.Pointer<rcl_publisher_t> publisher,
-);
-
-typedef _dart_rcl_publisher_can_loan_messages = int Function(
-  ffi.Pointer<rcl_publisher_t> publisher,
-);
-
-typedef _c_rcl_get_zero_initialized_event = rcl_event_t Function();
-
-typedef _dart_rcl_get_zero_initialized_event = rcl_event_t Function();
-
-typedef _c_rcl_publisher_event_init = ffi.Int32 Function(
-  ffi.Pointer<rcl_event_t> event,
-  ffi.Pointer<rcl_publisher_t> publisher,
-  ffi.Int32 event_type,
-);
-
-typedef _dart_rcl_publisher_event_init = int Function(
-  ffi.Pointer<rcl_event_t> event,
-  ffi.Pointer<rcl_publisher_t> publisher,
-  int event_type,
-);
-
-typedef _c_rcl_subscription_event_init = ffi.Int32 Function(
-  ffi.Pointer<rcl_event_t> event,
-  ffi.Pointer<rcl_subscription_t> subscription,
-  ffi.Int32 event_type,
-);
-
-typedef _dart_rcl_subscription_event_init = int Function(
-  ffi.Pointer<rcl_event_t> event,
-  ffi.Pointer<rcl_subscription_t> subscription,
-  int event_type,
-);
-
-typedef _c_rcl_take_event = ffi.Int32 Function(
-  ffi.Pointer<rcl_event_t> event,
-  ffi.Pointer<ffi.Void> event_info,
-);
-
-typedef _dart_rcl_take_event = int Function(
-  ffi.Pointer<rcl_event_t> event,
-  ffi.Pointer<ffi.Void> event_info,
-);
-
-typedef _c_rcl_event_fini = ffi.Int32 Function(
-  ffi.Pointer<rcl_event_t> event,
-);
-
-typedef _dart_rcl_event_fini = int Function(
-  ffi.Pointer<rcl_event_t> event,
-);
-
-typedef _c_rcl_event_get_rmw_handle = ffi.Pointer<rmw_event_t> Function(
-  ffi.Pointer<rcl_event_t> event,
-);
-
-typedef _dart_rcl_event_get_rmw_handle = ffi.Pointer<rmw_event_t> Function(
-  ffi.Pointer<rcl_event_t> event,
-);
-
-typedef _c_rmw_get_zero_initialized_names_and_types = rmw_names_and_types_t
-    Function();
-
-typedef _dart_rmw_get_zero_initialized_names_and_types = rmw_names_and_types_t
-    Function();
-
-typedef _c_rmw_names_and_types_check_zero = ffi.Int32 Function(
-  ffi.Pointer<rmw_names_and_types_t> names_and_types,
-);
-
-typedef _dart_rmw_names_and_types_check_zero = int Function(
-  ffi.Pointer<rmw_names_and_types_t> names_and_types,
-);
-
-typedef _c_rmw_names_and_types_init = ffi.Int32 Function(
-  ffi.Pointer<rmw_names_and_types_t> names_and_types,
-  ffi.Uint64 size,
-  ffi.Pointer<rcutils_allocator_t> allocator,
-);
-
-typedef _dart_rmw_names_and_types_init = int Function(
-  ffi.Pointer<rmw_names_and_types_t> names_and_types,
-  int size,
-  ffi.Pointer<rcutils_allocator_t> allocator,
-);
-
-typedef _c_rmw_names_and_types_fini = ffi.Int32 Function(
-  ffi.Pointer<rmw_names_and_types_t> names_and_types,
-);
-
-typedef _dart_rmw_names_and_types_fini = int Function(
-  ffi.Pointer<rmw_names_and_types_t> names_and_types,
-);
-
-typedef _c_rmw_get_topic_names_and_types = ffi.Int32 Function(
-  ffi.Pointer<rmw_node_t> node,
-  ffi.Pointer<rcutils_allocator_t> allocator,
-  ffi.Uint8 no_demangle,
-  ffi.Pointer<rmw_names_and_types_t> topic_names_and_types,
-);
-
-typedef _dart_rmw_get_topic_names_and_types = int Function(
-  ffi.Pointer<rmw_node_t> node,
-  ffi.Pointer<rcutils_allocator_t> allocator,
-  int no_demangle,
-  ffi.Pointer<rmw_names_and_types_t> topic_names_and_types,
-);
-
-typedef _c_rcl_lexer_analyze = ffi.Int32 Function(
-  ffi.Pointer<ffi.Int8> text,
-  ffi.Pointer<ffi.Int32> lexeme,
-  ffi.Pointer<ffi.Uint64> length,
-);
-
-typedef _dart_rcl_lexer_analyze = int Function(
-  ffi.Pointer<ffi.Int8> text,
-  ffi.Pointer<ffi.Int32> lexeme,
-  ffi.Pointer<ffi.Uint64> length,
-);
-
-typedef _c_rcl_init = ffi.Int32 Function(
-  ffi.Int32 argc,
-  ffi.Pointer<ffi.Pointer<ffi.Int8>> argv,
-  ffi.Pointer<rcl_init_options_t> options,
-  ffi.Pointer<rcl_context_t> context,
-);
-
-typedef _dart_rcl_init = int Function(
-  int argc,
-  ffi.Pointer<ffi.Pointer<ffi.Int8>> argv,
-  ffi.Pointer<rcl_init_options_t> options,
-  ffi.Pointer<rcl_context_t> context,
-);
-
-typedef _c_rcl_shutdown = ffi.Int32 Function(
-  ffi.Pointer<rcl_context_t> context,
-);
-
-typedef _dart_rcl_shutdown = int Function(
-  ffi.Pointer<rcl_context_t> context,
-);
-
-typedef _c_rcl_get_zero_initialized_wait_set = rcl_wait_set_t Function();
-
-typedef _dart_rcl_get_zero_initialized_wait_set = rcl_wait_set_t Function();
-
-typedef _c_rcl_wait_set_init = ffi.Int32 Function(
-  ffi.Pointer<rcl_wait_set_t> wait_set,
-  ffi.Uint64 number_of_subscriptions,
-  ffi.Uint64 number_of_guard_conditions,
-  ffi.Uint64 number_of_timers,
-  ffi.Uint64 number_of_clients,
-  ffi.Uint64 number_of_services,
-  ffi.Uint64 number_of_events,
-  ffi.Pointer<rcl_context_t> context,
-  rcutils_allocator_t allocator,
-);
-
-typedef _dart_rcl_wait_set_init = int Function(
-  ffi.Pointer<rcl_wait_set_t> wait_set,
-  int number_of_subscriptions,
-  int number_of_guard_conditions,
-  int number_of_timers,
-  int number_of_clients,
-  int number_of_services,
-  int number_of_events,
-  ffi.Pointer<rcl_context_t> context,
-  rcutils_allocator_t allocator,
-);
-
-typedef _c_rcl_wait_set_fini = ffi.Int32 Function(
-  ffi.Pointer<rcl_wait_set_t> wait_set,
-);
-
-typedef _dart_rcl_wait_set_fini = int Function(
-  ffi.Pointer<rcl_wait_set_t> wait_set,
-);
-
-typedef _c_rcl_wait_set_get_allocator = ffi.Int32 Function(
-  ffi.Pointer<rcl_wait_set_t> wait_set,
-  ffi.Pointer<rcutils_allocator_t> allocator,
-);
-
-typedef _dart_rcl_wait_set_get_allocator = int Function(
-  ffi.Pointer<rcl_wait_set_t> wait_set,
-  ffi.Pointer<rcutils_allocator_t> allocator,
-);
-
-typedef _c_rcl_wait_set_add_subscription = ffi.Int32 Function(
-  ffi.Pointer<rcl_wait_set_t> wait_set,
-  ffi.Pointer<rcl_subscription_t> subscription,
-  ffi.Pointer<ffi.Uint64> index,
-);
-
-typedef _dart_rcl_wait_set_add_subscription = int Function(
-  ffi.Pointer<rcl_wait_set_t> wait_set,
-  ffi.Pointer<rcl_subscription_t> subscription,
-  ffi.Pointer<ffi.Uint64> index,
-);
-
-typedef _c_rcl_wait_set_clear = ffi.Int32 Function(
-  ffi.Pointer<rcl_wait_set_t> wait_set,
-);
-
-typedef _dart_rcl_wait_set_clear = int Function(
-  ffi.Pointer<rcl_wait_set_t> wait_set,
-);
-
-typedef _c_rcl_wait_set_resize = ffi.Int32 Function(
-  ffi.Pointer<rcl_wait_set_t> wait_set,
-  ffi.Uint64 subscriptions_size,
-  ffi.Uint64 guard_conditions_size,
-  ffi.Uint64 timers_size,
-  ffi.Uint64 clients_size,
-  ffi.Uint64 services_size,
-  ffi.Uint64 events_size,
-);
-
-typedef _dart_rcl_wait_set_resize = int Function(
-  ffi.Pointer<rcl_wait_set_t> wait_set,
-  int subscriptions_size,
-  int guard_conditions_size,
-  int timers_size,
-  int clients_size,
-  int services_size,
-  int events_size,
-);
-
-typedef _c_rcl_wait_set_add_guard_condition = ffi.Int32 Function(
-  ffi.Pointer<rcl_wait_set_t> wait_set,
-  ffi.Pointer<rcl_guard_condition_t> guard_condition,
-  ffi.Pointer<ffi.Uint64> index,
-);
-
-typedef _dart_rcl_wait_set_add_guard_condition = int Function(
-  ffi.Pointer<rcl_wait_set_t> wait_set,
-  ffi.Pointer<rcl_guard_condition_t> guard_condition,
-  ffi.Pointer<ffi.Uint64> index,
-);
-
-typedef _c_rcl_wait_set_add_timer = ffi.Int32 Function(
-  ffi.Pointer<rcl_wait_set_t> wait_set,
-  ffi.Pointer<rcl_timer_t> timer,
-  ffi.Pointer<ffi.Uint64> index,
-);
-
-typedef _dart_rcl_wait_set_add_timer = int Function(
-  ffi.Pointer<rcl_wait_set_t> wait_set,
-  ffi.Pointer<rcl_timer_t> timer,
-  ffi.Pointer<ffi.Uint64> index,
-);
-
-typedef _c_rcl_wait_set_add_client = ffi.Int32 Function(
-  ffi.Pointer<rcl_wait_set_t> wait_set,
-  ffi.Pointer<rcl_client_t> client,
-  ffi.Pointer<ffi.Uint64> index,
-);
-
-typedef _dart_rcl_wait_set_add_client = int Function(
-  ffi.Pointer<rcl_wait_set_t> wait_set,
-  ffi.Pointer<rcl_client_t> client,
-  ffi.Pointer<ffi.Uint64> index,
-);
-
-typedef _c_rcl_wait_set_add_service = ffi.Int32 Function(
-  ffi.Pointer<rcl_wait_set_t> wait_set,
-  ffi.Pointer<rcl_service_t> service,
-  ffi.Pointer<ffi.Uint64> index,
-);
-
-typedef _dart_rcl_wait_set_add_service = int Function(
-  ffi.Pointer<rcl_wait_set_t> wait_set,
-  ffi.Pointer<rcl_service_t> service,
-  ffi.Pointer<ffi.Uint64> index,
-);
-
-typedef _c_rcl_wait_set_add_event = ffi.Int32 Function(
-  ffi.Pointer<rcl_wait_set_t> wait_set,
-  ffi.Pointer<rcl_event_t> event,
-  ffi.Pointer<ffi.Uint64> index,
-);
-
-typedef _dart_rcl_wait_set_add_event = int Function(
-  ffi.Pointer<rcl_wait_set_t> wait_set,
-  ffi.Pointer<rcl_event_t> event,
-  ffi.Pointer<ffi.Uint64> index,
-);
-
-typedef _c_rcl_wait = ffi.Int32 Function(
-  ffi.Pointer<rcl_wait_set_t> wait_set,
-  ffi.Int64 timeout,
-);
-
-typedef _dart_rcl_wait = int Function(
-  ffi.Pointer<rcl_wait_set_t> wait_set,
-  int timeout,
-);
-
-typedef rosidl_service_typesupport_handle_function
-    = ffi.Pointer<rosidl_service_type_support_t> Function(
-  ffi.Pointer<rosidl_service_type_support_t>,
-  ffi.Pointer<ffi.Int8>,
-);
-
-typedef _typedefC_1 = ffi.Pointer<ffi.Void> Function(
-  ffi.Uint64,
-  ffi.Pointer<ffi.Void>,
-);
-
-typedef _typedefC_2 = ffi.Void Function(
-  ffi.Pointer<ffi.Void>,
-  ffi.Pointer<ffi.Void>,
-);
-
-typedef _typedefC_3 = ffi.Pointer<ffi.Void> Function(
-  ffi.Pointer<ffi.Void>,
-  ffi.Uint64,
-  ffi.Pointer<ffi.Void>,
-);
-
-typedef _typedefC_4 = ffi.Pointer<ffi.Void> Function(
-  ffi.Uint64,
-  ffi.Uint64,
-  ffi.Pointer<ffi.Void>,
-);
-
-typedef rosidl_message_typesupport_handle_function
-    = ffi.Pointer<rosidl_message_type_support_t> Function(
-  ffi.Pointer<rosidl_message_type_support_t>,
-  ffi.Pointer<ffi.Int8>,
-);
-
-typedef _typedefC_5 = ffi.Int32 Function(
-  ffi.Pointer<ffi.Void>,
-  ffi.Pointer<ffi.Int64>,
-);
-
-typedef rosidl_message_bounds_handle_function
-    = ffi.Pointer<rosidl_message_bounds_t> Function(
-  ffi.Pointer<rosidl_message_bounds_t>,
-  ffi.Pointer<ffi.Int8>,
-);

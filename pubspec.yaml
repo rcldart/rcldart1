@@ -1,19 +1,20 @@
 name: rcldart
 version: 0.2.2
-author: Tim Whiting
 description: A Dart interface to the ROS 2 Client Library through Dart FFI.
 homepage: https://github.com/TimWhiting/rcldart.git
 environment:
-  sdk: ">=2.13.0-0 <3.0.0"
+  sdk: ">=2.13.0 <3.0.0"
 dependencies:
   dartx: any
   ffi: any
 dev_dependencies:
-  ffigen: 3.0.0-beta.0
+  ffigen: 4.0.0-dev.2
   test: ^1.17.3
 
 ffigen:
   output: "lib/src/gen/ffi_bindings.dart"
+  functions:
+    expose_typedefs: true
   headers:
     entry-points:
       - "headers/rcl/*.h"
