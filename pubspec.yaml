@@ -18,9 +18,11 @@ ffigen:
   headers:
     entry-points:
       - "headers/rcl/*.h"
+      - "headers/rcl_interfaces/msg/*.h"
+      - "headers/rcl_interfaces/srv/*.h"
     include-directives:
       - "headers/**/*"
-  compiler-opts: "-I/usr/lib/llvm-9/include/ -Iheaders"
+  compiler-opts: "-I/usr/lib/llvm-10/include/ -Iheaders"
   name: "RCL"
   comments:
     style: any

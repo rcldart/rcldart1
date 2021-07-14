@@ -1,0 +1,74 @@
+#ifndef H_24E8D7678D027ED15997D762791B90DD_SetParametersAtomically_SPLTYPES_H
+#define H_24E8D7678D027ED15997D762791B90DD_SetParametersAtomically_SPLTYPES_H
+
+#include <c_base.h>
+#include <c_misc.h>
+#include <c_sync.h>
+#include <c_collection.h>
+#include <c_field.h>
+#include <v_copyIn.h>
+
+#include "ccpp_SetParametersAtomically_.h"
+#include "rcl_interfaces/msg/dds_opensplice/Parameter_SplDcps.h"
+#include "rcl_interfaces/msg/dds_opensplice/SetParametersResult_SplDcps.h"
+
+
+
+extern c_metaObject __SetParametersAtomically__rcl_interfaces__load (c_base base);
+
+extern c_metaObject __SetParametersAtomically__rcl_interfaces_srv__load (c_base base);
+
+extern c_metaObject __SetParametersAtomically__rcl_interfaces_srv_dds___load (c_base base);
+
+extern const char *rcl_interfaces_srv_dds__SetParametersAtomically_Request__metaDescriptor[];
+extern const int rcl_interfaces_srv_dds__SetParametersAtomically_Request__metaDescriptorArrLength;
+extern const int rcl_interfaces_srv_dds__SetParametersAtomically_Request__metaDescriptorLength;
+extern c_metaObject __rcl_interfaces_srv_dds__SetParametersAtomically_Request___load (c_base base);
+struct _rcl_interfaces_srv_dds__SetParametersAtomically_Request_ ;
+extern  v_copyin_result __rcl_interfaces_srv_dds__SetParametersAtomically_Request___copyIn(c_base base, const struct rcl_interfaces::srv::dds_::SetParametersAtomically_Request_ *from, struct _rcl_interfaces_srv_dds__SetParametersAtomically_Request_ *to);
+extern  void __rcl_interfaces_srv_dds__SetParametersAtomically_Request___copyOut(const void *_from, void *_to);
+struct _rcl_interfaces_srv_dds__SetParametersAtomically_Request_ {
+    c_sequence parameters_;
+};
+
+extern const char *rcl_interfaces_srv_dds__SetParametersAtomically_Response__metaDescriptor[];
+extern const int rcl_interfaces_srv_dds__SetParametersAtomically_Response__metaDescriptorArrLength;
+extern const int rcl_interfaces_srv_dds__SetParametersAtomically_Response__metaDescriptorLength;
+extern c_metaObject __rcl_interfaces_srv_dds__SetParametersAtomically_Response___load (c_base base);
+struct _rcl_interfaces_srv_dds__SetParametersAtomically_Response_ ;
+extern  v_copyin_result __rcl_interfaces_srv_dds__SetParametersAtomically_Response___copyIn(c_base base, const struct rcl_interfaces::srv::dds_::SetParametersAtomically_Response_ *from, struct _rcl_interfaces_srv_dds__SetParametersAtomically_Response_ *to);
+extern  void __rcl_interfaces_srv_dds__SetParametersAtomically_Response___copyOut(const void *_from, void *_to);
+struct _rcl_interfaces_srv_dds__SetParametersAtomically_Response_ {
+    struct _rcl_interfaces_msg_dds__SetParametersResult_ result_;
+};
+
+extern const char *rcl_interfaces_srv_dds__Sample_SetParametersAtomically_Request__metaDescriptor[];
+extern const int rcl_interfaces_srv_dds__Sample_SetParametersAtomically_Request__metaDescriptorArrLength;
+extern const int rcl_interfaces_srv_dds__Sample_SetParametersAtomically_Request__metaDescriptorLength;
+extern c_metaObject __rcl_interfaces_srv_dds__Sample_SetParametersAtomically_Request___load (c_base base);
+struct _rcl_interfaces_srv_dds__Sample_SetParametersAtomically_Request_ ;
+extern  v_copyin_result __rcl_interfaces_srv_dds__Sample_SetParametersAtomically_Request___copyIn(c_base base, const struct rcl_interfaces::srv::dds_::Sample_SetParametersAtomically_Request_ *from, struct _rcl_interfaces_srv_dds__Sample_SetParametersAtomically_Request_ *to);
+extern  void __rcl_interfaces_srv_dds__Sample_SetParametersAtomically_Request___copyOut(const void *_from, void *_to);
+struct _rcl_interfaces_srv_dds__Sample_SetParametersAtomically_Request_ {
+    c_ulonglong client_guid_0_;
+    c_ulonglong client_guid_1_;
+    c_longlong sequence_number_;
+    struct _rcl_interfaces_srv_dds__SetParametersAtomically_Request_ request_;
+};
+
+extern const char *rcl_interfaces_srv_dds__Sample_SetParametersAtomically_Response__metaDescriptor[];
+extern const int rcl_interfaces_srv_dds__Sample_SetParametersAtomically_Response__metaDescriptorArrLength;
+extern const int rcl_interfaces_srv_dds__Sample_SetParametersAtomically_Response__metaDescriptorLength;
+extern c_metaObject __rcl_interfaces_srv_dds__Sample_SetParametersAtomically_Response___load (c_base base);
+struct _rcl_interfaces_srv_dds__Sample_SetParametersAtomically_Response_ ;
+extern  v_copyin_result __rcl_interfaces_srv_dds__Sample_SetParametersAtomically_Response___copyIn(c_base base, const struct rcl_interfaces::srv::dds_::Sample_SetParametersAtomically_Response_ *from, struct _rcl_interfaces_srv_dds__Sample_SetParametersAtomically_Response_ *to);
+extern  void __rcl_interfaces_srv_dds__Sample_SetParametersAtomically_Response___copyOut(const void *_from, void *_to);
+struct _rcl_interfaces_srv_dds__Sample_SetParametersAtomically_Response_ {
+    c_ulonglong client_guid_0_;
+    c_ulonglong client_guid_1_;
+    c_longlong sequence_number_;
+    struct _rcl_interfaces_srv_dds__SetParametersAtomically_Response_ response_;
+};
+
+#undef OS_API
+#endif

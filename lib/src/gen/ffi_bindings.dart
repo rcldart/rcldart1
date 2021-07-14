@@ -12132,6 +12132,5820 @@ class RCL {
               ffi.Pointer<rcl_wait_set_t>, ffi.Int64)>>('rcl_wait');
   late final _rcl_wait =
       _rcl_waitPtr.asFunction<int Function(ffi.Pointer<rcl_wait_set_t>, int)>();
+
+  /// Initialize msg/SetParametersResult message.
+  /// /**
+  ///  * If the init function is called twice for the same message without
+  ///  * calling fini inbetween previously allocated memory will be leaked.
+  ///  * \param[in,out] msg The previously allocated message pointer.
+  ///  * Fields without a default value will not be initialized by this function.
+  ///  * You might want to call memset(msg, 0, sizeof(
+  ///  * rcl_interfaces__msg__SetParametersResult
+  ///  * )) before or use
+  ///  * rcl_interfaces__msg__SetParametersResult__create()
+  ///  * to allocate and initialize the message.
+  ///  * \return true if initialization was successful, otherwise false
+  ///  */
+  bool rcl_interfaces__msg__SetParametersResult__init(
+    ffi.Pointer<rcl_interfaces__msg__SetParametersResult> msg,
+  ) {
+    return _rcl_interfaces__msg__SetParametersResult__init(
+          msg,
+        ) !=
+        0;
+  }
+
+  late final _rcl_interfaces__msg__SetParametersResult__initPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Uint8 Function(
+                  ffi.Pointer<rcl_interfaces__msg__SetParametersResult>)>>(
+      'rcl_interfaces__msg__SetParametersResult__init');
+  late final _rcl_interfaces__msg__SetParametersResult__init =
+      _rcl_interfaces__msg__SetParametersResult__initPtr.asFunction<
+          int Function(
+              ffi.Pointer<rcl_interfaces__msg__SetParametersResult>)>();
+
+  /// Finalize msg/SetParametersResult message.
+  /// /**
+  ///  * \param[in,out] msg The allocated message pointer.
+  ///  */
+  void rcl_interfaces__msg__SetParametersResult__fini(
+    ffi.Pointer<rcl_interfaces__msg__SetParametersResult> msg,
+  ) {
+    return _rcl_interfaces__msg__SetParametersResult__fini(
+      msg,
+    );
+  }
+
+  late final _rcl_interfaces__msg__SetParametersResult__finiPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Pointer<rcl_interfaces__msg__SetParametersResult>)>>(
+      'rcl_interfaces__msg__SetParametersResult__fini');
+  late final _rcl_interfaces__msg__SetParametersResult__fini =
+      _rcl_interfaces__msg__SetParametersResult__finiPtr.asFunction<
+          void Function(
+              ffi.Pointer<rcl_interfaces__msg__SetParametersResult>)>();
+
+  /// Create msg/SetParametersResult message.
+  /// /**
+  ///  * It allocates the memory for the message, sets the memory to zero, and
+  ///  * calls
+  ///  * rcl_interfaces__msg__SetParametersResult__init().
+  ///  * \return The pointer to the initialized message if successful,
+  ///  * otherwise NULL
+  ///  */
+  ffi.Pointer<rcl_interfaces__msg__SetParametersResult>
+      rcl_interfaces__msg__SetParametersResult__create() {
+    return _rcl_interfaces__msg__SetParametersResult__create();
+  }
+
+  late final _rcl_interfaces__msg__SetParametersResult__createPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<rcl_interfaces__msg__SetParametersResult>
+              Function()>>('rcl_interfaces__msg__SetParametersResult__create');
+  late final _rcl_interfaces__msg__SetParametersResult__create =
+      _rcl_interfaces__msg__SetParametersResult__createPtr.asFunction<
+          ffi.Pointer<rcl_interfaces__msg__SetParametersResult> Function()>();
+
+  /// Destroy msg/SetParametersResult message.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__msg__SetParametersResult__fini()
+  ///  * and frees the memory of the message.
+  ///  * \param[in,out] msg The allocated message pointer.
+  ///  */
+  void rcl_interfaces__msg__SetParametersResult__destroy(
+    ffi.Pointer<rcl_interfaces__msg__SetParametersResult> msg,
+  ) {
+    return _rcl_interfaces__msg__SetParametersResult__destroy(
+      msg,
+    );
+  }
+
+  late final _rcl_interfaces__msg__SetParametersResult__destroyPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Pointer<rcl_interfaces__msg__SetParametersResult>)>>(
+      'rcl_interfaces__msg__SetParametersResult__destroy');
+  late final _rcl_interfaces__msg__SetParametersResult__destroy =
+      _rcl_interfaces__msg__SetParametersResult__destroyPtr.asFunction<
+          void Function(
+              ffi.Pointer<rcl_interfaces__msg__SetParametersResult>)>();
+
+  /// Initialize array of msg/SetParametersResult messages.
+  /// /**
+  ///  * It allocates the memory for the number of elements and calls
+  ///  * rcl_interfaces__msg__SetParametersResult__init()
+  ///  * for each element of the array.
+  ///  * \param[in,out] array The allocated array pointer.
+  ///  * \param[in] size The size / capacity of the array.
+  ///  * \return true if initialization was successful, otherwise false
+  ///  * If the array pointer is valid and the size is zero it is guaranteed
+  ///  # to return true.
+  ///  */
+  bool rcl_interfaces__msg__SetParametersResult__Sequence__init(
+    ffi.Pointer<rcl_interfaces__msg__SetParametersResult__Sequence> array,
+    int size,
+  ) {
+    return _rcl_interfaces__msg__SetParametersResult__Sequence__init(
+          array,
+          size,
+        ) !=
+        0;
+  }
+
+  late final _rcl_interfaces__msg__SetParametersResult__Sequence__initPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Uint8 Function(
+                      ffi.Pointer<
+                          rcl_interfaces__msg__SetParametersResult__Sequence>,
+                      size_t)>>(
+          'rcl_interfaces__msg__SetParametersResult__Sequence__init');
+  late final _rcl_interfaces__msg__SetParametersResult__Sequence__init =
+      _rcl_interfaces__msg__SetParametersResult__Sequence__initPtr.asFunction<
+          int Function(
+              ffi.Pointer<rcl_interfaces__msg__SetParametersResult__Sequence>,
+              int)>();
+
+  /// Finalize array of msg/SetParametersResult messages.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__msg__SetParametersResult__fini()
+  ///  * for each element of the array and frees the memory for the number of
+  ///  * elements.
+  ///  * \param[in,out] array The initialized array pointer.
+  ///  */
+  void rcl_interfaces__msg__SetParametersResult__Sequence__fini(
+    ffi.Pointer<rcl_interfaces__msg__SetParametersResult__Sequence> array,
+  ) {
+    return _rcl_interfaces__msg__SetParametersResult__Sequence__fini(
+      array,
+    );
+  }
+
+  late final _rcl_interfaces__msg__SetParametersResult__Sequence__finiPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__msg__SetParametersResult__Sequence>)>>(
+          'rcl_interfaces__msg__SetParametersResult__Sequence__fini');
+  late final _rcl_interfaces__msg__SetParametersResult__Sequence__fini =
+      _rcl_interfaces__msg__SetParametersResult__Sequence__finiPtr.asFunction<
+          void Function(
+              ffi.Pointer<
+                  rcl_interfaces__msg__SetParametersResult__Sequence>)>();
+
+  /// Create array of msg/SetParametersResult messages.
+  /// /**
+  ///  * It allocates the memory for the array and calls
+  ///  * rcl_interfaces__msg__SetParametersResult__Sequence__init().
+  ///  * \param[in] size The size / capacity of the array.
+  ///  * \return The pointer to the initialized array if successful, otherwise NULL
+  ///  */
+  ffi.Pointer<rcl_interfaces__msg__SetParametersResult__Sequence>
+      rcl_interfaces__msg__SetParametersResult__Sequence__create(
+    int size,
+  ) {
+    return _rcl_interfaces__msg__SetParametersResult__Sequence__create(
+      size,
+    );
+  }
+
+  late final _rcl_interfaces__msg__SetParametersResult__Sequence__createPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<
+                          rcl_interfaces__msg__SetParametersResult__Sequence>
+                      Function(size_t)>>(
+          'rcl_interfaces__msg__SetParametersResult__Sequence__create');
+  late final _rcl_interfaces__msg__SetParametersResult__Sequence__create =
+      _rcl_interfaces__msg__SetParametersResult__Sequence__createPtr.asFunction<
+          ffi.Pointer<rcl_interfaces__msg__SetParametersResult__Sequence>
+              Function(int)>();
+
+  /// Destroy array of msg/SetParametersResult messages.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__msg__SetParametersResult__Sequence__fini()
+  ///  * on the array,
+  ///  * and frees the memory of the array.
+  ///  * \param[in,out] array The initialized array pointer.
+  ///  */
+  void rcl_interfaces__msg__SetParametersResult__Sequence__destroy(
+    ffi.Pointer<rcl_interfaces__msg__SetParametersResult__Sequence> array,
+  ) {
+    return _rcl_interfaces__msg__SetParametersResult__Sequence__destroy(
+      array,
+    );
+  }
+
+  late final _rcl_interfaces__msg__SetParametersResult__Sequence__destroyPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__msg__SetParametersResult__Sequence>)>>(
+          'rcl_interfaces__msg__SetParametersResult__Sequence__destroy');
+  late final _rcl_interfaces__msg__SetParametersResult__Sequence__destroy =
+      _rcl_interfaces__msg__SetParametersResult__Sequence__destroyPtr
+          .asFunction<
+              void Function(
+                  ffi.Pointer<
+                      rcl_interfaces__msg__SetParametersResult__Sequence>)>();
+
+  ffi.Pointer<rosidl_message_type_support_t>
+      rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__SetParametersResult() {
+    return _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__SetParametersResult();
+  }
+
+  late final _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__SetParametersResultPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<rosidl_message_type_support_t> Function()>>(
+          'rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__SetParametersResult');
+  late final _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__SetParametersResult =
+      _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__SetParametersResultPtr
+          .asFunction<ffi.Pointer<rosidl_message_type_support_t> Function()>();
+
+  /// Initialize msg/ParameterDescriptor message.
+  /// /**
+  ///  * If the init function is called twice for the same message without
+  ///  * calling fini inbetween previously allocated memory will be leaked.
+  ///  * \param[in,out] msg The previously allocated message pointer.
+  ///  * Fields without a default value will not be initialized by this function.
+  ///  * You might want to call memset(msg, 0, sizeof(
+  ///  * rcl_interfaces__msg__ParameterDescriptor
+  ///  * )) before or use
+  ///  * rcl_interfaces__msg__ParameterDescriptor__create()
+  ///  * to allocate and initialize the message.
+  ///  * \return true if initialization was successful, otherwise false
+  ///  */
+  bool rcl_interfaces__msg__ParameterDescriptor__init(
+    ffi.Pointer<rcl_interfaces__msg__ParameterDescriptor> msg,
+  ) {
+    return _rcl_interfaces__msg__ParameterDescriptor__init(
+          msg,
+        ) !=
+        0;
+  }
+
+  late final _rcl_interfaces__msg__ParameterDescriptor__initPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Uint8 Function(
+                  ffi.Pointer<rcl_interfaces__msg__ParameterDescriptor>)>>(
+      'rcl_interfaces__msg__ParameterDescriptor__init');
+  late final _rcl_interfaces__msg__ParameterDescriptor__init =
+      _rcl_interfaces__msg__ParameterDescriptor__initPtr.asFunction<
+          int Function(
+              ffi.Pointer<rcl_interfaces__msg__ParameterDescriptor>)>();
+
+  /// Finalize msg/ParameterDescriptor message.
+  /// /**
+  ///  * \param[in,out] msg The allocated message pointer.
+  ///  */
+  void rcl_interfaces__msg__ParameterDescriptor__fini(
+    ffi.Pointer<rcl_interfaces__msg__ParameterDescriptor> msg,
+  ) {
+    return _rcl_interfaces__msg__ParameterDescriptor__fini(
+      msg,
+    );
+  }
+
+  late final _rcl_interfaces__msg__ParameterDescriptor__finiPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Pointer<rcl_interfaces__msg__ParameterDescriptor>)>>(
+      'rcl_interfaces__msg__ParameterDescriptor__fini');
+  late final _rcl_interfaces__msg__ParameterDescriptor__fini =
+      _rcl_interfaces__msg__ParameterDescriptor__finiPtr.asFunction<
+          void Function(
+              ffi.Pointer<rcl_interfaces__msg__ParameterDescriptor>)>();
+
+  /// Create msg/ParameterDescriptor message.
+  /// /**
+  ///  * It allocates the memory for the message, sets the memory to zero, and
+  ///  * calls
+  ///  * rcl_interfaces__msg__ParameterDescriptor__init().
+  ///  * \return The pointer to the initialized message if successful,
+  ///  * otherwise NULL
+  ///  */
+  ffi.Pointer<rcl_interfaces__msg__ParameterDescriptor>
+      rcl_interfaces__msg__ParameterDescriptor__create() {
+    return _rcl_interfaces__msg__ParameterDescriptor__create();
+  }
+
+  late final _rcl_interfaces__msg__ParameterDescriptor__createPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<rcl_interfaces__msg__ParameterDescriptor>
+              Function()>>('rcl_interfaces__msg__ParameterDescriptor__create');
+  late final _rcl_interfaces__msg__ParameterDescriptor__create =
+      _rcl_interfaces__msg__ParameterDescriptor__createPtr.asFunction<
+          ffi.Pointer<rcl_interfaces__msg__ParameterDescriptor> Function()>();
+
+  /// Destroy msg/ParameterDescriptor message.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__msg__ParameterDescriptor__fini()
+  ///  * and frees the memory of the message.
+  ///  * \param[in,out] msg The allocated message pointer.
+  ///  */
+  void rcl_interfaces__msg__ParameterDescriptor__destroy(
+    ffi.Pointer<rcl_interfaces__msg__ParameterDescriptor> msg,
+  ) {
+    return _rcl_interfaces__msg__ParameterDescriptor__destroy(
+      msg,
+    );
+  }
+
+  late final _rcl_interfaces__msg__ParameterDescriptor__destroyPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Pointer<rcl_interfaces__msg__ParameterDescriptor>)>>(
+      'rcl_interfaces__msg__ParameterDescriptor__destroy');
+  late final _rcl_interfaces__msg__ParameterDescriptor__destroy =
+      _rcl_interfaces__msg__ParameterDescriptor__destroyPtr.asFunction<
+          void Function(
+              ffi.Pointer<rcl_interfaces__msg__ParameterDescriptor>)>();
+
+  /// Initialize array of msg/ParameterDescriptor messages.
+  /// /**
+  ///  * It allocates the memory for the number of elements and calls
+  ///  * rcl_interfaces__msg__ParameterDescriptor__init()
+  ///  * for each element of the array.
+  ///  * \param[in,out] array The allocated array pointer.
+  ///  * \param[in] size The size / capacity of the array.
+  ///  * \return true if initialization was successful, otherwise false
+  ///  * If the array pointer is valid and the size is zero it is guaranteed
+  ///  # to return true.
+  ///  */
+  bool rcl_interfaces__msg__ParameterDescriptor__Sequence__init(
+    ffi.Pointer<rcl_interfaces__msg__ParameterDescriptor__Sequence> array,
+    int size,
+  ) {
+    return _rcl_interfaces__msg__ParameterDescriptor__Sequence__init(
+          array,
+          size,
+        ) !=
+        0;
+  }
+
+  late final _rcl_interfaces__msg__ParameterDescriptor__Sequence__initPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Uint8 Function(
+                      ffi.Pointer<
+                          rcl_interfaces__msg__ParameterDescriptor__Sequence>,
+                      size_t)>>(
+          'rcl_interfaces__msg__ParameterDescriptor__Sequence__init');
+  late final _rcl_interfaces__msg__ParameterDescriptor__Sequence__init =
+      _rcl_interfaces__msg__ParameterDescriptor__Sequence__initPtr.asFunction<
+          int Function(
+              ffi.Pointer<rcl_interfaces__msg__ParameterDescriptor__Sequence>,
+              int)>();
+
+  /// Finalize array of msg/ParameterDescriptor messages.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__msg__ParameterDescriptor__fini()
+  ///  * for each element of the array and frees the memory for the number of
+  ///  * elements.
+  ///  * \param[in,out] array The initialized array pointer.
+  ///  */
+  void rcl_interfaces__msg__ParameterDescriptor__Sequence__fini(
+    ffi.Pointer<rcl_interfaces__msg__ParameterDescriptor__Sequence> array,
+  ) {
+    return _rcl_interfaces__msg__ParameterDescriptor__Sequence__fini(
+      array,
+    );
+  }
+
+  late final _rcl_interfaces__msg__ParameterDescriptor__Sequence__finiPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__msg__ParameterDescriptor__Sequence>)>>(
+          'rcl_interfaces__msg__ParameterDescriptor__Sequence__fini');
+  late final _rcl_interfaces__msg__ParameterDescriptor__Sequence__fini =
+      _rcl_interfaces__msg__ParameterDescriptor__Sequence__finiPtr.asFunction<
+          void Function(
+              ffi.Pointer<
+                  rcl_interfaces__msg__ParameterDescriptor__Sequence>)>();
+
+  /// Create array of msg/ParameterDescriptor messages.
+  /// /**
+  ///  * It allocates the memory for the array and calls
+  ///  * rcl_interfaces__msg__ParameterDescriptor__Sequence__init().
+  ///  * \param[in] size The size / capacity of the array.
+  ///  * \return The pointer to the initialized array if successful, otherwise NULL
+  ///  */
+  ffi.Pointer<rcl_interfaces__msg__ParameterDescriptor__Sequence>
+      rcl_interfaces__msg__ParameterDescriptor__Sequence__create(
+    int size,
+  ) {
+    return _rcl_interfaces__msg__ParameterDescriptor__Sequence__create(
+      size,
+    );
+  }
+
+  late final _rcl_interfaces__msg__ParameterDescriptor__Sequence__createPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<
+                          rcl_interfaces__msg__ParameterDescriptor__Sequence>
+                      Function(size_t)>>(
+          'rcl_interfaces__msg__ParameterDescriptor__Sequence__create');
+  late final _rcl_interfaces__msg__ParameterDescriptor__Sequence__create =
+      _rcl_interfaces__msg__ParameterDescriptor__Sequence__createPtr.asFunction<
+          ffi.Pointer<rcl_interfaces__msg__ParameterDescriptor__Sequence>
+              Function(int)>();
+
+  /// Destroy array of msg/ParameterDescriptor messages.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__msg__ParameterDescriptor__Sequence__fini()
+  ///  * on the array,
+  ///  * and frees the memory of the array.
+  ///  * \param[in,out] array The initialized array pointer.
+  ///  */
+  void rcl_interfaces__msg__ParameterDescriptor__Sequence__destroy(
+    ffi.Pointer<rcl_interfaces__msg__ParameterDescriptor__Sequence> array,
+  ) {
+    return _rcl_interfaces__msg__ParameterDescriptor__Sequence__destroy(
+      array,
+    );
+  }
+
+  late final _rcl_interfaces__msg__ParameterDescriptor__Sequence__destroyPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__msg__ParameterDescriptor__Sequence>)>>(
+          'rcl_interfaces__msg__ParameterDescriptor__Sequence__destroy');
+  late final _rcl_interfaces__msg__ParameterDescriptor__Sequence__destroy =
+      _rcl_interfaces__msg__ParameterDescriptor__Sequence__destroyPtr
+          .asFunction<
+              void Function(
+                  ffi.Pointer<
+                      rcl_interfaces__msg__ParameterDescriptor__Sequence>)>();
+
+  ffi.Pointer<rosidl_message_type_support_t>
+      rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__ParameterDescriptor() {
+    return _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__ParameterDescriptor();
+  }
+
+  late final _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__ParameterDescriptorPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<rosidl_message_type_support_t> Function()>>(
+          'rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__ParameterDescriptor');
+  late final _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__ParameterDescriptor =
+      _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__ParameterDescriptorPtr
+          .asFunction<ffi.Pointer<rosidl_message_type_support_t> Function()>();
+
+  /// Initialize msg/ListParametersResult message.
+  /// /**
+  ///  * If the init function is called twice for the same message without
+  ///  * calling fini inbetween previously allocated memory will be leaked.
+  ///  * \param[in,out] msg The previously allocated message pointer.
+  ///  * Fields without a default value will not be initialized by this function.
+  ///  * You might want to call memset(msg, 0, sizeof(
+  ///  * rcl_interfaces__msg__ListParametersResult
+  ///  * )) before or use
+  ///  * rcl_interfaces__msg__ListParametersResult__create()
+  ///  * to allocate and initialize the message.
+  ///  * \return true if initialization was successful, otherwise false
+  ///  */
+  bool rcl_interfaces__msg__ListParametersResult__init(
+    ffi.Pointer<rcl_interfaces__msg__ListParametersResult> msg,
+  ) {
+    return _rcl_interfaces__msg__ListParametersResult__init(
+          msg,
+        ) !=
+        0;
+  }
+
+  late final _rcl_interfaces__msg__ListParametersResult__initPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Uint8 Function(
+                  ffi.Pointer<rcl_interfaces__msg__ListParametersResult>)>>(
+      'rcl_interfaces__msg__ListParametersResult__init');
+  late final _rcl_interfaces__msg__ListParametersResult__init =
+      _rcl_interfaces__msg__ListParametersResult__initPtr.asFunction<
+          int Function(
+              ffi.Pointer<rcl_interfaces__msg__ListParametersResult>)>();
+
+  /// Finalize msg/ListParametersResult message.
+  /// /**
+  ///  * \param[in,out] msg The allocated message pointer.
+  ///  */
+  void rcl_interfaces__msg__ListParametersResult__fini(
+    ffi.Pointer<rcl_interfaces__msg__ListParametersResult> msg,
+  ) {
+    return _rcl_interfaces__msg__ListParametersResult__fini(
+      msg,
+    );
+  }
+
+  late final _rcl_interfaces__msg__ListParametersResult__finiPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Pointer<rcl_interfaces__msg__ListParametersResult>)>>(
+      'rcl_interfaces__msg__ListParametersResult__fini');
+  late final _rcl_interfaces__msg__ListParametersResult__fini =
+      _rcl_interfaces__msg__ListParametersResult__finiPtr.asFunction<
+          void Function(
+              ffi.Pointer<rcl_interfaces__msg__ListParametersResult>)>();
+
+  /// Create msg/ListParametersResult message.
+  /// /**
+  ///  * It allocates the memory for the message, sets the memory to zero, and
+  ///  * calls
+  ///  * rcl_interfaces__msg__ListParametersResult__init().
+  ///  * \return The pointer to the initialized message if successful,
+  ///  * otherwise NULL
+  ///  */
+  ffi.Pointer<rcl_interfaces__msg__ListParametersResult>
+      rcl_interfaces__msg__ListParametersResult__create() {
+    return _rcl_interfaces__msg__ListParametersResult__create();
+  }
+
+  late final _rcl_interfaces__msg__ListParametersResult__createPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<rcl_interfaces__msg__ListParametersResult>
+              Function()>>('rcl_interfaces__msg__ListParametersResult__create');
+  late final _rcl_interfaces__msg__ListParametersResult__create =
+      _rcl_interfaces__msg__ListParametersResult__createPtr.asFunction<
+          ffi.Pointer<rcl_interfaces__msg__ListParametersResult> Function()>();
+
+  /// Destroy msg/ListParametersResult message.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__msg__ListParametersResult__fini()
+  ///  * and frees the memory of the message.
+  ///  * \param[in,out] msg The allocated message pointer.
+  ///  */
+  void rcl_interfaces__msg__ListParametersResult__destroy(
+    ffi.Pointer<rcl_interfaces__msg__ListParametersResult> msg,
+  ) {
+    return _rcl_interfaces__msg__ListParametersResult__destroy(
+      msg,
+    );
+  }
+
+  late final _rcl_interfaces__msg__ListParametersResult__destroyPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Pointer<rcl_interfaces__msg__ListParametersResult>)>>(
+      'rcl_interfaces__msg__ListParametersResult__destroy');
+  late final _rcl_interfaces__msg__ListParametersResult__destroy =
+      _rcl_interfaces__msg__ListParametersResult__destroyPtr.asFunction<
+          void Function(
+              ffi.Pointer<rcl_interfaces__msg__ListParametersResult>)>();
+
+  /// Initialize array of msg/ListParametersResult messages.
+  /// /**
+  ///  * It allocates the memory for the number of elements and calls
+  ///  * rcl_interfaces__msg__ListParametersResult__init()
+  ///  * for each element of the array.
+  ///  * \param[in,out] array The allocated array pointer.
+  ///  * \param[in] size The size / capacity of the array.
+  ///  * \return true if initialization was successful, otherwise false
+  ///  * If the array pointer is valid and the size is zero it is guaranteed
+  ///  # to return true.
+  ///  */
+  bool rcl_interfaces__msg__ListParametersResult__Sequence__init(
+    ffi.Pointer<rcl_interfaces__msg__ListParametersResult__Sequence> array,
+    int size,
+  ) {
+    return _rcl_interfaces__msg__ListParametersResult__Sequence__init(
+          array,
+          size,
+        ) !=
+        0;
+  }
+
+  late final _rcl_interfaces__msg__ListParametersResult__Sequence__initPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Uint8 Function(
+                      ffi.Pointer<
+                          rcl_interfaces__msg__ListParametersResult__Sequence>,
+                      size_t)>>(
+          'rcl_interfaces__msg__ListParametersResult__Sequence__init');
+  late final _rcl_interfaces__msg__ListParametersResult__Sequence__init =
+      _rcl_interfaces__msg__ListParametersResult__Sequence__initPtr.asFunction<
+          int Function(
+              ffi.Pointer<rcl_interfaces__msg__ListParametersResult__Sequence>,
+              int)>();
+
+  /// Finalize array of msg/ListParametersResult messages.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__msg__ListParametersResult__fini()
+  ///  * for each element of the array and frees the memory for the number of
+  ///  * elements.
+  ///  * \param[in,out] array The initialized array pointer.
+  ///  */
+  void rcl_interfaces__msg__ListParametersResult__Sequence__fini(
+    ffi.Pointer<rcl_interfaces__msg__ListParametersResult__Sequence> array,
+  ) {
+    return _rcl_interfaces__msg__ListParametersResult__Sequence__fini(
+      array,
+    );
+  }
+
+  late final _rcl_interfaces__msg__ListParametersResult__Sequence__finiPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__msg__ListParametersResult__Sequence>)>>(
+          'rcl_interfaces__msg__ListParametersResult__Sequence__fini');
+  late final _rcl_interfaces__msg__ListParametersResult__Sequence__fini =
+      _rcl_interfaces__msg__ListParametersResult__Sequence__finiPtr.asFunction<
+          void Function(
+              ffi.Pointer<
+                  rcl_interfaces__msg__ListParametersResult__Sequence>)>();
+
+  /// Create array of msg/ListParametersResult messages.
+  /// /**
+  ///  * It allocates the memory for the array and calls
+  ///  * rcl_interfaces__msg__ListParametersResult__Sequence__init().
+  ///  * \param[in] size The size / capacity of the array.
+  ///  * \return The pointer to the initialized array if successful, otherwise NULL
+  ///  */
+  ffi.Pointer<rcl_interfaces__msg__ListParametersResult__Sequence>
+      rcl_interfaces__msg__ListParametersResult__Sequence__create(
+    int size,
+  ) {
+    return _rcl_interfaces__msg__ListParametersResult__Sequence__create(
+      size,
+    );
+  }
+
+  late final _rcl_interfaces__msg__ListParametersResult__Sequence__createPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<
+                          rcl_interfaces__msg__ListParametersResult__Sequence>
+                      Function(size_t)>>(
+          'rcl_interfaces__msg__ListParametersResult__Sequence__create');
+  late final _rcl_interfaces__msg__ListParametersResult__Sequence__create =
+      _rcl_interfaces__msg__ListParametersResult__Sequence__createPtr
+          .asFunction<
+              ffi.Pointer<rcl_interfaces__msg__ListParametersResult__Sequence>
+                  Function(int)>();
+
+  /// Destroy array of msg/ListParametersResult messages.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__msg__ListParametersResult__Sequence__fini()
+  ///  * on the array,
+  ///  * and frees the memory of the array.
+  ///  * \param[in,out] array The initialized array pointer.
+  ///  */
+  void rcl_interfaces__msg__ListParametersResult__Sequence__destroy(
+    ffi.Pointer<rcl_interfaces__msg__ListParametersResult__Sequence> array,
+  ) {
+    return _rcl_interfaces__msg__ListParametersResult__Sequence__destroy(
+      array,
+    );
+  }
+
+  late final _rcl_interfaces__msg__ListParametersResult__Sequence__destroyPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__msg__ListParametersResult__Sequence>)>>(
+          'rcl_interfaces__msg__ListParametersResult__Sequence__destroy');
+  late final _rcl_interfaces__msg__ListParametersResult__Sequence__destroy =
+      _rcl_interfaces__msg__ListParametersResult__Sequence__destroyPtr
+          .asFunction<
+              void Function(
+                  ffi.Pointer<
+                      rcl_interfaces__msg__ListParametersResult__Sequence>)>();
+
+  ffi.Pointer<rosidl_message_type_support_t>
+      rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__ListParametersResult() {
+    return _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__ListParametersResult();
+  }
+
+  late final _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__ListParametersResultPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<rosidl_message_type_support_t> Function()>>(
+          'rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__ListParametersResult');
+  late final _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__ListParametersResult =
+      _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__ListParametersResultPtr
+          .asFunction<ffi.Pointer<rosidl_message_type_support_t> Function()>();
+
+  /// Initialize msg/ParameterType message.
+  /// /**
+  ///  * If the init function is called twice for the same message without
+  ///  * calling fini inbetween previously allocated memory will be leaked.
+  ///  * \param[in,out] msg The previously allocated message pointer.
+  ///  * Fields without a default value will not be initialized by this function.
+  ///  * You might want to call memset(msg, 0, sizeof(
+  ///  * rcl_interfaces__msg__ParameterType
+  ///  * )) before or use
+  ///  * rcl_interfaces__msg__ParameterType__create()
+  ///  * to allocate and initialize the message.
+  ///  * \return true if initialization was successful, otherwise false
+  ///  */
+  bool rcl_interfaces__msg__ParameterType__init(
+    ffi.Pointer<rcl_interfaces__msg__ParameterType> msg,
+  ) {
+    return _rcl_interfaces__msg__ParameterType__init(
+          msg,
+        ) !=
+        0;
+  }
+
+  late final _rcl_interfaces__msg__ParameterType__initPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Uint8 Function(
+                  ffi.Pointer<rcl_interfaces__msg__ParameterType>)>>(
+      'rcl_interfaces__msg__ParameterType__init');
+  late final _rcl_interfaces__msg__ParameterType__init =
+      _rcl_interfaces__msg__ParameterType__initPtr.asFunction<
+          int Function(ffi.Pointer<rcl_interfaces__msg__ParameterType>)>();
+
+  /// Finalize msg/ParameterType message.
+  /// /**
+  ///  * \param[in,out] msg The allocated message pointer.
+  ///  */
+  void rcl_interfaces__msg__ParameterType__fini(
+    ffi.Pointer<rcl_interfaces__msg__ParameterType> msg,
+  ) {
+    return _rcl_interfaces__msg__ParameterType__fini(
+      msg,
+    );
+  }
+
+  late final _rcl_interfaces__msg__ParameterType__finiPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Pointer<rcl_interfaces__msg__ParameterType>)>>(
+      'rcl_interfaces__msg__ParameterType__fini');
+  late final _rcl_interfaces__msg__ParameterType__fini =
+      _rcl_interfaces__msg__ParameterType__finiPtr.asFunction<
+          void Function(ffi.Pointer<rcl_interfaces__msg__ParameterType>)>();
+
+  /// Create msg/ParameterType message.
+  /// /**
+  ///  * It allocates the memory for the message, sets the memory to zero, and
+  ///  * calls
+  ///  * rcl_interfaces__msg__ParameterType__init().
+  ///  * \return The pointer to the initialized message if successful,
+  ///  * otherwise NULL
+  ///  */
+  ffi.Pointer<rcl_interfaces__msg__ParameterType>
+      rcl_interfaces__msg__ParameterType__create() {
+    return _rcl_interfaces__msg__ParameterType__create();
+  }
+
+  late final _rcl_interfaces__msg__ParameterType__createPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<rcl_interfaces__msg__ParameterType>
+              Function()>>('rcl_interfaces__msg__ParameterType__create');
+  late final _rcl_interfaces__msg__ParameterType__create =
+      _rcl_interfaces__msg__ParameterType__createPtr.asFunction<
+          ffi.Pointer<rcl_interfaces__msg__ParameterType> Function()>();
+
+  /// Destroy msg/ParameterType message.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__msg__ParameterType__fini()
+  ///  * and frees the memory of the message.
+  ///  * \param[in,out] msg The allocated message pointer.
+  ///  */
+  void rcl_interfaces__msg__ParameterType__destroy(
+    ffi.Pointer<rcl_interfaces__msg__ParameterType> msg,
+  ) {
+    return _rcl_interfaces__msg__ParameterType__destroy(
+      msg,
+    );
+  }
+
+  late final _rcl_interfaces__msg__ParameterType__destroyPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Pointer<rcl_interfaces__msg__ParameterType>)>>(
+      'rcl_interfaces__msg__ParameterType__destroy');
+  late final _rcl_interfaces__msg__ParameterType__destroy =
+      _rcl_interfaces__msg__ParameterType__destroyPtr.asFunction<
+          void Function(ffi.Pointer<rcl_interfaces__msg__ParameterType>)>();
+
+  /// Initialize array of msg/ParameterType messages.
+  /// /**
+  ///  * It allocates the memory for the number of elements and calls
+  ///  * rcl_interfaces__msg__ParameterType__init()
+  ///  * for each element of the array.
+  ///  * \param[in,out] array The allocated array pointer.
+  ///  * \param[in] size The size / capacity of the array.
+  ///  * \return true if initialization was successful, otherwise false
+  ///  * If the array pointer is valid and the size is zero it is guaranteed
+  ///  # to return true.
+  ///  */
+  bool rcl_interfaces__msg__ParameterType__Sequence__init(
+    ffi.Pointer<rcl_interfaces__msg__ParameterType__Sequence> array,
+    int size,
+  ) {
+    return _rcl_interfaces__msg__ParameterType__Sequence__init(
+          array,
+          size,
+        ) !=
+        0;
+  }
+
+  late final _rcl_interfaces__msg__ParameterType__Sequence__initPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Uint8 Function(
+              ffi.Pointer<rcl_interfaces__msg__ParameterType__Sequence>,
+              size_t)>>('rcl_interfaces__msg__ParameterType__Sequence__init');
+  late final _rcl_interfaces__msg__ParameterType__Sequence__init =
+      _rcl_interfaces__msg__ParameterType__Sequence__initPtr.asFunction<
+          int Function(
+              ffi.Pointer<rcl_interfaces__msg__ParameterType__Sequence>,
+              int)>();
+
+  /// Finalize array of msg/ParameterType messages.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__msg__ParameterType__fini()
+  ///  * for each element of the array and frees the memory for the number of
+  ///  * elements.
+  ///  * \param[in,out] array The initialized array pointer.
+  ///  */
+  void rcl_interfaces__msg__ParameterType__Sequence__fini(
+    ffi.Pointer<rcl_interfaces__msg__ParameterType__Sequence> array,
+  ) {
+    return _rcl_interfaces__msg__ParameterType__Sequence__fini(
+      array,
+    );
+  }
+
+  late final _rcl_interfaces__msg__ParameterType__Sequence__finiPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Pointer<rcl_interfaces__msg__ParameterType__Sequence>)>>(
+      'rcl_interfaces__msg__ParameterType__Sequence__fini');
+  late final _rcl_interfaces__msg__ParameterType__Sequence__fini =
+      _rcl_interfaces__msg__ParameterType__Sequence__finiPtr.asFunction<
+          void Function(
+              ffi.Pointer<rcl_interfaces__msg__ParameterType__Sequence>)>();
+
+  /// Create array of msg/ParameterType messages.
+  /// /**
+  ///  * It allocates the memory for the array and calls
+  ///  * rcl_interfaces__msg__ParameterType__Sequence__init().
+  ///  * \param[in] size The size / capacity of the array.
+  ///  * \return The pointer to the initialized array if successful, otherwise NULL
+  ///  */
+  ffi.Pointer<rcl_interfaces__msg__ParameterType__Sequence>
+      rcl_interfaces__msg__ParameterType__Sequence__create(
+    int size,
+  ) {
+    return _rcl_interfaces__msg__ParameterType__Sequence__create(
+      size,
+    );
+  }
+
+  late final _rcl_interfaces__msg__ParameterType__Sequence__createPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<rcl_interfaces__msg__ParameterType__Sequence> Function(
+              size_t)>>('rcl_interfaces__msg__ParameterType__Sequence__create');
+  late final _rcl_interfaces__msg__ParameterType__Sequence__create =
+      _rcl_interfaces__msg__ParameterType__Sequence__createPtr.asFunction<
+          ffi.Pointer<rcl_interfaces__msg__ParameterType__Sequence> Function(
+              int)>();
+
+  /// Destroy array of msg/ParameterType messages.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__msg__ParameterType__Sequence__fini()
+  ///  * on the array,
+  ///  * and frees the memory of the array.
+  ///  * \param[in,out] array The initialized array pointer.
+  ///  */
+  void rcl_interfaces__msg__ParameterType__Sequence__destroy(
+    ffi.Pointer<rcl_interfaces__msg__ParameterType__Sequence> array,
+  ) {
+    return _rcl_interfaces__msg__ParameterType__Sequence__destroy(
+      array,
+    );
+  }
+
+  late final _rcl_interfaces__msg__ParameterType__Sequence__destroyPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__msg__ParameterType__Sequence>)>>(
+          'rcl_interfaces__msg__ParameterType__Sequence__destroy');
+  late final _rcl_interfaces__msg__ParameterType__Sequence__destroy =
+      _rcl_interfaces__msg__ParameterType__Sequence__destroyPtr.asFunction<
+          void Function(
+              ffi.Pointer<rcl_interfaces__msg__ParameterType__Sequence>)>();
+
+  ffi.Pointer<rosidl_message_type_support_t>
+      rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__ParameterType() {
+    return _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__ParameterType();
+  }
+
+  late final _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__ParameterTypePtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<rosidl_message_type_support_t> Function()>>(
+          'rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__ParameterType');
+  late final _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__ParameterType =
+      _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__ParameterTypePtr
+          .asFunction<ffi.Pointer<rosidl_message_type_support_t> Function()>();
+
+  /// Initialize msg/IntraProcessMessage message.
+  /// /**
+  ///  * If the init function is called twice for the same message without
+  ///  * calling fini inbetween previously allocated memory will be leaked.
+  ///  * \param[in,out] msg The previously allocated message pointer.
+  ///  * Fields without a default value will not be initialized by this function.
+  ///  * You might want to call memset(msg, 0, sizeof(
+  ///  * rcl_interfaces__msg__IntraProcessMessage
+  ///  * )) before or use
+  ///  * rcl_interfaces__msg__IntraProcessMessage__create()
+  ///  * to allocate and initialize the message.
+  ///  * \return true if initialization was successful, otherwise false
+  ///  */
+  bool rcl_interfaces__msg__IntraProcessMessage__init(
+    ffi.Pointer<rcl_interfaces__msg__IntraProcessMessage> msg,
+  ) {
+    return _rcl_interfaces__msg__IntraProcessMessage__init(
+          msg,
+        ) !=
+        0;
+  }
+
+  late final _rcl_interfaces__msg__IntraProcessMessage__initPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Uint8 Function(
+                  ffi.Pointer<rcl_interfaces__msg__IntraProcessMessage>)>>(
+      'rcl_interfaces__msg__IntraProcessMessage__init');
+  late final _rcl_interfaces__msg__IntraProcessMessage__init =
+      _rcl_interfaces__msg__IntraProcessMessage__initPtr.asFunction<
+          int Function(
+              ffi.Pointer<rcl_interfaces__msg__IntraProcessMessage>)>();
+
+  /// Finalize msg/IntraProcessMessage message.
+  /// /**
+  ///  * \param[in,out] msg The allocated message pointer.
+  ///  */
+  void rcl_interfaces__msg__IntraProcessMessage__fini(
+    ffi.Pointer<rcl_interfaces__msg__IntraProcessMessage> msg,
+  ) {
+    return _rcl_interfaces__msg__IntraProcessMessage__fini(
+      msg,
+    );
+  }
+
+  late final _rcl_interfaces__msg__IntraProcessMessage__finiPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Pointer<rcl_interfaces__msg__IntraProcessMessage>)>>(
+      'rcl_interfaces__msg__IntraProcessMessage__fini');
+  late final _rcl_interfaces__msg__IntraProcessMessage__fini =
+      _rcl_interfaces__msg__IntraProcessMessage__finiPtr.asFunction<
+          void Function(
+              ffi.Pointer<rcl_interfaces__msg__IntraProcessMessage>)>();
+
+  /// Create msg/IntraProcessMessage message.
+  /// /**
+  ///  * It allocates the memory for the message, sets the memory to zero, and
+  ///  * calls
+  ///  * rcl_interfaces__msg__IntraProcessMessage__init().
+  ///  * \return The pointer to the initialized message if successful,
+  ///  * otherwise NULL
+  ///  */
+  ffi.Pointer<rcl_interfaces__msg__IntraProcessMessage>
+      rcl_interfaces__msg__IntraProcessMessage__create() {
+    return _rcl_interfaces__msg__IntraProcessMessage__create();
+  }
+
+  late final _rcl_interfaces__msg__IntraProcessMessage__createPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<rcl_interfaces__msg__IntraProcessMessage>
+              Function()>>('rcl_interfaces__msg__IntraProcessMessage__create');
+  late final _rcl_interfaces__msg__IntraProcessMessage__create =
+      _rcl_interfaces__msg__IntraProcessMessage__createPtr.asFunction<
+          ffi.Pointer<rcl_interfaces__msg__IntraProcessMessage> Function()>();
+
+  /// Destroy msg/IntraProcessMessage message.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__msg__IntraProcessMessage__fini()
+  ///  * and frees the memory of the message.
+  ///  * \param[in,out] msg The allocated message pointer.
+  ///  */
+  void rcl_interfaces__msg__IntraProcessMessage__destroy(
+    ffi.Pointer<rcl_interfaces__msg__IntraProcessMessage> msg,
+  ) {
+    return _rcl_interfaces__msg__IntraProcessMessage__destroy(
+      msg,
+    );
+  }
+
+  late final _rcl_interfaces__msg__IntraProcessMessage__destroyPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Pointer<rcl_interfaces__msg__IntraProcessMessage>)>>(
+      'rcl_interfaces__msg__IntraProcessMessage__destroy');
+  late final _rcl_interfaces__msg__IntraProcessMessage__destroy =
+      _rcl_interfaces__msg__IntraProcessMessage__destroyPtr.asFunction<
+          void Function(
+              ffi.Pointer<rcl_interfaces__msg__IntraProcessMessage>)>();
+
+  /// Initialize array of msg/IntraProcessMessage messages.
+  /// /**
+  ///  * It allocates the memory for the number of elements and calls
+  ///  * rcl_interfaces__msg__IntraProcessMessage__init()
+  ///  * for each element of the array.
+  ///  * \param[in,out] array The allocated array pointer.
+  ///  * \param[in] size The size / capacity of the array.
+  ///  * \return true if initialization was successful, otherwise false
+  ///  * If the array pointer is valid and the size is zero it is guaranteed
+  ///  # to return true.
+  ///  */
+  bool rcl_interfaces__msg__IntraProcessMessage__Sequence__init(
+    ffi.Pointer<rcl_interfaces__msg__IntraProcessMessage__Sequence> array,
+    int size,
+  ) {
+    return _rcl_interfaces__msg__IntraProcessMessage__Sequence__init(
+          array,
+          size,
+        ) !=
+        0;
+  }
+
+  late final _rcl_interfaces__msg__IntraProcessMessage__Sequence__initPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Uint8 Function(
+                      ffi.Pointer<
+                          rcl_interfaces__msg__IntraProcessMessage__Sequence>,
+                      size_t)>>(
+          'rcl_interfaces__msg__IntraProcessMessage__Sequence__init');
+  late final _rcl_interfaces__msg__IntraProcessMessage__Sequence__init =
+      _rcl_interfaces__msg__IntraProcessMessage__Sequence__initPtr.asFunction<
+          int Function(
+              ffi.Pointer<rcl_interfaces__msg__IntraProcessMessage__Sequence>,
+              int)>();
+
+  /// Finalize array of msg/IntraProcessMessage messages.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__msg__IntraProcessMessage__fini()
+  ///  * for each element of the array and frees the memory for the number of
+  ///  * elements.
+  ///  * \param[in,out] array The initialized array pointer.
+  ///  */
+  void rcl_interfaces__msg__IntraProcessMessage__Sequence__fini(
+    ffi.Pointer<rcl_interfaces__msg__IntraProcessMessage__Sequence> array,
+  ) {
+    return _rcl_interfaces__msg__IntraProcessMessage__Sequence__fini(
+      array,
+    );
+  }
+
+  late final _rcl_interfaces__msg__IntraProcessMessage__Sequence__finiPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__msg__IntraProcessMessage__Sequence>)>>(
+          'rcl_interfaces__msg__IntraProcessMessage__Sequence__fini');
+  late final _rcl_interfaces__msg__IntraProcessMessage__Sequence__fini =
+      _rcl_interfaces__msg__IntraProcessMessage__Sequence__finiPtr.asFunction<
+          void Function(
+              ffi.Pointer<
+                  rcl_interfaces__msg__IntraProcessMessage__Sequence>)>();
+
+  /// Create array of msg/IntraProcessMessage messages.
+  /// /**
+  ///  * It allocates the memory for the array and calls
+  ///  * rcl_interfaces__msg__IntraProcessMessage__Sequence__init().
+  ///  * \param[in] size The size / capacity of the array.
+  ///  * \return The pointer to the initialized array if successful, otherwise NULL
+  ///  */
+  ffi.Pointer<rcl_interfaces__msg__IntraProcessMessage__Sequence>
+      rcl_interfaces__msg__IntraProcessMessage__Sequence__create(
+    int size,
+  ) {
+    return _rcl_interfaces__msg__IntraProcessMessage__Sequence__create(
+      size,
+    );
+  }
+
+  late final _rcl_interfaces__msg__IntraProcessMessage__Sequence__createPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<
+                          rcl_interfaces__msg__IntraProcessMessage__Sequence>
+                      Function(size_t)>>(
+          'rcl_interfaces__msg__IntraProcessMessage__Sequence__create');
+  late final _rcl_interfaces__msg__IntraProcessMessage__Sequence__create =
+      _rcl_interfaces__msg__IntraProcessMessage__Sequence__createPtr.asFunction<
+          ffi.Pointer<rcl_interfaces__msg__IntraProcessMessage__Sequence>
+              Function(int)>();
+
+  /// Destroy array of msg/IntraProcessMessage messages.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__msg__IntraProcessMessage__Sequence__fini()
+  ///  * on the array,
+  ///  * and frees the memory of the array.
+  ///  * \param[in,out] array The initialized array pointer.
+  ///  */
+  void rcl_interfaces__msg__IntraProcessMessage__Sequence__destroy(
+    ffi.Pointer<rcl_interfaces__msg__IntraProcessMessage__Sequence> array,
+  ) {
+    return _rcl_interfaces__msg__IntraProcessMessage__Sequence__destroy(
+      array,
+    );
+  }
+
+  late final _rcl_interfaces__msg__IntraProcessMessage__Sequence__destroyPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__msg__IntraProcessMessage__Sequence>)>>(
+          'rcl_interfaces__msg__IntraProcessMessage__Sequence__destroy');
+  late final _rcl_interfaces__msg__IntraProcessMessage__Sequence__destroy =
+      _rcl_interfaces__msg__IntraProcessMessage__Sequence__destroyPtr
+          .asFunction<
+              void Function(
+                  ffi.Pointer<
+                      rcl_interfaces__msg__IntraProcessMessage__Sequence>)>();
+
+  ffi.Pointer<rosidl_message_type_support_t>
+      rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__IntraProcessMessage() {
+    return _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__IntraProcessMessage();
+  }
+
+  late final _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__IntraProcessMessagePtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<rosidl_message_type_support_t> Function()>>(
+          'rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__IntraProcessMessage');
+  late final _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__IntraProcessMessage =
+      _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__IntraProcessMessagePtr
+          .asFunction<ffi.Pointer<rosidl_message_type_support_t> Function()>();
+
+  /// Initialize msg/ParameterEvent message.
+  /// /**
+  ///  * If the init function is called twice for the same message without
+  ///  * calling fini inbetween previously allocated memory will be leaked.
+  ///  * \param[in,out] msg The previously allocated message pointer.
+  ///  * Fields without a default value will not be initialized by this function.
+  ///  * You might want to call memset(msg, 0, sizeof(
+  ///  * rcl_interfaces__msg__ParameterEvent
+  ///  * )) before or use
+  ///  * rcl_interfaces__msg__ParameterEvent__create()
+  ///  * to allocate and initialize the message.
+  ///  * \return true if initialization was successful, otherwise false
+  ///  */
+  bool rcl_interfaces__msg__ParameterEvent__init(
+    ffi.Pointer<rcl_interfaces__msg__ParameterEvent> msg,
+  ) {
+    return _rcl_interfaces__msg__ParameterEvent__init(
+          msg,
+        ) !=
+        0;
+  }
+
+  late final _rcl_interfaces__msg__ParameterEvent__initPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Uint8 Function(
+                  ffi.Pointer<rcl_interfaces__msg__ParameterEvent>)>>(
+      'rcl_interfaces__msg__ParameterEvent__init');
+  late final _rcl_interfaces__msg__ParameterEvent__init =
+      _rcl_interfaces__msg__ParameterEvent__initPtr.asFunction<
+          int Function(ffi.Pointer<rcl_interfaces__msg__ParameterEvent>)>();
+
+  /// Finalize msg/ParameterEvent message.
+  /// /**
+  ///  * \param[in,out] msg The allocated message pointer.
+  ///  */
+  void rcl_interfaces__msg__ParameterEvent__fini(
+    ffi.Pointer<rcl_interfaces__msg__ParameterEvent> msg,
+  ) {
+    return _rcl_interfaces__msg__ParameterEvent__fini(
+      msg,
+    );
+  }
+
+  late final _rcl_interfaces__msg__ParameterEvent__finiPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Pointer<rcl_interfaces__msg__ParameterEvent>)>>(
+      'rcl_interfaces__msg__ParameterEvent__fini');
+  late final _rcl_interfaces__msg__ParameterEvent__fini =
+      _rcl_interfaces__msg__ParameterEvent__finiPtr.asFunction<
+          void Function(ffi.Pointer<rcl_interfaces__msg__ParameterEvent>)>();
+
+  /// Create msg/ParameterEvent message.
+  /// /**
+  ///  * It allocates the memory for the message, sets the memory to zero, and
+  ///  * calls
+  ///  * rcl_interfaces__msg__ParameterEvent__init().
+  ///  * \return The pointer to the initialized message if successful,
+  ///  * otherwise NULL
+  ///  */
+  ffi.Pointer<rcl_interfaces__msg__ParameterEvent>
+      rcl_interfaces__msg__ParameterEvent__create() {
+    return _rcl_interfaces__msg__ParameterEvent__create();
+  }
+
+  late final _rcl_interfaces__msg__ParameterEvent__createPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<rcl_interfaces__msg__ParameterEvent>
+              Function()>>('rcl_interfaces__msg__ParameterEvent__create');
+  late final _rcl_interfaces__msg__ParameterEvent__create =
+      _rcl_interfaces__msg__ParameterEvent__createPtr.asFunction<
+          ffi.Pointer<rcl_interfaces__msg__ParameterEvent> Function()>();
+
+  /// Destroy msg/ParameterEvent message.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__msg__ParameterEvent__fini()
+  ///  * and frees the memory of the message.
+  ///  * \param[in,out] msg The allocated message pointer.
+  ///  */
+  void rcl_interfaces__msg__ParameterEvent__destroy(
+    ffi.Pointer<rcl_interfaces__msg__ParameterEvent> msg,
+  ) {
+    return _rcl_interfaces__msg__ParameterEvent__destroy(
+      msg,
+    );
+  }
+
+  late final _rcl_interfaces__msg__ParameterEvent__destroyPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Pointer<rcl_interfaces__msg__ParameterEvent>)>>(
+      'rcl_interfaces__msg__ParameterEvent__destroy');
+  late final _rcl_interfaces__msg__ParameterEvent__destroy =
+      _rcl_interfaces__msg__ParameterEvent__destroyPtr.asFunction<
+          void Function(ffi.Pointer<rcl_interfaces__msg__ParameterEvent>)>();
+
+  /// Initialize array of msg/ParameterEvent messages.
+  /// /**
+  ///  * It allocates the memory for the number of elements and calls
+  ///  * rcl_interfaces__msg__ParameterEvent__init()
+  ///  * for each element of the array.
+  ///  * \param[in,out] array The allocated array pointer.
+  ///  * \param[in] size The size / capacity of the array.
+  ///  * \return true if initialization was successful, otherwise false
+  ///  * If the array pointer is valid and the size is zero it is guaranteed
+  ///  # to return true.
+  ///  */
+  bool rcl_interfaces__msg__ParameterEvent__Sequence__init(
+    ffi.Pointer<rcl_interfaces__msg__ParameterEvent__Sequence> array,
+    int size,
+  ) {
+    return _rcl_interfaces__msg__ParameterEvent__Sequence__init(
+          array,
+          size,
+        ) !=
+        0;
+  }
+
+  late final _rcl_interfaces__msg__ParameterEvent__Sequence__initPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Uint8 Function(
+              ffi.Pointer<rcl_interfaces__msg__ParameterEvent__Sequence>,
+              size_t)>>('rcl_interfaces__msg__ParameterEvent__Sequence__init');
+  late final _rcl_interfaces__msg__ParameterEvent__Sequence__init =
+      _rcl_interfaces__msg__ParameterEvent__Sequence__initPtr.asFunction<
+          int Function(
+              ffi.Pointer<rcl_interfaces__msg__ParameterEvent__Sequence>,
+              int)>();
+
+  /// Finalize array of msg/ParameterEvent messages.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__msg__ParameterEvent__fini()
+  ///  * for each element of the array and frees the memory for the number of
+  ///  * elements.
+  ///  * \param[in,out] array The initialized array pointer.
+  ///  */
+  void rcl_interfaces__msg__ParameterEvent__Sequence__fini(
+    ffi.Pointer<rcl_interfaces__msg__ParameterEvent__Sequence> array,
+  ) {
+    return _rcl_interfaces__msg__ParameterEvent__Sequence__fini(
+      array,
+    );
+  }
+
+  late final _rcl_interfaces__msg__ParameterEvent__Sequence__finiPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Pointer<rcl_interfaces__msg__ParameterEvent__Sequence>)>>(
+      'rcl_interfaces__msg__ParameterEvent__Sequence__fini');
+  late final _rcl_interfaces__msg__ParameterEvent__Sequence__fini =
+      _rcl_interfaces__msg__ParameterEvent__Sequence__finiPtr.asFunction<
+          void Function(
+              ffi.Pointer<rcl_interfaces__msg__ParameterEvent__Sequence>)>();
+
+  /// Create array of msg/ParameterEvent messages.
+  /// /**
+  ///  * It allocates the memory for the array and calls
+  ///  * rcl_interfaces__msg__ParameterEvent__Sequence__init().
+  ///  * \param[in] size The size / capacity of the array.
+  ///  * \return The pointer to the initialized array if successful, otherwise NULL
+  ///  */
+  ffi.Pointer<rcl_interfaces__msg__ParameterEvent__Sequence>
+      rcl_interfaces__msg__ParameterEvent__Sequence__create(
+    int size,
+  ) {
+    return _rcl_interfaces__msg__ParameterEvent__Sequence__create(
+      size,
+    );
+  }
+
+  late final _rcl_interfaces__msg__ParameterEvent__Sequence__createPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<rcl_interfaces__msg__ParameterEvent__Sequence>
+                      Function(size_t)>>(
+          'rcl_interfaces__msg__ParameterEvent__Sequence__create');
+  late final _rcl_interfaces__msg__ParameterEvent__Sequence__create =
+      _rcl_interfaces__msg__ParameterEvent__Sequence__createPtr.asFunction<
+          ffi.Pointer<rcl_interfaces__msg__ParameterEvent__Sequence> Function(
+              int)>();
+
+  /// Destroy array of msg/ParameterEvent messages.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__msg__ParameterEvent__Sequence__fini()
+  ///  * on the array,
+  ///  * and frees the memory of the array.
+  ///  * \param[in,out] array The initialized array pointer.
+  ///  */
+  void rcl_interfaces__msg__ParameterEvent__Sequence__destroy(
+    ffi.Pointer<rcl_interfaces__msg__ParameterEvent__Sequence> array,
+  ) {
+    return _rcl_interfaces__msg__ParameterEvent__Sequence__destroy(
+      array,
+    );
+  }
+
+  late final _rcl_interfaces__msg__ParameterEvent__Sequence__destroyPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__msg__ParameterEvent__Sequence>)>>(
+          'rcl_interfaces__msg__ParameterEvent__Sequence__destroy');
+  late final _rcl_interfaces__msg__ParameterEvent__Sequence__destroy =
+      _rcl_interfaces__msg__ParameterEvent__Sequence__destroyPtr.asFunction<
+          void Function(
+              ffi.Pointer<rcl_interfaces__msg__ParameterEvent__Sequence>)>();
+
+  ffi.Pointer<rosidl_message_type_support_t>
+      rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__ParameterEvent() {
+    return _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__ParameterEvent();
+  }
+
+  late final _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__ParameterEventPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<rosidl_message_type_support_t> Function()>>(
+          'rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__ParameterEvent');
+  late final _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__ParameterEvent =
+      _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__ParameterEventPtr
+          .asFunction<ffi.Pointer<rosidl_message_type_support_t> Function()>();
+
+  /// Initialize msg/Parameter message.
+  /// /**
+  ///  * If the init function is called twice for the same message without
+  ///  * calling fini inbetween previously allocated memory will be leaked.
+  ///  * \param[in,out] msg The previously allocated message pointer.
+  ///  * Fields without a default value will not be initialized by this function.
+  ///  * You might want to call memset(msg, 0, sizeof(
+  ///  * rcl_interfaces__msg__Parameter
+  ///  * )) before or use
+  ///  * rcl_interfaces__msg__Parameter__create()
+  ///  * to allocate and initialize the message.
+  ///  * \return true if initialization was successful, otherwise false
+  ///  */
+  bool rcl_interfaces__msg__Parameter__init(
+    ffi.Pointer<rcl_interfaces__msg__Parameter> msg,
+  ) {
+    return _rcl_interfaces__msg__Parameter__init(
+          msg,
+        ) !=
+        0;
+  }
+
+  late final _rcl_interfaces__msg__Parameter__initPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Uint8 Function(ffi.Pointer<rcl_interfaces__msg__Parameter>)>>(
+      'rcl_interfaces__msg__Parameter__init');
+  late final _rcl_interfaces__msg__Parameter__init =
+      _rcl_interfaces__msg__Parameter__initPtr.asFunction<
+          int Function(ffi.Pointer<rcl_interfaces__msg__Parameter>)>();
+
+  /// Finalize msg/Parameter message.
+  /// /**
+  ///  * \param[in,out] msg The allocated message pointer.
+  ///  */
+  void rcl_interfaces__msg__Parameter__fini(
+    ffi.Pointer<rcl_interfaces__msg__Parameter> msg,
+  ) {
+    return _rcl_interfaces__msg__Parameter__fini(
+      msg,
+    );
+  }
+
+  late final _rcl_interfaces__msg__Parameter__finiPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(ffi.Pointer<rcl_interfaces__msg__Parameter>)>>(
+      'rcl_interfaces__msg__Parameter__fini');
+  late final _rcl_interfaces__msg__Parameter__fini =
+      _rcl_interfaces__msg__Parameter__finiPtr.asFunction<
+          void Function(ffi.Pointer<rcl_interfaces__msg__Parameter>)>();
+
+  /// Create msg/Parameter message.
+  /// /**
+  ///  * It allocates the memory for the message, sets the memory to zero, and
+  ///  * calls
+  ///  * rcl_interfaces__msg__Parameter__init().
+  ///  * \return The pointer to the initialized message if successful,
+  ///  * otherwise NULL
+  ///  */
+  ffi.Pointer<rcl_interfaces__msg__Parameter>
+      rcl_interfaces__msg__Parameter__create() {
+    return _rcl_interfaces__msg__Parameter__create();
+  }
+
+  late final _rcl_interfaces__msg__Parameter__createPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<rcl_interfaces__msg__Parameter>
+              Function()>>('rcl_interfaces__msg__Parameter__create');
+  late final _rcl_interfaces__msg__Parameter__create =
+      _rcl_interfaces__msg__Parameter__createPtr
+          .asFunction<ffi.Pointer<rcl_interfaces__msg__Parameter> Function()>();
+
+  /// Destroy msg/Parameter message.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__msg__Parameter__fini()
+  ///  * and frees the memory of the message.
+  ///  * \param[in,out] msg The allocated message pointer.
+  ///  */
+  void rcl_interfaces__msg__Parameter__destroy(
+    ffi.Pointer<rcl_interfaces__msg__Parameter> msg,
+  ) {
+    return _rcl_interfaces__msg__Parameter__destroy(
+      msg,
+    );
+  }
+
+  late final _rcl_interfaces__msg__Parameter__destroyPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(ffi.Pointer<rcl_interfaces__msg__Parameter>)>>(
+      'rcl_interfaces__msg__Parameter__destroy');
+  late final _rcl_interfaces__msg__Parameter__destroy =
+      _rcl_interfaces__msg__Parameter__destroyPtr.asFunction<
+          void Function(ffi.Pointer<rcl_interfaces__msg__Parameter>)>();
+
+  /// Initialize array of msg/Parameter messages.
+  /// /**
+  ///  * It allocates the memory for the number of elements and calls
+  ///  * rcl_interfaces__msg__Parameter__init()
+  ///  * for each element of the array.
+  ///  * \param[in,out] array The allocated array pointer.
+  ///  * \param[in] size The size / capacity of the array.
+  ///  * \return true if initialization was successful, otherwise false
+  ///  * If the array pointer is valid and the size is zero it is guaranteed
+  ///  # to return true.
+  ///  */
+  bool rcl_interfaces__msg__Parameter__Sequence__init(
+    ffi.Pointer<rcl_interfaces__msg__Parameter__Sequence> array,
+    int size,
+  ) {
+    return _rcl_interfaces__msg__Parameter__Sequence__init(
+          array,
+          size,
+        ) !=
+        0;
+  }
+
+  late final _rcl_interfaces__msg__Parameter__Sequence__initPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Uint8 Function(
+              ffi.Pointer<rcl_interfaces__msg__Parameter__Sequence>,
+              size_t)>>('rcl_interfaces__msg__Parameter__Sequence__init');
+  late final _rcl_interfaces__msg__Parameter__Sequence__init =
+      _rcl_interfaces__msg__Parameter__Sequence__initPtr.asFunction<
+          int Function(
+              ffi.Pointer<rcl_interfaces__msg__Parameter__Sequence>, int)>();
+
+  /// Finalize array of msg/Parameter messages.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__msg__Parameter__fini()
+  ///  * for each element of the array and frees the memory for the number of
+  ///  * elements.
+  ///  * \param[in,out] array The initialized array pointer.
+  ///  */
+  void rcl_interfaces__msg__Parameter__Sequence__fini(
+    ffi.Pointer<rcl_interfaces__msg__Parameter__Sequence> array,
+  ) {
+    return _rcl_interfaces__msg__Parameter__Sequence__fini(
+      array,
+    );
+  }
+
+  late final _rcl_interfaces__msg__Parameter__Sequence__finiPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Pointer<rcl_interfaces__msg__Parameter__Sequence>)>>(
+      'rcl_interfaces__msg__Parameter__Sequence__fini');
+  late final _rcl_interfaces__msg__Parameter__Sequence__fini =
+      _rcl_interfaces__msg__Parameter__Sequence__finiPtr.asFunction<
+          void Function(
+              ffi.Pointer<rcl_interfaces__msg__Parameter__Sequence>)>();
+
+  /// Create array of msg/Parameter messages.
+  /// /**
+  ///  * It allocates the memory for the array and calls
+  ///  * rcl_interfaces__msg__Parameter__Sequence__init().
+  ///  * \param[in] size The size / capacity of the array.
+  ///  * \return The pointer to the initialized array if successful, otherwise NULL
+  ///  */
+  ffi.Pointer<rcl_interfaces__msg__Parameter__Sequence>
+      rcl_interfaces__msg__Parameter__Sequence__create(
+    int size,
+  ) {
+    return _rcl_interfaces__msg__Parameter__Sequence__create(
+      size,
+    );
+  }
+
+  late final _rcl_interfaces__msg__Parameter__Sequence__createPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<rcl_interfaces__msg__Parameter__Sequence> Function(
+              size_t)>>('rcl_interfaces__msg__Parameter__Sequence__create');
+  late final _rcl_interfaces__msg__Parameter__Sequence__create =
+      _rcl_interfaces__msg__Parameter__Sequence__createPtr.asFunction<
+          ffi.Pointer<rcl_interfaces__msg__Parameter__Sequence> Function(
+              int)>();
+
+  /// Destroy array of msg/Parameter messages.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__msg__Parameter__Sequence__fini()
+  ///  * on the array,
+  ///  * and frees the memory of the array.
+  ///  * \param[in,out] array The initialized array pointer.
+  ///  */
+  void rcl_interfaces__msg__Parameter__Sequence__destroy(
+    ffi.Pointer<rcl_interfaces__msg__Parameter__Sequence> array,
+  ) {
+    return _rcl_interfaces__msg__Parameter__Sequence__destroy(
+      array,
+    );
+  }
+
+  late final _rcl_interfaces__msg__Parameter__Sequence__destroyPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Pointer<rcl_interfaces__msg__Parameter__Sequence>)>>(
+      'rcl_interfaces__msg__Parameter__Sequence__destroy');
+  late final _rcl_interfaces__msg__Parameter__Sequence__destroy =
+      _rcl_interfaces__msg__Parameter__Sequence__destroyPtr.asFunction<
+          void Function(
+              ffi.Pointer<rcl_interfaces__msg__Parameter__Sequence>)>();
+
+  ffi.Pointer<rosidl_message_type_support_t>
+      rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__Parameter() {
+    return _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__Parameter();
+  }
+
+  late final _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__ParameterPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<rosidl_message_type_support_t> Function()>>(
+          'rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__Parameter');
+  late final _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__Parameter =
+      _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__ParameterPtr
+          .asFunction<ffi.Pointer<rosidl_message_type_support_t> Function()>();
+
+  /// Initialize msg/ParameterValue message.
+  /// /**
+  ///  * If the init function is called twice for the same message without
+  ///  * calling fini inbetween previously allocated memory will be leaked.
+  ///  * \param[in,out] msg The previously allocated message pointer.
+  ///  * Fields without a default value will not be initialized by this function.
+  ///  * You might want to call memset(msg, 0, sizeof(
+  ///  * rcl_interfaces__msg__ParameterValue
+  ///  * )) before or use
+  ///  * rcl_interfaces__msg__ParameterValue__create()
+  ///  * to allocate and initialize the message.
+  ///  * \return true if initialization was successful, otherwise false
+  ///  */
+  bool rcl_interfaces__msg__ParameterValue__init(
+    ffi.Pointer<rcl_interfaces__msg__ParameterValue> msg,
+  ) {
+    return _rcl_interfaces__msg__ParameterValue__init(
+          msg,
+        ) !=
+        0;
+  }
+
+  late final _rcl_interfaces__msg__ParameterValue__initPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Uint8 Function(
+                  ffi.Pointer<rcl_interfaces__msg__ParameterValue>)>>(
+      'rcl_interfaces__msg__ParameterValue__init');
+  late final _rcl_interfaces__msg__ParameterValue__init =
+      _rcl_interfaces__msg__ParameterValue__initPtr.asFunction<
+          int Function(ffi.Pointer<rcl_interfaces__msg__ParameterValue>)>();
+
+  /// Finalize msg/ParameterValue message.
+  /// /**
+  ///  * \param[in,out] msg The allocated message pointer.
+  ///  */
+  void rcl_interfaces__msg__ParameterValue__fini(
+    ffi.Pointer<rcl_interfaces__msg__ParameterValue> msg,
+  ) {
+    return _rcl_interfaces__msg__ParameterValue__fini(
+      msg,
+    );
+  }
+
+  late final _rcl_interfaces__msg__ParameterValue__finiPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Pointer<rcl_interfaces__msg__ParameterValue>)>>(
+      'rcl_interfaces__msg__ParameterValue__fini');
+  late final _rcl_interfaces__msg__ParameterValue__fini =
+      _rcl_interfaces__msg__ParameterValue__finiPtr.asFunction<
+          void Function(ffi.Pointer<rcl_interfaces__msg__ParameterValue>)>();
+
+  /// Create msg/ParameterValue message.
+  /// /**
+  ///  * It allocates the memory for the message, sets the memory to zero, and
+  ///  * calls
+  ///  * rcl_interfaces__msg__ParameterValue__init().
+  ///  * \return The pointer to the initialized message if successful,
+  ///  * otherwise NULL
+  ///  */
+  ffi.Pointer<rcl_interfaces__msg__ParameterValue>
+      rcl_interfaces__msg__ParameterValue__create() {
+    return _rcl_interfaces__msg__ParameterValue__create();
+  }
+
+  late final _rcl_interfaces__msg__ParameterValue__createPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<rcl_interfaces__msg__ParameterValue>
+              Function()>>('rcl_interfaces__msg__ParameterValue__create');
+  late final _rcl_interfaces__msg__ParameterValue__create =
+      _rcl_interfaces__msg__ParameterValue__createPtr.asFunction<
+          ffi.Pointer<rcl_interfaces__msg__ParameterValue> Function()>();
+
+  /// Destroy msg/ParameterValue message.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__msg__ParameterValue__fini()
+  ///  * and frees the memory of the message.
+  ///  * \param[in,out] msg The allocated message pointer.
+  ///  */
+  void rcl_interfaces__msg__ParameterValue__destroy(
+    ffi.Pointer<rcl_interfaces__msg__ParameterValue> msg,
+  ) {
+    return _rcl_interfaces__msg__ParameterValue__destroy(
+      msg,
+    );
+  }
+
+  late final _rcl_interfaces__msg__ParameterValue__destroyPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Pointer<rcl_interfaces__msg__ParameterValue>)>>(
+      'rcl_interfaces__msg__ParameterValue__destroy');
+  late final _rcl_interfaces__msg__ParameterValue__destroy =
+      _rcl_interfaces__msg__ParameterValue__destroyPtr.asFunction<
+          void Function(ffi.Pointer<rcl_interfaces__msg__ParameterValue>)>();
+
+  /// Initialize array of msg/ParameterValue messages.
+  /// /**
+  ///  * It allocates the memory for the number of elements and calls
+  ///  * rcl_interfaces__msg__ParameterValue__init()
+  ///  * for each element of the array.
+  ///  * \param[in,out] array The allocated array pointer.
+  ///  * \param[in] size The size / capacity of the array.
+  ///  * \return true if initialization was successful, otherwise false
+  ///  * If the array pointer is valid and the size is zero it is guaranteed
+  ///  # to return true.
+  ///  */
+  bool rcl_interfaces__msg__ParameterValue__Sequence__init(
+    ffi.Pointer<rcl_interfaces__msg__ParameterValue__Sequence> array,
+    int size,
+  ) {
+    return _rcl_interfaces__msg__ParameterValue__Sequence__init(
+          array,
+          size,
+        ) !=
+        0;
+  }
+
+  late final _rcl_interfaces__msg__ParameterValue__Sequence__initPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Uint8 Function(
+              ffi.Pointer<rcl_interfaces__msg__ParameterValue__Sequence>,
+              size_t)>>('rcl_interfaces__msg__ParameterValue__Sequence__init');
+  late final _rcl_interfaces__msg__ParameterValue__Sequence__init =
+      _rcl_interfaces__msg__ParameterValue__Sequence__initPtr.asFunction<
+          int Function(
+              ffi.Pointer<rcl_interfaces__msg__ParameterValue__Sequence>,
+              int)>();
+
+  /// Finalize array of msg/ParameterValue messages.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__msg__ParameterValue__fini()
+  ///  * for each element of the array and frees the memory for the number of
+  ///  * elements.
+  ///  * \param[in,out] array The initialized array pointer.
+  ///  */
+  void rcl_interfaces__msg__ParameterValue__Sequence__fini(
+    ffi.Pointer<rcl_interfaces__msg__ParameterValue__Sequence> array,
+  ) {
+    return _rcl_interfaces__msg__ParameterValue__Sequence__fini(
+      array,
+    );
+  }
+
+  late final _rcl_interfaces__msg__ParameterValue__Sequence__finiPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Pointer<rcl_interfaces__msg__ParameterValue__Sequence>)>>(
+      'rcl_interfaces__msg__ParameterValue__Sequence__fini');
+  late final _rcl_interfaces__msg__ParameterValue__Sequence__fini =
+      _rcl_interfaces__msg__ParameterValue__Sequence__finiPtr.asFunction<
+          void Function(
+              ffi.Pointer<rcl_interfaces__msg__ParameterValue__Sequence>)>();
+
+  /// Create array of msg/ParameterValue messages.
+  /// /**
+  ///  * It allocates the memory for the array and calls
+  ///  * rcl_interfaces__msg__ParameterValue__Sequence__init().
+  ///  * \param[in] size The size / capacity of the array.
+  ///  * \return The pointer to the initialized array if successful, otherwise NULL
+  ///  */
+  ffi.Pointer<rcl_interfaces__msg__ParameterValue__Sequence>
+      rcl_interfaces__msg__ParameterValue__Sequence__create(
+    int size,
+  ) {
+    return _rcl_interfaces__msg__ParameterValue__Sequence__create(
+      size,
+    );
+  }
+
+  late final _rcl_interfaces__msg__ParameterValue__Sequence__createPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<rcl_interfaces__msg__ParameterValue__Sequence>
+                      Function(size_t)>>(
+          'rcl_interfaces__msg__ParameterValue__Sequence__create');
+  late final _rcl_interfaces__msg__ParameterValue__Sequence__create =
+      _rcl_interfaces__msg__ParameterValue__Sequence__createPtr.asFunction<
+          ffi.Pointer<rcl_interfaces__msg__ParameterValue__Sequence> Function(
+              int)>();
+
+  /// Destroy array of msg/ParameterValue messages.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__msg__ParameterValue__Sequence__fini()
+  ///  * on the array,
+  ///  * and frees the memory of the array.
+  ///  * \param[in,out] array The initialized array pointer.
+  ///  */
+  void rcl_interfaces__msg__ParameterValue__Sequence__destroy(
+    ffi.Pointer<rcl_interfaces__msg__ParameterValue__Sequence> array,
+  ) {
+    return _rcl_interfaces__msg__ParameterValue__Sequence__destroy(
+      array,
+    );
+  }
+
+  late final _rcl_interfaces__msg__ParameterValue__Sequence__destroyPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__msg__ParameterValue__Sequence>)>>(
+          'rcl_interfaces__msg__ParameterValue__Sequence__destroy');
+  late final _rcl_interfaces__msg__ParameterValue__Sequence__destroy =
+      _rcl_interfaces__msg__ParameterValue__Sequence__destroyPtr.asFunction<
+          void Function(
+              ffi.Pointer<rcl_interfaces__msg__ParameterValue__Sequence>)>();
+
+  ffi.Pointer<rosidl_message_type_support_t>
+      rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__ParameterValue() {
+    return _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__ParameterValue();
+  }
+
+  late final _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__ParameterValuePtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<rosidl_message_type_support_t> Function()>>(
+          'rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__ParameterValue');
+  late final _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__ParameterValue =
+      _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__ParameterValuePtr
+          .asFunction<ffi.Pointer<rosidl_message_type_support_t> Function()>();
+
+  /// Initialize msg/FloatingPointRange message.
+  /// /**
+  ///  * If the init function is called twice for the same message without
+  ///  * calling fini inbetween previously allocated memory will be leaked.
+  ///  * \param[in,out] msg The previously allocated message pointer.
+  ///  * Fields without a default value will not be initialized by this function.
+  ///  * You might want to call memset(msg, 0, sizeof(
+  ///  * rcl_interfaces__msg__FloatingPointRange
+  ///  * )) before or use
+  ///  * rcl_interfaces__msg__FloatingPointRange__create()
+  ///  * to allocate and initialize the message.
+  ///  * \return true if initialization was successful, otherwise false
+  ///  */
+  bool rcl_interfaces__msg__FloatingPointRange__init(
+    ffi.Pointer<rcl_interfaces__msg__FloatingPointRange> msg,
+  ) {
+    return _rcl_interfaces__msg__FloatingPointRange__init(
+          msg,
+        ) !=
+        0;
+  }
+
+  late final _rcl_interfaces__msg__FloatingPointRange__initPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Uint8 Function(
+                  ffi.Pointer<rcl_interfaces__msg__FloatingPointRange>)>>(
+      'rcl_interfaces__msg__FloatingPointRange__init');
+  late final _rcl_interfaces__msg__FloatingPointRange__init =
+      _rcl_interfaces__msg__FloatingPointRange__initPtr.asFunction<
+          int Function(ffi.Pointer<rcl_interfaces__msg__FloatingPointRange>)>();
+
+  /// Finalize msg/FloatingPointRange message.
+  /// /**
+  ///  * \param[in,out] msg The allocated message pointer.
+  ///  */
+  void rcl_interfaces__msg__FloatingPointRange__fini(
+    ffi.Pointer<rcl_interfaces__msg__FloatingPointRange> msg,
+  ) {
+    return _rcl_interfaces__msg__FloatingPointRange__fini(
+      msg,
+    );
+  }
+
+  late final _rcl_interfaces__msg__FloatingPointRange__finiPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Pointer<rcl_interfaces__msg__FloatingPointRange>)>>(
+      'rcl_interfaces__msg__FloatingPointRange__fini');
+  late final _rcl_interfaces__msg__FloatingPointRange__fini =
+      _rcl_interfaces__msg__FloatingPointRange__finiPtr.asFunction<
+          void Function(
+              ffi.Pointer<rcl_interfaces__msg__FloatingPointRange>)>();
+
+  /// Create msg/FloatingPointRange message.
+  /// /**
+  ///  * It allocates the memory for the message, sets the memory to zero, and
+  ///  * calls
+  ///  * rcl_interfaces__msg__FloatingPointRange__init().
+  ///  * \return The pointer to the initialized message if successful,
+  ///  * otherwise NULL
+  ///  */
+  ffi.Pointer<rcl_interfaces__msg__FloatingPointRange>
+      rcl_interfaces__msg__FloatingPointRange__create() {
+    return _rcl_interfaces__msg__FloatingPointRange__create();
+  }
+
+  late final _rcl_interfaces__msg__FloatingPointRange__createPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<rcl_interfaces__msg__FloatingPointRange>
+              Function()>>('rcl_interfaces__msg__FloatingPointRange__create');
+  late final _rcl_interfaces__msg__FloatingPointRange__create =
+      _rcl_interfaces__msg__FloatingPointRange__createPtr.asFunction<
+          ffi.Pointer<rcl_interfaces__msg__FloatingPointRange> Function()>();
+
+  /// Destroy msg/FloatingPointRange message.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__msg__FloatingPointRange__fini()
+  ///  * and frees the memory of the message.
+  ///  * \param[in,out] msg The allocated message pointer.
+  ///  */
+  void rcl_interfaces__msg__FloatingPointRange__destroy(
+    ffi.Pointer<rcl_interfaces__msg__FloatingPointRange> msg,
+  ) {
+    return _rcl_interfaces__msg__FloatingPointRange__destroy(
+      msg,
+    );
+  }
+
+  late final _rcl_interfaces__msg__FloatingPointRange__destroyPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Pointer<rcl_interfaces__msg__FloatingPointRange>)>>(
+      'rcl_interfaces__msg__FloatingPointRange__destroy');
+  late final _rcl_interfaces__msg__FloatingPointRange__destroy =
+      _rcl_interfaces__msg__FloatingPointRange__destroyPtr.asFunction<
+          void Function(
+              ffi.Pointer<rcl_interfaces__msg__FloatingPointRange>)>();
+
+  /// Initialize array of msg/FloatingPointRange messages.
+  /// /**
+  ///  * It allocates the memory for the number of elements and calls
+  ///  * rcl_interfaces__msg__FloatingPointRange__init()
+  ///  * for each element of the array.
+  ///  * \param[in,out] array The allocated array pointer.
+  ///  * \param[in] size The size / capacity of the array.
+  ///  * \return true if initialization was successful, otherwise false
+  ///  * If the array pointer is valid and the size is zero it is guaranteed
+  ///  # to return true.
+  ///  */
+  bool rcl_interfaces__msg__FloatingPointRange__Sequence__init(
+    ffi.Pointer<rcl_interfaces__msg__FloatingPointRange__Sequence> array,
+    int size,
+  ) {
+    return _rcl_interfaces__msg__FloatingPointRange__Sequence__init(
+          array,
+          size,
+        ) !=
+        0;
+  }
+
+  late final _rcl_interfaces__msg__FloatingPointRange__Sequence__initPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Uint8 Function(
+                      ffi.Pointer<
+                          rcl_interfaces__msg__FloatingPointRange__Sequence>,
+                      size_t)>>(
+          'rcl_interfaces__msg__FloatingPointRange__Sequence__init');
+  late final _rcl_interfaces__msg__FloatingPointRange__Sequence__init =
+      _rcl_interfaces__msg__FloatingPointRange__Sequence__initPtr.asFunction<
+          int Function(
+              ffi.Pointer<rcl_interfaces__msg__FloatingPointRange__Sequence>,
+              int)>();
+
+  /// Finalize array of msg/FloatingPointRange messages.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__msg__FloatingPointRange__fini()
+  ///  * for each element of the array and frees the memory for the number of
+  ///  * elements.
+  ///  * \param[in,out] array The initialized array pointer.
+  ///  */
+  void rcl_interfaces__msg__FloatingPointRange__Sequence__fini(
+    ffi.Pointer<rcl_interfaces__msg__FloatingPointRange__Sequence> array,
+  ) {
+    return _rcl_interfaces__msg__FloatingPointRange__Sequence__fini(
+      array,
+    );
+  }
+
+  late final _rcl_interfaces__msg__FloatingPointRange__Sequence__finiPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__msg__FloatingPointRange__Sequence>)>>(
+          'rcl_interfaces__msg__FloatingPointRange__Sequence__fini');
+  late final _rcl_interfaces__msg__FloatingPointRange__Sequence__fini =
+      _rcl_interfaces__msg__FloatingPointRange__Sequence__finiPtr.asFunction<
+          void Function(
+              ffi.Pointer<
+                  rcl_interfaces__msg__FloatingPointRange__Sequence>)>();
+
+  /// Create array of msg/FloatingPointRange messages.
+  /// /**
+  ///  * It allocates the memory for the array and calls
+  ///  * rcl_interfaces__msg__FloatingPointRange__Sequence__init().
+  ///  * \param[in] size The size / capacity of the array.
+  ///  * \return The pointer to the initialized array if successful, otherwise NULL
+  ///  */
+  ffi.Pointer<rcl_interfaces__msg__FloatingPointRange__Sequence>
+      rcl_interfaces__msg__FloatingPointRange__Sequence__create(
+    int size,
+  ) {
+    return _rcl_interfaces__msg__FloatingPointRange__Sequence__create(
+      size,
+    );
+  }
+
+  late final _rcl_interfaces__msg__FloatingPointRange__Sequence__createPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<rcl_interfaces__msg__FloatingPointRange__Sequence>
+                      Function(size_t)>>(
+          'rcl_interfaces__msg__FloatingPointRange__Sequence__create');
+  late final _rcl_interfaces__msg__FloatingPointRange__Sequence__create =
+      _rcl_interfaces__msg__FloatingPointRange__Sequence__createPtr.asFunction<
+          ffi.Pointer<rcl_interfaces__msg__FloatingPointRange__Sequence>
+              Function(int)>();
+
+  /// Destroy array of msg/FloatingPointRange messages.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__msg__FloatingPointRange__Sequence__fini()
+  ///  * on the array,
+  ///  * and frees the memory of the array.
+  ///  * \param[in,out] array The initialized array pointer.
+  ///  */
+  void rcl_interfaces__msg__FloatingPointRange__Sequence__destroy(
+    ffi.Pointer<rcl_interfaces__msg__FloatingPointRange__Sequence> array,
+  ) {
+    return _rcl_interfaces__msg__FloatingPointRange__Sequence__destroy(
+      array,
+    );
+  }
+
+  late final _rcl_interfaces__msg__FloatingPointRange__Sequence__destroyPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__msg__FloatingPointRange__Sequence>)>>(
+          'rcl_interfaces__msg__FloatingPointRange__Sequence__destroy');
+  late final _rcl_interfaces__msg__FloatingPointRange__Sequence__destroy =
+      _rcl_interfaces__msg__FloatingPointRange__Sequence__destroyPtr.asFunction<
+          void Function(
+              ffi.Pointer<
+                  rcl_interfaces__msg__FloatingPointRange__Sequence>)>();
+
+  ffi.Pointer<rosidl_message_type_support_t>
+      rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__FloatingPointRange() {
+    return _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__FloatingPointRange();
+  }
+
+  late final _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__FloatingPointRangePtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<rosidl_message_type_support_t> Function()>>(
+          'rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__FloatingPointRange');
+  late final _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__FloatingPointRange =
+      _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__FloatingPointRangePtr
+          .asFunction<ffi.Pointer<rosidl_message_type_support_t> Function()>();
+
+  /// Initialize msg/ParameterEventDescriptors message.
+  /// /**
+  ///  * If the init function is called twice for the same message without
+  ///  * calling fini inbetween previously allocated memory will be leaked.
+  ///  * \param[in,out] msg The previously allocated message pointer.
+  ///  * Fields without a default value will not be initialized by this function.
+  ///  * You might want to call memset(msg, 0, sizeof(
+  ///  * rcl_interfaces__msg__ParameterEventDescriptors
+  ///  * )) before or use
+  ///  * rcl_interfaces__msg__ParameterEventDescriptors__create()
+  ///  * to allocate and initialize the message.
+  ///  * \return true if initialization was successful, otherwise false
+  ///  */
+  bool rcl_interfaces__msg__ParameterEventDescriptors__init(
+    ffi.Pointer<rcl_interfaces__msg__ParameterEventDescriptors> msg,
+  ) {
+    return _rcl_interfaces__msg__ParameterEventDescriptors__init(
+          msg,
+        ) !=
+        0;
+  }
+
+  late final _rcl_interfaces__msg__ParameterEventDescriptors__initPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Uint8 Function(
+                  ffi.Pointer<
+                      rcl_interfaces__msg__ParameterEventDescriptors>)>>(
+      'rcl_interfaces__msg__ParameterEventDescriptors__init');
+  late final _rcl_interfaces__msg__ParameterEventDescriptors__init =
+      _rcl_interfaces__msg__ParameterEventDescriptors__initPtr.asFunction<
+          int Function(
+              ffi.Pointer<rcl_interfaces__msg__ParameterEventDescriptors>)>();
+
+  /// Finalize msg/ParameterEventDescriptors message.
+  /// /**
+  ///  * \param[in,out] msg The allocated message pointer.
+  ///  */
+  void rcl_interfaces__msg__ParameterEventDescriptors__fini(
+    ffi.Pointer<rcl_interfaces__msg__ParameterEventDescriptors> msg,
+  ) {
+    return _rcl_interfaces__msg__ParameterEventDescriptors__fini(
+      msg,
+    );
+  }
+
+  late final _rcl_interfaces__msg__ParameterEventDescriptors__finiPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Pointer<
+                      rcl_interfaces__msg__ParameterEventDescriptors>)>>(
+      'rcl_interfaces__msg__ParameterEventDescriptors__fini');
+  late final _rcl_interfaces__msg__ParameterEventDescriptors__fini =
+      _rcl_interfaces__msg__ParameterEventDescriptors__finiPtr.asFunction<
+          void Function(
+              ffi.Pointer<rcl_interfaces__msg__ParameterEventDescriptors>)>();
+
+  /// Create msg/ParameterEventDescriptors message.
+  /// /**
+  ///  * It allocates the memory for the message, sets the memory to zero, and
+  ///  * calls
+  ///  * rcl_interfaces__msg__ParameterEventDescriptors__init().
+  ///  * \return The pointer to the initialized message if successful,
+  ///  * otherwise NULL
+  ///  */
+  ffi.Pointer<rcl_interfaces__msg__ParameterEventDescriptors>
+      rcl_interfaces__msg__ParameterEventDescriptors__create() {
+    return _rcl_interfaces__msg__ParameterEventDescriptors__create();
+  }
+
+  late final _rcl_interfaces__msg__ParameterEventDescriptors__createPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<rcl_interfaces__msg__ParameterEventDescriptors>
+                      Function()>>(
+          'rcl_interfaces__msg__ParameterEventDescriptors__create');
+  late final _rcl_interfaces__msg__ParameterEventDescriptors__create =
+      _rcl_interfaces__msg__ParameterEventDescriptors__createPtr.asFunction<
+          ffi.Pointer<rcl_interfaces__msg__ParameterEventDescriptors>
+              Function()>();
+
+  /// Destroy msg/ParameterEventDescriptors message.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__msg__ParameterEventDescriptors__fini()
+  ///  * and frees the memory of the message.
+  ///  * \param[in,out] msg The allocated message pointer.
+  ///  */
+  void rcl_interfaces__msg__ParameterEventDescriptors__destroy(
+    ffi.Pointer<rcl_interfaces__msg__ParameterEventDescriptors> msg,
+  ) {
+    return _rcl_interfaces__msg__ParameterEventDescriptors__destroy(
+      msg,
+    );
+  }
+
+  late final _rcl_interfaces__msg__ParameterEventDescriptors__destroyPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__msg__ParameterEventDescriptors>)>>(
+          'rcl_interfaces__msg__ParameterEventDescriptors__destroy');
+  late final _rcl_interfaces__msg__ParameterEventDescriptors__destroy =
+      _rcl_interfaces__msg__ParameterEventDescriptors__destroyPtr.asFunction<
+          void Function(
+              ffi.Pointer<rcl_interfaces__msg__ParameterEventDescriptors>)>();
+
+  /// Initialize array of msg/ParameterEventDescriptors messages.
+  /// /**
+  ///  * It allocates the memory for the number of elements and calls
+  ///  * rcl_interfaces__msg__ParameterEventDescriptors__init()
+  ///  * for each element of the array.
+  ///  * \param[in,out] array The allocated array pointer.
+  ///  * \param[in] size The size / capacity of the array.
+  ///  * \return true if initialization was successful, otherwise false
+  ///  * If the array pointer is valid and the size is zero it is guaranteed
+  ///  # to return true.
+  ///  */
+  bool rcl_interfaces__msg__ParameterEventDescriptors__Sequence__init(
+    ffi.Pointer<rcl_interfaces__msg__ParameterEventDescriptors__Sequence> array,
+    int size,
+  ) {
+    return _rcl_interfaces__msg__ParameterEventDescriptors__Sequence__init(
+          array,
+          size,
+        ) !=
+        0;
+  }
+
+  late final _rcl_interfaces__msg__ParameterEventDescriptors__Sequence__initPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Uint8 Function(
+                      ffi.Pointer<
+                          rcl_interfaces__msg__ParameterEventDescriptors__Sequence>,
+                      size_t)>>(
+          'rcl_interfaces__msg__ParameterEventDescriptors__Sequence__init');
+  late final _rcl_interfaces__msg__ParameterEventDescriptors__Sequence__init =
+      _rcl_interfaces__msg__ParameterEventDescriptors__Sequence__initPtr
+          .asFunction<
+              int Function(
+                  ffi.Pointer<
+                      rcl_interfaces__msg__ParameterEventDescriptors__Sequence>,
+                  int)>();
+
+  /// Finalize array of msg/ParameterEventDescriptors messages.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__msg__ParameterEventDescriptors__fini()
+  ///  * for each element of the array and frees the memory for the number of
+  ///  * elements.
+  ///  * \param[in,out] array The initialized array pointer.
+  ///  */
+  void rcl_interfaces__msg__ParameterEventDescriptors__Sequence__fini(
+    ffi.Pointer<rcl_interfaces__msg__ParameterEventDescriptors__Sequence> array,
+  ) {
+    return _rcl_interfaces__msg__ParameterEventDescriptors__Sequence__fini(
+      array,
+    );
+  }
+
+  late final _rcl_interfaces__msg__ParameterEventDescriptors__Sequence__finiPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__msg__ParameterEventDescriptors__Sequence>)>>(
+          'rcl_interfaces__msg__ParameterEventDescriptors__Sequence__fini');
+  late final _rcl_interfaces__msg__ParameterEventDescriptors__Sequence__fini =
+      _rcl_interfaces__msg__ParameterEventDescriptors__Sequence__finiPtr.asFunction<
+          void Function(
+              ffi.Pointer<
+                  rcl_interfaces__msg__ParameterEventDescriptors__Sequence>)>();
+
+  /// Create array of msg/ParameterEventDescriptors messages.
+  /// /**
+  ///  * It allocates the memory for the array and calls
+  ///  * rcl_interfaces__msg__ParameterEventDescriptors__Sequence__init().
+  ///  * \param[in] size The size / capacity of the array.
+  ///  * \return The pointer to the initialized array if successful, otherwise NULL
+  ///  */
+  ffi.Pointer<rcl_interfaces__msg__ParameterEventDescriptors__Sequence>
+      rcl_interfaces__msg__ParameterEventDescriptors__Sequence__create(
+    int size,
+  ) {
+    return _rcl_interfaces__msg__ParameterEventDescriptors__Sequence__create(
+      size,
+    );
+  }
+
+  late final _rcl_interfaces__msg__ParameterEventDescriptors__Sequence__createPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<
+                          rcl_interfaces__msg__ParameterEventDescriptors__Sequence>
+                      Function(size_t)>>(
+          'rcl_interfaces__msg__ParameterEventDescriptors__Sequence__create');
+  late final _rcl_interfaces__msg__ParameterEventDescriptors__Sequence__create =
+      _rcl_interfaces__msg__ParameterEventDescriptors__Sequence__createPtr
+          .asFunction<
+              ffi.Pointer<
+                      rcl_interfaces__msg__ParameterEventDescriptors__Sequence>
+                  Function(int)>();
+
+  /// Destroy array of msg/ParameterEventDescriptors messages.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__msg__ParameterEventDescriptors__Sequence__fini()
+  ///  * on the array,
+  ///  * and frees the memory of the array.
+  ///  * \param[in,out] array The initialized array pointer.
+  ///  */
+  void rcl_interfaces__msg__ParameterEventDescriptors__Sequence__destroy(
+    ffi.Pointer<rcl_interfaces__msg__ParameterEventDescriptors__Sequence> array,
+  ) {
+    return _rcl_interfaces__msg__ParameterEventDescriptors__Sequence__destroy(
+      array,
+    );
+  }
+
+  late final _rcl_interfaces__msg__ParameterEventDescriptors__Sequence__destroyPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__msg__ParameterEventDescriptors__Sequence>)>>(
+          'rcl_interfaces__msg__ParameterEventDescriptors__Sequence__destroy');
+  late final _rcl_interfaces__msg__ParameterEventDescriptors__Sequence__destroy =
+      _rcl_interfaces__msg__ParameterEventDescriptors__Sequence__destroyPtr
+          .asFunction<
+              void Function(
+                  ffi.Pointer<
+                      rcl_interfaces__msg__ParameterEventDescriptors__Sequence>)>();
+
+  ffi.Pointer<rosidl_message_type_support_t>
+      rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__ParameterEventDescriptors() {
+    return _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__ParameterEventDescriptors();
+  }
+
+  late final _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__ParameterEventDescriptorsPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<rosidl_message_type_support_t> Function()>>(
+          'rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__ParameterEventDescriptors');
+  late final _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__ParameterEventDescriptors =
+      _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__ParameterEventDescriptorsPtr
+          .asFunction<ffi.Pointer<rosidl_message_type_support_t> Function()>();
+
+  /// Initialize msg/Log message.
+  /// /**
+  ///  * If the init function is called twice for the same message without
+  ///  * calling fini inbetween previously allocated memory will be leaked.
+  ///  * \param[in,out] msg The previously allocated message pointer.
+  ///  * Fields without a default value will not be initialized by this function.
+  ///  * You might want to call memset(msg, 0, sizeof(
+  ///  * rcl_interfaces__msg__Log
+  ///  * )) before or use
+  ///  * rcl_interfaces__msg__Log__create()
+  ///  * to allocate and initialize the message.
+  ///  * \return true if initialization was successful, otherwise false
+  ///  */
+  bool rcl_interfaces__msg__Log__init(
+    ffi.Pointer<rcl_interfaces__msg__Log> msg,
+  ) {
+    return _rcl_interfaces__msg__Log__init(
+          msg,
+        ) !=
+        0;
+  }
+
+  late final _rcl_interfaces__msg__Log__initPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Uint8 Function(ffi.Pointer<rcl_interfaces__msg__Log>)>>(
+      'rcl_interfaces__msg__Log__init');
+  late final _rcl_interfaces__msg__Log__init =
+      _rcl_interfaces__msg__Log__initPtr
+          .asFunction<int Function(ffi.Pointer<rcl_interfaces__msg__Log>)>();
+
+  /// Finalize msg/Log message.
+  /// /**
+  ///  * \param[in,out] msg The allocated message pointer.
+  ///  */
+  void rcl_interfaces__msg__Log__fini(
+    ffi.Pointer<rcl_interfaces__msg__Log> msg,
+  ) {
+    return _rcl_interfaces__msg__Log__fini(
+      msg,
+    );
+  }
+
+  late final _rcl_interfaces__msg__Log__finiPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(ffi.Pointer<rcl_interfaces__msg__Log>)>>(
+      'rcl_interfaces__msg__Log__fini');
+  late final _rcl_interfaces__msg__Log__fini =
+      _rcl_interfaces__msg__Log__finiPtr
+          .asFunction<void Function(ffi.Pointer<rcl_interfaces__msg__Log>)>();
+
+  /// Create msg/Log message.
+  /// /**
+  ///  * It allocates the memory for the message, sets the memory to zero, and
+  ///  * calls
+  ///  * rcl_interfaces__msg__Log__init().
+  ///  * \return The pointer to the initialized message if successful,
+  ///  * otherwise NULL
+  ///  */
+  ffi.Pointer<rcl_interfaces__msg__Log> rcl_interfaces__msg__Log__create() {
+    return _rcl_interfaces__msg__Log__create();
+  }
+
+  late final _rcl_interfaces__msg__Log__createPtr = _lookup<
+          ffi.NativeFunction<ffi.Pointer<rcl_interfaces__msg__Log> Function()>>(
+      'rcl_interfaces__msg__Log__create');
+  late final _rcl_interfaces__msg__Log__create =
+      _rcl_interfaces__msg__Log__createPtr
+          .asFunction<ffi.Pointer<rcl_interfaces__msg__Log> Function()>();
+
+  /// Destroy msg/Log message.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__msg__Log__fini()
+  ///  * and frees the memory of the message.
+  ///  * \param[in,out] msg The allocated message pointer.
+  ///  */
+  void rcl_interfaces__msg__Log__destroy(
+    ffi.Pointer<rcl_interfaces__msg__Log> msg,
+  ) {
+    return _rcl_interfaces__msg__Log__destroy(
+      msg,
+    );
+  }
+
+  late final _rcl_interfaces__msg__Log__destroyPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(ffi.Pointer<rcl_interfaces__msg__Log>)>>(
+      'rcl_interfaces__msg__Log__destroy');
+  late final _rcl_interfaces__msg__Log__destroy =
+      _rcl_interfaces__msg__Log__destroyPtr
+          .asFunction<void Function(ffi.Pointer<rcl_interfaces__msg__Log>)>();
+
+  /// Initialize array of msg/Log messages.
+  /// /**
+  ///  * It allocates the memory for the number of elements and calls
+  ///  * rcl_interfaces__msg__Log__init()
+  ///  * for each element of the array.
+  ///  * \param[in,out] array The allocated array pointer.
+  ///  * \param[in] size The size / capacity of the array.
+  ///  * \return true if initialization was successful, otherwise false
+  ///  * If the array pointer is valid and the size is zero it is guaranteed
+  ///  # to return true.
+  ///  */
+  bool rcl_interfaces__msg__Log__Sequence__init(
+    ffi.Pointer<rcl_interfaces__msg__Log__Sequence> array,
+    int size,
+  ) {
+    return _rcl_interfaces__msg__Log__Sequence__init(
+          array,
+          size,
+        ) !=
+        0;
+  }
+
+  late final _rcl_interfaces__msg__Log__Sequence__initPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Uint8 Function(ffi.Pointer<rcl_interfaces__msg__Log__Sequence>,
+              size_t)>>('rcl_interfaces__msg__Log__Sequence__init');
+  late final _rcl_interfaces__msg__Log__Sequence__init =
+      _rcl_interfaces__msg__Log__Sequence__initPtr.asFunction<
+          int Function(ffi.Pointer<rcl_interfaces__msg__Log__Sequence>, int)>();
+
+  /// Finalize array of msg/Log messages.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__msg__Log__fini()
+  ///  * for each element of the array and frees the memory for the number of
+  ///  * elements.
+  ///  * \param[in,out] array The initialized array pointer.
+  ///  */
+  void rcl_interfaces__msg__Log__Sequence__fini(
+    ffi.Pointer<rcl_interfaces__msg__Log__Sequence> array,
+  ) {
+    return _rcl_interfaces__msg__Log__Sequence__fini(
+      array,
+    );
+  }
+
+  late final _rcl_interfaces__msg__Log__Sequence__finiPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Pointer<rcl_interfaces__msg__Log__Sequence>)>>(
+      'rcl_interfaces__msg__Log__Sequence__fini');
+  late final _rcl_interfaces__msg__Log__Sequence__fini =
+      _rcl_interfaces__msg__Log__Sequence__finiPtr.asFunction<
+          void Function(ffi.Pointer<rcl_interfaces__msg__Log__Sequence>)>();
+
+  /// Create array of msg/Log messages.
+  /// /**
+  ///  * It allocates the memory for the array and calls
+  ///  * rcl_interfaces__msg__Log__Sequence__init().
+  ///  * \param[in] size The size / capacity of the array.
+  ///  * \return The pointer to the initialized array if successful, otherwise NULL
+  ///  */
+  ffi.Pointer<rcl_interfaces__msg__Log__Sequence>
+      rcl_interfaces__msg__Log__Sequence__create(
+    int size,
+  ) {
+    return _rcl_interfaces__msg__Log__Sequence__create(
+      size,
+    );
+  }
+
+  late final _rcl_interfaces__msg__Log__Sequence__createPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<rcl_interfaces__msg__Log__Sequence> Function(
+              size_t)>>('rcl_interfaces__msg__Log__Sequence__create');
+  late final _rcl_interfaces__msg__Log__Sequence__create =
+      _rcl_interfaces__msg__Log__Sequence__createPtr.asFunction<
+          ffi.Pointer<rcl_interfaces__msg__Log__Sequence> Function(int)>();
+
+  /// Destroy array of msg/Log messages.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__msg__Log__Sequence__fini()
+  ///  * on the array,
+  ///  * and frees the memory of the array.
+  ///  * \param[in,out] array The initialized array pointer.
+  ///  */
+  void rcl_interfaces__msg__Log__Sequence__destroy(
+    ffi.Pointer<rcl_interfaces__msg__Log__Sequence> array,
+  ) {
+    return _rcl_interfaces__msg__Log__Sequence__destroy(
+      array,
+    );
+  }
+
+  late final _rcl_interfaces__msg__Log__Sequence__destroyPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Pointer<rcl_interfaces__msg__Log__Sequence>)>>(
+      'rcl_interfaces__msg__Log__Sequence__destroy');
+  late final _rcl_interfaces__msg__Log__Sequence__destroy =
+      _rcl_interfaces__msg__Log__Sequence__destroyPtr.asFunction<
+          void Function(ffi.Pointer<rcl_interfaces__msg__Log__Sequence>)>();
+
+  ffi.Pointer<rosidl_message_type_support_t>
+      rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__Log() {
+    return _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__Log();
+  }
+
+  late final _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__LogPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<rosidl_message_type_support_t> Function()>>(
+          'rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__Log');
+  late final _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__Log =
+      _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__LogPtr
+          .asFunction<ffi.Pointer<rosidl_message_type_support_t> Function()>();
+
+  /// Initialize msg/IntegerRange message.
+  /// /**
+  ///  * If the init function is called twice for the same message without
+  ///  * calling fini inbetween previously allocated memory will be leaked.
+  ///  * \param[in,out] msg The previously allocated message pointer.
+  ///  * Fields without a default value will not be initialized by this function.
+  ///  * You might want to call memset(msg, 0, sizeof(
+  ///  * rcl_interfaces__msg__IntegerRange
+  ///  * )) before or use
+  ///  * rcl_interfaces__msg__IntegerRange__create()
+  ///  * to allocate and initialize the message.
+  ///  * \return true if initialization was successful, otherwise false
+  ///  */
+  bool rcl_interfaces__msg__IntegerRange__init(
+    ffi.Pointer<rcl_interfaces__msg__IntegerRange> msg,
+  ) {
+    return _rcl_interfaces__msg__IntegerRange__init(
+          msg,
+        ) !=
+        0;
+  }
+
+  late final _rcl_interfaces__msg__IntegerRange__initPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Uint8 Function(
+                  ffi.Pointer<rcl_interfaces__msg__IntegerRange>)>>(
+      'rcl_interfaces__msg__IntegerRange__init');
+  late final _rcl_interfaces__msg__IntegerRange__init =
+      _rcl_interfaces__msg__IntegerRange__initPtr.asFunction<
+          int Function(ffi.Pointer<rcl_interfaces__msg__IntegerRange>)>();
+
+  /// Finalize msg/IntegerRange message.
+  /// /**
+  ///  * \param[in,out] msg The allocated message pointer.
+  ///  */
+  void rcl_interfaces__msg__IntegerRange__fini(
+    ffi.Pointer<rcl_interfaces__msg__IntegerRange> msg,
+  ) {
+    return _rcl_interfaces__msg__IntegerRange__fini(
+      msg,
+    );
+  }
+
+  late final _rcl_interfaces__msg__IntegerRange__finiPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Pointer<rcl_interfaces__msg__IntegerRange>)>>(
+      'rcl_interfaces__msg__IntegerRange__fini');
+  late final _rcl_interfaces__msg__IntegerRange__fini =
+      _rcl_interfaces__msg__IntegerRange__finiPtr.asFunction<
+          void Function(ffi.Pointer<rcl_interfaces__msg__IntegerRange>)>();
+
+  /// Create msg/IntegerRange message.
+  /// /**
+  ///  * It allocates the memory for the message, sets the memory to zero, and
+  ///  * calls
+  ///  * rcl_interfaces__msg__IntegerRange__init().
+  ///  * \return The pointer to the initialized message if successful,
+  ///  * otherwise NULL
+  ///  */
+  ffi.Pointer<rcl_interfaces__msg__IntegerRange>
+      rcl_interfaces__msg__IntegerRange__create() {
+    return _rcl_interfaces__msg__IntegerRange__create();
+  }
+
+  late final _rcl_interfaces__msg__IntegerRange__createPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<rcl_interfaces__msg__IntegerRange>
+              Function()>>('rcl_interfaces__msg__IntegerRange__create');
+  late final _rcl_interfaces__msg__IntegerRange__create =
+      _rcl_interfaces__msg__IntegerRange__createPtr.asFunction<
+          ffi.Pointer<rcl_interfaces__msg__IntegerRange> Function()>();
+
+  /// Destroy msg/IntegerRange message.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__msg__IntegerRange__fini()
+  ///  * and frees the memory of the message.
+  ///  * \param[in,out] msg The allocated message pointer.
+  ///  */
+  void rcl_interfaces__msg__IntegerRange__destroy(
+    ffi.Pointer<rcl_interfaces__msg__IntegerRange> msg,
+  ) {
+    return _rcl_interfaces__msg__IntegerRange__destroy(
+      msg,
+    );
+  }
+
+  late final _rcl_interfaces__msg__IntegerRange__destroyPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Pointer<rcl_interfaces__msg__IntegerRange>)>>(
+      'rcl_interfaces__msg__IntegerRange__destroy');
+  late final _rcl_interfaces__msg__IntegerRange__destroy =
+      _rcl_interfaces__msg__IntegerRange__destroyPtr.asFunction<
+          void Function(ffi.Pointer<rcl_interfaces__msg__IntegerRange>)>();
+
+  /// Initialize array of msg/IntegerRange messages.
+  /// /**
+  ///  * It allocates the memory for the number of elements and calls
+  ///  * rcl_interfaces__msg__IntegerRange__init()
+  ///  * for each element of the array.
+  ///  * \param[in,out] array The allocated array pointer.
+  ///  * \param[in] size The size / capacity of the array.
+  ///  * \return true if initialization was successful, otherwise false
+  ///  * If the array pointer is valid and the size is zero it is guaranteed
+  ///  # to return true.
+  ///  */
+  bool rcl_interfaces__msg__IntegerRange__Sequence__init(
+    ffi.Pointer<rcl_interfaces__msg__IntegerRange__Sequence> array,
+    int size,
+  ) {
+    return _rcl_interfaces__msg__IntegerRange__Sequence__init(
+          array,
+          size,
+        ) !=
+        0;
+  }
+
+  late final _rcl_interfaces__msg__IntegerRange__Sequence__initPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Uint8 Function(
+              ffi.Pointer<rcl_interfaces__msg__IntegerRange__Sequence>,
+              size_t)>>('rcl_interfaces__msg__IntegerRange__Sequence__init');
+  late final _rcl_interfaces__msg__IntegerRange__Sequence__init =
+      _rcl_interfaces__msg__IntegerRange__Sequence__initPtr.asFunction<
+          int Function(
+              ffi.Pointer<rcl_interfaces__msg__IntegerRange__Sequence>, int)>();
+
+  /// Finalize array of msg/IntegerRange messages.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__msg__IntegerRange__fini()
+  ///  * for each element of the array and frees the memory for the number of
+  ///  * elements.
+  ///  * \param[in,out] array The initialized array pointer.
+  ///  */
+  void rcl_interfaces__msg__IntegerRange__Sequence__fini(
+    ffi.Pointer<rcl_interfaces__msg__IntegerRange__Sequence> array,
+  ) {
+    return _rcl_interfaces__msg__IntegerRange__Sequence__fini(
+      array,
+    );
+  }
+
+  late final _rcl_interfaces__msg__IntegerRange__Sequence__finiPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Pointer<rcl_interfaces__msg__IntegerRange__Sequence>)>>(
+      'rcl_interfaces__msg__IntegerRange__Sequence__fini');
+  late final _rcl_interfaces__msg__IntegerRange__Sequence__fini =
+      _rcl_interfaces__msg__IntegerRange__Sequence__finiPtr.asFunction<
+          void Function(
+              ffi.Pointer<rcl_interfaces__msg__IntegerRange__Sequence>)>();
+
+  /// Create array of msg/IntegerRange messages.
+  /// /**
+  ///  * It allocates the memory for the array and calls
+  ///  * rcl_interfaces__msg__IntegerRange__Sequence__init().
+  ///  * \param[in] size The size / capacity of the array.
+  ///  * \return The pointer to the initialized array if successful, otherwise NULL
+  ///  */
+  ffi.Pointer<rcl_interfaces__msg__IntegerRange__Sequence>
+      rcl_interfaces__msg__IntegerRange__Sequence__create(
+    int size,
+  ) {
+    return _rcl_interfaces__msg__IntegerRange__Sequence__create(
+      size,
+    );
+  }
+
+  late final _rcl_interfaces__msg__IntegerRange__Sequence__createPtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<rcl_interfaces__msg__IntegerRange__Sequence> Function(
+              size_t)>>('rcl_interfaces__msg__IntegerRange__Sequence__create');
+  late final _rcl_interfaces__msg__IntegerRange__Sequence__create =
+      _rcl_interfaces__msg__IntegerRange__Sequence__createPtr.asFunction<
+          ffi.Pointer<rcl_interfaces__msg__IntegerRange__Sequence> Function(
+              int)>();
+
+  /// Destroy array of msg/IntegerRange messages.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__msg__IntegerRange__Sequence__fini()
+  ///  * on the array,
+  ///  * and frees the memory of the array.
+  ///  * \param[in,out] array The initialized array pointer.
+  ///  */
+  void rcl_interfaces__msg__IntegerRange__Sequence__destroy(
+    ffi.Pointer<rcl_interfaces__msg__IntegerRange__Sequence> array,
+  ) {
+    return _rcl_interfaces__msg__IntegerRange__Sequence__destroy(
+      array,
+    );
+  }
+
+  late final _rcl_interfaces__msg__IntegerRange__Sequence__destroyPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Pointer<rcl_interfaces__msg__IntegerRange__Sequence>)>>(
+      'rcl_interfaces__msg__IntegerRange__Sequence__destroy');
+  late final _rcl_interfaces__msg__IntegerRange__Sequence__destroy =
+      _rcl_interfaces__msg__IntegerRange__Sequence__destroyPtr.asFunction<
+          void Function(
+              ffi.Pointer<rcl_interfaces__msg__IntegerRange__Sequence>)>();
+
+  ffi.Pointer<rosidl_message_type_support_t>
+      rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__IntegerRange() {
+    return _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__IntegerRange();
+  }
+
+  late final _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__IntegerRangePtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<rosidl_message_type_support_t> Function()>>(
+          'rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__IntegerRange');
+  late final _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__IntegerRange =
+      _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__msg__IntegerRangePtr
+          .asFunction<ffi.Pointer<rosidl_message_type_support_t> Function()>();
+
+  /// Initialize srv/SetParameters message.
+  /// /**
+  ///  * If the init function is called twice for the same message without
+  ///  * calling fini inbetween previously allocated memory will be leaked.
+  ///  * \param[in,out] msg The previously allocated message pointer.
+  ///  * Fields without a default value will not be initialized by this function.
+  ///  * You might want to call memset(msg, 0, sizeof(
+  ///  * rcl_interfaces__srv__SetParameters_Request
+  ///  * )) before or use
+  ///  * rcl_interfaces__srv__SetParameters_Request__create()
+  ///  * to allocate and initialize the message.
+  ///  * \return true if initialization was successful, otherwise false
+  ///  */
+  bool rcl_interfaces__srv__SetParameters_Request__init(
+    ffi.Pointer<rcl_interfaces__srv__SetParameters_Request> msg,
+  ) {
+    return _rcl_interfaces__srv__SetParameters_Request__init(
+          msg,
+        ) !=
+        0;
+  }
+
+  late final _rcl_interfaces__srv__SetParameters_Request__initPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Uint8 Function(
+                  ffi.Pointer<rcl_interfaces__srv__SetParameters_Request>)>>(
+      'rcl_interfaces__srv__SetParameters_Request__init');
+  late final _rcl_interfaces__srv__SetParameters_Request__init =
+      _rcl_interfaces__srv__SetParameters_Request__initPtr.asFunction<
+          int Function(
+              ffi.Pointer<rcl_interfaces__srv__SetParameters_Request>)>();
+
+  /// Finalize srv/SetParameters message.
+  /// /**
+  ///  * \param[in,out] msg The allocated message pointer.
+  ///  */
+  void rcl_interfaces__srv__SetParameters_Request__fini(
+    ffi.Pointer<rcl_interfaces__srv__SetParameters_Request> msg,
+  ) {
+    return _rcl_interfaces__srv__SetParameters_Request__fini(
+      msg,
+    );
+  }
+
+  late final _rcl_interfaces__srv__SetParameters_Request__finiPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Pointer<rcl_interfaces__srv__SetParameters_Request>)>>(
+      'rcl_interfaces__srv__SetParameters_Request__fini');
+  late final _rcl_interfaces__srv__SetParameters_Request__fini =
+      _rcl_interfaces__srv__SetParameters_Request__finiPtr.asFunction<
+          void Function(
+              ffi.Pointer<rcl_interfaces__srv__SetParameters_Request>)>();
+
+  /// Create srv/SetParameters message.
+  /// /**
+  ///  * It allocates the memory for the message, sets the memory to zero, and
+  ///  * calls
+  ///  * rcl_interfaces__srv__SetParameters_Request__init().
+  ///  * \return The pointer to the initialized message if successful,
+  ///  * otherwise NULL
+  ///  */
+  ffi.Pointer<rcl_interfaces__srv__SetParameters_Request>
+      rcl_interfaces__srv__SetParameters_Request__create() {
+    return _rcl_interfaces__srv__SetParameters_Request__create();
+  }
+
+  late final _rcl_interfaces__srv__SetParameters_Request__createPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Pointer<rcl_interfaces__srv__SetParameters_Request>
+                  Function()>>(
+      'rcl_interfaces__srv__SetParameters_Request__create');
+  late final _rcl_interfaces__srv__SetParameters_Request__create =
+      _rcl_interfaces__srv__SetParameters_Request__createPtr.asFunction<
+          ffi.Pointer<rcl_interfaces__srv__SetParameters_Request> Function()>();
+
+  /// Destroy srv/SetParameters message.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__srv__SetParameters_Request__fini()
+  ///  * and frees the memory of the message.
+  ///  * \param[in,out] msg The allocated message pointer.
+  ///  */
+  void rcl_interfaces__srv__SetParameters_Request__destroy(
+    ffi.Pointer<rcl_interfaces__srv__SetParameters_Request> msg,
+  ) {
+    return _rcl_interfaces__srv__SetParameters_Request__destroy(
+      msg,
+    );
+  }
+
+  late final _rcl_interfaces__srv__SetParameters_Request__destroyPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Pointer<rcl_interfaces__srv__SetParameters_Request>)>>(
+      'rcl_interfaces__srv__SetParameters_Request__destroy');
+  late final _rcl_interfaces__srv__SetParameters_Request__destroy =
+      _rcl_interfaces__srv__SetParameters_Request__destroyPtr.asFunction<
+          void Function(
+              ffi.Pointer<rcl_interfaces__srv__SetParameters_Request>)>();
+
+  /// Initialize array of srv/SetParameters messages.
+  /// /**
+  ///  * It allocates the memory for the number of elements and calls
+  ///  * rcl_interfaces__srv__SetParameters_Request__init()
+  ///  * for each element of the array.
+  ///  * \param[in,out] array The allocated array pointer.
+  ///  * \param[in] size The size / capacity of the array.
+  ///  * \return true if initialization was successful, otherwise false
+  ///  * If the array pointer is valid and the size is zero it is guaranteed
+  ///  # to return true.
+  ///  */
+  bool rcl_interfaces__srv__SetParameters_Request__Sequence__init(
+    ffi.Pointer<rcl_interfaces__srv__SetParameters_Request__Sequence> array,
+    int size,
+  ) {
+    return _rcl_interfaces__srv__SetParameters_Request__Sequence__init(
+          array,
+          size,
+        ) !=
+        0;
+  }
+
+  late final _rcl_interfaces__srv__SetParameters_Request__Sequence__initPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Uint8 Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__SetParameters_Request__Sequence>,
+                      size_t)>>(
+          'rcl_interfaces__srv__SetParameters_Request__Sequence__init');
+  late final _rcl_interfaces__srv__SetParameters_Request__Sequence__init =
+      _rcl_interfaces__srv__SetParameters_Request__Sequence__initPtr.asFunction<
+          int Function(
+              ffi.Pointer<rcl_interfaces__srv__SetParameters_Request__Sequence>,
+              int)>();
+
+  /// Finalize array of srv/SetParameters messages.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__srv__SetParameters_Request__fini()
+  ///  * for each element of the array and frees the memory for the number of
+  ///  * elements.
+  ///  * \param[in,out] array The initialized array pointer.
+  ///  */
+  void rcl_interfaces__srv__SetParameters_Request__Sequence__fini(
+    ffi.Pointer<rcl_interfaces__srv__SetParameters_Request__Sequence> array,
+  ) {
+    return _rcl_interfaces__srv__SetParameters_Request__Sequence__fini(
+      array,
+    );
+  }
+
+  late final _rcl_interfaces__srv__SetParameters_Request__Sequence__finiPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__SetParameters_Request__Sequence>)>>(
+          'rcl_interfaces__srv__SetParameters_Request__Sequence__fini');
+  late final _rcl_interfaces__srv__SetParameters_Request__Sequence__fini =
+      _rcl_interfaces__srv__SetParameters_Request__Sequence__finiPtr.asFunction<
+          void Function(
+              ffi.Pointer<
+                  rcl_interfaces__srv__SetParameters_Request__Sequence>)>();
+
+  /// Create array of srv/SetParameters messages.
+  /// /**
+  ///  * It allocates the memory for the array and calls
+  ///  * rcl_interfaces__srv__SetParameters_Request__Sequence__init().
+  ///  * \param[in] size The size / capacity of the array.
+  ///  * \return The pointer to the initialized array if successful, otherwise NULL
+  ///  */
+  ffi.Pointer<rcl_interfaces__srv__SetParameters_Request__Sequence>
+      rcl_interfaces__srv__SetParameters_Request__Sequence__create(
+    int size,
+  ) {
+    return _rcl_interfaces__srv__SetParameters_Request__Sequence__create(
+      size,
+    );
+  }
+
+  late final _rcl_interfaces__srv__SetParameters_Request__Sequence__createPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<
+                          rcl_interfaces__srv__SetParameters_Request__Sequence>
+                      Function(size_t)>>(
+          'rcl_interfaces__srv__SetParameters_Request__Sequence__create');
+  late final _rcl_interfaces__srv__SetParameters_Request__Sequence__create =
+      _rcl_interfaces__srv__SetParameters_Request__Sequence__createPtr
+          .asFunction<
+              ffi.Pointer<rcl_interfaces__srv__SetParameters_Request__Sequence>
+                  Function(int)>();
+
+  /// Destroy array of srv/SetParameters messages.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__srv__SetParameters_Request__Sequence__fini()
+  ///  * on the array,
+  ///  * and frees the memory of the array.
+  ///  * \param[in,out] array The initialized array pointer.
+  ///  */
+  void rcl_interfaces__srv__SetParameters_Request__Sequence__destroy(
+    ffi.Pointer<rcl_interfaces__srv__SetParameters_Request__Sequence> array,
+  ) {
+    return _rcl_interfaces__srv__SetParameters_Request__Sequence__destroy(
+      array,
+    );
+  }
+
+  late final _rcl_interfaces__srv__SetParameters_Request__Sequence__destroyPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__SetParameters_Request__Sequence>)>>(
+          'rcl_interfaces__srv__SetParameters_Request__Sequence__destroy');
+  late final _rcl_interfaces__srv__SetParameters_Request__Sequence__destroy =
+      _rcl_interfaces__srv__SetParameters_Request__Sequence__destroyPtr
+          .asFunction<
+              void Function(
+                  ffi.Pointer<
+                      rcl_interfaces__srv__SetParameters_Request__Sequence>)>();
+
+  /// Initialize srv/SetParameters message.
+  /// /**
+  ///  * If the init function is called twice for the same message without
+  ///  * calling fini inbetween previously allocated memory will be leaked.
+  ///  * \param[in,out] msg The previously allocated message pointer.
+  ///  * Fields without a default value will not be initialized by this function.
+  ///  * You might want to call memset(msg, 0, sizeof(
+  ///  * rcl_interfaces__srv__SetParameters_Response
+  ///  * )) before or use
+  ///  * rcl_interfaces__srv__SetParameters_Response__create()
+  ///  * to allocate and initialize the message.
+  ///  * \return true if initialization was successful, otherwise false
+  ///  */
+  bool rcl_interfaces__srv__SetParameters_Response__init(
+    ffi.Pointer<rcl_interfaces__srv__SetParameters_Response> msg,
+  ) {
+    return _rcl_interfaces__srv__SetParameters_Response__init(
+          msg,
+        ) !=
+        0;
+  }
+
+  late final _rcl_interfaces__srv__SetParameters_Response__initPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Uint8 Function(
+                  ffi.Pointer<rcl_interfaces__srv__SetParameters_Response>)>>(
+      'rcl_interfaces__srv__SetParameters_Response__init');
+  late final _rcl_interfaces__srv__SetParameters_Response__init =
+      _rcl_interfaces__srv__SetParameters_Response__initPtr.asFunction<
+          int Function(
+              ffi.Pointer<rcl_interfaces__srv__SetParameters_Response>)>();
+
+  /// Finalize srv/SetParameters message.
+  /// /**
+  ///  * \param[in,out] msg The allocated message pointer.
+  ///  */
+  void rcl_interfaces__srv__SetParameters_Response__fini(
+    ffi.Pointer<rcl_interfaces__srv__SetParameters_Response> msg,
+  ) {
+    return _rcl_interfaces__srv__SetParameters_Response__fini(
+      msg,
+    );
+  }
+
+  late final _rcl_interfaces__srv__SetParameters_Response__finiPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Pointer<rcl_interfaces__srv__SetParameters_Response>)>>(
+      'rcl_interfaces__srv__SetParameters_Response__fini');
+  late final _rcl_interfaces__srv__SetParameters_Response__fini =
+      _rcl_interfaces__srv__SetParameters_Response__finiPtr.asFunction<
+          void Function(
+              ffi.Pointer<rcl_interfaces__srv__SetParameters_Response>)>();
+
+  /// Create srv/SetParameters message.
+  /// /**
+  ///  * It allocates the memory for the message, sets the memory to zero, and
+  ///  * calls
+  ///  * rcl_interfaces__srv__SetParameters_Response__init().
+  ///  * \return The pointer to the initialized message if successful,
+  ///  * otherwise NULL
+  ///  */
+  ffi.Pointer<rcl_interfaces__srv__SetParameters_Response>
+      rcl_interfaces__srv__SetParameters_Response__create() {
+    return _rcl_interfaces__srv__SetParameters_Response__create();
+  }
+
+  late final _rcl_interfaces__srv__SetParameters_Response__createPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Pointer<rcl_interfaces__srv__SetParameters_Response>
+                  Function()>>(
+      'rcl_interfaces__srv__SetParameters_Response__create');
+  late final _rcl_interfaces__srv__SetParameters_Response__create =
+      _rcl_interfaces__srv__SetParameters_Response__createPtr.asFunction<
+          ffi.Pointer<rcl_interfaces__srv__SetParameters_Response>
+              Function()>();
+
+  /// Destroy srv/SetParameters message.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__srv__SetParameters_Response__fini()
+  ///  * and frees the memory of the message.
+  ///  * \param[in,out] msg The allocated message pointer.
+  ///  */
+  void rcl_interfaces__srv__SetParameters_Response__destroy(
+    ffi.Pointer<rcl_interfaces__srv__SetParameters_Response> msg,
+  ) {
+    return _rcl_interfaces__srv__SetParameters_Response__destroy(
+      msg,
+    );
+  }
+
+  late final _rcl_interfaces__srv__SetParameters_Response__destroyPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Pointer<rcl_interfaces__srv__SetParameters_Response>)>>(
+      'rcl_interfaces__srv__SetParameters_Response__destroy');
+  late final _rcl_interfaces__srv__SetParameters_Response__destroy =
+      _rcl_interfaces__srv__SetParameters_Response__destroyPtr.asFunction<
+          void Function(
+              ffi.Pointer<rcl_interfaces__srv__SetParameters_Response>)>();
+
+  /// Initialize array of srv/SetParameters messages.
+  /// /**
+  ///  * It allocates the memory for the number of elements and calls
+  ///  * rcl_interfaces__srv__SetParameters_Response__init()
+  ///  * for each element of the array.
+  ///  * \param[in,out] array The allocated array pointer.
+  ///  * \param[in] size The size / capacity of the array.
+  ///  * \return true if initialization was successful, otherwise false
+  ///  * If the array pointer is valid and the size is zero it is guaranteed
+  ///  # to return true.
+  ///  */
+  bool rcl_interfaces__srv__SetParameters_Response__Sequence__init(
+    ffi.Pointer<rcl_interfaces__srv__SetParameters_Response__Sequence> array,
+    int size,
+  ) {
+    return _rcl_interfaces__srv__SetParameters_Response__Sequence__init(
+          array,
+          size,
+        ) !=
+        0;
+  }
+
+  late final _rcl_interfaces__srv__SetParameters_Response__Sequence__initPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Uint8 Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__SetParameters_Response__Sequence>,
+                      size_t)>>(
+          'rcl_interfaces__srv__SetParameters_Response__Sequence__init');
+  late final _rcl_interfaces__srv__SetParameters_Response__Sequence__init =
+      _rcl_interfaces__srv__SetParameters_Response__Sequence__initPtr
+          .asFunction<
+              int Function(
+                  ffi.Pointer<
+                      rcl_interfaces__srv__SetParameters_Response__Sequence>,
+                  int)>();
+
+  /// Finalize array of srv/SetParameters messages.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__srv__SetParameters_Response__fini()
+  ///  * for each element of the array and frees the memory for the number of
+  ///  * elements.
+  ///  * \param[in,out] array The initialized array pointer.
+  ///  */
+  void rcl_interfaces__srv__SetParameters_Response__Sequence__fini(
+    ffi.Pointer<rcl_interfaces__srv__SetParameters_Response__Sequence> array,
+  ) {
+    return _rcl_interfaces__srv__SetParameters_Response__Sequence__fini(
+      array,
+    );
+  }
+
+  late final _rcl_interfaces__srv__SetParameters_Response__Sequence__finiPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__SetParameters_Response__Sequence>)>>(
+          'rcl_interfaces__srv__SetParameters_Response__Sequence__fini');
+  late final _rcl_interfaces__srv__SetParameters_Response__Sequence__fini =
+      _rcl_interfaces__srv__SetParameters_Response__Sequence__finiPtr.asFunction<
+          void Function(
+              ffi.Pointer<
+                  rcl_interfaces__srv__SetParameters_Response__Sequence>)>();
+
+  /// Create array of srv/SetParameters messages.
+  /// /**
+  ///  * It allocates the memory for the array and calls
+  ///  * rcl_interfaces__srv__SetParameters_Response__Sequence__init().
+  ///  * \param[in] size The size / capacity of the array.
+  ///  * \return The pointer to the initialized array if successful, otherwise NULL
+  ///  */
+  ffi.Pointer<rcl_interfaces__srv__SetParameters_Response__Sequence>
+      rcl_interfaces__srv__SetParameters_Response__Sequence__create(
+    int size,
+  ) {
+    return _rcl_interfaces__srv__SetParameters_Response__Sequence__create(
+      size,
+    );
+  }
+
+  late final _rcl_interfaces__srv__SetParameters_Response__Sequence__createPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<
+                          rcl_interfaces__srv__SetParameters_Response__Sequence>
+                      Function(size_t)>>(
+          'rcl_interfaces__srv__SetParameters_Response__Sequence__create');
+  late final _rcl_interfaces__srv__SetParameters_Response__Sequence__create =
+      _rcl_interfaces__srv__SetParameters_Response__Sequence__createPtr
+          .asFunction<
+              ffi.Pointer<rcl_interfaces__srv__SetParameters_Response__Sequence>
+                  Function(int)>();
+
+  /// Destroy array of srv/SetParameters messages.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__srv__SetParameters_Response__Sequence__fini()
+  ///  * on the array,
+  ///  * and frees the memory of the array.
+  ///  * \param[in,out] array The initialized array pointer.
+  ///  */
+  void rcl_interfaces__srv__SetParameters_Response__Sequence__destroy(
+    ffi.Pointer<rcl_interfaces__srv__SetParameters_Response__Sequence> array,
+  ) {
+    return _rcl_interfaces__srv__SetParameters_Response__Sequence__destroy(
+      array,
+    );
+  }
+
+  late final _rcl_interfaces__srv__SetParameters_Response__Sequence__destroyPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__SetParameters_Response__Sequence>)>>(
+          'rcl_interfaces__srv__SetParameters_Response__Sequence__destroy');
+  late final _rcl_interfaces__srv__SetParameters_Response__Sequence__destroy =
+      _rcl_interfaces__srv__SetParameters_Response__Sequence__destroyPtr
+          .asFunction<
+              void Function(
+                  ffi.Pointer<
+                      rcl_interfaces__srv__SetParameters_Response__Sequence>)>();
+
+  ffi.Pointer<rosidl_message_type_support_t>
+      rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__SetParameters_Request() {
+    return _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__SetParameters_Request();
+  }
+
+  late final _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__SetParameters_RequestPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<rosidl_message_type_support_t> Function()>>(
+          'rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__SetParameters_Request');
+  late final _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__SetParameters_Request =
+      _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__SetParameters_RequestPtr
+          .asFunction<ffi.Pointer<rosidl_message_type_support_t> Function()>();
+
+  ffi.Pointer<rosidl_message_type_support_t>
+      rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__SetParameters_Response() {
+    return _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__SetParameters_Response();
+  }
+
+  late final _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__SetParameters_ResponsePtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<rosidl_message_type_support_t> Function()>>(
+          'rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__SetParameters_Response');
+  late final _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__SetParameters_Response =
+      _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__SetParameters_ResponsePtr
+          .asFunction<ffi.Pointer<rosidl_message_type_support_t> Function()>();
+
+  ffi.Pointer<rosidl_service_type_support_t>
+      rosidl_typesupport_c__get_service_type_support_handle__rcl_interfaces__srv__SetParameters() {
+    return _rosidl_typesupport_c__get_service_type_support_handle__rcl_interfaces__srv__SetParameters();
+  }
+
+  late final _rosidl_typesupport_c__get_service_type_support_handle__rcl_interfaces__srv__SetParametersPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<rosidl_service_type_support_t> Function()>>(
+          'rosidl_typesupport_c__get_service_type_support_handle__rcl_interfaces__srv__SetParameters');
+  late final _rosidl_typesupport_c__get_service_type_support_handle__rcl_interfaces__srv__SetParameters =
+      _rosidl_typesupport_c__get_service_type_support_handle__rcl_interfaces__srv__SetParametersPtr
+          .asFunction<ffi.Pointer<rosidl_service_type_support_t> Function()>();
+
+  /// Initialize srv/GetParameterTypes message.
+  /// /**
+  ///  * If the init function is called twice for the same message without
+  ///  * calling fini inbetween previously allocated memory will be leaked.
+  ///  * \param[in,out] msg The previously allocated message pointer.
+  ///  * Fields without a default value will not be initialized by this function.
+  ///  * You might want to call memset(msg, 0, sizeof(
+  ///  * rcl_interfaces__srv__GetParameterTypes_Request
+  ///  * )) before or use
+  ///  * rcl_interfaces__srv__GetParameterTypes_Request__create()
+  ///  * to allocate and initialize the message.
+  ///  * \return true if initialization was successful, otherwise false
+  ///  */
+  bool rcl_interfaces__srv__GetParameterTypes_Request__init(
+    ffi.Pointer<rcl_interfaces__srv__GetParameterTypes_Request> msg,
+  ) {
+    return _rcl_interfaces__srv__GetParameterTypes_Request__init(
+          msg,
+        ) !=
+        0;
+  }
+
+  late final _rcl_interfaces__srv__GetParameterTypes_Request__initPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Uint8 Function(
+                  ffi.Pointer<
+                      rcl_interfaces__srv__GetParameterTypes_Request>)>>(
+      'rcl_interfaces__srv__GetParameterTypes_Request__init');
+  late final _rcl_interfaces__srv__GetParameterTypes_Request__init =
+      _rcl_interfaces__srv__GetParameterTypes_Request__initPtr.asFunction<
+          int Function(
+              ffi.Pointer<rcl_interfaces__srv__GetParameterTypes_Request>)>();
+
+  /// Finalize srv/GetParameterTypes message.
+  /// /**
+  ///  * \param[in,out] msg The allocated message pointer.
+  ///  */
+  void rcl_interfaces__srv__GetParameterTypes_Request__fini(
+    ffi.Pointer<rcl_interfaces__srv__GetParameterTypes_Request> msg,
+  ) {
+    return _rcl_interfaces__srv__GetParameterTypes_Request__fini(
+      msg,
+    );
+  }
+
+  late final _rcl_interfaces__srv__GetParameterTypes_Request__finiPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Pointer<
+                      rcl_interfaces__srv__GetParameterTypes_Request>)>>(
+      'rcl_interfaces__srv__GetParameterTypes_Request__fini');
+  late final _rcl_interfaces__srv__GetParameterTypes_Request__fini =
+      _rcl_interfaces__srv__GetParameterTypes_Request__finiPtr.asFunction<
+          void Function(
+              ffi.Pointer<rcl_interfaces__srv__GetParameterTypes_Request>)>();
+
+  /// Create srv/GetParameterTypes message.
+  /// /**
+  ///  * It allocates the memory for the message, sets the memory to zero, and
+  ///  * calls
+  ///  * rcl_interfaces__srv__GetParameterTypes_Request__init().
+  ///  * \return The pointer to the initialized message if successful,
+  ///  * otherwise NULL
+  ///  */
+  ffi.Pointer<rcl_interfaces__srv__GetParameterTypes_Request>
+      rcl_interfaces__srv__GetParameterTypes_Request__create() {
+    return _rcl_interfaces__srv__GetParameterTypes_Request__create();
+  }
+
+  late final _rcl_interfaces__srv__GetParameterTypes_Request__createPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<rcl_interfaces__srv__GetParameterTypes_Request>
+                      Function()>>(
+          'rcl_interfaces__srv__GetParameterTypes_Request__create');
+  late final _rcl_interfaces__srv__GetParameterTypes_Request__create =
+      _rcl_interfaces__srv__GetParameterTypes_Request__createPtr.asFunction<
+          ffi.Pointer<rcl_interfaces__srv__GetParameterTypes_Request>
+              Function()>();
+
+  /// Destroy srv/GetParameterTypes message.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__srv__GetParameterTypes_Request__fini()
+  ///  * and frees the memory of the message.
+  ///  * \param[in,out] msg The allocated message pointer.
+  ///  */
+  void rcl_interfaces__srv__GetParameterTypes_Request__destroy(
+    ffi.Pointer<rcl_interfaces__srv__GetParameterTypes_Request> msg,
+  ) {
+    return _rcl_interfaces__srv__GetParameterTypes_Request__destroy(
+      msg,
+    );
+  }
+
+  late final _rcl_interfaces__srv__GetParameterTypes_Request__destroyPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__GetParameterTypes_Request>)>>(
+          'rcl_interfaces__srv__GetParameterTypes_Request__destroy');
+  late final _rcl_interfaces__srv__GetParameterTypes_Request__destroy =
+      _rcl_interfaces__srv__GetParameterTypes_Request__destroyPtr.asFunction<
+          void Function(
+              ffi.Pointer<rcl_interfaces__srv__GetParameterTypes_Request>)>();
+
+  /// Initialize array of srv/GetParameterTypes messages.
+  /// /**
+  ///  * It allocates the memory for the number of elements and calls
+  ///  * rcl_interfaces__srv__GetParameterTypes_Request__init()
+  ///  * for each element of the array.
+  ///  * \param[in,out] array The allocated array pointer.
+  ///  * \param[in] size The size / capacity of the array.
+  ///  * \return true if initialization was successful, otherwise false
+  ///  * If the array pointer is valid and the size is zero it is guaranteed
+  ///  # to return true.
+  ///  */
+  bool rcl_interfaces__srv__GetParameterTypes_Request__Sequence__init(
+    ffi.Pointer<rcl_interfaces__srv__GetParameterTypes_Request__Sequence> array,
+    int size,
+  ) {
+    return _rcl_interfaces__srv__GetParameterTypes_Request__Sequence__init(
+          array,
+          size,
+        ) !=
+        0;
+  }
+
+  late final _rcl_interfaces__srv__GetParameterTypes_Request__Sequence__initPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Uint8 Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__GetParameterTypes_Request__Sequence>,
+                      size_t)>>(
+          'rcl_interfaces__srv__GetParameterTypes_Request__Sequence__init');
+  late final _rcl_interfaces__srv__GetParameterTypes_Request__Sequence__init =
+      _rcl_interfaces__srv__GetParameterTypes_Request__Sequence__initPtr
+          .asFunction<
+              int Function(
+                  ffi.Pointer<
+                      rcl_interfaces__srv__GetParameterTypes_Request__Sequence>,
+                  int)>();
+
+  /// Finalize array of srv/GetParameterTypes messages.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__srv__GetParameterTypes_Request__fini()
+  ///  * for each element of the array and frees the memory for the number of
+  ///  * elements.
+  ///  * \param[in,out] array The initialized array pointer.
+  ///  */
+  void rcl_interfaces__srv__GetParameterTypes_Request__Sequence__fini(
+    ffi.Pointer<rcl_interfaces__srv__GetParameterTypes_Request__Sequence> array,
+  ) {
+    return _rcl_interfaces__srv__GetParameterTypes_Request__Sequence__fini(
+      array,
+    );
+  }
+
+  late final _rcl_interfaces__srv__GetParameterTypes_Request__Sequence__finiPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__GetParameterTypes_Request__Sequence>)>>(
+          'rcl_interfaces__srv__GetParameterTypes_Request__Sequence__fini');
+  late final _rcl_interfaces__srv__GetParameterTypes_Request__Sequence__fini =
+      _rcl_interfaces__srv__GetParameterTypes_Request__Sequence__finiPtr.asFunction<
+          void Function(
+              ffi.Pointer<
+                  rcl_interfaces__srv__GetParameterTypes_Request__Sequence>)>();
+
+  /// Create array of srv/GetParameterTypes messages.
+  /// /**
+  ///  * It allocates the memory for the array and calls
+  ///  * rcl_interfaces__srv__GetParameterTypes_Request__Sequence__init().
+  ///  * \param[in] size The size / capacity of the array.
+  ///  * \return The pointer to the initialized array if successful, otherwise NULL
+  ///  */
+  ffi.Pointer<rcl_interfaces__srv__GetParameterTypes_Request__Sequence>
+      rcl_interfaces__srv__GetParameterTypes_Request__Sequence__create(
+    int size,
+  ) {
+    return _rcl_interfaces__srv__GetParameterTypes_Request__Sequence__create(
+      size,
+    );
+  }
+
+  late final _rcl_interfaces__srv__GetParameterTypes_Request__Sequence__createPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<
+                          rcl_interfaces__srv__GetParameterTypes_Request__Sequence>
+                      Function(size_t)>>(
+          'rcl_interfaces__srv__GetParameterTypes_Request__Sequence__create');
+  late final _rcl_interfaces__srv__GetParameterTypes_Request__Sequence__create =
+      _rcl_interfaces__srv__GetParameterTypes_Request__Sequence__createPtr
+          .asFunction<
+              ffi.Pointer<
+                      rcl_interfaces__srv__GetParameterTypes_Request__Sequence>
+                  Function(int)>();
+
+  /// Destroy array of srv/GetParameterTypes messages.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__srv__GetParameterTypes_Request__Sequence__fini()
+  ///  * on the array,
+  ///  * and frees the memory of the array.
+  ///  * \param[in,out] array The initialized array pointer.
+  ///  */
+  void rcl_interfaces__srv__GetParameterTypes_Request__Sequence__destroy(
+    ffi.Pointer<rcl_interfaces__srv__GetParameterTypes_Request__Sequence> array,
+  ) {
+    return _rcl_interfaces__srv__GetParameterTypes_Request__Sequence__destroy(
+      array,
+    );
+  }
+
+  late final _rcl_interfaces__srv__GetParameterTypes_Request__Sequence__destroyPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__GetParameterTypes_Request__Sequence>)>>(
+          'rcl_interfaces__srv__GetParameterTypes_Request__Sequence__destroy');
+  late final _rcl_interfaces__srv__GetParameterTypes_Request__Sequence__destroy =
+      _rcl_interfaces__srv__GetParameterTypes_Request__Sequence__destroyPtr
+          .asFunction<
+              void Function(
+                  ffi.Pointer<
+                      rcl_interfaces__srv__GetParameterTypes_Request__Sequence>)>();
+
+  /// Initialize srv/GetParameterTypes message.
+  /// /**
+  ///  * If the init function is called twice for the same message without
+  ///  * calling fini inbetween previously allocated memory will be leaked.
+  ///  * \param[in,out] msg The previously allocated message pointer.
+  ///  * Fields without a default value will not be initialized by this function.
+  ///  * You might want to call memset(msg, 0, sizeof(
+  ///  * rcl_interfaces__srv__GetParameterTypes_Response
+  ///  * )) before or use
+  ///  * rcl_interfaces__srv__GetParameterTypes_Response__create()
+  ///  * to allocate and initialize the message.
+  ///  * \return true if initialization was successful, otherwise false
+  ///  */
+  bool rcl_interfaces__srv__GetParameterTypes_Response__init(
+    ffi.Pointer<rcl_interfaces__srv__GetParameterTypes_Response> msg,
+  ) {
+    return _rcl_interfaces__srv__GetParameterTypes_Response__init(
+          msg,
+        ) !=
+        0;
+  }
+
+  late final _rcl_interfaces__srv__GetParameterTypes_Response__initPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Uint8 Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__GetParameterTypes_Response>)>>(
+          'rcl_interfaces__srv__GetParameterTypes_Response__init');
+  late final _rcl_interfaces__srv__GetParameterTypes_Response__init =
+      _rcl_interfaces__srv__GetParameterTypes_Response__initPtr.asFunction<
+          int Function(
+              ffi.Pointer<rcl_interfaces__srv__GetParameterTypes_Response>)>();
+
+  /// Finalize srv/GetParameterTypes message.
+  /// /**
+  ///  * \param[in,out] msg The allocated message pointer.
+  ///  */
+  void rcl_interfaces__srv__GetParameterTypes_Response__fini(
+    ffi.Pointer<rcl_interfaces__srv__GetParameterTypes_Response> msg,
+  ) {
+    return _rcl_interfaces__srv__GetParameterTypes_Response__fini(
+      msg,
+    );
+  }
+
+  late final _rcl_interfaces__srv__GetParameterTypes_Response__finiPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__GetParameterTypes_Response>)>>(
+          'rcl_interfaces__srv__GetParameterTypes_Response__fini');
+  late final _rcl_interfaces__srv__GetParameterTypes_Response__fini =
+      _rcl_interfaces__srv__GetParameterTypes_Response__finiPtr.asFunction<
+          void Function(
+              ffi.Pointer<rcl_interfaces__srv__GetParameterTypes_Response>)>();
+
+  /// Create srv/GetParameterTypes message.
+  /// /**
+  ///  * It allocates the memory for the message, sets the memory to zero, and
+  ///  * calls
+  ///  * rcl_interfaces__srv__GetParameterTypes_Response__init().
+  ///  * \return The pointer to the initialized message if successful,
+  ///  * otherwise NULL
+  ///  */
+  ffi.Pointer<rcl_interfaces__srv__GetParameterTypes_Response>
+      rcl_interfaces__srv__GetParameterTypes_Response__create() {
+    return _rcl_interfaces__srv__GetParameterTypes_Response__create();
+  }
+
+  late final _rcl_interfaces__srv__GetParameterTypes_Response__createPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<rcl_interfaces__srv__GetParameterTypes_Response>
+                      Function()>>(
+          'rcl_interfaces__srv__GetParameterTypes_Response__create');
+  late final _rcl_interfaces__srv__GetParameterTypes_Response__create =
+      _rcl_interfaces__srv__GetParameterTypes_Response__createPtr.asFunction<
+          ffi.Pointer<rcl_interfaces__srv__GetParameterTypes_Response>
+              Function()>();
+
+  /// Destroy srv/GetParameterTypes message.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__srv__GetParameterTypes_Response__fini()
+  ///  * and frees the memory of the message.
+  ///  * \param[in,out] msg The allocated message pointer.
+  ///  */
+  void rcl_interfaces__srv__GetParameterTypes_Response__destroy(
+    ffi.Pointer<rcl_interfaces__srv__GetParameterTypes_Response> msg,
+  ) {
+    return _rcl_interfaces__srv__GetParameterTypes_Response__destroy(
+      msg,
+    );
+  }
+
+  late final _rcl_interfaces__srv__GetParameterTypes_Response__destroyPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__GetParameterTypes_Response>)>>(
+          'rcl_interfaces__srv__GetParameterTypes_Response__destroy');
+  late final _rcl_interfaces__srv__GetParameterTypes_Response__destroy =
+      _rcl_interfaces__srv__GetParameterTypes_Response__destroyPtr.asFunction<
+          void Function(
+              ffi.Pointer<rcl_interfaces__srv__GetParameterTypes_Response>)>();
+
+  /// Initialize array of srv/GetParameterTypes messages.
+  /// /**
+  ///  * It allocates the memory for the number of elements and calls
+  ///  * rcl_interfaces__srv__GetParameterTypes_Response__init()
+  ///  * for each element of the array.
+  ///  * \param[in,out] array The allocated array pointer.
+  ///  * \param[in] size The size / capacity of the array.
+  ///  * \return true if initialization was successful, otherwise false
+  ///  * If the array pointer is valid and the size is zero it is guaranteed
+  ///  # to return true.
+  ///  */
+  bool rcl_interfaces__srv__GetParameterTypes_Response__Sequence__init(
+    ffi.Pointer<rcl_interfaces__srv__GetParameterTypes_Response__Sequence>
+        array,
+    int size,
+  ) {
+    return _rcl_interfaces__srv__GetParameterTypes_Response__Sequence__init(
+          array,
+          size,
+        ) !=
+        0;
+  }
+
+  late final _rcl_interfaces__srv__GetParameterTypes_Response__Sequence__initPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Uint8 Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__GetParameterTypes_Response__Sequence>,
+                      size_t)>>(
+          'rcl_interfaces__srv__GetParameterTypes_Response__Sequence__init');
+  late final _rcl_interfaces__srv__GetParameterTypes_Response__Sequence__init =
+      _rcl_interfaces__srv__GetParameterTypes_Response__Sequence__initPtr
+          .asFunction<
+              int Function(
+                  ffi.Pointer<
+                      rcl_interfaces__srv__GetParameterTypes_Response__Sequence>,
+                  int)>();
+
+  /// Finalize array of srv/GetParameterTypes messages.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__srv__GetParameterTypes_Response__fini()
+  ///  * for each element of the array and frees the memory for the number of
+  ///  * elements.
+  ///  * \param[in,out] array The initialized array pointer.
+  ///  */
+  void rcl_interfaces__srv__GetParameterTypes_Response__Sequence__fini(
+    ffi.Pointer<rcl_interfaces__srv__GetParameterTypes_Response__Sequence>
+        array,
+  ) {
+    return _rcl_interfaces__srv__GetParameterTypes_Response__Sequence__fini(
+      array,
+    );
+  }
+
+  late final _rcl_interfaces__srv__GetParameterTypes_Response__Sequence__finiPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__GetParameterTypes_Response__Sequence>)>>(
+          'rcl_interfaces__srv__GetParameterTypes_Response__Sequence__fini');
+  late final _rcl_interfaces__srv__GetParameterTypes_Response__Sequence__fini =
+      _rcl_interfaces__srv__GetParameterTypes_Response__Sequence__finiPtr
+          .asFunction<
+              void Function(
+                  ffi.Pointer<
+                      rcl_interfaces__srv__GetParameterTypes_Response__Sequence>)>();
+
+  /// Create array of srv/GetParameterTypes messages.
+  /// /**
+  ///  * It allocates the memory for the array and calls
+  ///  * rcl_interfaces__srv__GetParameterTypes_Response__Sequence__init().
+  ///  * \param[in] size The size / capacity of the array.
+  ///  * \return The pointer to the initialized array if successful, otherwise NULL
+  ///  */
+  ffi.Pointer<rcl_interfaces__srv__GetParameterTypes_Response__Sequence>
+      rcl_interfaces__srv__GetParameterTypes_Response__Sequence__create(
+    int size,
+  ) {
+    return _rcl_interfaces__srv__GetParameterTypes_Response__Sequence__create(
+      size,
+    );
+  }
+
+  late final _rcl_interfaces__srv__GetParameterTypes_Response__Sequence__createPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<
+                          rcl_interfaces__srv__GetParameterTypes_Response__Sequence>
+                      Function(size_t)>>(
+          'rcl_interfaces__srv__GetParameterTypes_Response__Sequence__create');
+  late final _rcl_interfaces__srv__GetParameterTypes_Response__Sequence__create =
+      _rcl_interfaces__srv__GetParameterTypes_Response__Sequence__createPtr
+          .asFunction<
+              ffi.Pointer<
+                      rcl_interfaces__srv__GetParameterTypes_Response__Sequence>
+                  Function(int)>();
+
+  /// Destroy array of srv/GetParameterTypes messages.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__srv__GetParameterTypes_Response__Sequence__fini()
+  ///  * on the array,
+  ///  * and frees the memory of the array.
+  ///  * \param[in,out] array The initialized array pointer.
+  ///  */
+  void rcl_interfaces__srv__GetParameterTypes_Response__Sequence__destroy(
+    ffi.Pointer<rcl_interfaces__srv__GetParameterTypes_Response__Sequence>
+        array,
+  ) {
+    return _rcl_interfaces__srv__GetParameterTypes_Response__Sequence__destroy(
+      array,
+    );
+  }
+
+  late final _rcl_interfaces__srv__GetParameterTypes_Response__Sequence__destroyPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__GetParameterTypes_Response__Sequence>)>>(
+          'rcl_interfaces__srv__GetParameterTypes_Response__Sequence__destroy');
+  late final _rcl_interfaces__srv__GetParameterTypes_Response__Sequence__destroy =
+      _rcl_interfaces__srv__GetParameterTypes_Response__Sequence__destroyPtr
+          .asFunction<
+              void Function(
+                  ffi.Pointer<
+                      rcl_interfaces__srv__GetParameterTypes_Response__Sequence>)>();
+
+  ffi.Pointer<rosidl_message_type_support_t>
+      rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__GetParameterTypes_Request() {
+    return _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__GetParameterTypes_Request();
+  }
+
+  late final _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__GetParameterTypes_RequestPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<rosidl_message_type_support_t> Function()>>(
+          'rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__GetParameterTypes_Request');
+  late final _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__GetParameterTypes_Request =
+      _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__GetParameterTypes_RequestPtr
+          .asFunction<ffi.Pointer<rosidl_message_type_support_t> Function()>();
+
+  ffi.Pointer<rosidl_message_type_support_t>
+      rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__GetParameterTypes_Response() {
+    return _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__GetParameterTypes_Response();
+  }
+
+  late final _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__GetParameterTypes_ResponsePtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<rosidl_message_type_support_t> Function()>>(
+          'rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__GetParameterTypes_Response');
+  late final _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__GetParameterTypes_Response =
+      _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__GetParameterTypes_ResponsePtr
+          .asFunction<ffi.Pointer<rosidl_message_type_support_t> Function()>();
+
+  ffi.Pointer<rosidl_service_type_support_t>
+      rosidl_typesupport_c__get_service_type_support_handle__rcl_interfaces__srv__GetParameterTypes() {
+    return _rosidl_typesupport_c__get_service_type_support_handle__rcl_interfaces__srv__GetParameterTypes();
+  }
+
+  late final _rosidl_typesupport_c__get_service_type_support_handle__rcl_interfaces__srv__GetParameterTypesPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<rosidl_service_type_support_t> Function()>>(
+          'rosidl_typesupport_c__get_service_type_support_handle__rcl_interfaces__srv__GetParameterTypes');
+  late final _rosidl_typesupport_c__get_service_type_support_handle__rcl_interfaces__srv__GetParameterTypes =
+      _rosidl_typesupport_c__get_service_type_support_handle__rcl_interfaces__srv__GetParameterTypesPtr
+          .asFunction<ffi.Pointer<rosidl_service_type_support_t> Function()>();
+
+  /// Initialize srv/DescribeParameters message.
+  /// /**
+  ///  * If the init function is called twice for the same message without
+  ///  * calling fini inbetween previously allocated memory will be leaked.
+  ///  * \param[in,out] msg The previously allocated message pointer.
+  ///  * Fields without a default value will not be initialized by this function.
+  ///  * You might want to call memset(msg, 0, sizeof(
+  ///  * rcl_interfaces__srv__DescribeParameters_Request
+  ///  * )) before or use
+  ///  * rcl_interfaces__srv__DescribeParameters_Request__create()
+  ///  * to allocate and initialize the message.
+  ///  * \return true if initialization was successful, otherwise false
+  ///  */
+  bool rcl_interfaces__srv__DescribeParameters_Request__init(
+    ffi.Pointer<rcl_interfaces__srv__DescribeParameters_Request> msg,
+  ) {
+    return _rcl_interfaces__srv__DescribeParameters_Request__init(
+          msg,
+        ) !=
+        0;
+  }
+
+  late final _rcl_interfaces__srv__DescribeParameters_Request__initPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Uint8 Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__DescribeParameters_Request>)>>(
+          'rcl_interfaces__srv__DescribeParameters_Request__init');
+  late final _rcl_interfaces__srv__DescribeParameters_Request__init =
+      _rcl_interfaces__srv__DescribeParameters_Request__initPtr.asFunction<
+          int Function(
+              ffi.Pointer<rcl_interfaces__srv__DescribeParameters_Request>)>();
+
+  /// Finalize srv/DescribeParameters message.
+  /// /**
+  ///  * \param[in,out] msg The allocated message pointer.
+  ///  */
+  void rcl_interfaces__srv__DescribeParameters_Request__fini(
+    ffi.Pointer<rcl_interfaces__srv__DescribeParameters_Request> msg,
+  ) {
+    return _rcl_interfaces__srv__DescribeParameters_Request__fini(
+      msg,
+    );
+  }
+
+  late final _rcl_interfaces__srv__DescribeParameters_Request__finiPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__DescribeParameters_Request>)>>(
+          'rcl_interfaces__srv__DescribeParameters_Request__fini');
+  late final _rcl_interfaces__srv__DescribeParameters_Request__fini =
+      _rcl_interfaces__srv__DescribeParameters_Request__finiPtr.asFunction<
+          void Function(
+              ffi.Pointer<rcl_interfaces__srv__DescribeParameters_Request>)>();
+
+  /// Create srv/DescribeParameters message.
+  /// /**
+  ///  * It allocates the memory for the message, sets the memory to zero, and
+  ///  * calls
+  ///  * rcl_interfaces__srv__DescribeParameters_Request__init().
+  ///  * \return The pointer to the initialized message if successful,
+  ///  * otherwise NULL
+  ///  */
+  ffi.Pointer<rcl_interfaces__srv__DescribeParameters_Request>
+      rcl_interfaces__srv__DescribeParameters_Request__create() {
+    return _rcl_interfaces__srv__DescribeParameters_Request__create();
+  }
+
+  late final _rcl_interfaces__srv__DescribeParameters_Request__createPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<rcl_interfaces__srv__DescribeParameters_Request>
+                      Function()>>(
+          'rcl_interfaces__srv__DescribeParameters_Request__create');
+  late final _rcl_interfaces__srv__DescribeParameters_Request__create =
+      _rcl_interfaces__srv__DescribeParameters_Request__createPtr.asFunction<
+          ffi.Pointer<rcl_interfaces__srv__DescribeParameters_Request>
+              Function()>();
+
+  /// Destroy srv/DescribeParameters message.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__srv__DescribeParameters_Request__fini()
+  ///  * and frees the memory of the message.
+  ///  * \param[in,out] msg The allocated message pointer.
+  ///  */
+  void rcl_interfaces__srv__DescribeParameters_Request__destroy(
+    ffi.Pointer<rcl_interfaces__srv__DescribeParameters_Request> msg,
+  ) {
+    return _rcl_interfaces__srv__DescribeParameters_Request__destroy(
+      msg,
+    );
+  }
+
+  late final _rcl_interfaces__srv__DescribeParameters_Request__destroyPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__DescribeParameters_Request>)>>(
+          'rcl_interfaces__srv__DescribeParameters_Request__destroy');
+  late final _rcl_interfaces__srv__DescribeParameters_Request__destroy =
+      _rcl_interfaces__srv__DescribeParameters_Request__destroyPtr.asFunction<
+          void Function(
+              ffi.Pointer<rcl_interfaces__srv__DescribeParameters_Request>)>();
+
+  /// Initialize array of srv/DescribeParameters messages.
+  /// /**
+  ///  * It allocates the memory for the number of elements and calls
+  ///  * rcl_interfaces__srv__DescribeParameters_Request__init()
+  ///  * for each element of the array.
+  ///  * \param[in,out] array The allocated array pointer.
+  ///  * \param[in] size The size / capacity of the array.
+  ///  * \return true if initialization was successful, otherwise false
+  ///  * If the array pointer is valid and the size is zero it is guaranteed
+  ///  # to return true.
+  ///  */
+  bool rcl_interfaces__srv__DescribeParameters_Request__Sequence__init(
+    ffi.Pointer<rcl_interfaces__srv__DescribeParameters_Request__Sequence>
+        array,
+    int size,
+  ) {
+    return _rcl_interfaces__srv__DescribeParameters_Request__Sequence__init(
+          array,
+          size,
+        ) !=
+        0;
+  }
+
+  late final _rcl_interfaces__srv__DescribeParameters_Request__Sequence__initPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Uint8 Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__DescribeParameters_Request__Sequence>,
+                      size_t)>>(
+          'rcl_interfaces__srv__DescribeParameters_Request__Sequence__init');
+  late final _rcl_interfaces__srv__DescribeParameters_Request__Sequence__init =
+      _rcl_interfaces__srv__DescribeParameters_Request__Sequence__initPtr
+          .asFunction<
+              int Function(
+                  ffi.Pointer<
+                      rcl_interfaces__srv__DescribeParameters_Request__Sequence>,
+                  int)>();
+
+  /// Finalize array of srv/DescribeParameters messages.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__srv__DescribeParameters_Request__fini()
+  ///  * for each element of the array and frees the memory for the number of
+  ///  * elements.
+  ///  * \param[in,out] array The initialized array pointer.
+  ///  */
+  void rcl_interfaces__srv__DescribeParameters_Request__Sequence__fini(
+    ffi.Pointer<rcl_interfaces__srv__DescribeParameters_Request__Sequence>
+        array,
+  ) {
+    return _rcl_interfaces__srv__DescribeParameters_Request__Sequence__fini(
+      array,
+    );
+  }
+
+  late final _rcl_interfaces__srv__DescribeParameters_Request__Sequence__finiPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__DescribeParameters_Request__Sequence>)>>(
+          'rcl_interfaces__srv__DescribeParameters_Request__Sequence__fini');
+  late final _rcl_interfaces__srv__DescribeParameters_Request__Sequence__fini =
+      _rcl_interfaces__srv__DescribeParameters_Request__Sequence__finiPtr
+          .asFunction<
+              void Function(
+                  ffi.Pointer<
+                      rcl_interfaces__srv__DescribeParameters_Request__Sequence>)>();
+
+  /// Create array of srv/DescribeParameters messages.
+  /// /**
+  ///  * It allocates the memory for the array and calls
+  ///  * rcl_interfaces__srv__DescribeParameters_Request__Sequence__init().
+  ///  * \param[in] size The size / capacity of the array.
+  ///  * \return The pointer to the initialized array if successful, otherwise NULL
+  ///  */
+  ffi.Pointer<rcl_interfaces__srv__DescribeParameters_Request__Sequence>
+      rcl_interfaces__srv__DescribeParameters_Request__Sequence__create(
+    int size,
+  ) {
+    return _rcl_interfaces__srv__DescribeParameters_Request__Sequence__create(
+      size,
+    );
+  }
+
+  late final _rcl_interfaces__srv__DescribeParameters_Request__Sequence__createPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<
+                          rcl_interfaces__srv__DescribeParameters_Request__Sequence>
+                      Function(size_t)>>(
+          'rcl_interfaces__srv__DescribeParameters_Request__Sequence__create');
+  late final _rcl_interfaces__srv__DescribeParameters_Request__Sequence__create =
+      _rcl_interfaces__srv__DescribeParameters_Request__Sequence__createPtr
+          .asFunction<
+              ffi.Pointer<
+                      rcl_interfaces__srv__DescribeParameters_Request__Sequence>
+                  Function(int)>();
+
+  /// Destroy array of srv/DescribeParameters messages.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__srv__DescribeParameters_Request__Sequence__fini()
+  ///  * on the array,
+  ///  * and frees the memory of the array.
+  ///  * \param[in,out] array The initialized array pointer.
+  ///  */
+  void rcl_interfaces__srv__DescribeParameters_Request__Sequence__destroy(
+    ffi.Pointer<rcl_interfaces__srv__DescribeParameters_Request__Sequence>
+        array,
+  ) {
+    return _rcl_interfaces__srv__DescribeParameters_Request__Sequence__destroy(
+      array,
+    );
+  }
+
+  late final _rcl_interfaces__srv__DescribeParameters_Request__Sequence__destroyPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__DescribeParameters_Request__Sequence>)>>(
+          'rcl_interfaces__srv__DescribeParameters_Request__Sequence__destroy');
+  late final _rcl_interfaces__srv__DescribeParameters_Request__Sequence__destroy =
+      _rcl_interfaces__srv__DescribeParameters_Request__Sequence__destroyPtr
+          .asFunction<
+              void Function(
+                  ffi.Pointer<
+                      rcl_interfaces__srv__DescribeParameters_Request__Sequence>)>();
+
+  /// Initialize srv/DescribeParameters message.
+  /// /**
+  ///  * If the init function is called twice for the same message without
+  ///  * calling fini inbetween previously allocated memory will be leaked.
+  ///  * \param[in,out] msg The previously allocated message pointer.
+  ///  * Fields without a default value will not be initialized by this function.
+  ///  * You might want to call memset(msg, 0, sizeof(
+  ///  * rcl_interfaces__srv__DescribeParameters_Response
+  ///  * )) before or use
+  ///  * rcl_interfaces__srv__DescribeParameters_Response__create()
+  ///  * to allocate and initialize the message.
+  ///  * \return true if initialization was successful, otherwise false
+  ///  */
+  bool rcl_interfaces__srv__DescribeParameters_Response__init(
+    ffi.Pointer<rcl_interfaces__srv__DescribeParameters_Response> msg,
+  ) {
+    return _rcl_interfaces__srv__DescribeParameters_Response__init(
+          msg,
+        ) !=
+        0;
+  }
+
+  late final _rcl_interfaces__srv__DescribeParameters_Response__initPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Uint8 Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__DescribeParameters_Response>)>>(
+          'rcl_interfaces__srv__DescribeParameters_Response__init');
+  late final _rcl_interfaces__srv__DescribeParameters_Response__init =
+      _rcl_interfaces__srv__DescribeParameters_Response__initPtr.asFunction<
+          int Function(
+              ffi.Pointer<rcl_interfaces__srv__DescribeParameters_Response>)>();
+
+  /// Finalize srv/DescribeParameters message.
+  /// /**
+  ///  * \param[in,out] msg The allocated message pointer.
+  ///  */
+  void rcl_interfaces__srv__DescribeParameters_Response__fini(
+    ffi.Pointer<rcl_interfaces__srv__DescribeParameters_Response> msg,
+  ) {
+    return _rcl_interfaces__srv__DescribeParameters_Response__fini(
+      msg,
+    );
+  }
+
+  late final _rcl_interfaces__srv__DescribeParameters_Response__finiPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__DescribeParameters_Response>)>>(
+          'rcl_interfaces__srv__DescribeParameters_Response__fini');
+  late final _rcl_interfaces__srv__DescribeParameters_Response__fini =
+      _rcl_interfaces__srv__DescribeParameters_Response__finiPtr.asFunction<
+          void Function(
+              ffi.Pointer<rcl_interfaces__srv__DescribeParameters_Response>)>();
+
+  /// Create srv/DescribeParameters message.
+  /// /**
+  ///  * It allocates the memory for the message, sets the memory to zero, and
+  ///  * calls
+  ///  * rcl_interfaces__srv__DescribeParameters_Response__init().
+  ///  * \return The pointer to the initialized message if successful,
+  ///  * otherwise NULL
+  ///  */
+  ffi.Pointer<rcl_interfaces__srv__DescribeParameters_Response>
+      rcl_interfaces__srv__DescribeParameters_Response__create() {
+    return _rcl_interfaces__srv__DescribeParameters_Response__create();
+  }
+
+  late final _rcl_interfaces__srv__DescribeParameters_Response__createPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<rcl_interfaces__srv__DescribeParameters_Response>
+                      Function()>>(
+          'rcl_interfaces__srv__DescribeParameters_Response__create');
+  late final _rcl_interfaces__srv__DescribeParameters_Response__create =
+      _rcl_interfaces__srv__DescribeParameters_Response__createPtr.asFunction<
+          ffi.Pointer<rcl_interfaces__srv__DescribeParameters_Response>
+              Function()>();
+
+  /// Destroy srv/DescribeParameters message.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__srv__DescribeParameters_Response__fini()
+  ///  * and frees the memory of the message.
+  ///  * \param[in,out] msg The allocated message pointer.
+  ///  */
+  void rcl_interfaces__srv__DescribeParameters_Response__destroy(
+    ffi.Pointer<rcl_interfaces__srv__DescribeParameters_Response> msg,
+  ) {
+    return _rcl_interfaces__srv__DescribeParameters_Response__destroy(
+      msg,
+    );
+  }
+
+  late final _rcl_interfaces__srv__DescribeParameters_Response__destroyPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__DescribeParameters_Response>)>>(
+          'rcl_interfaces__srv__DescribeParameters_Response__destroy');
+  late final _rcl_interfaces__srv__DescribeParameters_Response__destroy =
+      _rcl_interfaces__srv__DescribeParameters_Response__destroyPtr.asFunction<
+          void Function(
+              ffi.Pointer<rcl_interfaces__srv__DescribeParameters_Response>)>();
+
+  /// Initialize array of srv/DescribeParameters messages.
+  /// /**
+  ///  * It allocates the memory for the number of elements and calls
+  ///  * rcl_interfaces__srv__DescribeParameters_Response__init()
+  ///  * for each element of the array.
+  ///  * \param[in,out] array The allocated array pointer.
+  ///  * \param[in] size The size / capacity of the array.
+  ///  * \return true if initialization was successful, otherwise false
+  ///  * If the array pointer is valid and the size is zero it is guaranteed
+  ///  # to return true.
+  ///  */
+  bool rcl_interfaces__srv__DescribeParameters_Response__Sequence__init(
+    ffi.Pointer<rcl_interfaces__srv__DescribeParameters_Response__Sequence>
+        array,
+    int size,
+  ) {
+    return _rcl_interfaces__srv__DescribeParameters_Response__Sequence__init(
+          array,
+          size,
+        ) !=
+        0;
+  }
+
+  late final _rcl_interfaces__srv__DescribeParameters_Response__Sequence__initPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Uint8 Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__DescribeParameters_Response__Sequence>,
+                      size_t)>>(
+          'rcl_interfaces__srv__DescribeParameters_Response__Sequence__init');
+  late final _rcl_interfaces__srv__DescribeParameters_Response__Sequence__init =
+      _rcl_interfaces__srv__DescribeParameters_Response__Sequence__initPtr
+          .asFunction<
+              int Function(
+                  ffi.Pointer<
+                      rcl_interfaces__srv__DescribeParameters_Response__Sequence>,
+                  int)>();
+
+  /// Finalize array of srv/DescribeParameters messages.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__srv__DescribeParameters_Response__fini()
+  ///  * for each element of the array and frees the memory for the number of
+  ///  * elements.
+  ///  * \param[in,out] array The initialized array pointer.
+  ///  */
+  void rcl_interfaces__srv__DescribeParameters_Response__Sequence__fini(
+    ffi.Pointer<rcl_interfaces__srv__DescribeParameters_Response__Sequence>
+        array,
+  ) {
+    return _rcl_interfaces__srv__DescribeParameters_Response__Sequence__fini(
+      array,
+    );
+  }
+
+  late final _rcl_interfaces__srv__DescribeParameters_Response__Sequence__finiPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__DescribeParameters_Response__Sequence>)>>(
+          'rcl_interfaces__srv__DescribeParameters_Response__Sequence__fini');
+  late final _rcl_interfaces__srv__DescribeParameters_Response__Sequence__fini =
+      _rcl_interfaces__srv__DescribeParameters_Response__Sequence__finiPtr
+          .asFunction<
+              void Function(
+                  ffi.Pointer<
+                      rcl_interfaces__srv__DescribeParameters_Response__Sequence>)>();
+
+  /// Create array of srv/DescribeParameters messages.
+  /// /**
+  ///  * It allocates the memory for the array and calls
+  ///  * rcl_interfaces__srv__DescribeParameters_Response__Sequence__init().
+  ///  * \param[in] size The size / capacity of the array.
+  ///  * \return The pointer to the initialized array if successful, otherwise NULL
+  ///  */
+  ffi.Pointer<rcl_interfaces__srv__DescribeParameters_Response__Sequence>
+      rcl_interfaces__srv__DescribeParameters_Response__Sequence__create(
+    int size,
+  ) {
+    return _rcl_interfaces__srv__DescribeParameters_Response__Sequence__create(
+      size,
+    );
+  }
+
+  late final _rcl_interfaces__srv__DescribeParameters_Response__Sequence__createPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<
+                          rcl_interfaces__srv__DescribeParameters_Response__Sequence>
+                      Function(size_t)>>(
+          'rcl_interfaces__srv__DescribeParameters_Response__Sequence__create');
+  late final _rcl_interfaces__srv__DescribeParameters_Response__Sequence__create =
+      _rcl_interfaces__srv__DescribeParameters_Response__Sequence__createPtr
+          .asFunction<
+              ffi.Pointer<
+                      rcl_interfaces__srv__DescribeParameters_Response__Sequence>
+                  Function(int)>();
+
+  /// Destroy array of srv/DescribeParameters messages.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__srv__DescribeParameters_Response__Sequence__fini()
+  ///  * on the array,
+  ///  * and frees the memory of the array.
+  ///  * \param[in,out] array The initialized array pointer.
+  ///  */
+  void rcl_interfaces__srv__DescribeParameters_Response__Sequence__destroy(
+    ffi.Pointer<rcl_interfaces__srv__DescribeParameters_Response__Sequence>
+        array,
+  ) {
+    return _rcl_interfaces__srv__DescribeParameters_Response__Sequence__destroy(
+      array,
+    );
+  }
+
+  late final _rcl_interfaces__srv__DescribeParameters_Response__Sequence__destroyPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__DescribeParameters_Response__Sequence>)>>(
+          'rcl_interfaces__srv__DescribeParameters_Response__Sequence__destroy');
+  late final _rcl_interfaces__srv__DescribeParameters_Response__Sequence__destroy =
+      _rcl_interfaces__srv__DescribeParameters_Response__Sequence__destroyPtr
+          .asFunction<
+              void Function(
+                  ffi.Pointer<
+                      rcl_interfaces__srv__DescribeParameters_Response__Sequence>)>();
+
+  ffi.Pointer<rosidl_message_type_support_t>
+      rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__DescribeParameters_Request() {
+    return _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__DescribeParameters_Request();
+  }
+
+  late final _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__DescribeParameters_RequestPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<rosidl_message_type_support_t> Function()>>(
+          'rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__DescribeParameters_Request');
+  late final _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__DescribeParameters_Request =
+      _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__DescribeParameters_RequestPtr
+          .asFunction<ffi.Pointer<rosidl_message_type_support_t> Function()>();
+
+  ffi.Pointer<rosidl_message_type_support_t>
+      rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__DescribeParameters_Response() {
+    return _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__DescribeParameters_Response();
+  }
+
+  late final _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__DescribeParameters_ResponsePtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<rosidl_message_type_support_t> Function()>>(
+          'rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__DescribeParameters_Response');
+  late final _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__DescribeParameters_Response =
+      _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__DescribeParameters_ResponsePtr
+          .asFunction<ffi.Pointer<rosidl_message_type_support_t> Function()>();
+
+  ffi.Pointer<rosidl_service_type_support_t>
+      rosidl_typesupport_c__get_service_type_support_handle__rcl_interfaces__srv__DescribeParameters() {
+    return _rosidl_typesupport_c__get_service_type_support_handle__rcl_interfaces__srv__DescribeParameters();
+  }
+
+  late final _rosidl_typesupport_c__get_service_type_support_handle__rcl_interfaces__srv__DescribeParametersPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<rosidl_service_type_support_t> Function()>>(
+          'rosidl_typesupport_c__get_service_type_support_handle__rcl_interfaces__srv__DescribeParameters');
+  late final _rosidl_typesupport_c__get_service_type_support_handle__rcl_interfaces__srv__DescribeParameters =
+      _rosidl_typesupport_c__get_service_type_support_handle__rcl_interfaces__srv__DescribeParametersPtr
+          .asFunction<ffi.Pointer<rosidl_service_type_support_t> Function()>();
+
+  /// Initialize srv/SetParametersAtomically message.
+  /// /**
+  ///  * If the init function is called twice for the same message without
+  ///  * calling fini inbetween previously allocated memory will be leaked.
+  ///  * \param[in,out] msg The previously allocated message pointer.
+  ///  * Fields without a default value will not be initialized by this function.
+  ///  * You might want to call memset(msg, 0, sizeof(
+  ///  * rcl_interfaces__srv__SetParametersAtomically_Request
+  ///  * )) before or use
+  ///  * rcl_interfaces__srv__SetParametersAtomically_Request__create()
+  ///  * to allocate and initialize the message.
+  ///  * \return true if initialization was successful, otherwise false
+  ///  */
+  bool rcl_interfaces__srv__SetParametersAtomically_Request__init(
+    ffi.Pointer<rcl_interfaces__srv__SetParametersAtomically_Request> msg,
+  ) {
+    return _rcl_interfaces__srv__SetParametersAtomically_Request__init(
+          msg,
+        ) !=
+        0;
+  }
+
+  late final _rcl_interfaces__srv__SetParametersAtomically_Request__initPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Uint8 Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__SetParametersAtomically_Request>)>>(
+          'rcl_interfaces__srv__SetParametersAtomically_Request__init');
+  late final _rcl_interfaces__srv__SetParametersAtomically_Request__init =
+      _rcl_interfaces__srv__SetParametersAtomically_Request__initPtr.asFunction<
+          int Function(
+              ffi.Pointer<
+                  rcl_interfaces__srv__SetParametersAtomically_Request>)>();
+
+  /// Finalize srv/SetParametersAtomically message.
+  /// /**
+  ///  * \param[in,out] msg The allocated message pointer.
+  ///  */
+  void rcl_interfaces__srv__SetParametersAtomically_Request__fini(
+    ffi.Pointer<rcl_interfaces__srv__SetParametersAtomically_Request> msg,
+  ) {
+    return _rcl_interfaces__srv__SetParametersAtomically_Request__fini(
+      msg,
+    );
+  }
+
+  late final _rcl_interfaces__srv__SetParametersAtomically_Request__finiPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__SetParametersAtomically_Request>)>>(
+          'rcl_interfaces__srv__SetParametersAtomically_Request__fini');
+  late final _rcl_interfaces__srv__SetParametersAtomically_Request__fini =
+      _rcl_interfaces__srv__SetParametersAtomically_Request__finiPtr.asFunction<
+          void Function(
+              ffi.Pointer<
+                  rcl_interfaces__srv__SetParametersAtomically_Request>)>();
+
+  /// Create srv/SetParametersAtomically message.
+  /// /**
+  ///  * It allocates the memory for the message, sets the memory to zero, and
+  ///  * calls
+  ///  * rcl_interfaces__srv__SetParametersAtomically_Request__init().
+  ///  * \return The pointer to the initialized message if successful,
+  ///  * otherwise NULL
+  ///  */
+  ffi.Pointer<rcl_interfaces__srv__SetParametersAtomically_Request>
+      rcl_interfaces__srv__SetParametersAtomically_Request__create() {
+    return _rcl_interfaces__srv__SetParametersAtomically_Request__create();
+  }
+
+  late final _rcl_interfaces__srv__SetParametersAtomically_Request__createPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<
+                          rcl_interfaces__srv__SetParametersAtomically_Request>
+                      Function()>>(
+          'rcl_interfaces__srv__SetParametersAtomically_Request__create');
+  late final _rcl_interfaces__srv__SetParametersAtomically_Request__create =
+      _rcl_interfaces__srv__SetParametersAtomically_Request__createPtr
+          .asFunction<
+              ffi.Pointer<rcl_interfaces__srv__SetParametersAtomically_Request>
+                  Function()>();
+
+  /// Destroy srv/SetParametersAtomically message.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__srv__SetParametersAtomically_Request__fini()
+  ///  * and frees the memory of the message.
+  ///  * \param[in,out] msg The allocated message pointer.
+  ///  */
+  void rcl_interfaces__srv__SetParametersAtomically_Request__destroy(
+    ffi.Pointer<rcl_interfaces__srv__SetParametersAtomically_Request> msg,
+  ) {
+    return _rcl_interfaces__srv__SetParametersAtomically_Request__destroy(
+      msg,
+    );
+  }
+
+  late final _rcl_interfaces__srv__SetParametersAtomically_Request__destroyPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__SetParametersAtomically_Request>)>>(
+          'rcl_interfaces__srv__SetParametersAtomically_Request__destroy');
+  late final _rcl_interfaces__srv__SetParametersAtomically_Request__destroy =
+      _rcl_interfaces__srv__SetParametersAtomically_Request__destroyPtr
+          .asFunction<
+              void Function(
+                  ffi.Pointer<
+                      rcl_interfaces__srv__SetParametersAtomically_Request>)>();
+
+  /// Initialize array of srv/SetParametersAtomically messages.
+  /// /**
+  ///  * It allocates the memory for the number of elements and calls
+  ///  * rcl_interfaces__srv__SetParametersAtomically_Request__init()
+  ///  * for each element of the array.
+  ///  * \param[in,out] array The allocated array pointer.
+  ///  * \param[in] size The size / capacity of the array.
+  ///  * \return true if initialization was successful, otherwise false
+  ///  * If the array pointer is valid and the size is zero it is guaranteed
+  ///  # to return true.
+  ///  */
+  bool rcl_interfaces__srv__SetParametersAtomically_Request__Sequence__init(
+    ffi.Pointer<rcl_interfaces__srv__SetParametersAtomically_Request__Sequence>
+        array,
+    int size,
+  ) {
+    return _rcl_interfaces__srv__SetParametersAtomically_Request__Sequence__init(
+          array,
+          size,
+        ) !=
+        0;
+  }
+
+  late final _rcl_interfaces__srv__SetParametersAtomically_Request__Sequence__initPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Uint8 Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__SetParametersAtomically_Request__Sequence>,
+                      size_t)>>(
+          'rcl_interfaces__srv__SetParametersAtomically_Request__Sequence__init');
+  late final _rcl_interfaces__srv__SetParametersAtomically_Request__Sequence__init =
+      _rcl_interfaces__srv__SetParametersAtomically_Request__Sequence__initPtr
+          .asFunction<
+              int Function(
+                  ffi.Pointer<
+                      rcl_interfaces__srv__SetParametersAtomically_Request__Sequence>,
+                  int)>();
+
+  /// Finalize array of srv/SetParametersAtomically messages.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__srv__SetParametersAtomically_Request__fini()
+  ///  * for each element of the array and frees the memory for the number of
+  ///  * elements.
+  ///  * \param[in,out] array The initialized array pointer.
+  ///  */
+  void rcl_interfaces__srv__SetParametersAtomically_Request__Sequence__fini(
+    ffi.Pointer<rcl_interfaces__srv__SetParametersAtomically_Request__Sequence>
+        array,
+  ) {
+    return _rcl_interfaces__srv__SetParametersAtomically_Request__Sequence__fini(
+      array,
+    );
+  }
+
+  late final _rcl_interfaces__srv__SetParametersAtomically_Request__Sequence__finiPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__SetParametersAtomically_Request__Sequence>)>>(
+          'rcl_interfaces__srv__SetParametersAtomically_Request__Sequence__fini');
+  late final _rcl_interfaces__srv__SetParametersAtomically_Request__Sequence__fini =
+      _rcl_interfaces__srv__SetParametersAtomically_Request__Sequence__finiPtr
+          .asFunction<
+              void Function(
+                  ffi.Pointer<
+                      rcl_interfaces__srv__SetParametersAtomically_Request__Sequence>)>();
+
+  /// Create array of srv/SetParametersAtomically messages.
+  /// /**
+  ///  * It allocates the memory for the array and calls
+  ///  * rcl_interfaces__srv__SetParametersAtomically_Request__Sequence__init().
+  ///  * \param[in] size The size / capacity of the array.
+  ///  * \return The pointer to the initialized array if successful, otherwise NULL
+  ///  */
+  ffi.Pointer<rcl_interfaces__srv__SetParametersAtomically_Request__Sequence>
+      rcl_interfaces__srv__SetParametersAtomically_Request__Sequence__create(
+    int size,
+  ) {
+    return _rcl_interfaces__srv__SetParametersAtomically_Request__Sequence__create(
+      size,
+    );
+  }
+
+  late final _rcl_interfaces__srv__SetParametersAtomically_Request__Sequence__createPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<
+                          rcl_interfaces__srv__SetParametersAtomically_Request__Sequence>
+                      Function(size_t)>>(
+          'rcl_interfaces__srv__SetParametersAtomically_Request__Sequence__create');
+  late final _rcl_interfaces__srv__SetParametersAtomically_Request__Sequence__create =
+      _rcl_interfaces__srv__SetParametersAtomically_Request__Sequence__createPtr
+          .asFunction<
+              ffi.Pointer<
+                      rcl_interfaces__srv__SetParametersAtomically_Request__Sequence>
+                  Function(int)>();
+
+  /// Destroy array of srv/SetParametersAtomically messages.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__srv__SetParametersAtomically_Request__Sequence__fini()
+  ///  * on the array,
+  ///  * and frees the memory of the array.
+  ///  * \param[in,out] array The initialized array pointer.
+  ///  */
+  void rcl_interfaces__srv__SetParametersAtomically_Request__Sequence__destroy(
+    ffi.Pointer<rcl_interfaces__srv__SetParametersAtomically_Request__Sequence>
+        array,
+  ) {
+    return _rcl_interfaces__srv__SetParametersAtomically_Request__Sequence__destroy(
+      array,
+    );
+  }
+
+  late final _rcl_interfaces__srv__SetParametersAtomically_Request__Sequence__destroyPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__SetParametersAtomically_Request__Sequence>)>>(
+          'rcl_interfaces__srv__SetParametersAtomically_Request__Sequence__destroy');
+  late final _rcl_interfaces__srv__SetParametersAtomically_Request__Sequence__destroy =
+      _rcl_interfaces__srv__SetParametersAtomically_Request__Sequence__destroyPtr
+          .asFunction<
+              void Function(
+                  ffi.Pointer<
+                      rcl_interfaces__srv__SetParametersAtomically_Request__Sequence>)>();
+
+  /// Initialize srv/SetParametersAtomically message.
+  /// /**
+  ///  * If the init function is called twice for the same message without
+  ///  * calling fini inbetween previously allocated memory will be leaked.
+  ///  * \param[in,out] msg The previously allocated message pointer.
+  ///  * Fields without a default value will not be initialized by this function.
+  ///  * You might want to call memset(msg, 0, sizeof(
+  ///  * rcl_interfaces__srv__SetParametersAtomically_Response
+  ///  * )) before or use
+  ///  * rcl_interfaces__srv__SetParametersAtomically_Response__create()
+  ///  * to allocate and initialize the message.
+  ///  * \return true if initialization was successful, otherwise false
+  ///  */
+  bool rcl_interfaces__srv__SetParametersAtomically_Response__init(
+    ffi.Pointer<rcl_interfaces__srv__SetParametersAtomically_Response> msg,
+  ) {
+    return _rcl_interfaces__srv__SetParametersAtomically_Response__init(
+          msg,
+        ) !=
+        0;
+  }
+
+  late final _rcl_interfaces__srv__SetParametersAtomically_Response__initPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Uint8 Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__SetParametersAtomically_Response>)>>(
+          'rcl_interfaces__srv__SetParametersAtomically_Response__init');
+  late final _rcl_interfaces__srv__SetParametersAtomically_Response__init =
+      _rcl_interfaces__srv__SetParametersAtomically_Response__initPtr.asFunction<
+          int Function(
+              ffi.Pointer<
+                  rcl_interfaces__srv__SetParametersAtomically_Response>)>();
+
+  /// Finalize srv/SetParametersAtomically message.
+  /// /**
+  ///  * \param[in,out] msg The allocated message pointer.
+  ///  */
+  void rcl_interfaces__srv__SetParametersAtomically_Response__fini(
+    ffi.Pointer<rcl_interfaces__srv__SetParametersAtomically_Response> msg,
+  ) {
+    return _rcl_interfaces__srv__SetParametersAtomically_Response__fini(
+      msg,
+    );
+  }
+
+  late final _rcl_interfaces__srv__SetParametersAtomically_Response__finiPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__SetParametersAtomically_Response>)>>(
+          'rcl_interfaces__srv__SetParametersAtomically_Response__fini');
+  late final _rcl_interfaces__srv__SetParametersAtomically_Response__fini =
+      _rcl_interfaces__srv__SetParametersAtomically_Response__finiPtr.asFunction<
+          void Function(
+              ffi.Pointer<
+                  rcl_interfaces__srv__SetParametersAtomically_Response>)>();
+
+  /// Create srv/SetParametersAtomically message.
+  /// /**
+  ///  * It allocates the memory for the message, sets the memory to zero, and
+  ///  * calls
+  ///  * rcl_interfaces__srv__SetParametersAtomically_Response__init().
+  ///  * \return The pointer to the initialized message if successful,
+  ///  * otherwise NULL
+  ///  */
+  ffi.Pointer<rcl_interfaces__srv__SetParametersAtomically_Response>
+      rcl_interfaces__srv__SetParametersAtomically_Response__create() {
+    return _rcl_interfaces__srv__SetParametersAtomically_Response__create();
+  }
+
+  late final _rcl_interfaces__srv__SetParametersAtomically_Response__createPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<
+                          rcl_interfaces__srv__SetParametersAtomically_Response>
+                      Function()>>(
+          'rcl_interfaces__srv__SetParametersAtomically_Response__create');
+  late final _rcl_interfaces__srv__SetParametersAtomically_Response__create =
+      _rcl_interfaces__srv__SetParametersAtomically_Response__createPtr
+          .asFunction<
+              ffi.Pointer<rcl_interfaces__srv__SetParametersAtomically_Response>
+                  Function()>();
+
+  /// Destroy srv/SetParametersAtomically message.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__srv__SetParametersAtomically_Response__fini()
+  ///  * and frees the memory of the message.
+  ///  * \param[in,out] msg The allocated message pointer.
+  ///  */
+  void rcl_interfaces__srv__SetParametersAtomically_Response__destroy(
+    ffi.Pointer<rcl_interfaces__srv__SetParametersAtomically_Response> msg,
+  ) {
+    return _rcl_interfaces__srv__SetParametersAtomically_Response__destroy(
+      msg,
+    );
+  }
+
+  late final _rcl_interfaces__srv__SetParametersAtomically_Response__destroyPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__SetParametersAtomically_Response>)>>(
+          'rcl_interfaces__srv__SetParametersAtomically_Response__destroy');
+  late final _rcl_interfaces__srv__SetParametersAtomically_Response__destroy =
+      _rcl_interfaces__srv__SetParametersAtomically_Response__destroyPtr
+          .asFunction<
+              void Function(
+                  ffi.Pointer<
+                      rcl_interfaces__srv__SetParametersAtomically_Response>)>();
+
+  /// Initialize array of srv/SetParametersAtomically messages.
+  /// /**
+  ///  * It allocates the memory for the number of elements and calls
+  ///  * rcl_interfaces__srv__SetParametersAtomically_Response__init()
+  ///  * for each element of the array.
+  ///  * \param[in,out] array The allocated array pointer.
+  ///  * \param[in] size The size / capacity of the array.
+  ///  * \return true if initialization was successful, otherwise false
+  ///  * If the array pointer is valid and the size is zero it is guaranteed
+  ///  # to return true.
+  ///  */
+  bool rcl_interfaces__srv__SetParametersAtomically_Response__Sequence__init(
+    ffi.Pointer<rcl_interfaces__srv__SetParametersAtomically_Response__Sequence>
+        array,
+    int size,
+  ) {
+    return _rcl_interfaces__srv__SetParametersAtomically_Response__Sequence__init(
+          array,
+          size,
+        ) !=
+        0;
+  }
+
+  late final _rcl_interfaces__srv__SetParametersAtomically_Response__Sequence__initPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Uint8 Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__SetParametersAtomically_Response__Sequence>,
+                      size_t)>>(
+          'rcl_interfaces__srv__SetParametersAtomically_Response__Sequence__init');
+  late final _rcl_interfaces__srv__SetParametersAtomically_Response__Sequence__init =
+      _rcl_interfaces__srv__SetParametersAtomically_Response__Sequence__initPtr
+          .asFunction<
+              int Function(
+                  ffi.Pointer<
+                      rcl_interfaces__srv__SetParametersAtomically_Response__Sequence>,
+                  int)>();
+
+  /// Finalize array of srv/SetParametersAtomically messages.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__srv__SetParametersAtomically_Response__fini()
+  ///  * for each element of the array and frees the memory for the number of
+  ///  * elements.
+  ///  * \param[in,out] array The initialized array pointer.
+  ///  */
+  void rcl_interfaces__srv__SetParametersAtomically_Response__Sequence__fini(
+    ffi.Pointer<rcl_interfaces__srv__SetParametersAtomically_Response__Sequence>
+        array,
+  ) {
+    return _rcl_interfaces__srv__SetParametersAtomically_Response__Sequence__fini(
+      array,
+    );
+  }
+
+  late final _rcl_interfaces__srv__SetParametersAtomically_Response__Sequence__finiPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__SetParametersAtomically_Response__Sequence>)>>(
+          'rcl_interfaces__srv__SetParametersAtomically_Response__Sequence__fini');
+  late final _rcl_interfaces__srv__SetParametersAtomically_Response__Sequence__fini =
+      _rcl_interfaces__srv__SetParametersAtomically_Response__Sequence__finiPtr
+          .asFunction<
+              void Function(
+                  ffi.Pointer<
+                      rcl_interfaces__srv__SetParametersAtomically_Response__Sequence>)>();
+
+  /// Create array of srv/SetParametersAtomically messages.
+  /// /**
+  ///  * It allocates the memory for the array and calls
+  ///  * rcl_interfaces__srv__SetParametersAtomically_Response__Sequence__init().
+  ///  * \param[in] size The size / capacity of the array.
+  ///  * \return The pointer to the initialized array if successful, otherwise NULL
+  ///  */
+  ffi.Pointer<rcl_interfaces__srv__SetParametersAtomically_Response__Sequence>
+      rcl_interfaces__srv__SetParametersAtomically_Response__Sequence__create(
+    int size,
+  ) {
+    return _rcl_interfaces__srv__SetParametersAtomically_Response__Sequence__create(
+      size,
+    );
+  }
+
+  late final _rcl_interfaces__srv__SetParametersAtomically_Response__Sequence__createPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<
+                          rcl_interfaces__srv__SetParametersAtomically_Response__Sequence>
+                      Function(size_t)>>(
+          'rcl_interfaces__srv__SetParametersAtomically_Response__Sequence__create');
+  late final _rcl_interfaces__srv__SetParametersAtomically_Response__Sequence__create =
+      _rcl_interfaces__srv__SetParametersAtomically_Response__Sequence__createPtr
+          .asFunction<
+              ffi.Pointer<
+                      rcl_interfaces__srv__SetParametersAtomically_Response__Sequence>
+                  Function(int)>();
+
+  /// Destroy array of srv/SetParametersAtomically messages.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__srv__SetParametersAtomically_Response__Sequence__fini()
+  ///  * on the array,
+  ///  * and frees the memory of the array.
+  ///  * \param[in,out] array The initialized array pointer.
+  ///  */
+  void rcl_interfaces__srv__SetParametersAtomically_Response__Sequence__destroy(
+    ffi.Pointer<rcl_interfaces__srv__SetParametersAtomically_Response__Sequence>
+        array,
+  ) {
+    return _rcl_interfaces__srv__SetParametersAtomically_Response__Sequence__destroy(
+      array,
+    );
+  }
+
+  late final _rcl_interfaces__srv__SetParametersAtomically_Response__Sequence__destroyPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__SetParametersAtomically_Response__Sequence>)>>(
+          'rcl_interfaces__srv__SetParametersAtomically_Response__Sequence__destroy');
+  late final _rcl_interfaces__srv__SetParametersAtomically_Response__Sequence__destroy =
+      _rcl_interfaces__srv__SetParametersAtomically_Response__Sequence__destroyPtr
+          .asFunction<
+              void Function(
+                  ffi.Pointer<
+                      rcl_interfaces__srv__SetParametersAtomically_Response__Sequence>)>();
+
+  ffi.Pointer<rosidl_message_type_support_t>
+      rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__SetParametersAtomically_Request() {
+    return _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__SetParametersAtomically_Request();
+  }
+
+  late final _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__SetParametersAtomically_RequestPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<rosidl_message_type_support_t> Function()>>(
+          'rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__SetParametersAtomically_Request');
+  late final _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__SetParametersAtomically_Request =
+      _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__SetParametersAtomically_RequestPtr
+          .asFunction<ffi.Pointer<rosidl_message_type_support_t> Function()>();
+
+  ffi.Pointer<rosidl_message_type_support_t>
+      rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__SetParametersAtomically_Response() {
+    return _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__SetParametersAtomically_Response();
+  }
+
+  late final _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__SetParametersAtomically_ResponsePtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<rosidl_message_type_support_t> Function()>>(
+          'rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__SetParametersAtomically_Response');
+  late final _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__SetParametersAtomically_Response =
+      _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__SetParametersAtomically_ResponsePtr
+          .asFunction<ffi.Pointer<rosidl_message_type_support_t> Function()>();
+
+  ffi.Pointer<rosidl_service_type_support_t>
+      rosidl_typesupport_c__get_service_type_support_handle__rcl_interfaces__srv__SetParametersAtomically() {
+    return _rosidl_typesupport_c__get_service_type_support_handle__rcl_interfaces__srv__SetParametersAtomically();
+  }
+
+  late final _rosidl_typesupport_c__get_service_type_support_handle__rcl_interfaces__srv__SetParametersAtomicallyPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<rosidl_service_type_support_t> Function()>>(
+          'rosidl_typesupport_c__get_service_type_support_handle__rcl_interfaces__srv__SetParametersAtomically');
+  late final _rosidl_typesupport_c__get_service_type_support_handle__rcl_interfaces__srv__SetParametersAtomically =
+      _rosidl_typesupport_c__get_service_type_support_handle__rcl_interfaces__srv__SetParametersAtomicallyPtr
+          .asFunction<ffi.Pointer<rosidl_service_type_support_t> Function()>();
+
+  /// Initialize srv/GetParameters message.
+  /// /**
+  ///  * If the init function is called twice for the same message without
+  ///  * calling fini inbetween previously allocated memory will be leaked.
+  ///  * \param[in,out] msg The previously allocated message pointer.
+  ///  * Fields without a default value will not be initialized by this function.
+  ///  * You might want to call memset(msg, 0, sizeof(
+  ///  * rcl_interfaces__srv__GetParameters_Request
+  ///  * )) before or use
+  ///  * rcl_interfaces__srv__GetParameters_Request__create()
+  ///  * to allocate and initialize the message.
+  ///  * \return true if initialization was successful, otherwise false
+  ///  */
+  bool rcl_interfaces__srv__GetParameters_Request__init(
+    ffi.Pointer<rcl_interfaces__srv__GetParameters_Request> msg,
+  ) {
+    return _rcl_interfaces__srv__GetParameters_Request__init(
+          msg,
+        ) !=
+        0;
+  }
+
+  late final _rcl_interfaces__srv__GetParameters_Request__initPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Uint8 Function(
+                  ffi.Pointer<rcl_interfaces__srv__GetParameters_Request>)>>(
+      'rcl_interfaces__srv__GetParameters_Request__init');
+  late final _rcl_interfaces__srv__GetParameters_Request__init =
+      _rcl_interfaces__srv__GetParameters_Request__initPtr.asFunction<
+          int Function(
+              ffi.Pointer<rcl_interfaces__srv__GetParameters_Request>)>();
+
+  /// Finalize srv/GetParameters message.
+  /// /**
+  ///  * \param[in,out] msg The allocated message pointer.
+  ///  */
+  void rcl_interfaces__srv__GetParameters_Request__fini(
+    ffi.Pointer<rcl_interfaces__srv__GetParameters_Request> msg,
+  ) {
+    return _rcl_interfaces__srv__GetParameters_Request__fini(
+      msg,
+    );
+  }
+
+  late final _rcl_interfaces__srv__GetParameters_Request__finiPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Pointer<rcl_interfaces__srv__GetParameters_Request>)>>(
+      'rcl_interfaces__srv__GetParameters_Request__fini');
+  late final _rcl_interfaces__srv__GetParameters_Request__fini =
+      _rcl_interfaces__srv__GetParameters_Request__finiPtr.asFunction<
+          void Function(
+              ffi.Pointer<rcl_interfaces__srv__GetParameters_Request>)>();
+
+  /// Create srv/GetParameters message.
+  /// /**
+  ///  * It allocates the memory for the message, sets the memory to zero, and
+  ///  * calls
+  ///  * rcl_interfaces__srv__GetParameters_Request__init().
+  ///  * \return The pointer to the initialized message if successful,
+  ///  * otherwise NULL
+  ///  */
+  ffi.Pointer<rcl_interfaces__srv__GetParameters_Request>
+      rcl_interfaces__srv__GetParameters_Request__create() {
+    return _rcl_interfaces__srv__GetParameters_Request__create();
+  }
+
+  late final _rcl_interfaces__srv__GetParameters_Request__createPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Pointer<rcl_interfaces__srv__GetParameters_Request>
+                  Function()>>(
+      'rcl_interfaces__srv__GetParameters_Request__create');
+  late final _rcl_interfaces__srv__GetParameters_Request__create =
+      _rcl_interfaces__srv__GetParameters_Request__createPtr.asFunction<
+          ffi.Pointer<rcl_interfaces__srv__GetParameters_Request> Function()>();
+
+  /// Destroy srv/GetParameters message.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__srv__GetParameters_Request__fini()
+  ///  * and frees the memory of the message.
+  ///  * \param[in,out] msg The allocated message pointer.
+  ///  */
+  void rcl_interfaces__srv__GetParameters_Request__destroy(
+    ffi.Pointer<rcl_interfaces__srv__GetParameters_Request> msg,
+  ) {
+    return _rcl_interfaces__srv__GetParameters_Request__destroy(
+      msg,
+    );
+  }
+
+  late final _rcl_interfaces__srv__GetParameters_Request__destroyPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Pointer<rcl_interfaces__srv__GetParameters_Request>)>>(
+      'rcl_interfaces__srv__GetParameters_Request__destroy');
+  late final _rcl_interfaces__srv__GetParameters_Request__destroy =
+      _rcl_interfaces__srv__GetParameters_Request__destroyPtr.asFunction<
+          void Function(
+              ffi.Pointer<rcl_interfaces__srv__GetParameters_Request>)>();
+
+  /// Initialize array of srv/GetParameters messages.
+  /// /**
+  ///  * It allocates the memory for the number of elements and calls
+  ///  * rcl_interfaces__srv__GetParameters_Request__init()
+  ///  * for each element of the array.
+  ///  * \param[in,out] array The allocated array pointer.
+  ///  * \param[in] size The size / capacity of the array.
+  ///  * \return true if initialization was successful, otherwise false
+  ///  * If the array pointer is valid and the size is zero it is guaranteed
+  ///  # to return true.
+  ///  */
+  bool rcl_interfaces__srv__GetParameters_Request__Sequence__init(
+    ffi.Pointer<rcl_interfaces__srv__GetParameters_Request__Sequence> array,
+    int size,
+  ) {
+    return _rcl_interfaces__srv__GetParameters_Request__Sequence__init(
+          array,
+          size,
+        ) !=
+        0;
+  }
+
+  late final _rcl_interfaces__srv__GetParameters_Request__Sequence__initPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Uint8 Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__GetParameters_Request__Sequence>,
+                      size_t)>>(
+          'rcl_interfaces__srv__GetParameters_Request__Sequence__init');
+  late final _rcl_interfaces__srv__GetParameters_Request__Sequence__init =
+      _rcl_interfaces__srv__GetParameters_Request__Sequence__initPtr.asFunction<
+          int Function(
+              ffi.Pointer<rcl_interfaces__srv__GetParameters_Request__Sequence>,
+              int)>();
+
+  /// Finalize array of srv/GetParameters messages.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__srv__GetParameters_Request__fini()
+  ///  * for each element of the array and frees the memory for the number of
+  ///  * elements.
+  ///  * \param[in,out] array The initialized array pointer.
+  ///  */
+  void rcl_interfaces__srv__GetParameters_Request__Sequence__fini(
+    ffi.Pointer<rcl_interfaces__srv__GetParameters_Request__Sequence> array,
+  ) {
+    return _rcl_interfaces__srv__GetParameters_Request__Sequence__fini(
+      array,
+    );
+  }
+
+  late final _rcl_interfaces__srv__GetParameters_Request__Sequence__finiPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__GetParameters_Request__Sequence>)>>(
+          'rcl_interfaces__srv__GetParameters_Request__Sequence__fini');
+  late final _rcl_interfaces__srv__GetParameters_Request__Sequence__fini =
+      _rcl_interfaces__srv__GetParameters_Request__Sequence__finiPtr.asFunction<
+          void Function(
+              ffi.Pointer<
+                  rcl_interfaces__srv__GetParameters_Request__Sequence>)>();
+
+  /// Create array of srv/GetParameters messages.
+  /// /**
+  ///  * It allocates the memory for the array and calls
+  ///  * rcl_interfaces__srv__GetParameters_Request__Sequence__init().
+  ///  * \param[in] size The size / capacity of the array.
+  ///  * \return The pointer to the initialized array if successful, otherwise NULL
+  ///  */
+  ffi.Pointer<rcl_interfaces__srv__GetParameters_Request__Sequence>
+      rcl_interfaces__srv__GetParameters_Request__Sequence__create(
+    int size,
+  ) {
+    return _rcl_interfaces__srv__GetParameters_Request__Sequence__create(
+      size,
+    );
+  }
+
+  late final _rcl_interfaces__srv__GetParameters_Request__Sequence__createPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<
+                          rcl_interfaces__srv__GetParameters_Request__Sequence>
+                      Function(size_t)>>(
+          'rcl_interfaces__srv__GetParameters_Request__Sequence__create');
+  late final _rcl_interfaces__srv__GetParameters_Request__Sequence__create =
+      _rcl_interfaces__srv__GetParameters_Request__Sequence__createPtr
+          .asFunction<
+              ffi.Pointer<rcl_interfaces__srv__GetParameters_Request__Sequence>
+                  Function(int)>();
+
+  /// Destroy array of srv/GetParameters messages.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__srv__GetParameters_Request__Sequence__fini()
+  ///  * on the array,
+  ///  * and frees the memory of the array.
+  ///  * \param[in,out] array The initialized array pointer.
+  ///  */
+  void rcl_interfaces__srv__GetParameters_Request__Sequence__destroy(
+    ffi.Pointer<rcl_interfaces__srv__GetParameters_Request__Sequence> array,
+  ) {
+    return _rcl_interfaces__srv__GetParameters_Request__Sequence__destroy(
+      array,
+    );
+  }
+
+  late final _rcl_interfaces__srv__GetParameters_Request__Sequence__destroyPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__GetParameters_Request__Sequence>)>>(
+          'rcl_interfaces__srv__GetParameters_Request__Sequence__destroy');
+  late final _rcl_interfaces__srv__GetParameters_Request__Sequence__destroy =
+      _rcl_interfaces__srv__GetParameters_Request__Sequence__destroyPtr
+          .asFunction<
+              void Function(
+                  ffi.Pointer<
+                      rcl_interfaces__srv__GetParameters_Request__Sequence>)>();
+
+  /// Initialize srv/GetParameters message.
+  /// /**
+  ///  * If the init function is called twice for the same message without
+  ///  * calling fini inbetween previously allocated memory will be leaked.
+  ///  * \param[in,out] msg The previously allocated message pointer.
+  ///  * Fields without a default value will not be initialized by this function.
+  ///  * You might want to call memset(msg, 0, sizeof(
+  ///  * rcl_interfaces__srv__GetParameters_Response
+  ///  * )) before or use
+  ///  * rcl_interfaces__srv__GetParameters_Response__create()
+  ///  * to allocate and initialize the message.
+  ///  * \return true if initialization was successful, otherwise false
+  ///  */
+  bool rcl_interfaces__srv__GetParameters_Response__init(
+    ffi.Pointer<rcl_interfaces__srv__GetParameters_Response> msg,
+  ) {
+    return _rcl_interfaces__srv__GetParameters_Response__init(
+          msg,
+        ) !=
+        0;
+  }
+
+  late final _rcl_interfaces__srv__GetParameters_Response__initPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Uint8 Function(
+                  ffi.Pointer<rcl_interfaces__srv__GetParameters_Response>)>>(
+      'rcl_interfaces__srv__GetParameters_Response__init');
+  late final _rcl_interfaces__srv__GetParameters_Response__init =
+      _rcl_interfaces__srv__GetParameters_Response__initPtr.asFunction<
+          int Function(
+              ffi.Pointer<rcl_interfaces__srv__GetParameters_Response>)>();
+
+  /// Finalize srv/GetParameters message.
+  /// /**
+  ///  * \param[in,out] msg The allocated message pointer.
+  ///  */
+  void rcl_interfaces__srv__GetParameters_Response__fini(
+    ffi.Pointer<rcl_interfaces__srv__GetParameters_Response> msg,
+  ) {
+    return _rcl_interfaces__srv__GetParameters_Response__fini(
+      msg,
+    );
+  }
+
+  late final _rcl_interfaces__srv__GetParameters_Response__finiPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Pointer<rcl_interfaces__srv__GetParameters_Response>)>>(
+      'rcl_interfaces__srv__GetParameters_Response__fini');
+  late final _rcl_interfaces__srv__GetParameters_Response__fini =
+      _rcl_interfaces__srv__GetParameters_Response__finiPtr.asFunction<
+          void Function(
+              ffi.Pointer<rcl_interfaces__srv__GetParameters_Response>)>();
+
+  /// Create srv/GetParameters message.
+  /// /**
+  ///  * It allocates the memory for the message, sets the memory to zero, and
+  ///  * calls
+  ///  * rcl_interfaces__srv__GetParameters_Response__init().
+  ///  * \return The pointer to the initialized message if successful,
+  ///  * otherwise NULL
+  ///  */
+  ffi.Pointer<rcl_interfaces__srv__GetParameters_Response>
+      rcl_interfaces__srv__GetParameters_Response__create() {
+    return _rcl_interfaces__srv__GetParameters_Response__create();
+  }
+
+  late final _rcl_interfaces__srv__GetParameters_Response__createPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Pointer<rcl_interfaces__srv__GetParameters_Response>
+                  Function()>>(
+      'rcl_interfaces__srv__GetParameters_Response__create');
+  late final _rcl_interfaces__srv__GetParameters_Response__create =
+      _rcl_interfaces__srv__GetParameters_Response__createPtr.asFunction<
+          ffi.Pointer<rcl_interfaces__srv__GetParameters_Response>
+              Function()>();
+
+  /// Destroy srv/GetParameters message.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__srv__GetParameters_Response__fini()
+  ///  * and frees the memory of the message.
+  ///  * \param[in,out] msg The allocated message pointer.
+  ///  */
+  void rcl_interfaces__srv__GetParameters_Response__destroy(
+    ffi.Pointer<rcl_interfaces__srv__GetParameters_Response> msg,
+  ) {
+    return _rcl_interfaces__srv__GetParameters_Response__destroy(
+      msg,
+    );
+  }
+
+  late final _rcl_interfaces__srv__GetParameters_Response__destroyPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Pointer<rcl_interfaces__srv__GetParameters_Response>)>>(
+      'rcl_interfaces__srv__GetParameters_Response__destroy');
+  late final _rcl_interfaces__srv__GetParameters_Response__destroy =
+      _rcl_interfaces__srv__GetParameters_Response__destroyPtr.asFunction<
+          void Function(
+              ffi.Pointer<rcl_interfaces__srv__GetParameters_Response>)>();
+
+  /// Initialize array of srv/GetParameters messages.
+  /// /**
+  ///  * It allocates the memory for the number of elements and calls
+  ///  * rcl_interfaces__srv__GetParameters_Response__init()
+  ///  * for each element of the array.
+  ///  * \param[in,out] array The allocated array pointer.
+  ///  * \param[in] size The size / capacity of the array.
+  ///  * \return true if initialization was successful, otherwise false
+  ///  * If the array pointer is valid and the size is zero it is guaranteed
+  ///  # to return true.
+  ///  */
+  bool rcl_interfaces__srv__GetParameters_Response__Sequence__init(
+    ffi.Pointer<rcl_interfaces__srv__GetParameters_Response__Sequence> array,
+    int size,
+  ) {
+    return _rcl_interfaces__srv__GetParameters_Response__Sequence__init(
+          array,
+          size,
+        ) !=
+        0;
+  }
+
+  late final _rcl_interfaces__srv__GetParameters_Response__Sequence__initPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Uint8 Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__GetParameters_Response__Sequence>,
+                      size_t)>>(
+          'rcl_interfaces__srv__GetParameters_Response__Sequence__init');
+  late final _rcl_interfaces__srv__GetParameters_Response__Sequence__init =
+      _rcl_interfaces__srv__GetParameters_Response__Sequence__initPtr
+          .asFunction<
+              int Function(
+                  ffi.Pointer<
+                      rcl_interfaces__srv__GetParameters_Response__Sequence>,
+                  int)>();
+
+  /// Finalize array of srv/GetParameters messages.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__srv__GetParameters_Response__fini()
+  ///  * for each element of the array and frees the memory for the number of
+  ///  * elements.
+  ///  * \param[in,out] array The initialized array pointer.
+  ///  */
+  void rcl_interfaces__srv__GetParameters_Response__Sequence__fini(
+    ffi.Pointer<rcl_interfaces__srv__GetParameters_Response__Sequence> array,
+  ) {
+    return _rcl_interfaces__srv__GetParameters_Response__Sequence__fini(
+      array,
+    );
+  }
+
+  late final _rcl_interfaces__srv__GetParameters_Response__Sequence__finiPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__GetParameters_Response__Sequence>)>>(
+          'rcl_interfaces__srv__GetParameters_Response__Sequence__fini');
+  late final _rcl_interfaces__srv__GetParameters_Response__Sequence__fini =
+      _rcl_interfaces__srv__GetParameters_Response__Sequence__finiPtr.asFunction<
+          void Function(
+              ffi.Pointer<
+                  rcl_interfaces__srv__GetParameters_Response__Sequence>)>();
+
+  /// Create array of srv/GetParameters messages.
+  /// /**
+  ///  * It allocates the memory for the array and calls
+  ///  * rcl_interfaces__srv__GetParameters_Response__Sequence__init().
+  ///  * \param[in] size The size / capacity of the array.
+  ///  * \return The pointer to the initialized array if successful, otherwise NULL
+  ///  */
+  ffi.Pointer<rcl_interfaces__srv__GetParameters_Response__Sequence>
+      rcl_interfaces__srv__GetParameters_Response__Sequence__create(
+    int size,
+  ) {
+    return _rcl_interfaces__srv__GetParameters_Response__Sequence__create(
+      size,
+    );
+  }
+
+  late final _rcl_interfaces__srv__GetParameters_Response__Sequence__createPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<
+                          rcl_interfaces__srv__GetParameters_Response__Sequence>
+                      Function(size_t)>>(
+          'rcl_interfaces__srv__GetParameters_Response__Sequence__create');
+  late final _rcl_interfaces__srv__GetParameters_Response__Sequence__create =
+      _rcl_interfaces__srv__GetParameters_Response__Sequence__createPtr
+          .asFunction<
+              ffi.Pointer<rcl_interfaces__srv__GetParameters_Response__Sequence>
+                  Function(int)>();
+
+  /// Destroy array of srv/GetParameters messages.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__srv__GetParameters_Response__Sequence__fini()
+  ///  * on the array,
+  ///  * and frees the memory of the array.
+  ///  * \param[in,out] array The initialized array pointer.
+  ///  */
+  void rcl_interfaces__srv__GetParameters_Response__Sequence__destroy(
+    ffi.Pointer<rcl_interfaces__srv__GetParameters_Response__Sequence> array,
+  ) {
+    return _rcl_interfaces__srv__GetParameters_Response__Sequence__destroy(
+      array,
+    );
+  }
+
+  late final _rcl_interfaces__srv__GetParameters_Response__Sequence__destroyPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__GetParameters_Response__Sequence>)>>(
+          'rcl_interfaces__srv__GetParameters_Response__Sequence__destroy');
+  late final _rcl_interfaces__srv__GetParameters_Response__Sequence__destroy =
+      _rcl_interfaces__srv__GetParameters_Response__Sequence__destroyPtr
+          .asFunction<
+              void Function(
+                  ffi.Pointer<
+                      rcl_interfaces__srv__GetParameters_Response__Sequence>)>();
+
+  ffi.Pointer<rosidl_message_type_support_t>
+      rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__GetParameters_Request() {
+    return _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__GetParameters_Request();
+  }
+
+  late final _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__GetParameters_RequestPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<rosidl_message_type_support_t> Function()>>(
+          'rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__GetParameters_Request');
+  late final _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__GetParameters_Request =
+      _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__GetParameters_RequestPtr
+          .asFunction<ffi.Pointer<rosidl_message_type_support_t> Function()>();
+
+  ffi.Pointer<rosidl_message_type_support_t>
+      rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__GetParameters_Response() {
+    return _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__GetParameters_Response();
+  }
+
+  late final _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__GetParameters_ResponsePtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<rosidl_message_type_support_t> Function()>>(
+          'rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__GetParameters_Response');
+  late final _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__GetParameters_Response =
+      _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__GetParameters_ResponsePtr
+          .asFunction<ffi.Pointer<rosidl_message_type_support_t> Function()>();
+
+  ffi.Pointer<rosidl_service_type_support_t>
+      rosidl_typesupport_c__get_service_type_support_handle__rcl_interfaces__srv__GetParameters() {
+    return _rosidl_typesupport_c__get_service_type_support_handle__rcl_interfaces__srv__GetParameters();
+  }
+
+  late final _rosidl_typesupport_c__get_service_type_support_handle__rcl_interfaces__srv__GetParametersPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<rosidl_service_type_support_t> Function()>>(
+          'rosidl_typesupport_c__get_service_type_support_handle__rcl_interfaces__srv__GetParameters');
+  late final _rosidl_typesupport_c__get_service_type_support_handle__rcl_interfaces__srv__GetParameters =
+      _rosidl_typesupport_c__get_service_type_support_handle__rcl_interfaces__srv__GetParametersPtr
+          .asFunction<ffi.Pointer<rosidl_service_type_support_t> Function()>();
+
+  /// Initialize srv/ListParameters message.
+  /// /**
+  ///  * If the init function is called twice for the same message without
+  ///  * calling fini inbetween previously allocated memory will be leaked.
+  ///  * \param[in,out] msg The previously allocated message pointer.
+  ///  * Fields without a default value will not be initialized by this function.
+  ///  * You might want to call memset(msg, 0, sizeof(
+  ///  * rcl_interfaces__srv__ListParameters_Request
+  ///  * )) before or use
+  ///  * rcl_interfaces__srv__ListParameters_Request__create()
+  ///  * to allocate and initialize the message.
+  ///  * \return true if initialization was successful, otherwise false
+  ///  */
+  bool rcl_interfaces__srv__ListParameters_Request__init(
+    ffi.Pointer<rcl_interfaces__srv__ListParameters_Request> msg,
+  ) {
+    return _rcl_interfaces__srv__ListParameters_Request__init(
+          msg,
+        ) !=
+        0;
+  }
+
+  late final _rcl_interfaces__srv__ListParameters_Request__initPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Uint8 Function(
+                  ffi.Pointer<rcl_interfaces__srv__ListParameters_Request>)>>(
+      'rcl_interfaces__srv__ListParameters_Request__init');
+  late final _rcl_interfaces__srv__ListParameters_Request__init =
+      _rcl_interfaces__srv__ListParameters_Request__initPtr.asFunction<
+          int Function(
+              ffi.Pointer<rcl_interfaces__srv__ListParameters_Request>)>();
+
+  /// Finalize srv/ListParameters message.
+  /// /**
+  ///  * \param[in,out] msg The allocated message pointer.
+  ///  */
+  void rcl_interfaces__srv__ListParameters_Request__fini(
+    ffi.Pointer<rcl_interfaces__srv__ListParameters_Request> msg,
+  ) {
+    return _rcl_interfaces__srv__ListParameters_Request__fini(
+      msg,
+    );
+  }
+
+  late final _rcl_interfaces__srv__ListParameters_Request__finiPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Pointer<rcl_interfaces__srv__ListParameters_Request>)>>(
+      'rcl_interfaces__srv__ListParameters_Request__fini');
+  late final _rcl_interfaces__srv__ListParameters_Request__fini =
+      _rcl_interfaces__srv__ListParameters_Request__finiPtr.asFunction<
+          void Function(
+              ffi.Pointer<rcl_interfaces__srv__ListParameters_Request>)>();
+
+  /// Create srv/ListParameters message.
+  /// /**
+  ///  * It allocates the memory for the message, sets the memory to zero, and
+  ///  * calls
+  ///  * rcl_interfaces__srv__ListParameters_Request__init().
+  ///  * \return The pointer to the initialized message if successful,
+  ///  * otherwise NULL
+  ///  */
+  ffi.Pointer<rcl_interfaces__srv__ListParameters_Request>
+      rcl_interfaces__srv__ListParameters_Request__create() {
+    return _rcl_interfaces__srv__ListParameters_Request__create();
+  }
+
+  late final _rcl_interfaces__srv__ListParameters_Request__createPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Pointer<rcl_interfaces__srv__ListParameters_Request>
+                  Function()>>(
+      'rcl_interfaces__srv__ListParameters_Request__create');
+  late final _rcl_interfaces__srv__ListParameters_Request__create =
+      _rcl_interfaces__srv__ListParameters_Request__createPtr.asFunction<
+          ffi.Pointer<rcl_interfaces__srv__ListParameters_Request>
+              Function()>();
+
+  /// Destroy srv/ListParameters message.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__srv__ListParameters_Request__fini()
+  ///  * and frees the memory of the message.
+  ///  * \param[in,out] msg The allocated message pointer.
+  ///  */
+  void rcl_interfaces__srv__ListParameters_Request__destroy(
+    ffi.Pointer<rcl_interfaces__srv__ListParameters_Request> msg,
+  ) {
+    return _rcl_interfaces__srv__ListParameters_Request__destroy(
+      msg,
+    );
+  }
+
+  late final _rcl_interfaces__srv__ListParameters_Request__destroyPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Pointer<rcl_interfaces__srv__ListParameters_Request>)>>(
+      'rcl_interfaces__srv__ListParameters_Request__destroy');
+  late final _rcl_interfaces__srv__ListParameters_Request__destroy =
+      _rcl_interfaces__srv__ListParameters_Request__destroyPtr.asFunction<
+          void Function(
+              ffi.Pointer<rcl_interfaces__srv__ListParameters_Request>)>();
+
+  /// Initialize array of srv/ListParameters messages.
+  /// /**
+  ///  * It allocates the memory for the number of elements and calls
+  ///  * rcl_interfaces__srv__ListParameters_Request__init()
+  ///  * for each element of the array.
+  ///  * \param[in,out] array The allocated array pointer.
+  ///  * \param[in] size The size / capacity of the array.
+  ///  * \return true if initialization was successful, otherwise false
+  ///  * If the array pointer is valid and the size is zero it is guaranteed
+  ///  # to return true.
+  ///  */
+  bool rcl_interfaces__srv__ListParameters_Request__Sequence__init(
+    ffi.Pointer<rcl_interfaces__srv__ListParameters_Request__Sequence> array,
+    int size,
+  ) {
+    return _rcl_interfaces__srv__ListParameters_Request__Sequence__init(
+          array,
+          size,
+        ) !=
+        0;
+  }
+
+  late final _rcl_interfaces__srv__ListParameters_Request__Sequence__initPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Uint8 Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__ListParameters_Request__Sequence>,
+                      size_t)>>(
+          'rcl_interfaces__srv__ListParameters_Request__Sequence__init');
+  late final _rcl_interfaces__srv__ListParameters_Request__Sequence__init =
+      _rcl_interfaces__srv__ListParameters_Request__Sequence__initPtr
+          .asFunction<
+              int Function(
+                  ffi.Pointer<
+                      rcl_interfaces__srv__ListParameters_Request__Sequence>,
+                  int)>();
+
+  /// Finalize array of srv/ListParameters messages.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__srv__ListParameters_Request__fini()
+  ///  * for each element of the array and frees the memory for the number of
+  ///  * elements.
+  ///  * \param[in,out] array The initialized array pointer.
+  ///  */
+  void rcl_interfaces__srv__ListParameters_Request__Sequence__fini(
+    ffi.Pointer<rcl_interfaces__srv__ListParameters_Request__Sequence> array,
+  ) {
+    return _rcl_interfaces__srv__ListParameters_Request__Sequence__fini(
+      array,
+    );
+  }
+
+  late final _rcl_interfaces__srv__ListParameters_Request__Sequence__finiPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__ListParameters_Request__Sequence>)>>(
+          'rcl_interfaces__srv__ListParameters_Request__Sequence__fini');
+  late final _rcl_interfaces__srv__ListParameters_Request__Sequence__fini =
+      _rcl_interfaces__srv__ListParameters_Request__Sequence__finiPtr.asFunction<
+          void Function(
+              ffi.Pointer<
+                  rcl_interfaces__srv__ListParameters_Request__Sequence>)>();
+
+  /// Create array of srv/ListParameters messages.
+  /// /**
+  ///  * It allocates the memory for the array and calls
+  ///  * rcl_interfaces__srv__ListParameters_Request__Sequence__init().
+  ///  * \param[in] size The size / capacity of the array.
+  ///  * \return The pointer to the initialized array if successful, otherwise NULL
+  ///  */
+  ffi.Pointer<rcl_interfaces__srv__ListParameters_Request__Sequence>
+      rcl_interfaces__srv__ListParameters_Request__Sequence__create(
+    int size,
+  ) {
+    return _rcl_interfaces__srv__ListParameters_Request__Sequence__create(
+      size,
+    );
+  }
+
+  late final _rcl_interfaces__srv__ListParameters_Request__Sequence__createPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<
+                          rcl_interfaces__srv__ListParameters_Request__Sequence>
+                      Function(size_t)>>(
+          'rcl_interfaces__srv__ListParameters_Request__Sequence__create');
+  late final _rcl_interfaces__srv__ListParameters_Request__Sequence__create =
+      _rcl_interfaces__srv__ListParameters_Request__Sequence__createPtr
+          .asFunction<
+              ffi.Pointer<rcl_interfaces__srv__ListParameters_Request__Sequence>
+                  Function(int)>();
+
+  /// Destroy array of srv/ListParameters messages.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__srv__ListParameters_Request__Sequence__fini()
+  ///  * on the array,
+  ///  * and frees the memory of the array.
+  ///  * \param[in,out] array The initialized array pointer.
+  ///  */
+  void rcl_interfaces__srv__ListParameters_Request__Sequence__destroy(
+    ffi.Pointer<rcl_interfaces__srv__ListParameters_Request__Sequence> array,
+  ) {
+    return _rcl_interfaces__srv__ListParameters_Request__Sequence__destroy(
+      array,
+    );
+  }
+
+  late final _rcl_interfaces__srv__ListParameters_Request__Sequence__destroyPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__ListParameters_Request__Sequence>)>>(
+          'rcl_interfaces__srv__ListParameters_Request__Sequence__destroy');
+  late final _rcl_interfaces__srv__ListParameters_Request__Sequence__destroy =
+      _rcl_interfaces__srv__ListParameters_Request__Sequence__destroyPtr
+          .asFunction<
+              void Function(
+                  ffi.Pointer<
+                      rcl_interfaces__srv__ListParameters_Request__Sequence>)>();
+
+  /// Initialize srv/ListParameters message.
+  /// /**
+  ///  * If the init function is called twice for the same message without
+  ///  * calling fini inbetween previously allocated memory will be leaked.
+  ///  * \param[in,out] msg The previously allocated message pointer.
+  ///  * Fields without a default value will not be initialized by this function.
+  ///  * You might want to call memset(msg, 0, sizeof(
+  ///  * rcl_interfaces__srv__ListParameters_Response
+  ///  * )) before or use
+  ///  * rcl_interfaces__srv__ListParameters_Response__create()
+  ///  * to allocate and initialize the message.
+  ///  * \return true if initialization was successful, otherwise false
+  ///  */
+  bool rcl_interfaces__srv__ListParameters_Response__init(
+    ffi.Pointer<rcl_interfaces__srv__ListParameters_Response> msg,
+  ) {
+    return _rcl_interfaces__srv__ListParameters_Response__init(
+          msg,
+        ) !=
+        0;
+  }
+
+  late final _rcl_interfaces__srv__ListParameters_Response__initPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Uint8 Function(
+                  ffi.Pointer<rcl_interfaces__srv__ListParameters_Response>)>>(
+      'rcl_interfaces__srv__ListParameters_Response__init');
+  late final _rcl_interfaces__srv__ListParameters_Response__init =
+      _rcl_interfaces__srv__ListParameters_Response__initPtr.asFunction<
+          int Function(
+              ffi.Pointer<rcl_interfaces__srv__ListParameters_Response>)>();
+
+  /// Finalize srv/ListParameters message.
+  /// /**
+  ///  * \param[in,out] msg The allocated message pointer.
+  ///  */
+  void rcl_interfaces__srv__ListParameters_Response__fini(
+    ffi.Pointer<rcl_interfaces__srv__ListParameters_Response> msg,
+  ) {
+    return _rcl_interfaces__srv__ListParameters_Response__fini(
+      msg,
+    );
+  }
+
+  late final _rcl_interfaces__srv__ListParameters_Response__finiPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Void Function(
+                  ffi.Pointer<rcl_interfaces__srv__ListParameters_Response>)>>(
+      'rcl_interfaces__srv__ListParameters_Response__fini');
+  late final _rcl_interfaces__srv__ListParameters_Response__fini =
+      _rcl_interfaces__srv__ListParameters_Response__finiPtr.asFunction<
+          void Function(
+              ffi.Pointer<rcl_interfaces__srv__ListParameters_Response>)>();
+
+  /// Create srv/ListParameters message.
+  /// /**
+  ///  * It allocates the memory for the message, sets the memory to zero, and
+  ///  * calls
+  ///  * rcl_interfaces__srv__ListParameters_Response__init().
+  ///  * \return The pointer to the initialized message if successful,
+  ///  * otherwise NULL
+  ///  */
+  ffi.Pointer<rcl_interfaces__srv__ListParameters_Response>
+      rcl_interfaces__srv__ListParameters_Response__create() {
+    return _rcl_interfaces__srv__ListParameters_Response__create();
+  }
+
+  late final _rcl_interfaces__srv__ListParameters_Response__createPtr = _lookup<
+          ffi.NativeFunction<
+              ffi.Pointer<rcl_interfaces__srv__ListParameters_Response>
+                  Function()>>(
+      'rcl_interfaces__srv__ListParameters_Response__create');
+  late final _rcl_interfaces__srv__ListParameters_Response__create =
+      _rcl_interfaces__srv__ListParameters_Response__createPtr.asFunction<
+          ffi.Pointer<rcl_interfaces__srv__ListParameters_Response>
+              Function()>();
+
+  /// Destroy srv/ListParameters message.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__srv__ListParameters_Response__fini()
+  ///  * and frees the memory of the message.
+  ///  * \param[in,out] msg The allocated message pointer.
+  ///  */
+  void rcl_interfaces__srv__ListParameters_Response__destroy(
+    ffi.Pointer<rcl_interfaces__srv__ListParameters_Response> msg,
+  ) {
+    return _rcl_interfaces__srv__ListParameters_Response__destroy(
+      msg,
+    );
+  }
+
+  late final _rcl_interfaces__srv__ListParameters_Response__destroyPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__ListParameters_Response>)>>(
+          'rcl_interfaces__srv__ListParameters_Response__destroy');
+  late final _rcl_interfaces__srv__ListParameters_Response__destroy =
+      _rcl_interfaces__srv__ListParameters_Response__destroyPtr.asFunction<
+          void Function(
+              ffi.Pointer<rcl_interfaces__srv__ListParameters_Response>)>();
+
+  /// Initialize array of srv/ListParameters messages.
+  /// /**
+  ///  * It allocates the memory for the number of elements and calls
+  ///  * rcl_interfaces__srv__ListParameters_Response__init()
+  ///  * for each element of the array.
+  ///  * \param[in,out] array The allocated array pointer.
+  ///  * \param[in] size The size / capacity of the array.
+  ///  * \return true if initialization was successful, otherwise false
+  ///  * If the array pointer is valid and the size is zero it is guaranteed
+  ///  # to return true.
+  ///  */
+  bool rcl_interfaces__srv__ListParameters_Response__Sequence__init(
+    ffi.Pointer<rcl_interfaces__srv__ListParameters_Response__Sequence> array,
+    int size,
+  ) {
+    return _rcl_interfaces__srv__ListParameters_Response__Sequence__init(
+          array,
+          size,
+        ) !=
+        0;
+  }
+
+  late final _rcl_interfaces__srv__ListParameters_Response__Sequence__initPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Uint8 Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__ListParameters_Response__Sequence>,
+                      size_t)>>(
+          'rcl_interfaces__srv__ListParameters_Response__Sequence__init');
+  late final _rcl_interfaces__srv__ListParameters_Response__Sequence__init =
+      _rcl_interfaces__srv__ListParameters_Response__Sequence__initPtr
+          .asFunction<
+              int Function(
+                  ffi.Pointer<
+                      rcl_interfaces__srv__ListParameters_Response__Sequence>,
+                  int)>();
+
+  /// Finalize array of srv/ListParameters messages.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__srv__ListParameters_Response__fini()
+  ///  * for each element of the array and frees the memory for the number of
+  ///  * elements.
+  ///  * \param[in,out] array The initialized array pointer.
+  ///  */
+  void rcl_interfaces__srv__ListParameters_Response__Sequence__fini(
+    ffi.Pointer<rcl_interfaces__srv__ListParameters_Response__Sequence> array,
+  ) {
+    return _rcl_interfaces__srv__ListParameters_Response__Sequence__fini(
+      array,
+    );
+  }
+
+  late final _rcl_interfaces__srv__ListParameters_Response__Sequence__finiPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__ListParameters_Response__Sequence>)>>(
+          'rcl_interfaces__srv__ListParameters_Response__Sequence__fini');
+  late final _rcl_interfaces__srv__ListParameters_Response__Sequence__fini =
+      _rcl_interfaces__srv__ListParameters_Response__Sequence__finiPtr.asFunction<
+          void Function(
+              ffi.Pointer<
+                  rcl_interfaces__srv__ListParameters_Response__Sequence>)>();
+
+  /// Create array of srv/ListParameters messages.
+  /// /**
+  ///  * It allocates the memory for the array and calls
+  ///  * rcl_interfaces__srv__ListParameters_Response__Sequence__init().
+  ///  * \param[in] size The size / capacity of the array.
+  ///  * \return The pointer to the initialized array if successful, otherwise NULL
+  ///  */
+  ffi.Pointer<rcl_interfaces__srv__ListParameters_Response__Sequence>
+      rcl_interfaces__srv__ListParameters_Response__Sequence__create(
+    int size,
+  ) {
+    return _rcl_interfaces__srv__ListParameters_Response__Sequence__create(
+      size,
+    );
+  }
+
+  late final _rcl_interfaces__srv__ListParameters_Response__Sequence__createPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<
+                          rcl_interfaces__srv__ListParameters_Response__Sequence>
+                      Function(size_t)>>(
+          'rcl_interfaces__srv__ListParameters_Response__Sequence__create');
+  late final _rcl_interfaces__srv__ListParameters_Response__Sequence__create =
+      _rcl_interfaces__srv__ListParameters_Response__Sequence__createPtr
+          .asFunction<
+              ffi.Pointer<
+                      rcl_interfaces__srv__ListParameters_Response__Sequence>
+                  Function(int)>();
+
+  /// Destroy array of srv/ListParameters messages.
+  /// /**
+  ///  * It calls
+  ///  * rcl_interfaces__srv__ListParameters_Response__Sequence__fini()
+  ///  * on the array,
+  ///  * and frees the memory of the array.
+  ///  * \param[in,out] array The initialized array pointer.
+  ///  */
+  void rcl_interfaces__srv__ListParameters_Response__Sequence__destroy(
+    ffi.Pointer<rcl_interfaces__srv__ListParameters_Response__Sequence> array,
+  ) {
+    return _rcl_interfaces__srv__ListParameters_Response__Sequence__destroy(
+      array,
+    );
+  }
+
+  late final _rcl_interfaces__srv__ListParameters_Response__Sequence__destroyPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Void Function(
+                      ffi.Pointer<
+                          rcl_interfaces__srv__ListParameters_Response__Sequence>)>>(
+          'rcl_interfaces__srv__ListParameters_Response__Sequence__destroy');
+  late final _rcl_interfaces__srv__ListParameters_Response__Sequence__destroy =
+      _rcl_interfaces__srv__ListParameters_Response__Sequence__destroyPtr
+          .asFunction<
+              void Function(
+                  ffi.Pointer<
+                      rcl_interfaces__srv__ListParameters_Response__Sequence>)>();
+
+  ffi.Pointer<rosidl_message_type_support_t>
+      rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__ListParameters_Request() {
+    return _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__ListParameters_Request();
+  }
+
+  late final _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__ListParameters_RequestPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<rosidl_message_type_support_t> Function()>>(
+          'rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__ListParameters_Request');
+  late final _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__ListParameters_Request =
+      _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__ListParameters_RequestPtr
+          .asFunction<ffi.Pointer<rosidl_message_type_support_t> Function()>();
+
+  ffi.Pointer<rosidl_message_type_support_t>
+      rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__ListParameters_Response() {
+    return _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__ListParameters_Response();
+  }
+
+  late final _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__ListParameters_ResponsePtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<rosidl_message_type_support_t> Function()>>(
+          'rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__ListParameters_Response');
+  late final _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__ListParameters_Response =
+      _rosidl_typesupport_c__get_message_type_support_handle__rcl_interfaces__srv__ListParameters_ResponsePtr
+          .asFunction<ffi.Pointer<rosidl_message_type_support_t> Function()>();
+
+  ffi.Pointer<rosidl_service_type_support_t>
+      rosidl_typesupport_c__get_service_type_support_handle__rcl_interfaces__srv__ListParameters() {
+    return _rosidl_typesupport_c__get_service_type_support_handle__rcl_interfaces__srv__ListParameters();
+  }
+
+  late final _rosidl_typesupport_c__get_service_type_support_handle__rcl_interfaces__srv__ListParametersPtr =
+      _lookup<
+              ffi.NativeFunction<
+                  ffi.Pointer<rosidl_service_type_support_t> Function()>>(
+          'rosidl_typesupport_c__get_service_type_support_handle__rcl_interfaces__srv__ListParameters');
+  late final _rosidl_typesupport_c__get_service_type_support_handle__rcl_interfaces__srv__ListParameters =
+      _rosidl_typesupport_c__get_service_type_support_handle__rcl_interfaces__srv__ListParametersPtr
+          .asFunction<ffi.Pointer<rosidl_service_type_support_t> Function()>();
 }
 
 class rosidl_service_type_support_t extends ffi.Struct {
@@ -13532,7 +19346,748 @@ class rcl_wait_set_t extends ffi.Struct {
   external ffi.Pointer<rcl_wait_set_impl_t> impl;
 }
 
+class rosidl_generator_c__float__Sequence extends ffi.Struct {
+  external ffi.Pointer<ffi.Float> data;
+
+  @size_t()
+  external int size;
+
+  @size_t()
+  external int capacity;
+}
+
+class rosidl_generator_c__double__Sequence extends ffi.Struct {
+  external ffi.Pointer<ffi.Double> data;
+
+  @size_t()
+  external int size;
+
+  @size_t()
+  external int capacity;
+}
+
+class rosidl_generator_c__long_double__Sequence extends ffi.Opaque {}
+
+class rosidl_generator_c__char__Sequence extends ffi.Struct {
+  external ffi.Pointer<ffi.Int8> data;
+
+  @size_t()
+  external int size;
+
+  @size_t()
+  external int capacity;
+}
+
+class rosidl_generator_c__wchar__Sequence extends ffi.Struct {
+  external ffi.Pointer<ffi.Uint16> data;
+
+  @size_t()
+  external int size;
+
+  @size_t()
+  external int capacity;
+}
+
+class rosidl_generator_c__boolean__Sequence extends ffi.Struct {
+  external ffi.Pointer<ffi.Uint8> data;
+
+  @size_t()
+  external int size;
+
+  @size_t()
+  external int capacity;
+}
+
+class rosidl_generator_c__octet__Sequence extends ffi.Struct {
+  external ffi.Pointer<ffi.Uint8> data;
+
+  @size_t()
+  external int size;
+
+  @size_t()
+  external int capacity;
+}
+
+class rosidl_generator_c__uint8__Sequence extends ffi.Struct {
+  external ffi.Pointer<ffi.Uint8> data;
+
+  @size_t()
+  external int size;
+
+  @size_t()
+  external int capacity;
+}
+
+class rosidl_generator_c__int8__Sequence extends ffi.Struct {
+  external ffi.Pointer<ffi.Int8> data;
+
+  @size_t()
+  external int size;
+
+  @size_t()
+  external int capacity;
+}
+
+class rosidl_generator_c__uint16__Sequence extends ffi.Struct {
+  external ffi.Pointer<ffi.Uint16> data;
+
+  @size_t()
+  external int size;
+
+  @size_t()
+  external int capacity;
+}
+
+class rosidl_generator_c__int16__Sequence extends ffi.Struct {
+  external ffi.Pointer<ffi.Int16> data;
+
+  @size_t()
+  external int size;
+
+  @size_t()
+  external int capacity;
+}
+
+class rosidl_generator_c__uint32__Sequence extends ffi.Struct {
+  external ffi.Pointer<ffi.Uint32> data;
+
+  @size_t()
+  external int size;
+
+  @size_t()
+  external int capacity;
+}
+
+class rosidl_generator_c__int32__Sequence extends ffi.Struct {
+  external ffi.Pointer<ffi.Int32> data;
+
+  @size_t()
+  external int size;
+
+  @size_t()
+  external int capacity;
+}
+
+class rosidl_generator_c__uint64__Sequence extends ffi.Struct {
+  external ffi.Pointer<ffi.Uint64> data;
+
+  @size_t()
+  external int size;
+
+  @size_t()
+  external int capacity;
+}
+
+class rosidl_generator_c__int64__Sequence extends ffi.Struct {
+  external ffi.Pointer<ffi.Int64> data;
+
+  @size_t()
+  external int size;
+
+  @size_t()
+  external int capacity;
+}
+
+/// String struct
+class rosidl_generator_c__String extends ffi.Struct {
+  external ffi.Pointer<ffi.Int8> data;
+
+  /// The length of the string (excluding the null byte).
+  @size_t()
+  external int size;
+
+  /// The capacity represents the number of allocated bytes (including the null byte).
+  @size_t()
+  external int capacity;
+}
+
+class rosidl_generator_c__String__Sequence extends ffi.Struct {
+  external ffi.Pointer<rosidl_generator_c__String> data;
+
+  @size_t()
+  external int size;
+
+  @size_t()
+  external int capacity;
+}
+
+/// Struct defined in msg/ParameterValue in the package rcl_interfaces.
+class rcl_interfaces__msg__ParameterValue extends ffi.Struct {
+  @ffi.Uint8()
+  external int type;
+
+  @ffi.Uint8()
+  external int bool_value;
+
+  @ffi.Int64()
+  external int integer_value;
+
+  @ffi.Double()
+  external double double_value;
+
+  external rosidl_generator_c__String string_value;
+
+  external rosidl_generator_c__octet__Sequence byte_array_value;
+
+  external rosidl_generator_c__boolean__Sequence bool_array_value;
+
+  external rosidl_generator_c__int64__Sequence integer_array_value;
+
+  external rosidl_generator_c__double__Sequence double_array_value;
+
+  external rosidl_generator_c__String__Sequence string_array_value;
+}
+
+/// Struct for a sequence of rcl_interfaces__msg__ParameterValue.
+class rcl_interfaces__msg__ParameterValue__Sequence extends ffi.Struct {
+  external ffi.Pointer<rcl_interfaces__msg__ParameterValue> data;
+
+  /// The number of valid items in data
+  @size_t()
+  external int size;
+
+  /// The number of allocated items in data
+  @size_t()
+  external int capacity;
+}
+
+/// Struct defined in msg/Parameter in the package rcl_interfaces.
+class rcl_interfaces__msg__Parameter extends ffi.Struct {
+  external rosidl_generator_c__String name;
+
+  external rcl_interfaces__msg__ParameterValue value;
+}
+
+/// Struct for a sequence of rcl_interfaces__msg__Parameter.
+class rcl_interfaces__msg__Parameter__Sequence extends ffi.Struct {
+  external ffi.Pointer<rcl_interfaces__msg__Parameter> data;
+
+  /// The number of valid items in data
+  @size_t()
+  external int size;
+
+  /// The number of allocated items in data
+  @size_t()
+  external int capacity;
+}
+
+/// Struct defined in msg/ParameterEvent in the package rcl_interfaces.
+class rcl_interfaces__msg__ParameterEvent extends ffi.Struct {
+  @ffi.Int32()
+  external int stamp;
+
+  external rosidl_generator_c__String node;
+
+  external rcl_interfaces__msg__Parameter__Sequence new_parameters;
+
+  external rcl_interfaces__msg__Parameter__Sequence changed_parameters;
+
+  external rcl_interfaces__msg__Parameter__Sequence deleted_parameters;
+}
+
+/// Struct for a sequence of rcl_interfaces__msg__ParameterEvent.
+class rcl_interfaces__msg__ParameterEvent__Sequence extends ffi.Struct {
+  external ffi.Pointer<rcl_interfaces__msg__ParameterEvent> data;
+
+  /// The number of valid items in data
+  @size_t()
+  external int size;
+
+  /// The number of allocated items in data
+  @size_t()
+  external int capacity;
+}
+
+/// Struct defined in msg/SetParametersResult in the package rcl_interfaces.
+class rcl_interfaces__msg__SetParametersResult extends ffi.Struct {
+  @ffi.Uint8()
+  external int successful;
+
+  external rosidl_generator_c__String reason;
+}
+
+/// Struct for a sequence of rcl_interfaces__msg__SetParametersResult.
+class rcl_interfaces__msg__SetParametersResult__Sequence extends ffi.Struct {
+  external ffi.Pointer<rcl_interfaces__msg__SetParametersResult> data;
+
+  /// The number of valid items in data
+  @size_t()
+  external int size;
+
+  /// The number of allocated items in data
+  @size_t()
+  external int capacity;
+}
+
+/// Struct defined in msg/FloatingPointRange in the package rcl_interfaces.
+class rcl_interfaces__msg__FloatingPointRange extends ffi.Struct {
+  @ffi.Double()
+  external double from_value;
+
+  @ffi.Double()
+  external double to_value;
+
+  @ffi.Double()
+  external double step;
+}
+
+/// Struct for a sequence of rcl_interfaces__msg__FloatingPointRange.
+class rcl_interfaces__msg__FloatingPointRange__Sequence extends ffi.Struct {
+  external ffi.Pointer<rcl_interfaces__msg__FloatingPointRange> data;
+
+  /// The number of valid items in data
+  @size_t()
+  external int size;
+
+  /// The number of allocated items in data
+  @size_t()
+  external int capacity;
+}
+
+/// Struct defined in msg/IntegerRange in the package rcl_interfaces.
+class rcl_interfaces__msg__IntegerRange extends ffi.Struct {
+  @ffi.Int64()
+  external int from_value;
+
+  @ffi.Int64()
+  external int to_value;
+
+  @ffi.Uint64()
+  external int step;
+}
+
+/// Struct for a sequence of rcl_interfaces__msg__IntegerRange.
+class rcl_interfaces__msg__IntegerRange__Sequence extends ffi.Struct {
+  external ffi.Pointer<rcl_interfaces__msg__IntegerRange> data;
+
+  /// The number of valid items in data
+  @size_t()
+  external int size;
+
+  /// The number of allocated items in data
+  @size_t()
+  external int capacity;
+}
+
+/// Struct defined in msg/ParameterDescriptor in the package rcl_interfaces.
+class rcl_interfaces__msg__ParameterDescriptor extends ffi.Struct {
+  external rosidl_generator_c__String name;
+
+  @ffi.Uint8()
+  external int type;
+
+  external rosidl_generator_c__String description;
+
+  external rosidl_generator_c__String additional_constraints;
+
+  @ffi.Uint8()
+  external int read_only;
+
+  external rcl_interfaces__msg__FloatingPointRange__Sequence
+      floating_point_range;
+
+  external rcl_interfaces__msg__IntegerRange__Sequence integer_range;
+}
+
+/// Struct for a sequence of rcl_interfaces__msg__ParameterDescriptor.
+class rcl_interfaces__msg__ParameterDescriptor__Sequence extends ffi.Struct {
+  external ffi.Pointer<rcl_interfaces__msg__ParameterDescriptor> data;
+
+  /// The number of valid items in data
+  @size_t()
+  external int size;
+
+  /// The number of allocated items in data
+  @size_t()
+  external int capacity;
+}
+
+/// Struct defined in msg/ListParametersResult in the package rcl_interfaces.
+class rcl_interfaces__msg__ListParametersResult extends ffi.Struct {
+  external rosidl_generator_c__String__Sequence names;
+
+  external rosidl_generator_c__String__Sequence prefixes;
+}
+
+/// Struct for a sequence of rcl_interfaces__msg__ListParametersResult.
+class rcl_interfaces__msg__ListParametersResult__Sequence extends ffi.Struct {
+  external ffi.Pointer<rcl_interfaces__msg__ListParametersResult> data;
+
+  /// The number of valid items in data
+  @size_t()
+  external int size;
+
+  /// The number of allocated items in data
+  @size_t()
+  external int capacity;
+}
+
+/// Struct defined in msg/ParameterType in the package rcl_interfaces.
+class rcl_interfaces__msg__ParameterType extends ffi.Struct {
+  @ffi.Uint8()
+  external int structure_needs_at_least_one_member;
+}
+
+/// Struct for a sequence of rcl_interfaces__msg__ParameterType.
+class rcl_interfaces__msg__ParameterType__Sequence extends ffi.Struct {
+  external ffi.Pointer<rcl_interfaces__msg__ParameterType> data;
+
+  /// The number of valid items in data
+  @size_t()
+  external int size;
+
+  /// The number of allocated items in data
+  @size_t()
+  external int capacity;
+}
+
+/// Struct defined in msg/IntraProcessMessage in the package rcl_interfaces.
+class rcl_interfaces__msg__IntraProcessMessage extends ffi.Struct {
+  @ffi.Uint64()
+  external int publisher_id;
+
+  @ffi.Uint64()
+  external int message_sequence;
+}
+
+/// Struct for a sequence of rcl_interfaces__msg__IntraProcessMessage.
+class rcl_interfaces__msg__IntraProcessMessage__Sequence extends ffi.Struct {
+  external ffi.Pointer<rcl_interfaces__msg__IntraProcessMessage> data;
+
+  /// The number of valid items in data
+  @size_t()
+  external int size;
+
+  /// The number of allocated items in data
+  @size_t()
+  external int capacity;
+}
+
+/// Struct defined in msg/ParameterEventDescriptors in the package rcl_interfaces.
+class rcl_interfaces__msg__ParameterEventDescriptors extends ffi.Struct {
+  external rcl_interfaces__msg__ParameterDescriptor__Sequence new_parameters;
+
+  external rcl_interfaces__msg__ParameterDescriptor__Sequence
+      changed_parameters;
+
+  external rcl_interfaces__msg__ParameterDescriptor__Sequence
+      deleted_parameters;
+}
+
+/// Struct for a sequence of rcl_interfaces__msg__ParameterEventDescriptors.
+class rcl_interfaces__msg__ParameterEventDescriptors__Sequence
+    extends ffi.Struct {
+  external ffi.Pointer<rcl_interfaces__msg__ParameterEventDescriptors> data;
+
+  /// The number of valid items in data
+  @size_t()
+  external int size;
+
+  /// The number of allocated items in data
+  @size_t()
+  external int capacity;
+}
+
+/// Struct defined in msg/Log in the package rcl_interfaces.
+class rcl_interfaces__msg__Log extends ffi.Struct {
+  @ffi.Int32()
+  external int stamp;
+
+  @ffi.Uint8()
+  external int level;
+
+  external rosidl_generator_c__String name;
+
+  external rosidl_generator_c__String msg;
+
+  external rosidl_generator_c__String file;
+
+  external rosidl_generator_c__String function;
+
+  @ffi.Uint32()
+  external int line;
+}
+
+/// Struct for a sequence of rcl_interfaces__msg__Log.
+class rcl_interfaces__msg__Log__Sequence extends ffi.Struct {
+  external ffi.Pointer<rcl_interfaces__msg__Log> data;
+
+  /// The number of valid items in data
+  @size_t()
+  external int size;
+
+  /// The number of allocated items in data
+  @size_t()
+  external int capacity;
+}
+
+/// Struct defined in srv/SetParameters in the package rcl_interfaces.
+class rcl_interfaces__srv__SetParameters_Request extends ffi.Struct {
+  external rcl_interfaces__msg__Parameter__Sequence parameters;
+}
+
+/// Struct for a sequence of rcl_interfaces__srv__SetParameters_Request.
+class rcl_interfaces__srv__SetParameters_Request__Sequence extends ffi.Struct {
+  external ffi.Pointer<rcl_interfaces__srv__SetParameters_Request> data;
+
+  /// The number of valid items in data
+  @size_t()
+  external int size;
+
+  /// The number of allocated items in data
+  @size_t()
+  external int capacity;
+}
+
+/// Struct defined in srv/SetParameters in the package rcl_interfaces.
+class rcl_interfaces__srv__SetParameters_Response extends ffi.Struct {
+  external rcl_interfaces__msg__SetParametersResult__Sequence results;
+}
+
+/// Struct for a sequence of rcl_interfaces__srv__SetParameters_Response.
+class rcl_interfaces__srv__SetParameters_Response__Sequence extends ffi.Struct {
+  external ffi.Pointer<rcl_interfaces__srv__SetParameters_Response> data;
+
+  /// The number of valid items in data
+  @size_t()
+  external int size;
+
+  /// The number of allocated items in data
+  @size_t()
+  external int capacity;
+}
+
+/// Struct defined in srv/GetParameterTypes in the package rcl_interfaces.
+class rcl_interfaces__srv__GetParameterTypes_Request extends ffi.Struct {
+  external rosidl_generator_c__String__Sequence names;
+}
+
+/// Struct for a sequence of rcl_interfaces__srv__GetParameterTypes_Request.
+class rcl_interfaces__srv__GetParameterTypes_Request__Sequence
+    extends ffi.Struct {
+  external ffi.Pointer<rcl_interfaces__srv__GetParameterTypes_Request> data;
+
+  /// The number of valid items in data
+  @size_t()
+  external int size;
+
+  /// The number of allocated items in data
+  @size_t()
+  external int capacity;
+}
+
+/// Struct defined in srv/GetParameterTypes in the package rcl_interfaces.
+class rcl_interfaces__srv__GetParameterTypes_Response extends ffi.Struct {
+  external rosidl_generator_c__uint8__Sequence types;
+}
+
+/// Struct for a sequence of rcl_interfaces__srv__GetParameterTypes_Response.
+class rcl_interfaces__srv__GetParameterTypes_Response__Sequence
+    extends ffi.Struct {
+  external ffi.Pointer<rcl_interfaces__srv__GetParameterTypes_Response> data;
+
+  /// The number of valid items in data
+  @size_t()
+  external int size;
+
+  /// The number of allocated items in data
+  @size_t()
+  external int capacity;
+}
+
+/// Struct defined in srv/DescribeParameters in the package rcl_interfaces.
+class rcl_interfaces__srv__DescribeParameters_Request extends ffi.Struct {
+  external rosidl_generator_c__String__Sequence names;
+}
+
+/// Struct for a sequence of rcl_interfaces__srv__DescribeParameters_Request.
+class rcl_interfaces__srv__DescribeParameters_Request__Sequence
+    extends ffi.Struct {
+  external ffi.Pointer<rcl_interfaces__srv__DescribeParameters_Request> data;
+
+  /// The number of valid items in data
+  @size_t()
+  external int size;
+
+  /// The number of allocated items in data
+  @size_t()
+  external int capacity;
+}
+
+/// Struct defined in srv/DescribeParameters in the package rcl_interfaces.
+class rcl_interfaces__srv__DescribeParameters_Response extends ffi.Struct {
+  external rcl_interfaces__msg__ParameterDescriptor__Sequence descriptors;
+}
+
+/// Struct for a sequence of rcl_interfaces__srv__DescribeParameters_Response.
+class rcl_interfaces__srv__DescribeParameters_Response__Sequence
+    extends ffi.Struct {
+  external ffi.Pointer<rcl_interfaces__srv__DescribeParameters_Response> data;
+
+  /// The number of valid items in data
+  @size_t()
+  external int size;
+
+  /// The number of allocated items in data
+  @size_t()
+  external int capacity;
+}
+
+/// Struct defined in srv/SetParametersAtomically in the package rcl_interfaces.
+class rcl_interfaces__srv__SetParametersAtomically_Request extends ffi.Struct {
+  external rcl_interfaces__msg__Parameter__Sequence parameters;
+}
+
+/// Struct for a sequence of rcl_interfaces__srv__SetParametersAtomically_Request.
+class rcl_interfaces__srv__SetParametersAtomically_Request__Sequence
+    extends ffi.Struct {
+  external ffi.Pointer<rcl_interfaces__srv__SetParametersAtomically_Request>
+      data;
+
+  /// The number of valid items in data
+  @size_t()
+  external int size;
+
+  /// The number of allocated items in data
+  @size_t()
+  external int capacity;
+}
+
+/// Struct defined in srv/SetParametersAtomically in the package rcl_interfaces.
+class rcl_interfaces__srv__SetParametersAtomically_Response extends ffi.Struct {
+  external rcl_interfaces__msg__SetParametersResult result;
+}
+
+/// Struct for a sequence of rcl_interfaces__srv__SetParametersAtomically_Response.
+class rcl_interfaces__srv__SetParametersAtomically_Response__Sequence
+    extends ffi.Struct {
+  external ffi.Pointer<rcl_interfaces__srv__SetParametersAtomically_Response>
+      data;
+
+  /// The number of valid items in data
+  @size_t()
+  external int size;
+
+  /// The number of allocated items in data
+  @size_t()
+  external int capacity;
+}
+
+/// Struct defined in srv/ListParameters in the package rcl_interfaces.
+class rcl_interfaces__srv__ListParameters_Request extends ffi.Struct {
+  external rosidl_generator_c__String__Sequence prefixes;
+
+  @ffi.Uint64()
+  external int depth;
+}
+
+/// Struct for a sequence of rcl_interfaces__srv__ListParameters_Request.
+class rcl_interfaces__srv__ListParameters_Request__Sequence extends ffi.Struct {
+  external ffi.Pointer<rcl_interfaces__srv__ListParameters_Request> data;
+
+  /// The number of valid items in data
+  @size_t()
+  external int size;
+
+  /// The number of allocated items in data
+  @size_t()
+  external int capacity;
+}
+
+/// Struct defined in srv/ListParameters in the package rcl_interfaces.
+class rcl_interfaces__srv__ListParameters_Response extends ffi.Struct {
+  external rcl_interfaces__msg__ListParametersResult result;
+}
+
+/// Struct for a sequence of rcl_interfaces__srv__ListParameters_Response.
+class rcl_interfaces__srv__ListParameters_Response__Sequence
+    extends ffi.Struct {
+  external ffi.Pointer<rcl_interfaces__srv__ListParameters_Response> data;
+
+  /// The number of valid items in data
+  @size_t()
+  external int size;
+
+  /// The number of allocated items in data
+  @size_t()
+  external int capacity;
+}
+
+/// Struct defined in srv/GetParameters in the package rcl_interfaces.
+class rcl_interfaces__srv__GetParameters_Request extends ffi.Struct {
+  external rosidl_generator_c__String__Sequence names;
+}
+
+/// Struct for a sequence of rcl_interfaces__srv__GetParameters_Request.
+class rcl_interfaces__srv__GetParameters_Request__Sequence extends ffi.Struct {
+  external ffi.Pointer<rcl_interfaces__srv__GetParameters_Request> data;
+
+  /// The number of valid items in data
+  @size_t()
+  external int size;
+
+  /// The number of allocated items in data
+  @size_t()
+  external int capacity;
+}
+
+/// Struct defined in srv/GetParameters in the package rcl_interfaces.
+class rcl_interfaces__srv__GetParameters_Response extends ffi.Struct {
+  external rcl_interfaces__msg__ParameterValue__Sequence values;
+}
+
+/// Struct for a sequence of rcl_interfaces__srv__GetParameters_Response.
+class rcl_interfaces__srv__GetParameters_Response__Sequence extends ffi.Struct {
+  external ffi.Pointer<rcl_interfaces__srv__GetParameters_Response> data;
+
+  /// The number of valid items in data
+  @size_t()
+  external int size;
+
+  /// The number of allocated items in data
+  @size_t()
+  external int capacity;
+}
+
 const int RMW_QOS_POLICY_DEPTH_SYSTEM_DEFAULT = 0;
+
+const int
+    rcl_interfaces__msg__ParameterDescriptor__floating_point_range__MAX_SIZE =
+    1;
+
+const int rcl_interfaces__msg__ParameterDescriptor__integer_range__MAX_SIZE = 1;
+
+const int rcl_interfaces__msg__ParameterType__PARAMETER_NOT_SET = 0;
+
+const int rcl_interfaces__msg__ParameterType__PARAMETER_BOOL = 1;
+
+const int rcl_interfaces__msg__ParameterType__PARAMETER_INTEGER = 2;
+
+const int rcl_interfaces__msg__ParameterType__PARAMETER_DOUBLE = 3;
+
+const int rcl_interfaces__msg__ParameterType__PARAMETER_STRING = 4;
+
+const int rcl_interfaces__msg__ParameterType__PARAMETER_BYTE_ARRAY = 5;
+
+const int rcl_interfaces__msg__ParameterType__PARAMETER_BOOL_ARRAY = 6;
+
+const int rcl_interfaces__msg__ParameterType__PARAMETER_INTEGER_ARRAY = 7;
+
+const int rcl_interfaces__msg__ParameterType__PARAMETER_DOUBLE_ARRAY = 8;
+
+const int rcl_interfaces__msg__ParameterType__PARAMETER_STRING_ARRAY = 9;
+
+const int rcl_interfaces__msg__Log__DEBUG = 10;
+
+const int rcl_interfaces__msg__Log__INFO = 20;
+
+const int rcl_interfaces__msg__Log__WARN = 30;
+
+const int rcl_interfaces__msg__Log__ERROR = 40;
+
+const int rcl_interfaces__msg__Log__FATAL = 50;
+
+const int rcl_interfaces__srv__ListParameters_Request__DEPTH_RECURSIVE = 0;
 
 const int RCUTILS_RET_OK = 0;
 
